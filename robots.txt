@@ -1,0 +1,58 @@
+# ----------------------------------------
+# robots.txt – Zincel Ideas
+# Optimizado para SEO, indexación y rendimiento de rastreo
+# Última actualización: 2026-01-28
+# ----------------------------------------
+
+User-agent: *
+# Bloqueo de rutas internas o privadas
+Disallow: /submit
+Disallow: /formulario
+
+# Bloqueo de parámetros de seguimiento
+Disallow: /*?utm_*
+Disallow: /*?fbclid=*
+
+# Permitimos el acceso al resto del contenido
+Allow: /
+
+# ----------------------------------------
+# Control específico para bots importantes
+# ----------------------------------------
+
+# Googlebot – indexación y renderizado completo
+User-agent: Googlebot
+Allow: /imagenes-optim/
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+
+# Googlebot-Image – acceso completo a imágenes
+User-agent: Googlebot-Image
+Allow: /imagenes-optim/
+
+# Bingbot – indexación similar a Googlebot
+User-agent: Bingbot
+Allow: /imagenes-optim/
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+
+# AhrefsBot – limitado para análisis SEO
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+# Yandex – indexación internacional
+User-agent: Yandex
+Allow: /imagenes-optim/
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+
+# ----------------------------------------
+# Sitemap principal
+# ----------------------------------------
+Sitemap: https://www.zincelideas.com/sitemap.xml

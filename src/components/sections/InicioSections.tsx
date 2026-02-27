@@ -1,9 +1,10 @@
 // client/src/components/sections/InicioSections.tsx
 
-import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Star } from "lucide-react";
+import { useEffect, useRef } from "react";
+
 import { ImageStack } from "../ui/ImageStack";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -165,11 +166,7 @@ export function ContentIntro({
   }, [reverse, descriptionParagraphs.length]);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative dark-image overflow-hidden py-32 lg:py-48 "
-    >
-
+    <section ref={sectionRef} className="relative dark-image overflow-hidden py-32 lg:py-48 ">
       <div
         className={`grid lg:grid-cols-2 gap-20 items-center ${
           reverse ? "lg:[&>*:first-child]:order-2" : ""
@@ -179,25 +176,23 @@ export function ContentIntro({
         <div className="w-full">
           <div
             ref={imageRef}
-            className={`relative overflow-hidden rounded-2xl ${
-              imageContainerClassName ?? ""
-            }`}
+            className={`relative overflow-hidden rounded-2xl ${imageContainerClassName ?? ""}`}
             data-mining-image
           >
             <div className="transition-transform duration-[1200ms] ease-out hover:scale-[1.02]">
               {imageElement}
             </div>
-          </div>                                    
+          </div>
         </div>
 
         {/* Texto */}
         <div className="max-w-xl space-y-4 sm:space-y-5 lg:space-y-6">
-<span className="inline-block text-xs sm:text-sm md:text-base lg:text-4xl font-medium uppercase tracking-[0.24em] text-neutral-400
-  after:content-[''] after:block after:mt-2 after:h-[2px] after:w-22 after:bg-blue-800">
-  CALERA
-</span>
-
-
+          <span
+            className="inline-block text-xs sm:text-sm md:text-base lg:text-4xl font-medium uppercase tracking-[0.24em] text-neutral-400
+  after:content-[''] after:block after:mt-2 after:h-[2px] after:w-22 after:bg-blue-800"
+          >
+            CALERA
+          </span>
 
           <h2
             ref={titleRef}
@@ -234,26 +229,24 @@ Contamos con amplia experiencia en logística, recursos humanos y concesiones mi
 Aplicamos estrictos estándares de calidad en el cuidado del medio ambiente, la seguridad y la producción, consolidándonos como una organización socialmente responsable en cada proyecto que desarrollamos.
 
 Nuestro objeto social está orientado a generar bienestar y mejorar la calidad de vida en nuestras comunidades de influencia, impulsando el desarrollo local y disminuyendo el desempleo a través de la creación de mejores oportunidades laborales.`}
-
         imageContainerClassName="overflow-visible rounded-none"
         imageElement={
           <ImageStack
             layout="stacked"
             images={[
               {
-                src: "/img/inicio-img/img002",
+                src: "/img-inicio/inicio-img/img002",
                 alt: "Comunicación como tensión creativa",
                 priority: true, // 👈 SOLO ESTA
               },
               {
-                src: "/img/inicio-img/img001",
+                src: "/img-inicio/inicio-img/img001",
                 alt: "Colaboración como proceso creativo",
               },
-                            {
-                src: "/img/inicio-img/img003",
+              {
+                src: "/img-inicio/inicio-img/img003",
                 alt: "Colaboración como proceso creativo",
               },
-              
             ]}
             badge={{
               value: "+15",
@@ -263,7 +256,6 @@ Nuestro objeto social está orientado a generar bienestar y mejorar la calidad d
           />
         }
       />
-  
     </section>
   );
 }

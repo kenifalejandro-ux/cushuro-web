@@ -2,6 +2,9 @@
 
 /* 1️⃣ TODOS los imports PRIMERO */
 @import "../styles/section.css";
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
 
 
 /* 2️⃣ Luego Tailwind (output o capas) */

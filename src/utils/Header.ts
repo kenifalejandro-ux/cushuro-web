@@ -1,6 +1,6 @@
 // src/utils/Header.ts
 
-import { debounce } from './debounce';
+import { debounce } from "./debounce";
 
 declare global {
   interface Window {
@@ -22,9 +22,7 @@ export function setupHeader() {
 
   // Si faltan todos los elementos, salir
   if (!banner && !tabs && !floatingIcon && !modalBackground && !modalContact) {
-    console.warn(
-      "setupHeader: elementos del header no encontrados (ninguno presente)."
-    );
+    console.warn("setupHeader: elementos del header no encontrados (ninguno presente).");
     return () => {};
   }
 
@@ -39,11 +37,7 @@ export function setupHeader() {
       banner.classList.remove("active");
       tabs.classList.add("hidden");
 
-      if (
-        window.innerWidth <= 430 &&
-        modalContact &&
-        !modalContact.classList.contains("active")
-      ) {
+      if (window.innerWidth <= 430 && modalContact && !modalContact.classList.contains("active")) {
         floatingIcon.classList.add("hidden");
       }
     } else {
@@ -85,10 +79,7 @@ export function setupHeader() {
 
   // Attach background listener (una sola vez)
   if (modalBackground && !modalBackground.dataset.headerAttached) {
-    modalBackground.addEventListener(
-      "click",
-      onModalBackgroundClick as EventListener
-    );
+    modalBackground.addEventListener("click", onModalBackgroundClick as EventListener);
     modalBackground.dataset.headerAttached = "1";
   }
 
@@ -113,17 +104,11 @@ export function setupHeader() {
   // --- Cleanup (muy importante en React) ---
   return function cleanup() {
     if (floatingIcon && floatingIcon.dataset.headerAttached) {
-      floatingIcon.removeEventListener(
-        "click",
-        onFloatingClick as EventListener
-      );
+      floatingIcon.removeEventListener("click", onFloatingClick as EventListener);
       delete floatingIcon.dataset.headerAttached;
     }
     if (modalBackground && modalBackground.dataset.headerAttached) {
-      modalBackground.removeEventListener(
-        "click",
-        onModalBackgroundClick as EventListener
-      );
+      modalBackground.removeEventListener("click", onModalBackgroundClick as EventListener);
       delete modalBackground.dataset.headerAttached;
     }
     modalLinks.forEach((link) => {

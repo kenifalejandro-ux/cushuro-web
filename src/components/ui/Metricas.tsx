@@ -1,10 +1,10 @@
 /*client/src/components/ui/Metricas.tsx*/
 
-'use client';
+"use client";
 
-import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useEffect, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,7 +107,7 @@ export default function Metricas({
   variant = "cards",
   vista = "desktop",
   estilo = "moderno",
-  color = "#0be416"
+  color = "#0be416",
 }: Props) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const metricRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -121,9 +121,9 @@ export default function Metricas({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const index = metricRefs.current.findIndex(el => el === entry.target);
+          const index = metricRefs.current.findIndex((el) => el === entry.target);
           if (entry.isIntersecting && index !== -1) {
-            setVisible(prev => {
+            setVisible((prev) => {
               const copy = [...prev];
               copy[index] = true;
               return copy;
@@ -134,7 +134,7 @@ export default function Metricas({
       { threshold: 0.5 }
     );
 
-    metricRefs.current.forEach(el => el && observer.observe(el));
+    metricRefs.current.forEach((el) => el && observer.observe(el));
 
     return () => observer.disconnect();
   }, [data.length, variant]);
@@ -172,14 +172,22 @@ export default function Metricas({
   }, [data.length, reducedMotion, variant, estilo]);
 
   /* ---------- contador animado ---------- */
-  const Counter = ({ value, active }: { value: string; active: boolean }) => {
+  const Counter = ({
+    value,
+    active,
+    reducedMotionEnabled,
+  }: {
+    value: string;
+    active: boolean;
+    reducedMotionEnabled: boolean;
+  }) => {
     const number = parseInt(value.replace(/\D/g, "")) || 0;
     const suffix = value.replace(/[0-9]/g, "");
     const [count, setCount] = useState(0);
 
     useEffect(() => {
       if (!active) return;
-      if (reducedMotion) {
+      if (reducedMotionEnabled) {
         setCount(number);
         return;
       }
@@ -200,9 +208,14 @@ export default function Metricas({
       rafId = requestAnimationFrame(tick);
 
       return () => cancelAnimationFrame(rafId);
-    }, [active, number, reducedMotion]);
+    }, [active, number, reducedMotionEnabled]);
 
-    return <>{count}{suffix}</>;
+    return (
+      <>
+        {count}
+        {suffix}
+      </>
+    );
   };
 
   if (!data || data.length === 0) return null;
@@ -212,22 +225,21 @@ export default function Metricas({
       ? `${vista === "mobile" ? "text-2xl" : "text-3xl"} font-semibold tracking-tight`
       : `${vista === "mobile" ? "text-3xl" : "text-4xl lg:text-5xl"} font-black tracking-tight`;
 
-  const labelClass =
-    `${vista === "mobile" ? "text-[11px]" : "text-xs"} uppercase ${preset.label}`;
+  const labelClass = `${vista === "mobile" ? "text-[11px]" : "text-xs"} uppercase ${preset.label}`;
 
   /* ---------- INLINE ---------- */
   if (variant === "inline") {
     return (
       <div
         ref={sectionRef}
-        className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 rounded-2xl border  ${preset.container} ${preset.containerShadow}`}
+        className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3  rounded-2xl border  ${preset.container} ${preset.containerShadow}`}
       >
         {data.map((m, i) => (
           <div
             key={i}
             data-metrica-item
             className={[
-              "relative px-6 py-6 lg:py-8",
+              "relative px-6 py-6 lg:py-8 bg-blue-900  ",
               preset.divider,
               i > 0 ? "border-t" : "",
               i === 1 ? "md:border-t-0" : "",
@@ -246,17 +258,17 @@ export default function Metricas({
               aria-hidden
             />
 
-            <div className="flex flex-col gap-2 items-center md:items-start">
+            <div className="flex flex-col gap-2 items-center md:items-start ">
               <div
-                ref={(el) => { metricRefs.current[i] = el; }}
-                className={`${valueClass} leading-none text-center md:text-left`}
+                ref={(el) => {
+                  metricRefs.current[i] = el;
+                }}
+                className={`${valueClass} leading-none text-center md:text-left `}
                 style={{ color }}
               >
-                <Counter value={m.valor} active={visible[i]} />
+                <Counter value={m.valor} active={visible[i]} reducedMotionEnabled={reducedMotion} />
               </div>
-              <div className={`${labelClass} text-center md:text-left`}>
-                {m.etiqueta}
-              </div>
+              <div className={`${labelClass} text-zinc-100 text-center md:text-left`}>{m.etiqueta}</div>
             </div>
           </div>
         ))}
@@ -291,11 +303,13 @@ export default function Metricas({
             <div className="relative p-6 md:p-6 lg:p-8 text-center md:text-left">
               <div className={`${labelClass}`}>{m.etiqueta}</div>
               <div
-                ref={(el) => { metricRefs.current[i] = el; }}
+                ref={(el) => {
+                  metricRefs.current[i] = el;
+                }}
                 className={`${valueClass} mt-4 leading-none`}
                 style={{ color }}
               >
-                <Counter value={m.valor} active={visible[i]} />
+                <Counter value={m.valor} active={visible[i]} reducedMotionEnabled={reducedMotion} />
               </div>
 
               <div className="mt-6 h-px bg-zinc-200/70" />
@@ -324,18 +338,20 @@ export default function Metricas({
               data-metrica-item
               className="relative pl-0 md:pl-4 text-center md:text-left mt-10"
             >
-          {/**lineas horizontales 
+              {/**lineas horizontales 
           <div
             className={`absolute left-1/2 top-0 h-1 w-12 -translate-x-1/2 rounded-full md:left-0 md:top-2 md:h-10 md:w-1 md:translate-x-0 ${preset.gridAccent}`}
             style={{ backgroundColor: color }}
             aria-hidden
           />*/}
               <div
-                ref={(el) => { metricRefs.current[i] = el; }}
+                ref={(el) => {
+                  metricRefs.current[i] = el;
+                }}
                 className={`${valueClass} mb-2 transition-transform hover:-translate-y-0.5`}
                 style={{ color }}
               >
-                <Counter value={m.valor} active={visible[i]} />
+                <Counter value={m.valor} active={visible[i]} reducedMotionEnabled={reducedMotion} />
               </div>
 
               <div className={labelClass}>{m.etiqueta}</div>

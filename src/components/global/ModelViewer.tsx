@@ -1,26 +1,22 @@
+"use client";
 
-
-'use client';
-
-
-import { Canvas, useLoader, useThree } from '@react-three/fiber';
-import { Center, OrbitControls } from '@react-three/drei';
-import { Component, Suspense, useEffect, useState } from 'react';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
-import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+import { Center, OrbitControls } from "@react-three/drei";
+import { Canvas, useLoader, useThree } from "@react-three/fiber";
+import { Component, Suspense, useEffect, useState } from "react";
+import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 interface ModelProps {
   url: string;
   scale?: number;
-  
 }
 
 function Model({ url, scale = 0.75 }: ModelProps) {
   const { invalidate } = useThree();
   const gltf = useLoader(GLTFLoader, url, (loader) => {
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('/draco/');
+    dracoLoader.setDecoderPath("/draco/");
     loader.setDRACOLoader(dracoLoader);
     loader.setMeshoptDecoder(MeshoptDecoder);
   });
@@ -73,7 +69,7 @@ class ModelErrorBoundary extends Component<{ children: React.ReactNode }> {
   }
 
   componentDidCatch(error: unknown) {
-    console.error('ModelViewer error:', error);
+    console.error("ModelViewer error:", error);
   }
 
   render() {
@@ -90,18 +86,18 @@ class ModelErrorBoundary extends Component<{ children: React.ReactNode }> {
 
 export default function ModelViewer({
   modelPath,
-  className = '',
+  className = "",
   autoRotate = false,
   modelScale = 0.75,
 }: ModelViewerProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia('(max-width: 768px)');
+    const media = window.matchMedia("(max-width: 768px)");
     const update = () => setIsMobile(media.matches);
     update();
-    media.addEventListener('change', update);
-    return () => media.removeEventListener('change', update);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
   }, []);
 
   return (
@@ -110,7 +106,7 @@ export default function ModelViewer({
         <Canvas
           dpr={isMobile ? [1, 1.5] : [1, 2]}
           camera={{ position: [7, 1, 5], fov: 30 }}
-          frameloop={autoRotate ? 'always' : 'demand'}
+          frameloop={autoRotate ? "always" : "demand"}
           gl={{ alpha: true, antialias: !isMobile }}
           onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
         >

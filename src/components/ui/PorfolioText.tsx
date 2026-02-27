@@ -1,7 +1,8 @@
 /*client/src/components/PortfolioText.tsx*/
 
-import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { useEffect, useRef, useState } from "react";
+
 import { portfolioProjects } from "@/data/portfolioProjects";
 
 export function PortfolioText() {
@@ -52,7 +53,6 @@ export function PortfolioText() {
 
   return (
     <section className="dark-image relative w-screen left-1/2 -translate-x-1/2 overflow-hidden py-20  bg-white">
-
       {/* Indicador superior */}
       <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-black/30">
         <span className="w-8 h-px bg-black/20" />
@@ -64,7 +64,7 @@ export function PortfolioText() {
       <div ref={carouselRef} className="flex items-center">
         {duplicatedProjects.map((project, i) => {
           const isActive = activeIndex === i;
-          
+
           return (
             <a
               key={i}
@@ -79,10 +79,8 @@ export function PortfolioText() {
             >
               {/* Número del proyecto */}
               <div className="absolute -top-8 left-12 md:left-24 lg:left-32">
-                <span
-                  className="text-xs font-light tracking-wider text-black/20 group-hover:text-black/50 transition-all duration-500"
-                >
-                  {String(i % portfolioProjects.length + 1).padStart(2, "0")}
+                <span className="text-xs font-light tracking-wider text-black/20 group-hover:text-black/50 transition-all duration-500">
+                  {String((i % portfolioProjects.length) + 1).padStart(2, "0")}
                 </span>
               </div>
 
@@ -117,7 +115,7 @@ export function PortfolioText() {
                   }}
                 >
                   {project.name}
-                  
+
                   {/* Efecto de subrayado animado */}
                   <span
                     className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-black/0 group-hover:bg-black/20 transition-all duration-700"
@@ -139,9 +137,9 @@ export function PortfolioText() {
                   >
                     {project.desc}
                   </p>
-                  
+
                   <span className="w-px h-3 bg-black/20" />
-                  
+
                   <span
                     className="
                       text-black/30
@@ -189,12 +187,14 @@ export function PortfolioText() {
             key={i}
             className="w-1 h-1 rounded-full bg-black/20 transition-all duration-500"
             style={{
-              backgroundColor: activeIndex !== null && activeIndex % portfolioProjects.length === i 
-                ? "rgba(0,0,0,0.6)" 
-                : "rgba(0,0,0,0.15)",
-              transform: activeIndex !== null && activeIndex % portfolioProjects.length === i 
-                ? "scale(1.5)" 
-                : "scale(1)",
+              backgroundColor:
+                activeIndex !== null && activeIndex % portfolioProjects.length === i
+                  ? "rgba(0,0,0,0.6)"
+                  : "rgba(0,0,0,0.15)",
+              transform:
+                activeIndex !== null && activeIndex % portfolioProjects.length === i
+                  ? "scale(1.5)"
+                  : "scale(1)",
             }}
           />
         ))}

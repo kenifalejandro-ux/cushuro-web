@@ -1,9 +1,8 @@
 // client/src/components/ui/PuertaDelValleCarousel.tsx
 
-import { BasePortfolioCarousel, PortfolioItem } from '@/components/ui/BasePortfolioCarousel';
+import { BasePortfolioCarousel, PortfolioItem } from "@/components/ui/BasePortfolioCarousel";
 
 const puertaDelValleImages: PortfolioItem[] = [
-
   {
     id: 1,
     href: "#",
@@ -63,7 +62,6 @@ export function PuertaDelValleCarousel() {
       items={puertaDelValleImages}
       title="" // sin título arriba del carrusel
       dotColors={puertaDotColors}
-      
     />
   );
 }

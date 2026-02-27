@@ -1,12 +1,9 @@
 // client/src/components/ui/CarouselPlanes-web.tsx  (o donde lo tengas)
 
-import { 
-  PrecioPortfolioCarousel, 
-  PortfolioItem,
-} from './PrecioPortfolioCarousel'; 
+import { PrecioPortfolioCarousel, type PortfolioItem } from "./PrecioPortfolioCarousel";
 // Ajusta la ruta si es necesario
 
-const PortfolioItem: PortfolioItem[] = [
+const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
     href: "",
@@ -18,7 +15,6 @@ const PortfolioItem: PortfolioItem[] = [
       height: 400,
       sizes: "(max-width: 768px) 100vw, 50vw",
     },
-
   },
 
   {
@@ -33,7 +29,7 @@ const PortfolioItem: PortfolioItem[] = [
       sizes: "(max-width: 768px) 100vw, 50vw",
     },
   },
-    {
+  {
     id: 3,
     href: "",
     ariaLabel: "Paquete red - web Advance",
@@ -57,7 +53,6 @@ const PortfolioItem: PortfolioItem[] = [
       height: 400,
       sizes: "(max-width: 768px) 100vw, 50vw",
     },
-
   },
   {
     id: 5,
@@ -71,15 +66,13 @@ const PortfolioItem: PortfolioItem[] = [
       sizes: "(max-width: 768px) 100vw, 50vw",
     },
   },
-  
 ];
 
 export function CarouselPlanesWeb() {
   return (
     <PrecioPortfolioCarousel
-      items={PortfolioItem}  // ← CORREGIDO: ahora sí pasas los datos
+      items={portfolioItems} // ← CORREGIDO: ahora sí pasas los datos
       title="Los mejores precios " // o el título que prefieras
-      
     />
   );
 }

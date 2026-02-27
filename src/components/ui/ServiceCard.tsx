@@ -1,6 +1,6 @@
-/**client/src/components/ui/ServiceCard.tsx */
+/** client/src/components/ui/ServiceCard.tsx */
 
-'use client';
+"use client";
 
 import { LCPImage } from "./LCPImage";
 import { OptimizedImage } from "./OptimizedImage";
@@ -26,12 +26,10 @@ export default function ServiceCard({
   imageHeight,
   sizes,
 }: Props) {
-  const imageSizes =
-    sizes ?? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
+  const imageSizes = sizes ?? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
 
   return (
-    <div className="group relative overflow-hidden  border border-zinc-200 bg-white shadow-sm hover:shadow-2xl transition-all duration-500">
-     
+    <div className="group relative overflow-hidden border border-zinc-200 bg-white shadow-sm hover:shadow-2xl transition-all duration-500">
       {/* Imagen */}
       <div className="relative h-56 overflow-hidden" data-service-image>
         {imageWidth && imageHeight ? (
@@ -43,7 +41,7 @@ export default function ServiceCard({
             sizes={imageSizes}
             priority={priority}
             pictureClassName="block w-full h-full"
-            className="grayscale group-hover:grayscale-0 scale-105 group-hover:scale-110 transition-transform duration-700"
+            className="grayscale lg:group-hover:grayscale-0 scale-105 group-hover:scale-110 transition-all duration-700"
           />
         ) : (
           <OptimizedImage
@@ -52,7 +50,7 @@ export default function ServiceCard({
             fill
             priority={priority}
             sizes={imageSizes}
-            className="grayscale group-hover:grayscale-0 scale-105 group-hover:scale-110 transition-transform duration-700"
+            className="grayscale lg:group-hover:grayscale-0 scale-105 group-hover:scale-110 transition-all duration-700"
           />
         )}
 
@@ -62,106 +60,18 @@ export default function ServiceCard({
 
       {/* Contenido */}
       <div className="p-7" data-service-content>
-
         <span className="text-xs uppercase tracking-widest text-blue-800 font-semibold">
           {category}
         </span>
 
-        <h3 className="mt-2 text-xl font-bold text-zinc-900">
-          {title}
-        </h3>
+        <h3 className="mt-2 text-xl font-bold text-zinc-900">{title}</h3>
 
         <div className="w-10 h-[2px] bg-blue-800 my-4 group-hover:w-16 transition-all duration-500" />
 
-        <p className="text-zinc-600 text-sm leading-relaxed">
-          {description}
-        </p>
+        <p className="text-zinc-600 text-sm leading-relaxed">{description}</p>
 
-        {/* flecha */}
-        <div className="mt-6 text-zinc-400 group-hover:text-blue-800 transition">
-          →
-        </div>
+        <div className="mt-6 text-zinc-400 group-hover:text-blue-800 transition">→</div>
       </div>
     </div>
   );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

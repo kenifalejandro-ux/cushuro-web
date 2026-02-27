@@ -1,41 +1,41 @@
-import React, { useEffect, useState, lazy, Suspense, useRef } from "react";
-import { useVideoInView } from "../ui/useVideoInView";
-import { runWhenIdle } from "@/utils/idle";
+import React, { lazy, Suspense, useRef } from "react";
 
-// Lazy load de heroes
-const HeroInicio = lazy(() => import("./Hero"));
-const HeroPortfolio = lazy(() => import("./HeroPortfolio"));
-const HeroServicios = lazy(() => import("./HeroServicios"));
-const HeroSobreNosotros = lazy(() => import("./HeroSobreNosotros"));
-const HeroPuertadelvalle = lazy(() => import("./HeroPuertadelvalle"));
-const HeroIntiPintay = lazy(() => import("./HeroIntiPintay"));
-const HeroTiestoCoffee = lazy(() => import("./HeroTiestoCoffee"));
-const HeroBkars = lazy(() => import("./HeroBkars"));
+import { useVideoInView } from "../ui/useVideoInView";
+
+// Lazy load de heroes inicio
+const HeroInicio = lazy(() => import("../Hero/Hero"));
+// Lazy load de heroes la empresa
+const HeroLaEmpresa = lazy(() => import("../Hero/HeroLaEmpresa"));
+// Lazy load de heroes Products
+const HeroCalViva = lazy(() => import("../Hero/HeroCalViva"));
+const HeroPiedraCaliza = lazy(() => import("../Hero/HeroPiedraCaliza"));
+const HeroCalAgricola = lazy(() => import("../Hero/HeroCalAgricola"));
+const HeroCarbonAntracita = lazy(() => import("../Hero/HeroCarbonAntracita"));
+const HeroCarbonCisco = lazy(() => import("../Hero/HeroCarbonCisco"));
+// Lazy load de heroes Services
+const HeroSuministroDeOxido = lazy(() => import("../Hero/HeroSuministroDeOxido"));
+const HeroTransporteLogistico = lazy(() => import("../Hero/HeroTransporteLogistico"));
+const HeroMaquinariaPesada = lazy(() => import("../Hero/HeroMaquinariaPesada"));
+
 
 export type HeroPage =
   | "inicio"
-  | "servicios"
-  | "portfolio"
-  | "sobrenosotros"
-  | "puerta-del-valle"
-  | "inti-pintay"
-  | "tiesto-coffee"
-  | "bkars";
+  | "cal-viva"
+  | "cal-agricola"
+  | "piedra-caliza"
+  | "carbon-antracita"
+  | "carbon-cisco"
+  | "la-empresa"
+  | "suministro-de-oxido-de-calcio"
+  | "transporte-logistico-especializado"
+  | "operacion-con-maquinaria-pesada"
 
 type HeroHeaderProps = {
   page: HeroPage;
   showVideo?: boolean;
 };
 
-const HeroHeader: React.FC<HeroHeaderProps> = ({ page, showVideo = true }) => {
-  const [canRenderVideos, setCanRenderVideos] = useState(false);
-
-  // Lazy load optimizado
-  useEffect(() => {
-    if (!showVideo) return;
-    runWhenIdle(() => setCanRenderVideos(true), 800);
-  }, [showVideo]);
-
+const HeroHeader: React.FC<HeroHeaderProps> = ({ page, showVideo: _showVideo = true }) => {
   // ============================================
   // Refs para cada mini-video
   // ============================================
@@ -49,21 +49,26 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({ page, showVideo = true }) => {
   // ============================================
   // Activar autoplay solo cuando cada video entra en viewport
   // ============================================
-  Object.values(videoRefs).forEach((ref) => useVideoInView(ref));
+  useVideoInView(videoRefs.tiesto);
+  useVideoInView(videoRefs.bkars);
+  useVideoInView(videoRefs.inti);
+  useVideoInView(videoRefs.puerta);
 
-  
   return (
     <>
       {/* HERO DINÁMICO */}
       <Suspense fallback={null}>
         {page === "inicio" && <HeroInicio />}
-        {page === "servicios" && <HeroServicios />}
-        {page === "portfolio" && <HeroPortfolio />}
-        {page === "sobrenosotros" && <HeroSobreNosotros />}
-        {page === "puerta-del-valle" && <HeroPuertadelvalle />}
-        {page === "inti-pintay" && <HeroIntiPintay />}
-        {page === "tiesto-coffee" && <HeroTiestoCoffee />}
-        {page === "bkars" && <HeroBkars />}
+        {page === "la-empresa" && <HeroLaEmpresa />}
+        {page == "cal-viva" && <HeroCalViva/>}
+        {page == "cal-agricola" && <HeroCalAgricola/>}
+        {page == "piedra-caliza" && <HeroPiedraCaliza/>}
+        {page === "carbon-antracita" && <HeroCarbonAntracita />}
+        {page === "carbon-cisco" && <HeroCarbonCisco />}
+        {page === "suministro-de-oxido-de-calcio" && <HeroSuministroDeOxido/>}
+        {page === "transporte-logistico-especializado" && <HeroTransporteLogistico />}
+        {page === "operacion-con-maquinaria-pesada" && <HeroMaquinariaPesada />}
+
       </Suspense>
     </>
   );

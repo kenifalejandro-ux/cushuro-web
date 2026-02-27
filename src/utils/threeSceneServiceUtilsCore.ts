@@ -31,7 +31,7 @@ export async function initServicesSceneCore(
   container.appendChild(renderer.domElement);
 
   // === Color del cubo según el tema ===
-  const cubeColor = theme === "dark" ? 0xFFFFF4 : 0x000000; // blanco en oscuro, negro en claro
+  const cubeColor = theme === "dark" ? 0xfffff4 : 0x000000; // blanco en oscuro, negro en claro
 
   const geometry = new THREE.BoxGeometry(1.2, 1.2, 1.2);
   const material = new THREE.MeshStandardMaterial({ color: cubeColor });
@@ -39,7 +39,7 @@ export async function initServicesSceneCore(
   scene.add(cube);
 
   // === Luces ajustadas al tema ===
-  const directionalIntensity = theme === "dark" ? 4 : 2.5;   // más fuerte en oscuro
+  const directionalIntensity = theme === "dark" ? 4 : 2.5; // más fuerte en oscuro
   const ambientIntensity = theme === "dark" ? 1.5 : 0.8;
 
   const light = new THREE.DirectionalLight(0xffffff, directionalIntensity);

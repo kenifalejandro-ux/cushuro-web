@@ -1,19 +1,19 @@
 /* client/src/components/global/Header.tsx */
 
-import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Mail, Phone, MapPin } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+
 import { useImageOverlap } from "../../hooks/useImageOverlap";
 
-const IMG_BASE =
-  import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
-
+const IMG_BASE = import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
 
 gsap.registerPlugin(ScrollTrigger);
 
 /* -------- TYPES -------- */
+
 
 interface Tab {
   label: string;
@@ -33,30 +33,78 @@ interface HeaderProps {
   };
 }
 
-/* -------- SERVICIOS PARA EL SUBMENU -------- */
+/* -------- Productos PARA EL SUBMENU -------- */
 
-const SERVICES_SUBMENU = [
-  { id: "desarrolloweb", name: "Desarrollo Web", subtitle: "Sitios web modernos y escalables", href: "/servicios/desarrollo-web" },
-  { id: "uiux", name: "Diseño UI/UX", subtitle: "Experiencias digitales intuitivas", href: "/servicios/diseno-ui-ux" },
-  { id: "branding", name: "Branding", subtitle: "Identidad de marca memorable", href: "/servicios/branding" },
-  { id: "modelado3d", name: "Modelado 3D", subtitle: "Visualización impactante", href: "/servicios/modelado-3d" },
+const PRODUCTS_SUBMENU = [
+  {
+    id: "CalViva",
+    name: "Cal Viva",
+    subtitle: "Sitios web modernos y escalables",
+    href: "/Productos/cal-viva",
+  },
+  {
+    id: "CalAgricola",
+    name: "Cal Agricola",
+    subtitle: "Experiencias digitales intuitivas",
+    href: "/Productos/cal-agricola",
+  },
+  {
+    id: "PiedraCaliza",
+    name: "PiedraCaliza",
+    subtitle: "Identidad de marca memorable",
+    href: "/Productos/piedra-caliza",
+  },
+  {
+    id: "CarbonAntracita",
+    name: "Carbon Antracita",
+    subtitle: "Visualización impactante",
+    href: "/Productos/carbon-antracita",
+  },
+    {
+    id: "CarbonCisco",
+    name: "Carbon Cisco",
+    subtitle: "Visualización impactante",
+    href: "/Productos/carbon-cisco",
+  },
+
 ];
 
+/* -------- Productos PARA EL SUBMENU -------- */
+
+const SERVICES_SUBMENU = [
+    {
+      id: "OxidodeCalcio",
+    name: "Suministro de oxido de calcio",
+    subtitle: "Sitios web modernos y escalables",
+    href: "/Servicios-Industriales/suministro-de-oxido-de-calcio",
+  },
+  {
+    id: "TransporteLogistico",
+    name: "Transporte Logistico",
+    subtitle: "Experiencias digitales intuitivas",
+    href: "/Servicios-Industriales/transporte-logistico-especializado",
+  },
+  {
+    id: "OperacionMaquinaria",
+    name: "Operación con maquinaria",
+    subtitle: "Identidad de marca memorable",
+    href: "/Servicios-Industriales/operacion-con-maquinaria-pesada",
+  },
+];
 /* -------- DEFAULT TABS -------- */
 
 const DEFAULT_TABS: Tab[] = [
-  { label: "Servicios", href: "/servicios" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Sobre Nosotros", href: "/sobre-nosotros" },
-  { label: "Precios Web", href: "/precios-web" },
-  { label: "Experiencias", href: "/experiencias" },
+  { label: "La Empresa", href: "/la-empresa" },
+  { label: "Productos", href: "/Productos" },
+  { label: "Servicios-Industriales", href: "/Servicios-Industriales" },
+
 ];
 
 export function Header({
   logo,
-  logoLight = "img/logo/logo-caldera-cushuro.png",
-  logoDark = "img/logo/logo-caldera-cushuro.png",
-  brandName = "Caldera Santa Isabel de Cushuro",
+  logoLight = "img-inicio/logo/logo-caldera-cushuro.png",
+  logoDark = "img-inicio/logo/logo-caldera-cushuro.png",
+  brandName = "Calera Santa Isabel de Cushuro",
   tabs = DEFAULT_TABS,
   contactInfo = {
     email: "kenif.alejandro@zincelideas.com",
@@ -74,17 +122,26 @@ export function Header({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false); // ← NUEVO estado para móvil
+  const [openDesktopSubmenu, setOpenDesktopSubmenu] = useState<string | null>(null);
+  const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(null);
 
   const lastScrollY = useRef(0);
-  const isFirstScroll = useRef(true);
   const navRef = useRef<HTMLElement>(null);
-  const servicesTimeout = useRef<NodeJS.Timeout | null>(null);
+  const submenuTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const location = useLocation();
-  const isServicesActive = location.pathname.startsWith("/servicios");
-  const forceWhiteLogo = location.pathname.startsWith("/servicios/");
+  const isProductsActive = location.pathname.startsWith("/Productos");
+  const isServicesActive = location.pathname.startsWith("/Servicios-Industriales");
+  const forceWhiteLogo = location.pathname.startsWith("/Productos/");
+
+  /*activa el submenu */
+  const hasSubmenu = (label: string) => label === "Productos" || label === "Servicios-Industriales";
+
+  const getSubmenuByTab = (label: string) => {
+    if (label === "Productos") return PRODUCTS_SUBMENU;
+    if (label === "Servicios-Industriales") return SERVICES_SUBMENU;
+    return [];
+  };
 
   const resolveAssetUrl = (value?: string) => {
     if (!value) return value;
@@ -99,37 +156,36 @@ export function Header({
 
   /* -------- SCROLL HEADER -------- */
   useEffect(() => {
-  let ticking = false;
+    let ticking = false;
 
-  const update = () => {
-    const current = window.scrollY;
+    const update = () => {
+      const current = window.scrollY;
 
-    setIsScrolled(current > 10);
+      setIsScrolled(current > 10);
 
-    if (current > lastScrollY.current && current > 120) {
-      setIsHidden(true);
-      setIsServicesOpen(false);
-    } else {
-      setIsHidden(false);
-    }
+      if (current > lastScrollY.current && current > 120) {
+        setIsHidden(true);
+        setOpenDesktopSubmenu(null);
+      } else {
+        setIsHidden(false);
+      }
 
-    lastScrollY.current = current;
-    ticking = false;
-  };
+      lastScrollY.current = current;
+      ticking = false;
+    };
 
-  const onScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  };
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
 
-  window.addEventListener("scroll", onScroll);
-  update();
+    window.addEventListener("scroll", onScroll);
+    update();
 
-  return () => window.removeEventListener("scroll", onScroll);
-}, []);
-
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   /* -------- GSAP NAV ANIMATION -------- */
   useEffect(() => {
@@ -154,17 +210,19 @@ export function Header({
     });
   }, []);
 
-  const closeModal = () => setIsModalOpen(false);
-  const handleTabClick = () => closeModal();
-
-  const handleServicesEnter = () => {
-    if (servicesTimeout.current) clearTimeout(servicesTimeout.current);
-    setIsServicesOpen(true);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setOpenMobileSubmenu(null);
   };
 
-  const handleServicesLeave = () => {
-    servicesTimeout.current = setTimeout(() => {
-      setIsServicesOpen(false);
+  const handleSubmenuEnter = (label: string) => {
+    if (submenuTimeout.current) clearTimeout(submenuTimeout.current);
+    setOpenDesktopSubmenu(label);
+  };
+
+  const handleSubmenuLeave = () => {
+    submenuTimeout.current = setTimeout(() => {
+      setOpenDesktopSubmenu(null);
     }, 200);
   };
 
@@ -177,8 +235,8 @@ export function Header({
       isDarkTheme
         ? "bg-black/0 text-white"
         : isScrolled
-        ? "bg-white/0 text-black shadow-lg"
-        : "bg-transparent text-black"
+          ? "bg-white/0 text-black shadow-lg"
+          : "bg-transparent text-black"
     }
   `;
 
@@ -197,18 +255,16 @@ export function Header({
       >*/}
       {/**HEADER - BANNER QUE HACE VISIBLE EL BANNER */}
       <header id="banner" className={headerClasses}>
-      
         <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-25">
-
             {/* LOGO */}
-            <NavLink to="/" className="relative z-[110] flex items-center gap-3" onClick={() => setIsModalOpen(false)}>
+            <NavLink
+              to="/"
+              className="relative z-[110] flex items-center gap-3"
+              onClick={() => setIsModalOpen(false)}
+            >
               {shouldShowLogo ? (
-                <img
-                  src={logoSrc}
-                  alt={brandName}
-                  className="h-15 md:h-20 mt-5"
-                />
+                <img src={logoSrc} alt={brandName} className="h-15 md:h-20 mt-5" />
               ) : (
                 <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                   <span className="text-white text-xl">{brandName.charAt(0)}</span>
@@ -220,29 +276,45 @@ export function Header({
             {/* NAV DESKTOP - lg: (1024px+) */}
             <nav ref={navRef} className="hidden lg:flex items-center  gap-6 relative">
               {tabs.map((tab) => {
-                const isServicesTab = tab.label === "Servicios";
+                const tabHasSubmenu = hasSubmenu(tab.label);
+                const submenuItems = getSubmenuByTab(tab.label);
+                const isDropdownOpen = openDesktopSubmenu === tab.label;
                 const isActive =
-                  isServicesTab
-                    ? isServicesActive
-                    : location.pathname === tab.href;
+                  tab.label === "Productos"
+                    ? isProductsActive
+                    : tab.label === "Servicios-Industriales"
+                      ? isServicesActive
+                      : location.pathname === tab.href;
 
-                return isServicesTab ? (
+                return tabHasSubmenu ? (
                   <div
                     key={tab.href}
                     className="relative group "
-                    onMouseEnter={handleServicesEnter}
-                    onMouseLeave={handleServicesLeave}
+                    onMouseEnter={() => handleSubmenuEnter(tab.label)}
+                    onMouseLeave={handleSubmenuLeave}
                   >
-                    <NavLink
-                      to={tab.href}
+                    <button
+                      type="button"
+                      aria-haspopup="menu"
+                      aria-expanded={isDropdownOpen}
                       className={`
-                        relative px-4 py-2  text-white rounded-lg transition-colors flex items-center gap-1 text-base font-medium
+                        relative px-4 py-2 text-white rounded-lg transition-colors flex items-center gap-1 text-base font-medium cursor-default
                         ${isDarkTheme ? "!text-gray-800 hover:!text-gray-600" : "hover:text-gray-300"}
                       `}
                     >
                       {tab.label}
-                      <svg className="w-4 h-4  transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      <svg
+                        className="w-4 h-4  transition-transform group-hover:rotate-180"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
                       </svg>
 
                       <span
@@ -252,21 +324,21 @@ export function Header({
                           ${isActive ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-75"}
                         `}
                       />
-                    </NavLink>
+                    </button>
 
                     {/* DROPDOWN DESKTOP */}
-                    {isServicesOpen && (
+                    {isDropdownOpen && (
                       <div
                         className="absolute top-full left-0 mt-3 w-72 bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100 transition-all duration-200"
-                        onMouseEnter={handleServicesEnter}
-                        onMouseLeave={handleServicesLeave}
+                        onMouseEnter={() => handleSubmenuEnter(tab.label)}
+                        onMouseLeave={handleSubmenuLeave}
                       >
-                        {SERVICES_SUBMENU.map((service) => (
+                        {submenuItems.map((service) => (
                           <NavLink
                             key={service.id}
                             to={service.href}
                             className="block px-6 py-4 hover:bg-purple-600 hover:text-white transition-colors"
-                            onClick={() => setIsServicesOpen(false)}
+                            onClick={() => setOpenDesktopSubmenu(null)}
                           >
                             <div className="font-medium">{service.name}</div>
                             <div className="text-sm opacity-70 mt-1">{service.subtitle}</div>
@@ -297,13 +369,14 @@ export function Header({
               })}
             </nav>
 
-
             {/* MENU HAMBURGUESA (mobile) */}
             <button
               onClick={() => setIsModalOpen(true)}
-              className="lg:hidden p-2 rounded-lg transition-colors "
+              className={`lg:hidden p-2 rounded-lg transition-colors ${
+                isDarkTheme ? "text-zinc-900 hover:text-zinc-700" : "text-white hover:text-zinc-200"
+              }`}
             >
-              <Menu className={`w-6 h-6 ${isDarkTheme ? "text-dark" : "text-blue-800"}`} />
+              <Menu className="w-6 h-6" />
             </button>
           </div>
         </div>
@@ -373,35 +446,47 @@ export function Header({
               <p className="text-sm opacity-60 mb-3">Navegación</p>
               <nav className="space-y-1">
                 {tabs.map((tab) => {
-                  const isServicesTab = tab.label === "Servicios";
+                  const tabHasSubmenu = hasSubmenu(tab.label);
+                  const submenuItems = getSubmenuByTab(tab.label);
+                  const isMobileSubmenuOpen = openMobileSubmenu === tab.label;
 
-                  if (isServicesTab) {
+                  if (tabHasSubmenu) {
                     return (
                       <div key={tab.href}>
                         <button
-                          onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                          onClick={() =>
+                            setOpenMobileSubmenu((current) => (current === tab.label ? null : tab.label))
+                          }
                           className="w-full flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/10 transition-colors"
                         >
                           <span>{tab.label}</span>
                           <svg
                             className={`w-5 h-5 transition-transform duration-200 ${
-                              isMobileServicesOpen ? "rotate-180" : ""
+                              isMobileSubmenuOpen ? "rotate-180" : ""
                             }`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
                           </svg>
                         </button>
 
-                        {isMobileServicesOpen && (
+                        {isMobileSubmenuOpen && (
                           <div className="ml-6 mt-1 space-y-1">
-                            {SERVICES_SUBMENU.map((service) => (
+                            {submenuItems.map((service) => (
                               <NavLink
                                 key={service.id}
                                 to={service.href}
-                                onClick={closeModal}
+                                onClick={() => {
+                                  closeModal();
+                                  setOpenMobileSubmenu(null);
+                                }}
                                 className="block px-4 py-2.5 rounded-lg hover:bg-white/10 transition-colors text-sm"
                               >
                                 <div className="font-medium">{service.name}</div>

@@ -4,17 +4,13 @@ export function FooterVariantA() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
       <div className="space-y-6">
-        <span className="text-xs uppercase tracking-widest text-zinc-500">
-          Estudio digital
-        </span>
+        <span className="text-xs uppercase tracking-widest text-zinc-500">Estudio digital</span>
 
-        <h2 className="text-3xl font-semibold text-white">
-          Zincel
-        </h2>
+        <h2 className="text-3xl font-semibold text-white">Zincel</h2>
 
         <p className="max-w-md text-zinc-400 leading-relaxed">
-          Diseñamos y desarrollamos experiencias digitales claras, sólidas
-          y escalables para marcas que buscan crecer con criterio.
+          Diseñamos y desarrollamos experiencias digitales claras, sólidas y escalables para marcas
+          que buscan crecer con criterio.
         </p>
       </div>
 

@@ -63,8 +63,7 @@ export const services: Service[] = [
     },
     slug: "mantenimiento",
     title: "Mantenimiento",
-    description:
-      "Servicio integral para mantener tu vehículo en óptimas condiciones.",
+    description: "Servicio integral para mantener tu vehículo en óptimas condiciones.",
   },
   {
     images: {
@@ -106,8 +105,7 @@ export const services: Service[] = [
     },
     slug: "motor",
     title: "Motor",
-    description:
-      "Reparación y optimización del motor para máximo rendimiento.",
+    description: "Reparación y optimización del motor para máximo rendimiento.",
   },
   {
     images: {
@@ -128,8 +126,7 @@ export const services: Service[] = [
     },
     slug: "frenos",
     title: "Sistemas de Frenos",
-    description:
-      "Mantenimiento y reparación de frenos para tu seguridad.",
+    description: "Mantenimiento y reparación de frenos para tu seguridad.",
   },
 ];
 
@@ -170,8 +167,7 @@ async function supportsAvif(): Promise<boolean> {
 
 function selectImage(images: ServiceImages) {
   const width = window.innerWidth;
-  const selectedSize =
-    sizes.find((s) => s >= width) ?? sizes[sizes.length - 1];
+  const selectedSize = sizes.find((s) => s >= width) ?? sizes[sizes.length - 1];
 
   return {
     avif: images.avif[selectedSize],
@@ -183,9 +179,7 @@ function selectImage(images: ServiceImages) {
    PRELOAD
 ========================= */
 
-export async function preloadImages(
-  servicesToLoad: Service[] = services
-): Promise<void> {
+export async function preloadImages(servicesToLoad: Service[] = services): Promise<void> {
   const support = await supportsAvif();
   let loaded = 0;
 
@@ -248,10 +242,7 @@ export function createSlices(service: Service) {
   wrap.appendChild(frag);
 }
 
-export async function updateText(
-  service: Service,
-  animate: boolean = false
-) {
+export async function updateText(service: Service, animate: boolean = false) {
   const text = document.querySelector<HTMLElement>(".service-text");
   if (!text) return;
 
@@ -299,9 +290,9 @@ export async function animateTransition(nextIndex: number) {
     opacity: 1,
     duration: 2,
     ease: "power3.out",
-   onStart: () => {
-  void updateText(nextService, true);
-},
+    onStart: () => {
+      void updateText(nextService, true);
+    },
 
     onComplete: () => {
       setBaseImage(nextService);
@@ -310,8 +301,7 @@ export async function animateTransition(nextIndex: number) {
         duration: 0.1,
         delay: 0.2,
         onComplete: () => {
-          const wrap =
-            document.querySelector<HTMLDivElement>(".slice-wrapper");
+          const wrap = document.querySelector<HTMLDivElement>(".slice-wrapper");
           if (wrap) wrap.innerHTML = "";
         },
       });
@@ -344,9 +334,7 @@ export async function initSlice() {
   setBaseImage(services[0]);
   updateText(services[0], false);
 
-  const skeleton = document.querySelector(
-    ".image-base.skeleton"
-  ) as HTMLElement | null;
+  const skeleton = document.querySelector(".image-base.skeleton") as HTMLElement | null;
 
   if (skeleton) skeleton.style.display = "none";
 

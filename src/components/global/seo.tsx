@@ -28,8 +28,8 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   useEffect(() => {
     // Limpia metadatos anteriores
-    document.querySelectorAll("meta[data-dynamic]").forEach(el => el.remove());
-    document.querySelectorAll("script[data-schema]").forEach(el => el.remove());
+    document.querySelectorAll("meta[data-dynamic]").forEach((el) => el.remove());
+    document.querySelectorAll("script[data-schema]").forEach((el) => el.remove());
 
     // Título
     document.title = title || "Zincel | Diseño Web, Branding y Modelado 3D";
@@ -89,11 +89,11 @@ const SEO: React.FC<SEOProps> = ({
     // Schema.org (opcional)
     if (schema) {
       const schemas = Array.isArray(schema) ? schema : [schema];
-      schemas.forEach(obj => addScript(obj));
+      schemas.forEach((obj) => addScript(obj));
     }
   }, [title, description, keywords, url, image, imageAlt, type, locale, siteName, schema]);
 
   return null;
-}
+};
 
 export default SEO;

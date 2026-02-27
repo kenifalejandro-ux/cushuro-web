@@ -1,48 +1,39 @@
 // client/src/App.tsx
 
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import Layout from "./components/layout/layout";
-import { ScrollIndicator } from "./components/global/ScrollIndicator";
-import logoZincel from "@/assets/logo-zincel-black.svg";
-import { PortfolioProgressIndicator } from "./components/global/PortfolioProgressIndicator";
-import { MainNavigationIndicator } from "./components/global/MainNavigationIndicator";
-import { PortfolioArrowNavigator } from "./components/global/PortfolioArrowNavigator";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+
 import { HeroarrowNavigator } from "./components/global/HeroarrowNavigator";
+import { MainNavigationIndicator } from "./components/global/MainNavigationIndicator";
 import PageTransition from "./components/global/PageTransition";
+import { ScrollIndicator } from "./components/global/ScrollIndicator";
+import Layout from "./components/layout/layout";
+import { useGTMPageView } from "./hooks/useGTMPageView";
+import useParallaxEffect from "./hooks/useParallaxEffect";
+import LogoCalera from "@/assets/logo-caldera-cushuro.png";
 
 const siteLogo = import.meta.env.VITE_IMG_URL
-  ? `${import.meta.env.VITE_IMG_URL}/img/logo/logo-caldera-cushuro.png`
-  : logoZincel;
-
+  ? `${import.meta.env.VITE_IMG_URL}/img-inicio/logo/logo-caldera-cushuro.png`
+  : LogoCalera;
 
 // Lazy imports
 const Inicio = lazy(() => import("./components/Paginas/inicio"));
-const Servicios = lazy(() => import("./components/Paginas/Servicios"));
-const Portfolio = lazy(() => import("./components/Paginas/Portfolio"));
-const SobreNosotros = lazy(() => import("./components/Paginas/sobre-nosotros"));
-const PreciosWeb = lazy(() => import("./components/Paginas/precios-web"));
-const PuertaDelValle = lazy(() => import("./components/Paginas/puerta-del-valle"));
-const IntiPintay = lazy(() => import("./components/Paginas/inti-pintay"));
-const TiestoCoffee = lazy(() => import("./components/Paginas/tiesto-coffee"));
-const Bkars = lazy(() => import("./components/Paginas/bkars"));
-const Experiencias = lazy(() => import("./components/Paginas/experiencias"));
+const LaEmpresa = lazy(() => import("./components/Paginas/la-empresa"));
+
+// Lazy imports - submenú Productos
+const CalViva= lazy(() => import("./components/Paginas/cal-viva"));
+const CalAgricola= lazy(() => import("./components/Paginas/cal-agricola"));
+const PiedraCaliza = lazy(() => import("./components/Paginas/piedra-caliza"));
+const CarbonAntracita = lazy(() => import("./components/Paginas/carbon-antracita"));
+const CarbonCisco = lazy(() => import("./components/Paginas/carbon-cisco"));
+const OperacionMaquinaria = lazy(() => import("./components/Paginas/operacion-con-maquinaria-pesada"));
+const TransporteLogistico = lazy(() => import("./components/Paginas/transporte-logistico-especializado"));
+const OxidodeCalcio = lazy(() => import("./components/Paginas/suministro-de-oxido-de-calcio"));
 
 
-// Lazy imports - submenú servicios
-const DesarrolloWeb = lazy(() => import("./components/Paginas/desarrolloweb"));
-const DisenoUIUX = lazy(() => import("./components/Paginas/disenouiux"));
-const Branding = lazy(() => import("./components/Paginas/branding"));
-const Modelado3D = lazy(() => import("./components/Paginas/modelado3d"));
-
-// Hooks
-
-import { useGTMPageView } from "./hooks/useGTMPageView";
-import useParallaxEffect from "./hooks/useParallaxEffect";
 
 function AppRoutes() {
   const location = useLocation();
-
 
   useGTMPageView();
 
@@ -58,245 +49,169 @@ function AppRoutes() {
             </div>
 
             <Inicio />
-            
-            <MainNavigationIndicator />
-            <HeroarrowNavigator />
-            
-          </Layout>
-        }
-      />
 
-      {/* SERVICIOS */}
-      <Route
-        path="/Servicios"
-        element={
-          <Layout page="servicios" showVideo logo={siteLogo} brandName="">
-             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-emerald-300" />
-            </div>
-            <Servicios />
             <MainNavigationIndicator />
             <HeroarrowNavigator />
           </Layout>
         }
       />
-    {/* servicios/desarrolloweb */}
+  {/* LA EMPRESA */}
       <Route
-        path="/servicios/desarrollo-web"
+        path="/la-empresa"
         element={
-          <Layout page="desarrolloweb" showVideo={false} logo={siteLogo} brandName="">
-              <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-amber-500" />
+          <Layout page="la-empresa" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-300" />
             </div>
-              <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-                <DesarrolloWeb />
-              </Suspense>
-            
-            <PortfolioProgressIndicator />
-            <PortfolioArrowNavigator />
-          </Layout>
-        }
-      />
-       {/* servicios/disenouiux */}
-      <Route
-        path="/servicios/diseno-ui-ux"
-        element={
-          <Layout page="disenouiux" showVideo={false} logo={siteLogo} brandName="">
-              <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-amber-500" />
-            </div>
-              <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-                <DisenoUIUX />
-              </Suspense>
-            
-            <PortfolioProgressIndicator />
-            <PortfolioArrowNavigator />
-          </Layout>
-        }
-      />
-
-       {/* servicios/branding */}
-      <Route
-        path="/servicios/branding"
-        element={
-          <Layout page="branding" showVideo={false} logo={siteLogo} brandName="">
-              <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-amber-500" />
-            </div>
-              <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-                <Branding />
-              </Suspense>
-            
-            <PortfolioProgressIndicator />
-            <PortfolioArrowNavigator />
-          </Layout>
-        }
-      />
-
- {/* servicios/Modelado3D */}
-      <Route
-        path="/servicios/modelado-3d"
-        element={
-          <Layout page="modelado3D" showVideo={false} logo={siteLogo} brandName="">
-              <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-amber-500" />
-            </div>
-              <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-                <Modelado3D />
-              </Suspense>
-            
-            <PortfolioProgressIndicator />
-            <PortfolioArrowNavigator />
-          </Layout>
-        }
-      />
-
-      {/* PORTFOLIO */}
-      <Route
-        path="/Portfolio"
-        element={
-          <Layout page="portfolio" showVideo logo={siteLogo} brandName="">
-              <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-cyan-500"/>
-            </div>
-            <Portfolio />
+            <LaEmpresa />
             <MainNavigationIndicator />
             <HeroarrowNavigator />
           </Layout>
         }
       />
-
-      {/* SOBRE NOSOTROS */}
+      {/* Productos/cal-viva */}
       <Route
-        path="/sobre-nosotros"
+        path="/Productos/cal-viva"
         element={
-          <Layout page="sobrenosotros" showVideo={false} logo={siteLogo} brandName="">
-             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-yellow-400" />
-            </div>
-            <SobreNosotros />
-            <MainNavigationIndicator />
-            <HeroarrowNavigator />
-             
-          </Layout>
-        }
-      />
-
-       {/* PRECIOS WEB */}
-      <Route
-        path="/precios-web"
-        element={
-          <Layout page="precios-web" showVideo={false} logo={siteLogo} brandName="">
-             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-white" />
-            </div>
-            <PreciosWeb />
-            <MainNavigationIndicator />
-            <HeroarrowNavigator />
-             
-          </Layout>
-        }
-      />
-
-      {/* EXPERIENCIAS */}
-      <Route
-        path="/experiencias"
-        element={
-          <Layout 
-          page="experiencias" 
-          showVideo={false} 
-          logo={siteLogo} 
-          hideNavs={true} /*// <--- Oculta Navbar y HeroHeader para esta página*/
-          brandName="Zincel"
-          
-          >
-             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-white" />
+          <Layout page="cal-viva" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-              <Experiencias />
+              <CalViva />
             </Suspense>
-            
+
+            <MainNavigationIndicator />
+            <HeroarrowNavigator />
           </Layout>
         }
       />
-
-
-      {/* ===================== */}
-      {/* SUBPÁGINAS PORTFOLIO */}
-      {/* ===================== */}
-
+    
+ {/* Productos/cal-agricola */}
       <Route
-        path="/Portfolio/puerta-del-valle"
+        path="/Productos/cal-agricola"
         element={
-          <Layout page="puerta-del-valle" showVideo={false} logo={siteLogo} brandName="">
-              <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-amber-500" />
+          <Layout page="cal-agricola" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
             </div>
-              <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-                <PuertaDelValle />
-              </Suspense>
-            
-            <PortfolioProgressIndicator />
-            <PortfolioArrowNavigator />
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <CalAgricola />
+            </Suspense>
+
+            <MainNavigationIndicator />
+            <HeroarrowNavigator />
           </Layout>
         }
       />
 
+ {/* Productos/piedra-caliza */}
       <Route
-        path="/Portfolio/tiesto-coffee"
+        path="/Productos/piedra-caliza"
         element={
-          <Layout page="tiesto-coffee" showVideo={false} logo={siteLogo} brandName="">
-               <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-red-700" />
+          <Layout page="piedra-caliza" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
             </div>
-              <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-                <TiestoCoffee />
-              </Suspense>
-          
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <PiedraCaliza />
+            </Suspense>
 
-            <PortfolioProgressIndicator />
-            <PortfolioArrowNavigator />
+            <MainNavigationIndicator />
+            <HeroarrowNavigator />
           </Layout>
         }
       />
-
+       {/* Productos/carbon-antracita */}
       <Route
-        path="/Portfolio/inti-pintay"
+        path="/Productos/carbon-antracita"
         element={
-          <Layout page="inti-pintay" showVideo={false} logo={siteLogo} brandName="">
-               <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-yellow-400" />
+          <Layout page="carbon-antracita" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
             </div>
-              <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-                <IntiPintay />
-              </Suspense>
-           
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <CarbonAntracita />
+            </Suspense>
 
-            <PortfolioProgressIndicator />
-            <PortfolioArrowNavigator />
+            <MainNavigationIndicator />
+            <HeroarrowNavigator />
           </Layout>
         }
       />
-
-
+           {/* Productos/carbon-cisco */}
       <Route
-        path="/Portfolio/bkars"
+        path="/Productos/carbon-cisco"
         element={
-          <Layout page="bkars" showVideo={false} logo={siteLogo} brandName="">
-              <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-amber-600" />
+          <Layout page="carbon-cisco" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
             </div>
-              <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-                <Bkars />
-              </Suspense>
-          
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <CarbonCisco />
+            </Suspense>
 
-            <PortfolioProgressIndicator />
-            <PortfolioArrowNavigator />
+            <MainNavigationIndicator />
+            <HeroarrowNavigator />
           </Layout>
         }
       />
+
+                 {/* Servicios-Industriales/operacion-con-maquinaria-pesada */}
+      <Route
+        path="/Servicios-Industriales/operacion-con-maquinaria-pesada"
+        element={
+          <Layout page="operacion-con-maquinaria-pesada" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
+            </div>
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <OperacionMaquinaria />
+            </Suspense>
+
+            <MainNavigationIndicator />
+            <HeroarrowNavigator />
+          </Layout>
+        }
+      />
+                 {/* Servicios-Industriales/transporte-logistico-especializado */}
+      <Route
+        path="/Servicios-Industriales/transporte-logistico-especializado"
+        element={
+          <Layout page="transporte-logistico-especializado" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
+            </div>
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <TransporteLogistico />
+            </Suspense>
+
+            <MainNavigationIndicator />
+            <HeroarrowNavigator />
+          </Layout>
+        }
+      />
+                 {/* Servicios-Industriales/suministro-de-oxido-de-calcio */}
+      <Route
+        path="/Servicios-Industriales/suministro-de-oxido-de-calcio"
+        element={
+          <Layout page="suministro-de-oxido-de-calcio" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
+            </div>
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <OxidodeCalcio />
+            </Suspense>
+
+            <MainNavigationIndicator />
+            <HeroarrowNavigator />
+          </Layout>
+        }
+      />
+      {/* Ruta antigua para compatibilidad */}
+      <Route path="/sobre-nosotros" element={<Navigate to="/la-empresa" replace />} />
+
+
     </Routes>
   );
 }

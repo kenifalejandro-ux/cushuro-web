@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,14 +23,14 @@ export function ScrollIndicator({ color = "text-black" }) {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(st => st.kill());
+      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
 
   return (
     <div
       ref={indicatorRef}
-      className={`fixed bottom-28 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 ${color}`}
+      className={`fixed bottom-55 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 ${color}`}
     >
       {/* Mouse */}
       <div className=" relative  w-6 h-10 border-2 border-current rounded-full">

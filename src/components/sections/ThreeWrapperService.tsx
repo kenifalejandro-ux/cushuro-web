@@ -6,7 +6,7 @@ interface ThreeWrapperServiceProps {
   className?: string;
   sectionClass?: string;
   preload?: boolean;
-  
+
   // NUEVA PROP: solo para controlar el tema visual (cubo y luces)
   theme?: "dark" | "light"; // por defecto "light" o lo que prefieras
 }
@@ -40,7 +40,7 @@ export default function ThreeWrapperService({
           cleanupRef.current = await mod.initServicesSceneCore(container, sectionClass, theme);
         }
       } catch (err) {
-        console.error("Error cargando escena de servicios:", err);
+        console.error("Error cargando escena de Productos:", err);
       }
     };
 

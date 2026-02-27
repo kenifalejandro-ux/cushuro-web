@@ -26,12 +26,8 @@ export function useImageOverlap({
   const lightImagesRef = useRef<HTMLElement[]>([]);
 
   const collectImages = useCallback(() => {
-    darkImagesRef.current = Array.from(
-      document.querySelectorAll<HTMLElement>(".dark-image")
-    );
-    lightImagesRef.current = Array.from(
-      document.querySelectorAll<HTMLElement>(".light-image")
-    );
+    darkImagesRef.current = Array.from(document.querySelectorAll<HTMLElement>(".dark-image"));
+    lightImagesRef.current = Array.from(document.querySelectorAll<HTMLElement>(".light-image"));
   }, []);
 
   const getOverlapState = useCallback((): OverlapState => {
@@ -109,12 +105,6 @@ export function useImageOverlap({
     scheduleMeasure();
 
     const handleScroll = () => {
-      if (
-        darkImagesRef.current.length === 0 &&
-        lightImagesRef.current.length === 0
-      ) {
-        collectImages();
-      }
       scheduleMeasure();
     };
 
@@ -123,12 +113,25 @@ export function useImageOverlap({
       scheduleMeasure();
     };
 
+    const observer = new MutationObserver(() => {
+      collectImages();
+      scheduleMeasure();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      observer.disconnect();
 
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);

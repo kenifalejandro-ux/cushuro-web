@@ -1,13 +1,12 @@
 /* client/src/components/ui/CarouselText.tsx */
-import { useEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const IMG_BASE =
-  import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
-const FALLBACK_LOGO = "img/logo/logo-caldera-cushuro.png";
+const IMG_BASE = import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
+const FALLBACK_LOGO = "img-inicio/logo/logo-caldera-cushuro.png";
 const CAROUSEL_SPEED = {
   card: 32,
   masonry: 38,
@@ -71,7 +70,7 @@ const PROJECTS: MiningProject[] = [
   {
     name: "MINERA BORRO MISQUICHILCA S.A",
     desc: "Desbloqueando valor para un futuro mejor.",
-    logo: "img/logo-clientes/borro-minera.png",
+    logo: "img-inicio/logo-clientes/borro-minera.png",
     mineral: "Au / Ag",
     zone: "La Libertad, PE",
     front: "Tajo Norte",
@@ -81,7 +80,7 @@ const PROJECTS: MiningProject[] = [
   {
     name: "SUMMA GOLD CORPORATION",
     desc: "Producción formal y optimizada en Huamachuco.",
-    logo: "img/logo-clientes/summa-gold.png",
+    logo: "img-inicio/logo-clientes/summa-gold.png",
     mineral: "Au",
     zone: "Huamachuco, PE",
     front: "Zona Central",
@@ -106,20 +105,16 @@ const resolveAssetUrl = (value: string) => {
   return `${IMG_BASE}/${value.replace(/^\//, "")}`;
 };
 
-{/** cambiar estilos */}
-export function CarouselText({
-  variant,
-  showVariantPicker = false,
-}: CarouselTextProps) {
+{
+  /** cambiar estilos */
+}
+export function CarouselText({ variant }: CarouselTextProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const trackEntryRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [activeVariant, setActiveVariant] = useState<CarouselVariant>(
-    variant ?? "inline"
-  );
+  const [activeVariant, setActiveVariant] = useState<CarouselVariant>(variant ?? "inline");
 
-  const canSwitchVariant = showVariantPicker && !variant;
   const carouselItems = useMemo(() => [...PROJECTS, ...PROJECTS], []);
   const activeHeights = VARIANT_HEIGHTS[activeVariant];
 
@@ -138,9 +133,7 @@ export function CarouselText({
       if (!items.length) return;
 
       const middle = Math.floor(items.length / 2);
-      const distance = items
-        .slice(0, middle)
-        .reduce((acc, el) => acc + el.offsetWidth, 0);
+      const distance = items.slice(0, middle).reduce((acc, el) => acc + el.offsetWidth, 0);
 
       if (!distance) return;
 
@@ -250,16 +243,12 @@ export function CarouselText({
   }, [activeVariant]);
 
   const renderProject = (project: MiningProject, i: number) => {
-    const itemHeightClass =
-      activeHeights.itemHeights[i % activeHeights.itemHeights.length];
+    const itemHeightClass = activeHeights.itemHeights[i % activeHeights.itemHeights.length];
 
     // ESTILO: MASONRY
     if (activeVariant === "masonry") {
       return (
-        <div
-          key={`${project.refCode}-${i}`}
-          className="inline-flex flex-shrink-0 px-3 md:px-4"
-        >
+        <div key={`${project.refCode}-${i}`} className="inline-flex flex-shrink-0 px-3 md:px-4">
           {/** masonry estilo grid */}
           <article
             className={`group grid min-w-[300px] md:min-w-[350px] grid-cols-[68px_1fr] grid-rows-[auto_auto_auto] gap-x-4 gap-y-3 rounded-2xl border border-emerald-500/30 bg-white p-4 ${itemHeightClass} shadow-[0_18px_45px_-30px_rgba(16,185,129,0.45)]`}
@@ -392,9 +381,7 @@ export function CarouselText({
             <h3 className="mt-1 text-sm md:text-base font-black uppercase leading-tight tracking-[0.1em] text-zinc-100">
               {project.name}
             </h3>
-            <p className="mt-2 text-xs leading-relaxed text-zinc-300">
-              {project.desc}
-            </p>
+            <p className="mt-2 text-xs leading-relaxed text-zinc-300">{project.desc}</p>
             <div className="mt-3 flex flex-wrap items-center gap-2">
               <span className="rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-200">
                 {project.mineral}
@@ -413,11 +400,13 @@ export function CarouselText({
     );
   };
 
-  {/** config general */}
+  {
+    /** config general */
+  }
   return (
     <div
       ref={sectionRef}
-      className={`relative left-1/2 -translate-x-1/2 overflow-hidden   py-16 md:py-20 ${activeHeights.sectionViewportHeight}`}
+      className={`dark-image relative left-1/2 -translate-x-1/2 overflow-hidden   py-16 md:py-20 ${activeHeights.sectionViewportHeight}`}
       data-variant={activeVariant}
     >
       <div ref={headingRef} className="relative z-20 mb-10 px-4 text-center">
@@ -432,16 +421,13 @@ export function CarouselText({
           <span className="h-px w-10 md:w-24 bg-gradient-to-l from-transparent to-amber-500/80" />
         </div>
         <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-700 md:text-base">
-          Aliados del rubro minero que confían en nuestra ejecución para
-          construir marca, presencia y resultados.
+          Aliados del rubro minero que confían en nuestra ejecución para construir marca, presencia
+          y resultados.
         </p>
       </div>
 
       <div ref={trackEntryRef} className={`relative z-10 ${activeHeights.trackMarginTop}`}>
-        <div
-          ref={carouselRef}
-          className="flex w-max items-stretch will-change-transform"
-        >
+        <div ref={carouselRef} className="flex w-max items-stretch will-change-transform">
           {carouselItems.map((project, i) => renderProject(project, i))}
         </div>
       </div>

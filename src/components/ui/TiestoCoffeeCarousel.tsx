@@ -1,6 +1,6 @@
 // client/src/components/ui/TiestoCoffeeCarousel.tsx
 
-import { BasePortfolioCarousel, PortfolioItem } from '@/components/ui/BasePortfolioCarousel';
+import { BasePortfolioCarousel, PortfolioItem } from "@/components/ui/BasePortfolioCarousel";
 
 const TiestoCoffeeImages: PortfolioItem[] = [
   {
@@ -65,7 +65,7 @@ const TiestoCoffeeImages: PortfolioItem[] = [
   },
 ];
 
-const puertaDotColors = ["bg-red-700", "bg-red-700", "bg-red-700", "bg-red-700" , "bg-red-700"];
+const puertaDotColors = ["bg-red-700", "bg-red-700", "bg-red-700", "bg-red-700", "bg-red-700"];
 
 export function TiestoCoffeeCarousel() {
   return (

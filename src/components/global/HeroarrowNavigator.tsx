@@ -1,9 +1,10 @@
 /**client/src/components/global/HeroarrowNavigator.tsx */
 
-import { useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { PrincipalCase } from "@/data/PrincipalCase";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,19 +13,18 @@ export function HeroarrowNavigator() {
   const location = useLocation();
   const navigate = useNavigate();
   const navRef = useRef<HTMLDivElement>(null);
+  const normalizePath = (path: string) => {
+    const normalized = path.replace(/\/+$/, "").toLowerCase();
+    return normalized || "/";
+  };
+  const currentPath = normalizePath(location.pathname);
 
   const currentIndex = PrincipalCase.findIndex(
-    c => c.path.toLowerCase() === location.pathname.toLowerCase()
+    (c) => normalizePath(c.path) === currentPath
   );
 
-  if (currentIndex === -1) return null;
-
-  const current = PrincipalCase[currentIndex];
-  const prev = PrincipalCase[(currentIndex - 1 + PrincipalCase.length) % PrincipalCase.length];
-  const next = PrincipalCase[(currentIndex + 1) % PrincipalCase.length];
-
   useEffect(() => {
-    if (!navRef.current) return;
+    if (!navRef.current || currentIndex === -1) return;
 
     const tween = gsap.to(navRef.current, {
       opacity: 0,
@@ -41,13 +41,16 @@ export function HeroarrowNavigator() {
       tween.scrollTrigger?.kill();
       tween.kill();
     };
-  }, [location.pathname]);
+  }, [location.pathname, currentIndex]);
+
+  if (currentIndex === -1) return null;
+
+  const current = PrincipalCase[currentIndex];
+  const prev = PrincipalCase[(currentIndex - 1 + PrincipalCase.length) % PrincipalCase.length];
+  const next = PrincipalCase[(currentIndex + 1) % PrincipalCase.length];
 
   return (
-    <div
-      ref={navRef}
-      className="fixed bottom-38 right-8 flex gap-4 z-40"
-    >
+    <div ref={navRef} className="fixed bottom-65 right-8 flex gap-4 z-40">
       {/* Prev */}
       <button
         onClick={() => navigate(prev.path)}

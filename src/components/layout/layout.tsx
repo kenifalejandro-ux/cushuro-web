@@ -1,10 +1,11 @@
 /*src/components/layout/Layout.tsx*/
 
 import React, { ReactNode } from "react";
-import HeroHeader from "../global/HeroHeader"; 
-import { Header } from "../global/header";
-import Navbar from "../global/Navbar";
+
 import Footer from "../global/Footer";
+import { Header } from "../global/header";
+import HeroHeader from "../global/HeroHeader";
+import Navbar from "../global/Navbar";
 import "../../styles/layout.css";
 
 type LayoutProps = {
@@ -28,13 +29,8 @@ const Layout: React.FC<LayoutProps> = ({
     <div className="main-container">
       {/* 2. Envolvemos cada componente en un condicional */}
       {!hideNavs && <Header logo={logo} brandName={brandName} />}
-      
-      {!hideNavs && (
-        <HeroHeader
-          page={page as "inicio" | "portfolio"}
-          showVideo={page === "inicio"}
-        />
-      )}
+
+      {!hideNavs && <HeroHeader page={page as "inicio" } showVideo={showVideo} />}
 
       <main role="main">
         {children}

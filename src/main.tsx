@@ -1,11 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+
 import App from "./App";
 import "./styles/globals.css";
 import "./styles/index.css";
 import "./styles/root.css";
-import './lib/icons';
-
+import "./lib/icons";
 
 const rootElement = document.getElementById("root");
 
@@ -18,4 +18,3 @@ createRoot(rootElement).render(
     <App />
   </React.StrictMode>
 );
-

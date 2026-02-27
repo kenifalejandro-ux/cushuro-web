@@ -1,17 +1,17 @@
 /* client/src/components/lobal/SectorHero.tsx */
 
+import { useRef } from "react";
 
-import { useRef } from 'react';
-import { rubrosData } from '@/data/sectores';
+import { useVideoInView } from "../ui/useVideoInView";
+import { VideoPreview } from "../ui/VideoPreview";
+import { rubrosData } from "@/data/sectores";
 // IMPORTANTE: Importar los tipos desde tu archivo de tipos
-import { RubroKey } from '@/types/rubros'; 
-import { useVideoInView } from '../ui/useVideoInView';
-import { VideoPreview } from '../ui/VideoPreview';
+import { RubroKey } from "@/types/rubros";
 
 export const SectorHero = ({ rubroKey }: { rubroKey: RubroKey }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLElement>(null);
-  
+
   // Ahora TypeScript reconocerá rubroKey y no marcará error en rubrosData
   const config = rubrosData[rubroKey];
 
@@ -22,15 +22,15 @@ export const SectorHero = ({ rubroKey }: { rubroKey: RubroKey }) => {
   if (!config) return null;
 
   return (
-    <section 
-      ref={heroRef} 
+    <section
+      ref={heroRef}
       className="relative min-h-screen w-full overflow-hidden Líderes en Infraestructura y Obra Civil"
     >
       <VideoPreview
         ref={videoRef}
         key={config.src} // <--- AGREGA ESTO: Fuerza al video a recargar si cambia el rubro
-        src={config.src}   
-        poster={config.img} 
+        src={config.src}
+        poster={config.img}
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         muted
@@ -46,9 +46,7 @@ export const SectorHero = ({ rubroKey }: { rubroKey: RubroKey }) => {
         <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter">
           {config.titulo}
         </h1>
-        <p className="text-lg md:text-xl mt-4 max-w-2xl text-gray-300">
-          {config.descripcion}
-        </p>
+        <p className="text-lg md:text-xl mt-4 max-w-2xl text-gray-300">{config.descripcion}</p>
       </div>
     </section>
   );

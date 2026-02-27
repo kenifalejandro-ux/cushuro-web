@@ -24,9 +24,7 @@ export function useVideoInView(
       "matchMedia" in window &&
       window.matchMedia("(pointer: coarse)").matches;
     const shouldRequireScroll =
-      typeof requireScrollToPlay === "boolean"
-        ? requireScrollToPlay
-        : isCoarsePointer;
+      typeof requireScrollToPlay === "boolean" ? requireScrollToPlay : isCoarsePointer;
 
     hasUserScrolledRef.current = !shouldRequireScroll;
 
@@ -58,8 +56,7 @@ export function useVideoInView(
         passive: true,
         once: true,
       });
-      removeScrollListener = () =>
-        window.removeEventListener("scroll", onFirstScroll);
+      removeScrollListener = () => window.removeEventListener("scroll", onFirstScroll);
     }
 
     return () => {

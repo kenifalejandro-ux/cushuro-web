@@ -1,4 +1,3 @@
-
 // client/src/utils/debounce.js
 
 export function debounce<T extends (...args: any[]) => void>(

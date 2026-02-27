@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
-import { PrincipalCase } from '../../data/PrincipalCase';
+import { Menu, X, ArrowRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+
+import { PrincipalCase } from "../../data/PrincipalCase";
 
 export const ExperienciasHamburgerNav: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -27,7 +28,7 @@ export const ExperienciasHamburgerNav: React.FC = () => {
           type="button"
           onClick={() => setOpen((prev) => !prev)}
           className="w-12 h-12 rounded-full bg-zinc-900/90 text-white border border-white/10 shadow-lg flex items-center justify-center hover:bg-zinc-800 transition-colors"
-          aria-label={open ? 'Cerrar navegación' : 'Abrir navegación'}
+          aria-label={open ? "Cerrar navegación" : "Abrir navegación"}
         >
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -44,9 +45,9 @@ export const ExperienciasHamburgerNav: React.FC = () => {
                   to={section.path}
                   className={({ isActive }) =>
                     [
-                      'flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-colors',
-                      isActive ? 'bg-white text-zinc-900' : 'text-white/80 hover:bg-white/10'
-                    ].join(' ')
+                      "flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-colors",
+                      isActive ? "bg-white text-zinc-900" : "text-white/80 hover:bg-white/10",
+                    ].join(" ")
                   }
                 >
                   <span>{section.name}</span>

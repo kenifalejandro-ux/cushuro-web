@@ -1,14 +1,14 @@
 // client/src/components/sections/BasePortfolioCarousel.tsx
 
-import { useEffect, useRef, useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { LCPImage } from '../ui/LCPImage';
+import { LCPImage } from "../ui/LCPImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,33 +120,20 @@ export function BasePortfolioCarousel({
   }
 
   return (
-    <div
-      ref={carouselRef}
-      className={fullHeight ? "relative h-screen " : "py-16 lg:py-24"}
-    >
+    <div ref={carouselRef} className={fullHeight ? "relative h-screen " : "py-16 lg:py-24"}>
       {!fullHeight && (
-        <h2 className="text-4xl lg:text-5xl text-center mb-12 font-bold text-gray-900">
-          {title}
-        </h2>
+        <h2 className="text-4xl lg:text-5xl text-center mb-12 font-bold text-gray-900">{title}</h2>
       )}
 
-      <div
-        className={`relative bg-blackmx-auto ${
-          fullHeight ? "w-full h-full" : "max-w-7xl"
-        }`}
-      >
+      <div className={`relative bg-blackmx-auto ${fullHeight ? "w-full h-full" : "max-w-7xl"}`}>
         <Slider ref={sliderRef} {...settings}>
           {items.map((item, index) => (
             <div
               key={item.id}
               className="relative group overflow-hidden cursor-pointer"
-              onClick={() => window.location.href = item.href}
+              onClick={() => (window.location.href = item.href)}
             >
-              <div
-                className={`relative ${
-                  fullHeight ? "h-screen" : "h-[400px] lg:h-[600px]"
-                }`}
-              >
+              <div className={`relative ${fullHeight ? "h-screen" : "h-[400px] lg:h-[600px]"}`}>
                 <LCPImage
                   src={item.image.src}
                   alt={item.image.alt}
@@ -164,14 +151,10 @@ export function BasePortfolioCarousel({
                 {item.overlay && (item.overlay.h3 || item.overlay.p) && (
                   <div className="absolute bottom-0 left-0 p-8 text-white">
                     {item.overlay.h3 && (
-                      <h3 className="text-2xl lg:text-4xl font-bold mb-2">
-                        {item.overlay.h3}
-                      </h3>
+                      <h3 className="text-2xl lg:text-4xl font-bold mb-2">{item.overlay.h3}</h3>
                     )}
                     {item.overlay.p && (
-                      <p className="text-lg lg:text-xl opacity-90">
-                        {item.overlay.p}
-                      </p>
+                      <p className="text-lg lg:text-xl opacity-90">{item.overlay.p}</p>
                     )}
                   </div>
                 )}
@@ -196,10 +179,7 @@ export function BasePortfolioCarousel({
           }`}
         >
           {items.map((_, index) => {
-            const activeColor =
-              dotColors && dotColors[index]
-                ? dotColors[index]
-                : "bg-cyan-400";
+            const activeColor = dotColors && dotColors[index] ? dotColors[index] : "bg-cyan-400";
 
             const isActive = index === currentIndex;
 

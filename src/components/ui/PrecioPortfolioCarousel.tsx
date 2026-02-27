@@ -1,14 +1,14 @@
 // client/src/components/sections/PrecioPortfolioCarousel.tsx
 
-import { useEffect, useRef, useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { LCPImage } from '../ui/LCPImage';
+import { LCPImage } from "../ui/LCPImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,19 +36,11 @@ interface PrecioPortfolioCarouselProps {
 
 export function PrecioPortfolioCarousel({
   items,
-  title = "Consulte Nuestros planes de precios",
-  dotColors,
   fullHeight = false,
   hideArrows = false,
 }: PrecioPortfolioCarouselProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<Slider>(null); // Ref para controlar slickGoTo
-  const [currentIndex, setCurrentIndex] = useState(0); // Para controlar dots activos
-
-  // Sincroniza currentIndex cuando slick cambia slide
-  const handleAfterChange = (index: number) => {
-    setCurrentIndex(index);
-  };
 
   // Animación GSAP de entrada
   useEffect(() => {
@@ -84,7 +76,6 @@ export function PrecioPortfolioCarousel({
     arrows: !hideArrows,
     nextArrow: hideArrows ? <></> : <NextArrow />,
     prevArrow: hideArrows ? <></> : <PrevArrow />,
-    afterChange: handleAfterChange, // Actualiza currentIndex
   };
 
   // Flechas custom
@@ -115,37 +106,32 @@ export function PrecioPortfolioCarousel({
   }
 
   return (
-    <div
-      ref={carouselRef}
-     
-      >
-        <Slider ref={sliderRef} {...settings}>
-          {items.map((item, index) => (
+    <div ref={carouselRef}>
+      <Slider ref={sliderRef} {...settings}>
+        {items.map((item, index) => (
+          <div
+            key={item.id}
+            className="relative group overflow-hidden"
+            onClick={() => (window.location.href = item.href)}
+          >
             <div
-              key={item.id}
-              className="relative group overflow-hidden"
-              onClick={() => window.location.href = item.href}
+              className={`relative ${
+                fullHeight ? "h-screen" : "h-[240px] sm:h-[300px] md:h-[360px] lg:h-[500px]"
+              }`}
             >
-              <div
-                className={`relative ${
-                  fullHeight
-                    ? "h-screen"
-                    : "h-[240px] sm:h-[300px] md:h-[360px] lg:h-[500px]"
-                }`}
-              >
-                <LCPImage
-                  src={item.image.src}
-                  alt={item.image.alt}
-                  width={item.image.width}
-                  height={item.image.height}
-                  sizes={item.image.sizes}
-                  priority={index === 0}
-                  className="w-full h-full object-cover bg-black transition-transform duration-1000 group-hover:scale-105 rounded-2xl"
-                />
-              </div>
+              <LCPImage
+                src={item.image.src}
+                alt={item.image.alt}
+                width={item.image.width}
+                height={item.image.height}
+                sizes={item.image.sizes}
+                priority={index === 0}
+                className="w-full h-full object-cover bg-black transition-transform duration-1000 group-hover:scale-105 rounded-2xl"
+              />
             </div>
-          ))}
-        </Slider>
-      </div>
+          </div>
+        ))}
+      </Slider>
+    </div>
   );
 }

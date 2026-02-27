@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,9 +47,9 @@ export function AdvancedHorizontalCarousel<T>({
       pin: true,
       pinSpacing: true,
       animation: tween,
-      scrub: 0.5,           // un poco de suavizado (0 = instantáneo, 1 = muy suave)
+      scrub: 0.5, // un poco de suavizado (0 = instantáneo, 1 = muy suave)
       invalidateOnRefresh: true,
-      anticipatePin: 1,     // evita flash blanco al pinnear
+      anticipatePin: 1, // evita flash blanco al pinnear
       onUpdate: (self) => {
         const prog = self.progress;
         setProgress(prog);
@@ -130,10 +130,7 @@ export function AdvancedHorizontalCarousel<T>({
         </>
       )}
 
-      <div
-        ref={panelsRef}
-        className="flex h-screen w-max will-change-transform"
-      >
+      <div ref={panelsRef} className="flex h-screen w-max will-change-transform">
         {slides.map((slide, index) => (
           <div
             key={index}

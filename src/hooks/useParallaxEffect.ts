@@ -1,30 +1,22 @@
 // src/hooks/useParallaxEffect.ts
 
-import { useEffect } from 'react';
-import { debounce } from 'lodash';
-import type { RefObject } from 'react';
+import { debounce } from "lodash";
+import { useEffect } from "react";
+import type { RefObject } from "react";
 
 // Tipo para las opciones del hook
 interface ParallaxOptions {
-  parallaxFactor?: number;   // Factor de velocidad del parallax (0.1 = lento, 0.5 = rápido)
-  debounceDelay?: number;    // Delay en ms para el debounce
-  threshold?: number;        // Píxeles antes de entrar al viewport para activar
-  selectors?: string;        // Selectores CSS personalizados (opcional)
+  parallaxFactor?: number; // Factor de velocidad del parallax (0.1 = lento, 0.5 = rápido)
+  debounceDelay?: number; // Delay en ms para el debounce
+  threshold?: number; // Píxeles antes de entrar al viewport para activar
+  selectors?: string; // Selectores CSS personalizados (opcional)
 }
 
 // Tipo para las refs (si se pasan manualmente)
 type ElementRef = RefObject<HTMLElement>;
 
-const useParallaxEffect = (
-  refs: ElementRef[] = [],
-  options: ParallaxOptions = {}
-): void => {
-  const {
-    parallaxFactor = 0.2,
-    debounceDelay = 10,
-    threshold = 100,
-    selectors = '',
-  } = options;
+const useParallaxEffect = (refs: ElementRef[] = [], options: ParallaxOptions = {}): void => {
+  const { parallaxFactor = 0.2, debounceDelay = 10, threshold = 100, selectors = "" } = options;
 
   // Selectores por defecto (todas las secciones que quieres con parallax + scroll reveal)
   const defaultSelectors = `
@@ -33,7 +25,7 @@ const useParallaxEffect = (
     .experience-section,
     .growth-section,
     .why-us-section,
-    .our-serviciosAcordeon,
+    .our-ProductosAcordeon,
     .process-bkarsApp,
     .bkars-section,
     .hero-bkars,
@@ -57,7 +49,7 @@ const useParallaxEffect = (
     .services-branding,
     .webdev-section,
     .seo-section
-  `.replace(/\s/g, ''); // Limpia espacios y saltos de línea
+  `.replace(/\s/g, ""); // Limpia espacios y saltos de línea
 
   const finalSelectors = selectors || defaultSelectors;
 
@@ -79,14 +71,13 @@ const useParallaxEffect = (
       if (!container) return;
 
       const rect = container.getBoundingClientRect();
-      const isInViewport =
-        rect.top < windowHeight - threshold && rect.bottom > threshold;
+      const isInViewport = rect.top < windowHeight - threshold && rect.bottom > threshold;
 
       // 1. Scroll reveal: agregar/quitar clase para animación CSS
       if (isInViewport) {
-        container.classList.add('scroll-visible');
+        container.classList.add("scroll-visible");
       } else {
-        container.classList.remove('scroll-visible');
+        container.classList.remove("scroll-visible");
       }
 
       // 2. Efecto parallax solo cuando está visible
@@ -97,26 +88,26 @@ const useParallaxEffect = (
 
         container.style.transform = `translateY(${clampedOffset}px)`;
       } else {
-        container.style.transform = '';
+        container.style.transform = "";
       }
     });
   }, debounceDelay);
 
   useEffect(() => {
     // Listeners con passive para mejor rendimiento en scroll
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
 
     // Ejecutar al montar
     handleScroll();
 
     // Cleanup
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
       handleScroll.cancel(); // Cancela cualquier debounce pendiente
     };
-  }, [refs, parallaxFactor, debounceDelay, threshold, finalSelectors]);
+  }, [handleScroll]);
 };
 
 export default useParallaxEffect;

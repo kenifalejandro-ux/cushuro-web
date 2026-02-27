@@ -4,8 +4,10 @@ export function FooterVariantC() {
   return (
     <div className="flex flex-col gap-6">
       <h3 className="text-4xl md:text-5xl font-medium text-white leading-tight">
-        Diseño.<br />
-        Código.<br />
+        Diseño.
+        <br />
+        Código.
+        <br />
         Claridad.
       </h3>
 
@@ -15,4 +17,3 @@ export function FooterVariantC() {
     </div>
   );
 }
-

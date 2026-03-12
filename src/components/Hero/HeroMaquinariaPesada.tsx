@@ -117,7 +117,7 @@ export function HeroMaquinariaPesada() {
   }, [activeVideoIndex, activeSlides.length]);
 
   return (
-    <section ref={heroRef} className="relative min-h-[55vh] w-full overflow-hidden bg-black">
+    <section ref={heroRef} className="relative min-h-[75vh] w-full overflow-hidden bg-black">
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">
         <LCPImage
@@ -169,37 +169,44 @@ export function HeroMaquinariaPesada() {
         }}
       />
       
-      
-      {/* ================= CONTENIDO ln-91-70================= */}
-      <div className="relative z-30 flex min-h-[55vh] items-center">
+
+
+
+        {/* ================= CONTENIDO ln-91-70================= */}
+      <div className="relative z-30 flex min-h-[75vh] items-center">
         <div className="mx-auto max-w-7xl px-6 w-full">
-          {/* Texto */}
+
+           {/* Texto */}
           <div className="max-w-3xl  space-y-6">
             <div className="flex items-center gap-4 mb-6">
-              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-blue-600 via-emerald-400 to-blue-600 origin-left" />
-              <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
-                OPERACIONES MINERAS
-              </span>
-            </div>
+            {/* Línea + etiqueta */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
+  
+               <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
+    CALERA SANTA ISABEL DE CUSHURO
+  </span>
+</div>
+</div>
 
             <h1 className="reveal-title text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
               Operación con Maquinaria Pesada
             </h1>
 
             <p className="reveal-subtitle text-xl lg:text-2xl font-black text-white/80 tracking-tight leading-tight">
-             Movimiento de tierras y operaciones especializadas en minería no metálica 
-              con equipos de última generación.
+             Movimiento de tierras, extracción y soporte operativo en minería no metálica, 
+con maquinaria pesada y control técnico en campo.
             </p>
             <div className="flex gap-6 font-black text-emerald-400">
               <div className="reveal-badge flex items-center gap-2">
-                <Factory size={20} />
-                <span>176 TM / día</span>
-              </div>
+  <Factory size={20} />
+  <span>Equipos de Alto Rendimiento</span>
+</div>
 
-              <div className="reveal-badge flex items-center gap-2">
-                <Pickaxe size={20} />
-                <span>Especializado en Minería</span>
-              </div>
+<div className="reveal-badge flex items-center gap-2">
+  <Pickaxe size={20} />
+  <span>Operación en Minería No Metálica</span>
+</div>
             </div>
           </div>
         </div>

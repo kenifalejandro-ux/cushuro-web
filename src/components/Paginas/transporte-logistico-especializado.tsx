@@ -4,12 +4,13 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Truck, Radio, ShieldCheck, TrendingUp, Users, Factory, Leaf } from "lucide-react";
+import { Truck, Radio,Mountain, Pickaxe, ShieldCheck, TrendingUp, Users, Factory, Leaf, Flame, ClipboardCheck, AlertTriangle } from "lucide-react";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ImageStack } from "../ui/ImageStack";
+import ReorderImageStack from "../ui/ReorderImageStack";
 import { ParallaxSection } from "../ui/ParallaxSection";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,7 +93,7 @@ const images = [
             </p>
           </motion.div>
         </div>
-      </section>*/}
+      </section>
 
       {/* Descripción del Servicio */}
       <section className="py-16 bg-zinc-50">
@@ -105,7 +106,7 @@ const images = [
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <ImageStack images={images} className="h-[500px] " />
+             <ReorderImageStack images={images} />
             </motion.div>
 
             <motion.div
@@ -114,13 +115,10 @@ const images = [
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-zinc-800 mb-6">
-                Descripción del Servicio
-              </h2>
-              <p className="text-lg text-zinc-600 mb-8">
-                Brindamos servicios de transporte especializado operando bajo 
-                criterios de excelencia y seguridad.
-              </p>
+
+<h2 className="text-4xl font-bold text-blue-800 mb-6">
+  Transporte Logístico Especializado
+</h2>
 
               <div className="space-y-4">
                 <motion.div
@@ -130,12 +128,46 @@ const images = [
                   <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
                     <Factory className="w-6 h-6 text-emerald-600" />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-lg text-zinc-800">Control Logístico</h3>
-                    <p className="text-zinc-600">
-                      Seguimiento en tiempo real de todas las operaciones
-                    </p>
-                  </div>
+                 <div className="space-y-4"> {/* Añade espacio vertical entre bloques principales */}
+  <div>
+    <h2 className="text-xl font-bold text-zinc-800 mb-6">
+  Transporte Logístico Especializado
+</h2>
+
+<p className="text-lg text-zinc-600 mb-4">
+  Servicio de transporte para operaciones mineras no metálicas con 
+  capacidad operativa de hasta <span className="font-semibold text-emerald-700">176 TM por día</span>.
+</p>
+
+<p className="text-zinc-600 mb-8">
+  Garantizamos abastecimiento continuo de piedra caliza, óxido de calcio 
+  y carbón de piedra, asegurando continuidad productiva y reducción 
+  de tiempos de espera en campo.
+</p>
+  </div>
+
+  <ul className="space-y-3"> {/* Espacio entre cada punto de la lista */}
+    {[
+      "Seguimiento en tiempo real de unidades",
+      "Supervisión presencial en puntos críticos",
+      "Coordinación directa con operaciones mineras",
+    ].map((text, index) => (
+      <li key={index} className="flex items-start gap-2 text-zinc-600">
+        {/* Icono simple estilo Check */}
+        <span className="text-blue-600 mt-1">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+          </svg>
+        </span>
+        {text}
+      </li>
+    ))}
+  </ul>
+
+  <p className="text-zinc-600 font-medium pt-2 border-t border-zinc-100">
+Aseguramos continuidad operativa y reducción de riesgos logísticos en cada operación.  </p>
+</div>
+
                 </motion.div>
 
                 <motion.div
@@ -147,9 +179,10 @@ const images = [
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-zinc-800">Supervisión Permanente</h3>
-                    <p className="text-zinc-600">
-                      Personal calificado en campo constantemente
-                    </p>
+<p className="text-zinc-600">
+  Supervisión presencial en puntos críticos de carga y descarga, 
+  garantizando control operativo y cumplimiento de protocolos de seguridad.
+</p>
                   </div>
                 </motion.div>
 
@@ -162,9 +195,10 @@ const images = [
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-zinc-800">Coordinación Operativa</h3>
-                    <p className="text-zinc-600">
-                      Comunicación directa y efectiva en el campo
-                    </p>
+<p className="text-zinc-600">
+  Coordinación directa con el área de operaciones del cliente, 
+  permitiendo respuesta inmediata ante contingencias y ajustes en campo.
+</p>
                   </div>
                 </motion.div>
               </div>
@@ -183,15 +217,15 @@ const images = [
             viewport={{ once: true }}
             className="text-4xl font-bold text-center text-zinc-800 mb-12"
           >
-            Materiales que Transportamos
+           Materiales Estratégicos Transportados
           </motion.h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Piedra caliza preparada", icon: Factory, color: "blue" },
-              { title: "Óxido de calcio (Cal Viva)", icon: Factory, color: "emerald" },
-              { title: "Carbón de piedra", icon: Factory, color: "zinc" },
-              { title: "Insumos industriales", icon: Truck, color: "blue" },
+              { title: "Piedra caliza preparada", icon: Mountain, color: "blue" },
+{ title: "Óxido de calcio (Cal Viva)", icon: Flame, color: "emerald" },
+{ title: "Carbón de piedra", icon: Pickaxe, color: "zinc" },
+{ title: "Insumos industriales", icon: Truck, color: "blue" },
             ].map(({ title, icon: Icon, color }, index) => (
               <motion.div
                 key={index}
@@ -211,197 +245,122 @@ const images = [
         </div>
       </section>
 
-      {/* Sistema de Comunicaciones */}
-      <ParallaxSection speed={0.3} className="py-20 bg-gradient-to-b from-zinc-50 to-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-blue-600 to-emerald-600 text-white p-12 rounded-2xl shadow-2xl"
-            >
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Radio className="w-8 h-8 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-3xl font-bold mb-4">Sistema de Comunicaciones</h2>
-                  <p className="text-lg text-blue-50 mb-6 leading-relaxed">
-                    Debido a la extensión de áreas en minería no metálica, 
-                    trabajamos con sistemas especializados de comunicación.
-                  </p>
+    {/* Seguridad y Cumplimiento Operativo */}
+<section className="py-20 bg-white" ref={securityRef}>
+  <div className="container mx-auto px-6">
+    
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-4xl font-bold text-center text-zinc-800 mb-4"
+    >
+      Seguridad y Cumplimiento Operativo
+    </motion.h2>
 
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                      <span className="text-lg">Coordinación directa en campo</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                      <span className="text-lg">Supervisión presencial</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
-                      <span className="text-lg">Comunicación móvil para seguimiento operativo</span>
-                    </div>
-                  </div>
+    <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="text-center text-lg text-zinc-600 mb-12 max-w-3xl mx-auto"
+    >
+      Operamos bajo estrictos estándares de seguridad industrial y normativa vigente en transporte para minería no metálica.
+    </motion.p>
 
-                  <div className="mt-6 p-4 bg-white/10 backdrop-blur-sm rounded-lg">
-                    <p className="text-blue-50">
-                      ✓ Priorizamos la inspección física antes de ejecutar órdenes críticas, 
-                      garantizando eficiencia y seguridad.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[
+        {
+          title: "Cumplimiento Normativo",
+          icon: ShieldCheck,
+          desc: "Operaciones alineadas a la normativa vigente en transporte y seguridad minera."
+        },
+        {
+          title: "Protocolos de Seguridad",
+          icon: ClipboardCheck,
+          desc: "Procedimientos establecidos para carga, traslado y descarga en campo."
+        },
+        {
+          title: "Supervisión en Operaciones",
+          icon: Users,
+          desc: "Control operativo presencial en puntos críticos de cada traslado."
+        },
+        {
+          title: "Prevención de Riesgos",
+          icon: AlertTriangle,
+          desc: "Identificación y mitigación de riesgos en cada operación logística."
+        },
+      ].map(({ title, icon: Icon, desc }, index) => (
+        <motion.div
+          key={index}
+          whileHover={{ y: -8 }}
+          className="bg-gradient-to-br from-zinc-50 to-white p-8 rounded-xl shadow-lg border border-zinc-200 hover:border-emerald-400 transition-all h-full"
+        >
+          <Icon className="w-12 h-12 text-emerald-600 mb-4" />
+          <h3 className="font-bold text-lg text-zinc-800 mb-2">{title}</h3>
+          <p className="text-zinc-600">{desc}</p>
+        </motion.div>
+      ))}
+    </div>
+
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+      viewport={{ once: true }}
+      className="mt-14 bg-gradient-to-r from-emerald-50 to-blue-50 p-8 rounded-xl border border-emerald-200"
+    >
+      <h3 className="font-bold text-2xl text-zinc-800 mb-6 text-center">
+        Estándares Aplicados en Cada Operación
+      </h3>
+
+      <div className="grid md:grid-cols-3 gap-6">
+        <div className="flex items-center gap-3 bg-white p-4 rounded-lg shadow">
+          <ShieldCheck className="w-6 h-6 text-emerald-600 flex-shrink-0" />
+          <span className="font-medium text-zinc-700">Seguridad industrial</span>
         </div>
-      </ParallaxSection>
 
-      {/* Seguridad en el Transporte */}
-      <section className="py-20 bg-white" ref={securityRef}>
-        <div className="container mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold text-center text-zinc-800 mb-4"
-          >
-            Seguridad en el Transporte
-          </motion.h2>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-center text-lg text-zinc-600 mb-12 max-w-3xl mx-auto"
-          >
-            Consideramos la seguridad como un pilar fundamental de nuestra operación
-          </motion.p>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { title: "Deber ético y moral", icon: ShieldCheck, desc: "Compromiso con la integridad" },
-              { title: "Responsabilidad social", icon: Users, desc: "Con nuestras comunidades" },
-              { title: "Obligación legal", icon: Factory, desc: "Cumplimiento normativo" },
-              { title: "Ventaja competitiva", icon: TrendingUp, desc: "Excelencia operativa" },
-            ].map(({ title, icon: Icon, desc }, index) => (
-              <motion.div
-                key={index}
-                className="security-item"
-                whileHover={{ y: -10 }}
-              >
-                <div className="bg-gradient-to-br from-zinc-50 to-white p-8 rounded-xl shadow-lg border-2 border-blue-200 hover:border-blue-400 transition-all h-full">
-                  <Icon className="w-12 h-12 text-blue-600 mb-4" />
-                  <h3 className="font-bold text-lg text-zinc-800 mb-2">{title}</h3>
-                  <p className="text-zinc-600">{desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-12 bg-gradient-to-r from-emerald-50 to-blue-50 p-8 rounded-xl border-2 border-emerald-200"
-          >
-            <h3 className="font-bold text-2xl text-zinc-800 mb-6 text-center">
-              Trabajamos bajo estándares exigentes en:
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="flex items-center gap-3 bg-white p-4 rounded-lg shadow">
-                <ShieldCheck className="w-6 h-6 text-emerald-600 flex-shrink-0" />
-                <span className="font-medium text-zinc-700">Seguridad industrial</span>
-              </div>
-              <div className="flex items-center gap-3 bg-white p-4 rounded-lg shadow">
-                <ShieldCheck className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                <span className="font-medium text-zinc-700">Salud ocupacional</span>
-              </div>
-              <div className="flex items-center gap-3 bg-white p-4 rounded-lg shadow">
-                <ShieldCheck className="w-6 h-6 text-zinc-600 flex-shrink-0" />
-                <span className="font-medium text-zinc-700">Prevención de riesgos</span>
-              </div>
-            </div>
-          </motion.div>
+        <div className="flex items-center gap-3 bg-white p-4 rounded-lg shadow">
+          <ShieldCheck className="w-6 h-6 text-blue-600 flex-shrink-0" />
+          <span className="font-medium text-zinc-700">Salud ocupacional</span>
         </div>
-      </section>
 
-      {/* Impacto Económico */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-emerald-800 to-blue-900 text-white">
-        <div className="container mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-12"
-          >
-            Impacto Económico
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-center text-xl text-blue-100 mb-12 max-w-3xl mx-auto"
-          >
-            Nuestro servicio logístico contribuye al dinamismo económico regional
-          </motion.p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: Factory, title: "Operaciones mineras", desc: "Soporte logístico continuo" },
-              { icon: TrendingUp, title: "Comercio local", desc: "Impulso a la economía regional" },
-              { icon: Users, title: "Generación de empleo", desc: "Directo e indirecto" },
-            ].map(({ icon: Icon, title, desc }, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-white/10 backdrop-blur-sm p-8 rounded-xl hover:bg-white/20 transition-all"
-              >
-                <Icon className="w-12 h-12 text-emerald-400 mb-4" />
-                <h3 className="text-2xl font-bold mb-2">{title}</h3>
-                <p className="text-blue-100 text-lg">{desc}</p>
-              </motion.div>
-            ))}
-          </div>
+        <div className="flex items-center gap-3 bg-white p-4 rounded-lg shadow">
+          <ShieldCheck className="w-6 h-6 text-zinc-600 flex-shrink-0" />
+          <span className="font-medium text-zinc-700">Prevención de riesgos</span>
         </div>
-      </section>
+      </div>
+    </motion.div>
 
-      {/* Compromiso Ambiental */}
-      <section className="py-20 bg-zinc-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-emerald-600 to-blue-600 text-white p-12 rounded-2xl shadow-2xl text-center"
-            >
-              <Leaf className="w-16 h-16 mx-auto mb-6 text-emerald-200" />
-              <h2 className="text-3xl font-bold mb-4">Compromiso Ambiental</h2>
-              <p className="text-xl text-blue-50 leading-relaxed">
-                Operamos con responsabilidad ambiental, garantizando 
-                el cumplimiento de todas las normativas vigentes y 
-                promoviendo prácticas sostenibles en cada operación de transporte.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+  </div>
+</section>
+    {/* capacidad operativa*/}
+     <section className="py-20 bg-zinc-900 text-white">
+  <div className="container mx-auto px-6 text-center max-w-4xl">
+      <motion.h2
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="text-4xl font-bold mb-6"
+      >
+        Capacidad Operativa Garantizada
+      </motion.h2>
+<div className="text-6xl font-extrabold text-emerald-400 mb-4">
+  176 TM
+</div>
+
+    <div className="flex flex-col md:flex-row justify-center gap-8 text-lg">
+      <div>✔ Transporte especializado en minería no metálica</div>
+      <div>✔ Control logístico en campo</div>
+      <div>✔ Seguridad y cumplimiento operativo</div>
+    </div>
+<p className="text-zinc-400 mt-4">
+  Operaciones en zonas de difícil acceso y entornos de minería no metálica.
+</p>
+  </div>
+</section>
     </div>
   );
 }

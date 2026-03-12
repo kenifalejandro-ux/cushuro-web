@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* -------- TYPES -------- */
 
 
-interface Tab {
+export interface Tab {
   label: string;
   href: string;
 }
@@ -35,7 +35,13 @@ interface HeaderProps {
 
 /* -------- Productos PARA EL SUBMENU -------- */
 
-const PRODUCTS_SUBMENU = [
+export const PRODUCTS_SUBMENU = [
+    {
+    id: "Piedra Caliza",
+    name: "Piedra Caliza",
+    subtitle: "Identidad de marca memorable",
+    href: "/Productos/piedra-caliza",
+  },
   {
     id: "CalViva",
     name: "Cal Viva",
@@ -48,12 +54,7 @@ const PRODUCTS_SUBMENU = [
     subtitle: "Experiencias digitales intuitivas",
     href: "/Productos/cal-agricola",
   },
-  {
-    id: "PiedraCaliza",
-    name: "PiedraCaliza",
-    subtitle: "Identidad de marca memorable",
-    href: "/Productos/piedra-caliza",
-  },
+
   {
     id: "CarbonAntracita",
     name: "Carbon Antracita",
@@ -71,13 +72,7 @@ const PRODUCTS_SUBMENU = [
 
 /* -------- Productos PARA EL SUBMENU -------- */
 
-const SERVICES_SUBMENU = [
-    {
-      id: "OxidodeCalcio",
-    name: "Suministro de oxido de calcio",
-    subtitle: "Sitios web modernos y escalables",
-    href: "/Servicios-Industriales/suministro-de-oxido-de-calcio",
-  },
+export const SERVICES_SUBMENU = [
   {
     id: "TransporteLogistico",
     name: "Transporte Logistico",
@@ -91,12 +86,31 @@ const SERVICES_SUBMENU = [
     href: "/Servicios-Industriales/operacion-con-maquinaria-pesada",
   },
 ];
+/* -------- RESPONSABILIDAD SOCIAL PARA EL SUBMENU -------- */
+
+export const RESPONSIBILITY_SUBMENU = [
+    {
+      id: "MedioAmbiente",
+    name: "Medio Ambiente",
+    subtitle: "Sitios web modernos y escalables",
+    href: "/compromiso-ambiental-y-social/medio-ambiente",
+  },
+  {
+    id: "ResponsabilidadSocial",
+    name: "Responsabilidad Social",
+    subtitle: "Experiencias digitales intuitivas",
+    href: "/compromiso-ambiental-y-social/responsabilidad-social",
+  },
+
+];
 /* -------- DEFAULT TABS -------- */
 
-const DEFAULT_TABS: Tab[] = [
+export const DEFAULT_TABS: Tab[] = [
   { label: "La Empresa", href: "/la-empresa" },
   { label: "Productos", href: "/Productos" },
   { label: "Servicios-Industriales", href: "/Servicios-Industriales" },
+  { label: "compromiso-ambiental-y-social", href: "/compromiso-ambiental-y-social" },
+  { label: "Contacto", href: "/contacto" },
 
 ];
 
@@ -132,14 +146,19 @@ export function Header({
   const location = useLocation();
   const isProductsActive = location.pathname.startsWith("/Productos");
   const isServicesActive = location.pathname.startsWith("/Servicios-Industriales");
+  const isResponsibilityActive = location.pathname.startsWith("/compromiso-ambiental-y-social");
   const forceWhiteLogo = location.pathname.startsWith("/Productos/");
 
   /*activa el submenu */
-  const hasSubmenu = (label: string) => label === "Productos" || label === "Servicios-Industriales";
+  const hasSubmenu = (label: string) =>
+    label === "Productos" ||
+    label === "Servicios-Industriales" ||
+    label === "compromiso-ambiental-y-social";
 
   const getSubmenuByTab = (label: string) => {
     if (label === "Productos") return PRODUCTS_SUBMENU;
     if (label === "Servicios-Industriales") return SERVICES_SUBMENU;
+    if (label === "compromiso-ambiental-y-social") return RESPONSIBILITY_SUBMENU;
     return [];
   };
 
@@ -284,6 +303,8 @@ export function Header({
                     ? isProductsActive
                     : tab.label === "Servicios-Industriales"
                       ? isServicesActive
+                      : tab.label === "compromiso-ambiental-y-social"
+                        ? isResponsibilityActive
                       : location.pathname === tab.href;
 
                 return tabHasSubmenu ? (

@@ -142,7 +142,6 @@ export function Mision() {
                   <p className="text-amber-500 text-sm uppercase tracking-wider">Misión</p>
                 </div>
               </div>
-
              
                 <p className="text-md text-zinc-100 leading-relaxed">
                   La misión de CALERA “SANTA ISABEL DE CUSHURO SAC”,
@@ -182,10 +181,9 @@ competitivo dentro del mercado empresarial local y regional.
       ]}
       // Forzamos sin bordes ni sombras aquí también
       className="w-full h-full object-cover border-none shadow-none bg-transparent"
-    />
-  </div>
-</div>
-
+        />
+            </div>
+           </div>
         </div>
       </div>
     </section>

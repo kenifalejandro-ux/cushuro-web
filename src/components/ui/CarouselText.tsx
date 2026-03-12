@@ -113,7 +113,7 @@ export function CarouselText({ variant }: CarouselTextProps) {
   const headingRef = useRef<HTMLDivElement>(null);
   const trackEntryRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [activeVariant, setActiveVariant] = useState<CarouselVariant>(variant ?? "inline");
+  const [activeVariant, setActiveVariant] = useState<CarouselVariant>(variant ?? "card");
 
   const carouselItems = useMemo(() => [...PROJECTS, ...PROJECTS], []);
   const activeHeights = VARIANT_HEIGHTS[activeVariant];
@@ -360,7 +360,7 @@ export function CarouselText({ variant }: CarouselTextProps) {
           className={`group flex min-w-[340px] md:min-w-[430px] items-center gap-5 rounded-xl border border-amber-500/25 bg-zinc-950/70 px-5 py-5 shadow-[0_20px_55px_-35px_rgba(245,158,11,0.7)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-amber-300/60 hover:bg-zinc-900/80 ${itemHeightClass}`}
         >
           <div
-            className="h-16 w-16 md:h-20 md:w-20 flex-shrink-0 rounded-lg border border-zinc-700 bg-zinc-900/80 p-2"
+            className="h-16 w-16 md:h-20 md:w-20 flex-shrink-0 rounded-lg border border-zinc-700 bg-zinc-100/100 p-2"
             data-carousel-logo
           >
             <img

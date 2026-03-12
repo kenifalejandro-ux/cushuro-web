@@ -1,5 +1,8 @@
 // client/src/components/ui/LCPImage.tsx
+
 import { ImgHTMLAttributes } from "react";
+
+import { resolveLCPImageSources } from "./lcpImageSources";
 
 interface LCPImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "width" | "height"> {
   src: string; // Ej: "Hero/puerta-del-valle"
@@ -13,10 +16,6 @@ interface LCPImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "width
   pictureClassName?: string;
 }
 
-const SIZES = [768, 1280, 1920, 2560, 3840];
-// Traemos la URL de SiteGround desde el .env
-const IMG_BASE = import.meta.env.VITE_IMG_URL;
-
 export function LCPImage({
   src,
   alt,
@@ -29,27 +28,23 @@ export function LCPImage({
   pictureClassName = "block w-full h-full bg-black rounded-2xl overflow-hidden",
   ...rest
 }: LCPImageProps) {
-  // 1. Quitamos la extensión si el usuario la puso por error
-  const cleanPath = src.replace(/\.(avif|webp|jpg|jpeg|png)$/i, "");
-
-  // 2. Construimos la URL base completa (SiteGround + Carpeta + Nombre)
-  // Esto genera: https://kenifa.sg-host.com
-  const fullBase = `${IMG_BASE}/${cleanPath}`;
-
-  const buildSrcSet = (ext: string) =>
-    SIZES.map((size) => `${fullBase}-${size}.${ext} ${size}w`).join(", ");
+  const imageSources = resolveLCPImageSources(src);
 
   return (
     <picture className={pictureClassName}>
-      {/* AVIF de SiteGround */}
-      <source srcSet={buildSrcSet("avif")} type="image/avif" sizes={sizes} />
+      {!imageSources.hasExplicitExtension && (
+        <>
+          {/* AVIF de SiteGround */}
+          <source srcSet={imageSources.avifSrcSet} type="image/avif" sizes={sizes} />
 
-      {/* WebP de SiteGround */}
-      <source srcSet={buildSrcSet("webp")} type="image/webp" sizes={sizes} />
+          {/* WebP de SiteGround */}
+          <source srcSet={imageSources.webpSrcSet} type="image/webp" sizes={sizes} />
+        </>
+      )}
 
       <img
-        // Fallback JPG de SiteGround
-        src={`${fullBase}.jpg`}
+        // Fallback JPG (o URL directa si ya trae extensión)
+        src={imageSources.fallbackSrc}
         alt={alt}
         width={width}
         height={height}

@@ -5,12 +5,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { lazy, Suspense, useEffect, useRef } from "react";
 
 import SEO from "../global/seo";
+import { type CompanyLocationItem } from "../sections/CompanyLocationMap";
 import IntroConcept from "../sections/InicioSections";
 import CarouselText from "../ui/CarouselText";
-import CompanyLocationMap, { type CompanyLocationItem } from "../sections/CompanyLocationMap";
+import CompanyMapLeaflet from "../ui/CompanyMapLeaflet";
+import CompanyMapHybrid from "../ui/CompanyMapHybrid";
+import CompanyLocationMap from "../sections/CompanyLocationMap";
 import { LazyOnView } from "../ui/LazyOnView";
 import Metricas from "@/components/ui/Metricas";
 import ServicesGrid from "@/components/ui/ServicesGrid";
+
 
 const LazyCarouselPlanesWeb = lazy(() =>
   import("../ui/CarouselPlanesWeb").then((m) => ({ default: m.CarouselPlanesWeb }))
@@ -41,9 +45,21 @@ const companyLocations: CompanyLocationItem[] = [
     city: "Huamachuco, La Libertad",
     address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
     productionCenter: "CASERIO RODEOPAMPA - MARCABAL - HUAMACHUCO.",
-    imageSrc: "/img-inicio/Productos-inicio/piedra-caliza/piedra-caliza",
-    imageAlt: "Planta y operaciones de Calera Cushuro",
+    imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+    imageAlt: "Planta y Compromiso Ambiental Y Social de Calera Cushuro",
     coordinates: [-78.0489, -7.8154],
+  },
+
+  // ✅ NUEVA PLANTA
+  {
+    id: "bambamarca-plant",
+    companyName: "Planta Bambamarca - Santa Isabel de Cushuro",
+    city: "Bambamarca, Cajamarca",
+    address: "Bambamarca - Cajamarca, Perú.",
+    productionCenter: "Zona Industrial Bambamarca.",
+    imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002", // usa otra imagen
+    imageAlt: "Planta de producción en Bambamarca - Cajamarca",
+    coordinates: [-78.5213, -6.6828], // Coordenadas aproximadas Bambamarca
   },
 ];
 
@@ -283,16 +299,17 @@ export default function Inicio() {
             <CarouselText />
           </Suspense>
         </LazyOnView>
+        {/* ================= UBICACIÓN MAPS================= */}
 
         <LazyOnView minHeight={560}>
-          <CompanyLocationMap
+          <CompanyMapHybrid
             className="mt-12 pb-20"
-            title="Ubicacion de la empresa"
-            subtitle="Punto de referencia principal y datos corporativos de CALERA CUSHURO."
+            title="Ubicación de nuestras plantas"
+            subtitle="Conoce nuestras sedes operativas en La Libertad y Cajamarca."
             locations={companyLocations}
-            center={[-78.0489, -7.8154]}
-            projectionScale={1500}
-            primaryColor="#0a1f7e"
+            center={[-78.3, -7.2]}
+            projectionScale={1300}
+            primaryColor="#0e5814"
             mapClassName="h-[520px] md:h-[640px]"
           />
         </LazyOnView>

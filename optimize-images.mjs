@@ -8,7 +8,7 @@ const baseDirs = [
 
 ];
 
-const sizes = [768, 1280, 1920, 2560, 3840];
+const sizes = [768, 1280, 1920];
 const outputBase = 'imagenes-optim';
 
 async function processFolder(folderPath) {

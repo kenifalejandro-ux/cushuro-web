@@ -27,8 +27,8 @@ interface Stat {
 const STATS: Stat[] = [
   { id: "produccion_diaria", icon: Factory, value: 176, suffix: " TM", label: "PRODUCCIÓN DIARIA", subtext: "Capacidad de óxido de calcio" },
   { id: "hornos", icon: Package, value: 5, label: "HORNOS OPERATIVOS", subtext: "Capacidad instalada total" },
-  { id: "empleados_max", icon: Users, value: 72, suffix: "+", label: "PERSONAL EN OPERACIÓN", subtext: "Máximo de trabajadores rotativos" },
-  { id: "ubicacion", icon: MapPin, value: 1, suffix: "", label: "CENTRO DE PRODUCCIÓN", subtext: "Caserío Rodeopampa - Marcabal" },
+  { id: "empleados_max", icon: Users, value: 90, suffix: "+", label: "PERSONAL EN OPERACIÓN", subtext: "Máximo de trabajadores rotativos" },
+  { id: "ubicacion", icon: MapPin, value: 2, suffix: "", label: "CENTRO DE PRODUCCIÓN", subtext: "Caserío Rodeopampa - Marcabal y Bambamarca - Cajamarca" },
   { id: "seguridad_foco", icon: ShieldCheck, value: 100, suffix: "%", label: "COMPROMISO SEGURIDAD", subtext: "Deber ético y moral" },
   { id: "clientes_mercado", icon: Truck, value: 2, suffix: "+", label: "SECTORES DE MERCADO", subtext: "Minero y Azucarero abastecidos" },
 ];

@@ -1,7 +1,15 @@
 /*client/src/components/inicio/Footer.tsx*/
 
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { trackWhatsAppClick } from "@/utils/whatsapp";
+import {
+  DEFAULT_TABS,
+  PRODUCTS_SUBMENU,
+  RESPONSIBILITY_SUBMENU,
+  SERVICES_SUBMENU,
+} from "./header";
 
 const SOCIAL_LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/", icon: Linkedin },
@@ -13,6 +21,21 @@ const WHATSAPP_NUMBER = "959173472";
 const WHATSAPP_URL = `https://wa.me/51${WHATSAPP_NUMBER}`;
 
 export default function Footer() {
+  const [openFooterSections, setOpenFooterSections] = useState<Record<string, boolean>>({});
+
+  const footerSubmenus: Record<string, { name: string; href: string }[]> = {
+    Productos: PRODUCTS_SUBMENU,
+    "Servicios-Industriales": SERVICES_SUBMENU,
+    "compromiso-ambiental-y-social": RESPONSIBILITY_SUBMENU,
+  };
+
+  const toggleFooterSection = (label: string) => {
+    setOpenFooterSections((current) => ({
+      ...current,
+      [label]: !current[label],
+    }));
+  };
+
   return (
     <footer className="relative text-white">
       {/* Fondo oscuro tipo imagen */}
@@ -45,24 +68,84 @@ export default function Footer() {
             <div className="grid gap-10 md:grid-cols-2 text-sm text-zinc-300">
               <div className="space-y-3">
                 <p className="font-semibold text-white">Empresa</p>
-                <p className="hover:text-emerald-600 cursor-pointer">Sobre nosotros</p>
-                <p className="hover:text-emerald-600 cursor-pointer">Soluciones</p>
-                <p className="hover:text-emerald-600 cursor-pointer">Blog</p>
-                <p className="hover:text-emerald-600 cursor-pointer">Trabaja con nosotros</p>
+                {DEFAULT_TABS.map((tab) => {
+                  const submenu = footerSubmenus[tab.label];
+                  const isOpen = Boolean(openFooterSections[tab.label]);
+                  const submenuId = `footer-submenu-${tab.label.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+
+                  if (!submenu) {
+                    return (
+                      <NavLink
+                        key={tab.href}
+                        to={tab.href}
+                        className="block hover:text-emerald-600 transition-colors"
+                      >
+                        {tab.label}
+                      </NavLink>
+                    );
+                  }
+
+                  return (
+                    <div key={tab.href} className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <NavLink
+                          to={tab.href}
+                          className="hover:text-emerald-600 transition-colors"
+                        >
+                          {tab.label}
+                        </NavLink>
+                        <button
+                          type="button"
+                          aria-expanded={isOpen}
+                          aria-controls={submenuId}
+                          onClick={() => toggleFooterSection(tab.label)}
+                          className="text-zinc-400 hover:text-emerald-600 transition-colors"
+                        >
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                          />
+                        </button>
+                      </div>
+
+                      <div
+                        id={submenuId}
+                        className={`grid overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
+                          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        {submenu.map((item) => (
+                          <NavLink
+                            key={item.href}
+                            to={item.href}
+                            className="block text-xs text-zinc-400 hover:text-emerald-600 transition-colors"
+                          >
+                            {item.name}
+                          </NavLink>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="space-y-3">
                 <p className="font-semibold text-white">Contacto</p>
-                <p>Huamachuco – Perú</p>
-                <p>Av. Vía de Evitamiento 105</p>
-                <p>Centro: Rodeopampa - Marcabal</p>
+                <p>Planta: Centro de Producción Cas. Rodeopampa – Marcabal</p>
                 <p className="text-emerald-600">
-
+                  Celulares:{" "}
+                  <a href="tel:+51986671128" className="hover:underline">
+                    986 671128
+                  </a>{" "}
+                  /{" "}
+                  <a href="tel:+51910582455" className="hover:underline">
+                    910 582 455
+                  </a>
+                </p>
+                <p className="text-emerald-600">
                   E-mail:{" "}
-
                   <a
                     href="mailto:administracion@cushuro.com"
-
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -163,7 +246,7 @@ export default function Footer() {
 
         {/* ================= FOOTER BASE ================= */}
         <div className="mt-16 flex flex-col items-center gap-3 border-t border-zinc-600/40 pt-6 text-xs text-zinc-400 md:flex-row md:justify-between">
-          <p>© {new Date().getFullYear()} Calera Cushuro S.A.C.</p>
+          <p>© {new Date().getFullYear()} Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.</p>
           <p>Huamachuco - La Libertad - Perú</p>
           <p className="text-emerald-600">
 

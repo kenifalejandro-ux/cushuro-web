@@ -73,7 +73,7 @@ export function LaEmpresaSection({
   imageElement,
   imageContainerClassName,
   variant = "industrial",
-  label = "OPERACIONES MINERAS",
+  label = "SANTA ISABEL DE CUSHURO",
 }: LaEmpresaSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);

@@ -13,44 +13,44 @@ const services = [
   {
     title: "Cal Viva",
     category: "Producto industrial",
-    image: "img-inicio/Productos-inicio/cal-viva/cal-viva",
+    image: "img-inicio/servicios-inicio/cal-viva/cal-viva",
     description:
       "Óxido de calcio de alta pureza utilizado en procesos industriales, metalúrgicos y de tratamiento químico.",
   },
   {
     title: "Cal Agrícola",
     category: "Sector agrícola",
-    image: "img-inicio/Productos-inicio/cal-agricola/calagricola",
+    image: "img-inicio/servicios-inicio/cal-agricola/calagricola",
     description:
       "Mejora la estructura del suelo, corrige acidez y optimiza la absorción de nutrientes en cultivos.",
   },
   {
     title: "Piedra Caliza",
     category: "Materia prima",
-    image: "img-inicio/Productos-inicio/piedra-caliza/piedra-caliza",
+    image: "img-inicio/servicios-inicio/piedra-caliza/piedra-caliza",
     description:
       "Mineral natural utilizado en construcción, producción de cal y aplicaciones industriales.",
   },
   {
     title: "Carbón Antracita",
     category: "Combustible sólido",
-    image: "img-inicio/Productos-inicio/antracita-carbon/Antracita-carbon",
+    image: "img-inicio/servicios-inicio/antracita-carbon/Antracita-carbon",
     description:
       "Carbón de alto poder calorífico y baja emisión, ideal para procesos térmicos industriales.",
   },
   {
     title: "Carbón tipo Cisco",
     category: "Uso industrial",
-    image: "img-inicio/Productos-inicio/carbon-cisco/carbon-cisco",
+    image: "img-inicio/servicios-inicio/carbon-cisco/carbon-cisco",
     description:
       "Variante especializada para combustión eficiente en hornos y procesos metalúrgicos.",
   },
   {
     title: "Transporte y Maquinaria",
-    category: "Productos",
-    image: "img-inicio/Productos-inicio/transporte/servicio-de-transporte",
+    category: "servicios",
+    image: "img-inicio/servicios-inicio/transporte/servicio-de-transporte",
     description:
-      "Flota y maquinaria pesada para transporte de materiales, movimiento de tierra y operaciones logísticas.",
+      "Flota y maquinaria pesada para transporte de materiales, movimiento de tierra y Operaciones logísticas.",
   },
 ];
 
@@ -185,13 +185,13 @@ export default function ServicesGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="dark-image py-20 px-6 lg:px-12">
+    <section ref={sectionRef} className="dark-image py-20 px-6 lg:px-12 ">
       <div className="max-w-7xl mx-auto">
         <div ref={headingRef} className="mb-12 text-center">
           <h2 className="text-md lg:text-xl font-normal text-zinc-300">
             CALERA SANTA ISABEL DE CUSHURO
           </h2>
-          <p className="mt-3 text-2xl lg:text-4xl font-bold text-zinc-600">Nuestros Productos</p>
+          <p className="mt-3 text-2xl lg:text-4xl font-bold text-zinc-600">Nuestros servicios</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">

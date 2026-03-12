@@ -19,22 +19,31 @@ export const PrincipalCase = [
     arrowColor: "text-zinc-300",
     hoverClass: "hover:bg-blue-800",
   },
-  {
-    id: "cal-viva",
-    name: "Cal Viva",
-    path: "/Productos/cal-viva",
-    color: "from-blue-800", // el color principal de tu marca o el que quieras
-    arrowColor: "text-blue-800",
+      {
+    id: "piedra-caliza",
+    name: "Piedra Caliza",
+    path: "/Productos/piedra-caliza",
+    color: "from-zinc-100", // el color principal de tu marca o el que quieras
+    arrowColor: "text-zinc-100",
     hoverClass: "hover:bg-blue-800",
   },
+
+
  
   {
     id: "suministro-de-oxido-de-calcio",
     name: "Suministro de calcio",
-    path: "/Servicios-Industriales//suministro-de-oxido-de-calcio",
-    color: "from-blue-800", // el color principal de tu marca o el que quieras
-    arrowColor: "text-blue-800",
+    path: "/Servicios-Industriales/suministro-de-oxido-de-calcio",
+    color: "from-zinc-100", // el color principal de tu marca o el que quieras
+    arrowColor: "text-zinc-100",
     hoverClass: "hover:bg-blue-800",
   },
-
+  {
+    id: "medio-ambiente",
+    name: "Suministro de calcio",
+    path: "/compromiso-ambiental-y-social/medio-ambiente",
+    color: "from-zinc-100", // el color principal de tu marca o el que quieras
+    arrowColor: "text-zinc-100",
+    hoverClass: "hover:bg-blue-800",
+  },
 ];

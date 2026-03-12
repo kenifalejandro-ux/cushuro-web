@@ -19,6 +19,7 @@ const siteLogo = import.meta.env.VITE_IMG_URL
 // Lazy imports
 const Inicio = lazy(() => import("./components/Paginas/inicio"));
 const LaEmpresa = lazy(() => import("./components/Paginas/la-empresa"));
+const Operaciones = lazy(() => import("./components/Paginas/responsabilidad-social"));
 
 // Lazy imports - submenú Productos
 const CalViva= lazy(() => import("./components/Paginas/cal-viva"));
@@ -28,7 +29,9 @@ const CarbonAntracita = lazy(() => import("./components/Paginas/carbon-antracita
 const CarbonCisco = lazy(() => import("./components/Paginas/carbon-cisco"));
 const OperacionMaquinaria = lazy(() => import("./components/Paginas/operacion-con-maquinaria-pesada"));
 const TransporteLogistico = lazy(() => import("./components/Paginas/transporte-logistico-especializado"));
-const OxidodeCalcio = lazy(() => import("./components/Paginas/suministro-de-oxido-de-calcio"));
+const MedioAmbiente = lazy(() => import("./components/Paginas/medio-ambiente"));
+const ResponsabilidadSocial = lazy(() => import("./components/Paginas/responsabilidad-social"));
+const Contacto = lazy(() => import("./components/Paginas/contacto"));
 
 
 
@@ -45,12 +48,12 @@ function AppRoutes() {
         element={
           <Layout page="inicio" showVideo logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-white/30" />
+              <ScrollIndicator color="text-white/50" />
             </div>
 
             <Inicio />
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
@@ -64,7 +67,7 @@ function AppRoutes() {
               <ScrollIndicator color="text-zinc-300" />
             </div>
             <LaEmpresa />
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
@@ -81,7 +84,7 @@ function AppRoutes() {
               <CalViva />
             </Suspense>
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
@@ -99,7 +102,7 @@ function AppRoutes() {
               <CalAgricola />
             </Suspense>
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
@@ -117,7 +120,7 @@ function AppRoutes() {
               <PiedraCaliza />
             </Suspense>
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
@@ -134,7 +137,7 @@ function AppRoutes() {
               <CarbonAntracita />
             </Suspense>
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
@@ -151,7 +154,7 @@ function AppRoutes() {
               <CarbonCisco />
             </Suspense>
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
@@ -169,7 +172,7 @@ function AppRoutes() {
               <OperacionMaquinaria />
             </Suspense>
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
@@ -186,28 +189,65 @@ function AppRoutes() {
               <TransporteLogistico />
             </Suspense>
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
       />
-                 {/* Servicios-Industriales/suministro-de-oxido-de-calcio */}
+                
+
+       {/* medio-ambiente/MedioAmbiente */}
       <Route
-        path="/Servicios-Industriales/suministro-de-oxido-de-calcio"
+        path="compromiso-ambiental-y-social/medio-ambiente"
         element={
-          <Layout page="suministro-de-oxido-de-calcio" showVideo={false} logo={siteLogo} brandName="">
+          <Layout page="medio-ambiente" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
               <ScrollIndicator color="text-zinc-100" />
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
-              <OxidodeCalcio />
+              <MedioAmbiente />
             </Suspense>
 
-            <MainNavigationIndicator />
+            
             <HeroarrowNavigator />
           </Layout>
         }
       />
+       {/* responsabilidad-social/ResponsabilidadSocial */}
+      <Route
+        path="compromiso-ambiental-y-social/responsabilidad-social"
+        element={
+          <Layout page="responsabilidad-social" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
+            </div>
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <ResponsabilidadSocial />
+            </Suspense>
+
+            
+            <HeroarrowNavigator />
+          </Layout>
+        }
+      />
+ {/* responsabilidad-social/contacto */}
+      <Route
+        path="contacto"
+        element={
+          <Layout page="contacto" showVideo={false} logo={siteLogo} brandName="">
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+              <ScrollIndicator color="text-zinc-100" />
+            </div>
+            <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+              <Contacto />
+            </Suspense>
+
+            
+            <HeroarrowNavigator />
+          </Layout>
+        }
+      />
+
       {/* Ruta antigua para compatibilidad */}
       <Route path="/sobre-nosotros" element={<Navigate to="/la-empresa" replace />} />
 

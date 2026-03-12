@@ -1,27 +1,116 @@
 /* client/src/components/global/HeroLaEmpresa.tsx */
 
+/**client/src/components/Hero/HeroLaEmpresa.tsx */
+
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import { useEffect, useRef, useState } from "react";
-import { Factory, Pickaxe, Droplets, ShieldCheck } from "lucide-react";
+import { useInView } from "react-intersection-observer";
 
-import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
-const HERO_PANORAMIC_IMAGE = "img-la-empresa/hero-la-empresa/img001";
-const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
+import { LCPImage } from "@/components/ui/LCPImage";
+import { initSlice, type Service } from "@/utils/MedioAmbienteGsap";
 
-export function HeroLaEmpresa() {
+
+const IMG_BASE = (import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL || "").replace(
+  /\/+$/,
+  ""
+);
+const toAssetUrl = (path: string) => {
+  const normalized = path.replace(/^\/+/, "");
+  return IMG_BASE ? `${IMG_BASE}/${normalized}` : `/${normalized}`;
+};
+
+const medioAmbienteServices: Service[] = [
+  {
+    image: toAssetUrl("img-la-empresa/hero-la-empresa/img003"),
+    slug: "logistica-transporte",
+    title: "Logística y Transporte",
+    description: "Flota propia y convoyes seguros que garantizan el traslado eficiente de piedra caliza y óxido de calcio a nuestros clientes.",
+  },
+  {
+    image: toAssetUrl("img-la-empresa/hero-la-empresa/img001"),
+    slug: "produccion-segura",
+    title: "Producción Segura",
+    description: "Planta de cal con personal altamente capacitado y protegido, cumpliendo los más altos estándares de seguridad y calidad.",
+  },
+  {
+    image: toAssetUrl("img-la-empresa/hero-la-empresa/img002"),
+    slug: "equipo-en-campo",
+    title: "Equipo en la Cantera",
+    description: "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+  },
+    {
+    image: toAssetUrl("img-inicio/hero/cantera001"),
+    slug: "equipo-en-campo",
+    title: "Equipo en la Cantera",
+    description: "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+  },
+      {
+    image: toAssetUrl("img-inicio/hero/cantera002"),
+    slug: "equipo-en-campo",
+    title: "Equipo en la Cantera",
+    description: "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+  },
+      {
+    image: toAssetUrl("img-inicio/hero/cantera003"),
+    slug: "equipo-en-campo",
+    title: "Equipo en la Cantera",
+    description: "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+  },
+];
+
+
+export default function HeroLaEmpresa() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const badgeRef = useRef<HTMLSpanElement>(null);
-  const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 });
-  
 
- useEffect(() => {
-  const ctx = gsap.context(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+  const { ref, inView } = useInView({
+    threshold: 0.15,
+    triggerOnce: true,
+    rootMargin: "100px",
+  });
 
-    // Imagen fondo (ligero zoom + ajuste brillo)
+  // 🔹 1️⃣ TU useEffect ORIGINAL (NO se toca)
+  useEffect(() => {
+    let cancelled = false;
+
+    if (inView && !isLoaded) {
+      void initSlice(medioAmbienteServices).then(() => {
+        if (!cancelled) setIsLoaded(true);
+      });
+    }
+
+    return () => {
+      cancelled = true;
+      if (window.__bkarsInterval) {
+        clearInterval(window.__bkarsInterval);
+        window.__bkarsInterval = null;
+      }
+      
+    };
+  }, [inView, isLoaded]);
+
+  // 🔹 2️⃣ useGSAP VA FUERA DEL useEffect
+  useGSAP(
+    () => {
+      if (!isLoaded) return;
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(
+          [
+            ".service-text h1",
+            ".service-text p",
+            ".service-text a",
+            ".divider",
+          ],
+          { opacity: 1, y: 0, clearProps: "all" }
+        );
+        return;
+      }
+
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+     // Imagen fondo (ligero zoom + ajuste brillo)
     tl.fromTo(
       ".hero-bg",
       { scale: 1.15, filter: "brightness(0.6)" },
@@ -56,87 +145,106 @@ export function HeroLaEmpresa() {
         "-=0.6"
       );
 
-  }, heroRef);
-
-  return () => ctx.revert();
-}, []);
-
-  // Parallax y float
-  useGSAP(
-    () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(
-          [titleRef.current, subtitleRef.current,  badgeRef.current],
-          { opacity: 1, y: 0, clearProps: "all" }
-        );
-        return;
-      }
-
-      gsap.to(badgeRef.current, {
-        y: -10,
-        duration: 4.5,
+      gsap.to(".service-text a", {
+        y: -8,
+        duration: 4,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
       });
     },
-    { scope: heroRef }
+    { scope: heroRef, dependencies: [isLoaded] }
   );
 
-
   return (
-    <section ref={heroRef} className="relative min-h-[75vh] w-full overflow-hidden bg-black">
-      {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
-      <div className="absolute inset-0 z-0">
-       <LCPImage
-  src={HERO_PANORAMIC_IMAGE}
-  alt={HERO_PANORAMIC_ALT}
-  width={2560}
-  height={1080}
-  sizes="100vw"
-  priority
-  pictureClassName="block w-full h-full overflow-hidden"
-  className="hero-bg scale-[1.01] opacity-85"
-/>
+<section
+  ref={(node) => {
+    ref(node);        // tu ref original de intersection observer
+    // @ts-ignore
+    heroRef.current = node;
+  }}
+      aria-label="Hero principal Medio Ambiente"
+      className="relative min-h-[75vh] w-full overflow-hidden bg-black"
+    >
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+        <LCPImage
+          src={medioAmbienteServices[0].image}
+          alt="Compromiso ambiental con maquinaria pesada"
+          width={1920}
+          height={1080}
+          sizes="100vw"
+          priority
+          pictureClassName="block w-full h-full"
+          className="w-full h-full object-cover"
+        />
       </div>
 
-      {/* Overlay oscuro */}
-      <div className="absolute inset-0 bg-gradient-to-r from-zinc-700/80 via-zinc-700/80 to-zinc-1/30 z-10" />
+      {/* ===== IMAGEN BASE ===== */}
+      <div
+        className={`
+          image-base
+          absolute inset-0 z-10
+          ${!isLoaded ? "skeleton" : ""}
+        `}
+        aria-hidden="true"
+      >
+        <div className="image-base-content absolute inset-0" />
 
+        {!isLoaded && (
+          <div className="absolute inset-0 flex">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="skeleton-slice flex-1 bg-neutral-800 animate-pulse"
+                style={{
+                  // @ts-ignore
+                  "--i": i,
+                  "--total-slices": 8,
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
 
+      {/* ===== SLICES ANIMADOS (GSAP) ===== */}
+      <div className="slice-wrapper absolute inset-0 z-20 pointer-events-none" aria-hidden="true" />
 
-      {/* ================= CONTENIDO ln-91-70================= */}
+      {/* ================= OVERLAYS ================= */}
+      {/* Dark cinematic overlay */}
+      <div className="absolute inset-0 bg-black/40 z-20" />
+
+      {/* ===== CONTENIDO HERO ===== */}
       <div className="relative z-30 flex min-h-[75vh] items-center">
-        <div className="mx-auto max-w-7xl px-6 w-full">
-
-           {/* Texto */}
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="service-text max-w-xl text-white">
+            
+   {/* Texto */}
           <div className="max-w-3xl  space-y-6">
             <div className="flex items-center gap-4 mb-6">
-  <div className="reveal-line h-1 w-32 bg-gradient-to-r from-blue-600 via-emerald-400 to-blue-600 origin-left" />
-  <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
-    CALERA CUSHURO
+            {/* Línea + etiqueta */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" />  <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
+    SANTA ISABEL DE CUSHURO
   </span>
-</div>
+    </div>
+       </div>
+         </div>
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              {isLoaded ? medioAmbienteServices[0].title : "Cargando experiencia..."}
+            </h1>
 
-<p className="reveal-subtitle text-2xl lg:text-xl font-normal text-white tracking-tight leading-tight">
-"Fortalecemos Industrias, cuidamos comunidades"
-</p>
-            <div className="flex gap-6 font-black text-emerald-400">
-  <div className="reveal-badge flex items-center gap-2">
-    <Factory size={20} />
-    <span>176 TM / día</span>
-  </div>
+            <p className="mt-6 text-lg text-white/80">
+              {isLoaded
+                ? medioAmbienteServices[0].description
+                : "Preparando animaciones y contenido visual."}
+            </p>
 
-  <div className="reveal-badge flex items-center gap-2">
-    <Pickaxe size={20} />
-    <span>Especializado en Minería</span>
-  </div>
-</div>
+            <hr className="divider my-8 w-12 border-white/40" />
+
           </div>
         </div>
       </div>
     </section>
   );
 }
-
-export default HeroLaEmpresa;

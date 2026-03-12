@@ -11,6 +11,7 @@ import {
 } from "react-simple-maps";
 
 import { OptimizedImage } from "../ui/OptimizedImage";
+import "leaflet/dist/leaflet.css";
 
 export interface CompanyLocationItem {
   id?: string;
@@ -53,7 +54,7 @@ interface MapContextShape {
   width?: number;
 }
 
-const DEFAULT_GEOGRAPHY_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+const DEFAULT_GEOGRAPHY_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json";
 
 function CompanyTooltipMarker({
   location,
@@ -63,7 +64,6 @@ function CompanyTooltipMarker({
   activeTouchIndex,
   setActiveTouchIndex,
   isTouchDevice,
-  primaryColor,
 }: {
   location: CompanyLocationItem;
   index: number;
@@ -72,7 +72,6 @@ function CompanyTooltipMarker({
   activeTouchIndex: number | null;
   setActiveTouchIndex: Dispatch<SetStateAction<number | null>>;
   isTouchDevice: boolean;
-  primaryColor: string;
 }) {
   const mapContext = useMapContext() as MapContextShape | undefined;
   const projection = mapContext?.projection;
@@ -110,9 +109,14 @@ function CompanyTooltipMarker({
       }}
     >
       <g className="group cursor-pointer pointer-events-auto">
-        <circle r={12} fill="#000000" pointerEvents="all" />
-        <circle r={35} fill="#f8f408" className="animate-ping opacity-25" />
-        <circle r={10} fill="#07f3cc" className="stroke-white stroke-2 shadow-lg" />
+        <circle r={14} fill="transparent" pointerEvents="all" />
+        <circle r={55} fill="#f3f707" className="animate-ping opacity-25" pointerEvents="none" />
+        <circle
+          r={10}
+          fill="#79f307"
+          className="stroke-white stroke-2 shadow-lg"
+          pointerEvents="none"
+        />
         <foreignObject
           x={xOffset}
           y={yOffset}
@@ -266,7 +270,7 @@ export default function CompanyLocationMap({
   }
 
   return (
-    <section className={`dark-image ${className ?? ""}`}>
+    <section className={`dark-image ${className ?? ""} `}>
       {title || subtitle ? (
         <header className="mb-6 ">
           {title ? (
@@ -277,10 +281,10 @@ export default function CompanyLocationMap({
       ) : null}
 
       <div
-        className={`relative w-full overflow-hidden rounded-[2rem] bg-white 
-shadow-2xl ${mapClassName ?? "h-[520px] md:h-[680px]"}`}
+        className={`relative w-full overflow-hidden rounded-[2rem] bg-blue-900 
+        shadow-2xl ${mapClassName ?? "h-[520px] md:h-[680px]"}`}
       >
-        <div className="absolute left-6 top-6 z-20 flex flex-col gap-2">
+        <div className="absolute left-6 top-6 z-20 flex flex-col gap-2 ">
           <button
             type="button"
             onClick={() => setMapZoom((prev) => Math.min(prev + 0.3, maxZoom))}
@@ -324,17 +328,11 @@ shadow-2xl ${mapClassName ?? "h-[520px] md:h-[680px]"}`}
               {({ geographies }: { geographies: any[] }) =>
                 geographies.map((geo) => (
                   <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    fill={primaryColor}
-                    stroke="#ffffff3a"
-                    strokeWidth={1}
-                    style={{
-                      default: { outline: "none" },
-                      hover: { fill: "#0b9145", outline: "none" },
-                      pressed: { outline: "none" },
-                    }}
-                  />
+  geography={geo}
+  fill="#05490975"
+  stroke="#bcc4ce"
+  strokeWidth={0.5}
+/>
                 ))
               }
             </Geographies>
@@ -349,7 +347,6 @@ shadow-2xl ${mapClassName ?? "h-[520px] md:h-[680px]"}`}
                 activeTouchIndex={activeTouchIndex}
                 setActiveTouchIndex={setActiveTouchIndex}
                 isTouchDevice={isTouchDevice}
-                primaryColor={primaryColor}
               />
             ))}
           </ZoomableGroup>

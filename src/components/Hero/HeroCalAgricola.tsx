@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Factory, Pickaxe, Droplets, ShieldCheck } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
-const HERO_PANORAMIC_IMAGE = "img-servicios/hero/cal-agricola/cal-agricola";
+const HERO_PANORAMIC_IMAGE = "img-productos/hero/cal-agricola/cal-agricola";
 const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroCalAgricola() {
@@ -104,18 +104,21 @@ export function HeroCalAgricola() {
       <div className="absolute inset-0 bg-gradient-to-r from-zinc-700/80 via-zinc-700/80 to-zinc-1/30 z-10" />
 
 
-
-      {/* ================= CONTENIDO ln-91-70================= */}
+   {/* ================= CONTENIDO ln-91-70================= */}
       <div className="relative z-30 flex min-h-[75vh] items-center">
         <div className="mx-auto max-w-7xl px-6 w-full">
 
            {/* Texto */}
           <div className="max-w-3xl  space-y-6">
             <div className="flex items-center gap-4 mb-6">
-  <div className="reveal-line h-1 w-32 bg-gradient-to-r from-blue-600 via-emerald-400 to-blue-600 origin-left" />
-  <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
-    OPERACIONES MINERAS
+            {/* Línea + etiqueta */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
+  
+               <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
+    CALERA SANTA ISABEL DE CUSHURO
   </span>
+</div>
 </div>
             
            <h1 className="reveal-title text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
@@ -123,9 +126,7 @@ export function HeroCalAgricola() {
 </h1>
 
 <p className="reveal-subtitle text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight">
-Corrector mineral de suelos con enfoque en 
-productividad agrícola, control de acidez y recuperación de terrenos 
-impactados por actividad minera.
+de Alta Pureza para Remediación Minera y Productividad Agrícola.
 </p>
             <div className="flex gap-6 font-black text-emerald-400">
   <div className="reveal-badge flex items-center gap-2">

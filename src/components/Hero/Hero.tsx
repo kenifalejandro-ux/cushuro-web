@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef, useEffect, useState } from "react";
+import { Flame, Beaker, Mountain } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
 import { VideoPreview } from "../ui/VideoPreview";
@@ -26,11 +27,7 @@ export function Hero() {
   const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 });
 
   const heroVideos = [
-    {
-      // Rutas relativas en SiteGround (sin https)
-      src: "video/hero/cantera001",
-      poster: "img-inicio/hero/cantera001",
-    },
+
     {
       src: "video/hero/cantera002",
       poster: "img-inicio/hero/cantera002",
@@ -185,24 +182,7 @@ export function Hero() {
     { scope: heroRef }
   );
 
-  // ============================
-  // GLOW QUE SIGUE EL MOUSE
-  // ============================
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = hero.getBoundingClientRect();
-      setGlowPosition({
-        x: ((e.clientX - rect.left) / rect.width) * 100,
-        y: ((e.clientY - rect.top) / rect.height) * 100,
-      });
-    };
-
-    hero.addEventListener("mousemove", handleMouseMove);
-    return () => hero.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   // ============================
   // Visibilidad del hero para controlar reproducción
@@ -283,7 +263,24 @@ export function Hero() {
       }
     });
   }, [activeVideoIndex, activeVideos.length, hasUserScrolled, isHeroInView]);
+  // Animación GSAP simple y elegante (igual que tus otros heroes de producto)
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
+      tl.fromTo(
+
+        ".hero-bg",
+        { scale: 1.08, filter: "brightness(0.65)" },
+        { scale: 1, filter: "brightness(1)", duration: 2.2 }
+      )
+        .from(".reveal-line", { scaleX: 0, duration: 1.1, transformOrigin: "left" }, "-=1.4")
+        .from(".reveal-title", { y: 50, opacity: 0, duration: 1 }, "-=0.7")
+        .from(".reveal-subtitle", { y: 35, opacity: 0, duration: 0.9 }, "-=0.6")
+        .from(".reveal-badge", { y: 25, opacity: 0, stagger: 0.15, duration: 0.7 }, "-=0.5");
+    },
+    { scope: heroRef }
+  );
   return (
     <section ref={heroRef} className="relative min-h-[85vh] w-full overflow-hidden bg-black">
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
@@ -330,41 +327,62 @@ export function Hero() {
       {/* Overlay oscuro */}
       <div className="absolute inset-0 bg-black/30 z-20" />
 
-      {/* Glow dinámico */}
-      <div
-        className="absolute inset-0 z-20 pointer-events-none"
-        style={{
-          background: `radial-gradient(
-            600px at ${glowPosition.x}% ${glowPosition.y}%,
-            rgba(247, 184, 12, 0.29),
-            transparent 70%
-          )`,
-        }}
-      />
 
       {/* ================= CONTENIDO ================= */}
       <div className="relative z-30 flex min-h-[85vh] items-center">
         <div className="mx-auto max-w-7xl px-6 w-full">
           <div className="max-w-3xl space-y-6">
-            <span className="inline-block font-bold text-sm tracking-[0.25em] uppercase text-emerald-400">
-              Calera Cushuro
-            </span>
+            {/* Línea + etiqueta */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" />
+              <span className="text-xs tracking-[0.5em] uppercase font-bold text-emerald-400">
+                Santa Isabel de Cushuro
+              </span>
+            </div>
 
-            <h1 className="text-xl sm:text-3xl font-bold md:text-4xl xl:text-5xl font-bold tracking-tighter text-white">
+            <h1 className="text-xl sm:text-2xl font-bold md:text-3xl xl:text-4xl font-bold tracking-tighter text-white">
               PRODUCCIÓN Y SUMINISTRO
             </h1>
-            <span className="text-xl sm:text-3xl font-bold md:text-4xl xl:text-5xl font-bold tracking-tighter text-white">
+            <span className="text-xl sm:text-2xl font-bold md:text-3xl xl:text-4xl font-bold tracking-tighter text-white">
               DE ÓXIDO DE CALCIO
             </span>
             <div className="pt-6 flex gap-4">
-              <button className="px-6 py-3 rounded-full bg-emerald-500 text-white text-sm font-medium hover:bg-blue-600 transition">
-                Más información
-              </button>
-
+            <a
+            href="/Productos/cal-viva"
+            >
+            <button className="px-6 py-3 rounded-full bg-emerald-500 text-white text-sm font-medium hover:bg-blue-600 transition">
+            Más información
+            </button>
+            </a>
+            <a
+            href="https://wa.me/51959173472?text=Escríbenos%20para%20más%20información"
+               target="_blank"
+            rel="noopener noreferrer"
+            >
               <button className="px-6 py-3 rounded-full border border-white/30 text-white text-sm hover:border-white transition">
                 Contacto
               </button>
+              </a>
             </div>
+            {/* Badges / iconos */}
+<div className="flex flex-wrap gap-6 text-emerald-400 font-semibold pt-4">
+  
+  <div className="reveal-badge flex items-center gap-3">
+    <Flame size={26} />
+    <span>Cal viva</span>
+  </div>
+
+  <div className="reveal-badge flex items-center gap-3">
+    <Beaker size={26} />
+    <span>Cal hidratada</span>
+  </div>
+
+  <div className="reveal-badge flex items-center gap-3">
+    <Mountain size={26} />
+    <span>Piedra caliza</span>
+  </div>
+
+</div>
           </div>
         </div>
       </div>

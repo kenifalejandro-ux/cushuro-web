@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Factory, Pickaxe, Droplets, ShieldCheck } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
-const HERO_PANORAMIC_IMAGE = "img-servicios/hero/carbon-antracita/carbon-antracita";
+const HERO_PANORAMIC_IMAGE = "img-productos/hero/carbon-antracita/carbon-antracita";
 const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroCarbonAntracita() {
@@ -105,17 +105,21 @@ export function HeroCarbonAntracita() {
 
 
 
-      {/* ================= CONTENIDO ln-91-70================= */}
+         {/* ================= CONTENIDO ln-91-70================= */}
       <div className="relative z-30 flex min-h-[75vh] items-center">
         <div className="mx-auto max-w-7xl px-6 w-full">
 
            {/* Texto */}
           <div className="max-w-3xl  space-y-6">
             <div className="flex items-center gap-4 mb-6">
-  <div className="reveal-line h-1 w-32 bg-gradient-to-r from-blue-600 via-emerald-400 to-blue-600 origin-left" />
-  <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
-    OPERACIONES MINERAS
+            {/* Línea + etiqueta */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
+  
+               <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
+    CALERA SANTA ISABEL DE CUSHURO
   </span>
+</div>
 </div>
             
            <h1 className="reveal-title text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
@@ -123,8 +127,9 @@ export function HeroCarbonAntracita() {
 </h1>
 
 <p className="reveal-subtitle text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight">
-Combustible mineral de alto poder calorífico para hornos caleros, fundición y procesos térmicos que exigen estabilidad operacional.
-
+Combustible mineral de alto poder calorífico para procesos térmicos,
+ metalúrgicos y hornos industriales que requieren estabilidad energética 
+ y bajo contenido de volátiles.
 
 </p>
             <div className="flex gap-6 font-black text-emerald-400">

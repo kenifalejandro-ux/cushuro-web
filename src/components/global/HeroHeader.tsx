@@ -13,9 +13,11 @@ const HeroCalAgricola = lazy(() => import("../Hero/HeroCalAgricola"));
 const HeroCarbonAntracita = lazy(() => import("../Hero/HeroCarbonAntracita"));
 const HeroCarbonCisco = lazy(() => import("../Hero/HeroCarbonCisco"));
 // Lazy load de heroes Services
-const HeroSuministroDeOxido = lazy(() => import("../Hero/HeroSuministroDeOxido"));
 const HeroTransporteLogistico = lazy(() => import("../Hero/HeroTransporteLogistico"));
 const HeroMaquinariaPesada = lazy(() => import("../Hero/HeroMaquinariaPesada"));
+// Lazy load de heroes Operaciones
+const HeroMedioAmbiente = lazy(() => import("../Hero/HeroMedioAmbiente"));
+const HeroResponsabilidadSocial = lazy(() => import("../Hero/HeroResponsabilidadSocial"));
 
 
 export type HeroPage =
@@ -29,6 +31,8 @@ export type HeroPage =
   | "suministro-de-oxido-de-calcio"
   | "transporte-logistico-especializado"
   | "operacion-con-maquinaria-pesada"
+  | "medio-ambiente"
+  | "responsabilidad-social"
 
 type HeroHeaderProps = {
   page: HeroPage;
@@ -65,9 +69,10 @@ const HeroHeader: React.FC<HeroHeaderProps> = ({ page, showVideo: _showVideo = t
         {page == "piedra-caliza" && <HeroPiedraCaliza/>}
         {page === "carbon-antracita" && <HeroCarbonAntracita />}
         {page === "carbon-cisco" && <HeroCarbonCisco />}
-        {page === "suministro-de-oxido-de-calcio" && <HeroSuministroDeOxido/>}
         {page === "transporte-logistico-especializado" && <HeroTransporteLogistico />}
         {page === "operacion-con-maquinaria-pesada" && <HeroMaquinariaPesada />}
+        {page === "medio-ambiente" && <HeroMedioAmbiente />}
+        {page === "responsabilidad-social" && <HeroResponsabilidadSocial />}
 
       </Suspense>
     </>

@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Star } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import { ImageStack } from "../ui/ImageStack";
+import ReorderImageStack from "../ui/ReorderImageStack";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -231,7 +231,7 @@ Aplicamos estrictos estándares de calidad en el cuidado del medio ambiente, la 
 Nuestro objeto social está orientado a generar bienestar y mejorar la calidad de vida en nuestras comunidades de influencia, impulsando el desarrollo local y disminuyendo el desempleo a través de la creación de mejores oportunidades laborales.`}
         imageContainerClassName="overflow-visible rounded-none"
         imageElement={
-          <ImageStack
+          <ReorderImageStack
             layout="stacked"
             images={[
               {
@@ -248,11 +248,7 @@ Nuestro objeto social está orientado a generar bienestar y mejorar la calidad d
                 alt: "Colaboración como proceso creativo",
               },
             ]}
-            badge={{
-              value: "+15",
-              label: "AÑOS DE EXPERIENCIA",
-              icon: <Star className="h-8 w-8" />,
-            }}
+      
           />
         }
       />

@@ -1,6 +1,11 @@
 /** client/src/components/ui/ServiceCard.tsx */
 
+/** client/src/components/ui/ServiceCard.tsx */
+
 "use client";
+
+import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 
 import { LCPImage } from "./LCPImage";
 import { OptimizedImage } from "./OptimizedImage";
@@ -14,6 +19,8 @@ type Props = {
   imageWidth?: number;
   imageHeight?: number;
   sizes?: string;
+  icon?: LucideIcon;
+  showColorAlways?: boolean; 
 };
 
 export default function ServiceCard({
@@ -25,37 +32,63 @@ export default function ServiceCard({
   imageWidth,
   imageHeight,
   sizes,
+  icon: Icon,
+  showColorAlways = false,
 }: Props) {
   const imageSizes = sizes ?? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
 
-  return (
-    <div className="group relative overflow-hidden border border-zinc-200 bg-white shadow-sm hover:shadow-2xl transition-all duration-500">
-      {/* Imagen */}
-      <div className="relative h-56 overflow-hidden" data-service-image>
-        {imageWidth && imageHeight ? (
-          <LCPImage
-            src={image}
-            alt={title}
-            width={imageWidth}
-            height={imageHeight}
-            sizes={imageSizes}
-            priority={priority}
-            pictureClassName="block w-full h-full"
-            className="grayscale lg:group-hover:grayscale-0 scale-105 group-hover:scale-110 transition-all duration-700"
-          />
-        ) : (
-          <OptimizedImage
-            src={image}
-            alt={title}
-            fill
-            priority={priority}
-            sizes={imageSizes}
-            className="grayscale lg:group-hover:grayscale-0 scale-105 group-hover:scale-110 transition-all duration-700"
-          />
-        )}
+  // Esta es la lógica que controla si hay gris o no
+  const grayscaleClasses = showColorAlways 
+    ? "grayscale-0" 
+    : "grayscale lg:group-hover:grayscale-0";
 
-        {/* Overlay suave */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-60 group-hover:opacity-30 transition" />
+  const commonImageClasses = `${grayscaleClasses} scale-105 group-hover:scale-110 transition-all duration-700`;
+
+  return (
+    <div className="group relative overflow-hidden border border-transparent bg-zinc-100 shadow-sm hover:shadow-2xl transition-all duration-500">
+      <div className="relative h-56 overflow-hidden bg-gradient-to-br from-emerald-100 via-white to-emerald-50">
+        {Icon ? (
+          <div
+            className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
+            data-service-icon
+          >
+            <motion.div
+              animate={{ y: [0, -8, 0], scale: [1, 1.06, 1] }}
+              transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+              className="flex h-20 w-20 items-center justify-center rounded-2xl border border-emerald-700/35 bg-white/85 text-emerald-700 shadow-lg backdrop-blur-sm"
+            >
+              <Icon className="h-10 w-10" strokeWidth={1.8} />
+            </motion.div>
+          </div>
+        ) : null}
+
+        {/* Imagen */}
+        <div className="absolute inset-0 z-10" data-service-image>
+          {imageWidth && imageHeight ? (
+            <LCPImage
+              src={image}
+              alt={title}
+              width={imageWidth}
+              height={imageHeight}
+              sizes={imageSizes}
+              priority={priority}
+              pictureClassName="block w-full h-full"
+              className={commonImageClasses} // <-- AQUÍ SE APLICA LA LÓGICA
+            />
+          ) : (
+            <OptimizedImage
+              src={image}
+              alt={title}
+              fill
+              priority={priority}
+              sizes={imageSizes}
+              className={commonImageClasses} // <-- AQUÍ SE APLICA LA LÓGICA
+            />
+          )}
+
+          {/* Overlay suave dinámico */}
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent transition ${showColorAlways ? "opacity-30" : "opacity-60 group-hover:opacity-30"}`} />
+        </div>
       </div>
 
       {/* Contenido */}

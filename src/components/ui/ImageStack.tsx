@@ -1,7 +1,8 @@
 /* client/src/components/ui/ImageStack.tsx */
 
-import type { ReactNode } from "react";
+/* client/src/components/ui/ImageStack.tsx */
 
+import type { ReactNode } from "react";
 import { OptimizedImage } from "./OptimizedImage";
 
 export interface ImageStackImage {
@@ -22,6 +23,7 @@ export interface ImageStackProps {
   layout?: "stacked" | "inline";
   badge?: ImageStackBadge;
   className?: string;
+  fullScreen?: boolean; // ✅ NUEVO
 }
 
 type VisibleCount = 1 | 2 | 3;
@@ -38,8 +40,12 @@ interface StackLayout {
 }
 
 const MAX_STACK_IMAGES = 3;
-const STACKED_SIZES = "(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 580px";
-const INLINE_SIZES = "(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 360px";
+
+const STACKED_SIZES =
+  "(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw";
+
+const INLINE_SIZES =
+  "(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 360px";
 
 const INLINE_GRID_COLS: Record<VisibleCount, string> = {
   1: "grid-cols-1",
@@ -47,7 +53,6 @@ const INLINE_GRID_COLS: Record<VisibleCount, string> = {
   3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
 };
 
-//}modificar los tamaños de las iamgenes dentro del viewport //}
 const STACKED_LAYOUTS: Record<VisibleCount, StackLayout> = {
   1: {
     stackHeight: "h-[500px] lg:h-[650px]",
@@ -70,11 +75,6 @@ const STACKED_LAYOUTS: Record<VisibleCount, StackLayout> = {
   },
 };
 
-const STACK_GLOW_BY_LAYER: Partial<Record<StackLayer, string>> = {
-  primary: "",
-  secondary: "",
-};
-
 function toVisibleCount(imageCount: number): VisibleCount {
   if (imageCount <= 1) return 1;
   if (imageCount === 2) return 2;
@@ -83,55 +83,49 @@ function toVisibleCount(imageCount: number): VisibleCount {
 
 function InlineImageCard({ image }: { image: ImageStackImage }) {
   return (
-    // CAMBIO: Eliminamos shadow y ring
-    <div className="relative h-[280px] sm:h-[320px] lg:h-[380px] overflow-hidden group transition-all duration-300">
-     
+    <div className="relative h-[280px] sm:h-[320px] lg:h-[380px] overflow-hidden">
       <OptimizedImage
         src={image.src}
         alt={image.alt}
         fill
         sizes={image.sizes ?? INLINE_SIZES}
         priority={image.priority}
+        className="object-cover"
       />
     </div>
   );
 }
 
-function StackedImageCard({ image, slot }: { image: ImageStackImage; slot: StackSlot }) {
-  const glowClassName = STACK_GLOW_BY_LAYER[slot.layer];
-
+function StackedImageCard({
+  image,
+  slot,
+}: {
+  image: ImageStackImage;
+  slot: StackSlot;
+}) {
   return (
     <div className={slot.className}>
-      <div className="relative h-full w-full overflow-hidden  group transition-all duration-500">
-        <div
-          aria-hidden
-        />
+      <div className="relative h-full w-full overflow-hidden">
         <OptimizedImage
           src={image.src}
           alt={image.alt}
           fill
           sizes={image.sizes ?? STACKED_SIZES}
           priority={image.priority}
-        />
-        <div
-          className="absolute inset-0  rounded-xl pointer-events-none"
-          aria-hidden
+          className="object-cover" // ✅ CLAVE
         />
       </div>
-
-      {glowClassName ? (
-        <div
-          className={`absolute -inset-4 ${glowClassName} rounded-2xl blur-2xl -z-10`}
-          aria-hidden
-        />
-      ) : null}
     </div>
   );
 }
 
-
-
-export function ImageStack({ images, layout = "stacked", badge, className = "" }: ImageStackProps) {
+export function ImageStack({
+  images,
+  layout = "stacked",
+  badge,
+  className = "",
+  fullScreen = false, // ✅ nuevo
+}: ImageStackProps) {
   const visibleImages = images.slice(0, MAX_STACK_IMAGES);
   const count = visibleImages.length;
 
@@ -154,21 +148,23 @@ export function ImageStack({ images, layout = "stacked", badge, className = "" }
   const stackedLayout = STACKED_LAYOUTS[visibleCount];
 
   return (
-    <div className={`relative isolate w-full ${stackedLayout.stackHeight} ${className}`}>
-      <div className="absolute inset-0 -z-20 opacity-5" aria-hidden>
-        <div
-          className="absolute inset-0"
-          
-        />
-      </div>
-
+    <div
+      className={`relative isolate w-full ${
+        fullScreen ? "h-screen" : stackedLayout.stackHeight
+      } ${className}`}
+    >
       {stackedLayout.slots.map((slot, index) => {
         const image = visibleImages[index];
         if (!image) return null;
 
-        return <StackedImageCard key={`${image.src}-${slot.layer}`} image={image} slot={slot} />;
+        return (
+          <StackedImageCard
+            key={`${image.src}-${slot.layer}`}
+            image={image}
+            slot={slot}
+          />
+        );
       })}
-
     </div>
   );
 }

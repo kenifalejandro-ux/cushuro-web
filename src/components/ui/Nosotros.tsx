@@ -15,7 +15,7 @@ export default function Nosotros() {
           <p>
             Somos una empresa con mas de 15 años de experiencia en la producción y comercialización
             de óxido de calcio y como objetivo principal generar empleo
-digno y decente a las personas del área de influencia del centro de operaciones.
+digno y decente a las personas del área de influencia del centro de Operaciones.
           </p>
           <p>Se tiene la expereriencia en:</p>
 

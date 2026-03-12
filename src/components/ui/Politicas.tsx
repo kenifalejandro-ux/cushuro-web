@@ -14,6 +14,9 @@ import {
   Award,
   Layers,
   FileCheck,
+  Moon,
+  ShieldAlert,
+  Ban,
 } from "lucide-react";
 import { useEffect, useRef } from "react";
 
@@ -109,49 +112,35 @@ export default function Politicas() {
   }, []);
 
   const Politicas = [
-    {
-      icon: <Award className="w-8 h-8" />,
-      title: "Calidad",
-      description:
-        "Garantizamos productos de piedra caliza y carbón que cumplen con las más altas normas técnicas y estándares de calidad de la industria minera nacional.",
-      gradient: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: <HardHat className="w-8 h-8" />,
-      title: "Seguridad",
-      description:
-        "Priorizamos la seguridad laboral de nuestros colaboradores con protocolos rigurosos, equipamiento adecuado y capacitación continua en prevención de riesgos.",
-      gradient: "from-amber-500 to-red-600",
-    },
-    {
-      icon: <Leaf className="w-8 h-8" />,
-      title: "Responsabilidad Ambiental",
-      description:
-        "Implementamos prácticas de extracción sostenibles que minimizan el impacto ambiental y promueven la restauración de áreas intervenidas.",
-      gradient: "from-green-500 to-emerald-600",
-    },
-    {
-      icon: <Users className="w-8 h-8" />,
-      title: "Compromiso Social",
-      description:
-        "Generamos empleo digno para comunidades locales y contribuimos activamente al desarrollo social y económico de las zonas donde operamos.",
-      gradient: "from-cyan-500 to-indigo-600",
-    },
-    {
-      icon: <FileCheck className="w-8 h-8" />,
-      title: "Cumplimiento Normativo",
-      description:
-        "Operamos en estricto cumplimiento de la legislación minera, ambiental y laboral vigente, manteniendo todas nuestras certificaciones actualizadas.",
-      gradient: "from-purple-500 to-violet-600",
-    },
-    {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Ética y Valores",
-      description:
-        "Fomentamos relaciones comerciales transparentes basadas en la honestidad, integridad y respeto mutuo con clientes, proveedores y colaboradores.",
-      gradient: "from-rose-500 to-pink-600",
-    },
-  ];
+  {
+    icon: <HardHat className="w-8 h-8" />,
+    title: "Seguridad y Salud Ocupacional",
+    description:
+      "Establecemos la identificación de peligros y el control de riesgos como pilares fundamentales para proteger la integridad del personal en todas nuestras operaciones mineras.",
+    gradient: "from-amber-500 to-red-600",
+  },
+  {
+    icon: <Moon className="w-8 h-8" />,
+    title: "Política de Fatiga y Somnolencia",
+    description:
+      "Gestionamos estrictamente los turnos y periodos de descanso para asegurar que el personal opere maquinaria y equipos en condiciones óptimas de alerta y capacidad física.",
+    gradient: "from-slate-700 to-slate-900",
+  },
+  {
+    icon: <ShieldAlert className="w-8 h-8" />,
+    title: "Negativa al Trabajo Inseguro",
+    description:
+      "Se reconoce el derecho y la obligación de detener cualquier labor que no cuente con los controles de seguridad necesarios o represente un riesgo no controlado para la vida.",
+    gradient: "from-red-600 to-red-800",
+  },
+  {
+    icon: <Ban className="w-8 h-8" />,
+    title: "Política de Alcohol y Drogas",
+    description:
+      "Prohibición absoluta del consumo, posesión o ingreso bajo el efecto de sustancias que alteren la capacidad psicomotriz, garantizando un entorno de trabajo 100% sobrio y seguro.",
+    gradient: "from-orange-600 to-red-700",
+  },
+];
 
   return (
     <section

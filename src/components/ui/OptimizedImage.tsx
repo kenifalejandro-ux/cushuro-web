@@ -1,7 +1,7 @@
 // client/src/components/OptimizedImage.tsx
 
-const SIZES = [768, 1280, 1920, 2560, 3840];
-const EXTENSION_REGEX = /\.(avif|webp|jpe?g|png)$/i;
+const SIZES = [768, 1280, 1920];
+const EXTENSION_REGEX = /\.(avif|webp|jpe?g|png)(?:\?.*)?$/i;
 
 // Traemos la URL de SiteGround desde el .env
 const IMG_BASE = import.meta.env.VITE_IMG_URL;
@@ -25,10 +25,16 @@ export function OptimizedImage({
 }: OptimizedImageProps) {
   const baseHost = (IMG_BASE ?? "").replace(/\/+$/, "");
   const normalizedSrc = src.trim();
-  const cleanPath = normalizedSrc.replace(EXTENSION_REGEX, "").replace(/^\/+/, "");
+  const isAbsoluteUrl = /^https?:\/\//i.test(normalizedSrc);
+  const cleanPath = (isAbsoluteUrl ? normalizedSrc : normalizedSrc.replace(/^\/+/, ""))
+    .replace(EXTENSION_REGEX, "");
   const directPath = normalizedSrc.replace(/^\/+/, "");
-  const fullBase = baseHost ? `${baseHost}/${cleanPath}` : `/${cleanPath}`;
-  const directUrl = /^https?:\/\//i.test(normalizedSrc)
+  const fullBase = isAbsoluteUrl
+    ? cleanPath
+    : baseHost
+      ? `${baseHost}/${cleanPath}`
+      : `/${cleanPath}`;
+  const directUrl = isAbsoluteUrl
     ? normalizedSrc
     : baseHost
       ? `${baseHost}/${directPath}`
@@ -37,6 +43,25 @@ export function OptimizedImage({
 
   const buildSrcSet = (ext: string) =>
     SIZES.map((size) => `${fullBase}-${size}.${ext} ${size}w`).join(", ");
+
+  if (isAbsoluteUrl) {
+    return (
+      <img
+        src={directUrl}
+        alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
+        className={`
+          ${fill ? "absolute inset-0 w-full h-full" : "w-full h-auto"}
+          object-cover
+          object-center
+          ${className}
+        `}
+        {...(sizes ? { sizes } : {})}
+      />
+    );
+  }
 
   if (hasExplicitExtension) {
     return (

@@ -1,4 +1,4 @@
-/* client/src/components/sections/Vision.tsx */
+/* client/src/components/UI/Vision.tsx */
 
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
@@ -110,8 +110,7 @@ export function Vision() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen  rounded-b-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-gradient-to-br from-zinc-600 via-zinc-600 to-zinc-600"
-      
+      className="light-image relative min-h-screen rounded-b-[80px] md:rounded-b-[220px] lg:rounded-b-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-gradient-to-br from-zinc-600 via-zinc-600 to-zinc-600"
     >
 
   {/* CONTENIDO (Asegúrate de que tenga z-10) */}
@@ -119,16 +118,16 @@ export function Vision() {
     {/* ... resto de tu contenido actual ... */}
   </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-white text-sm font-semibold mb-6 shadow-xl">
-            <Lightbulb className="w-5 h-5 text-yellow-400" />
+           <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16 py-5">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm font-semibold mb-6 shadow-xl">
+            <Lightbulb className="w-5 h-5 text-yellow-400 " />
             <span>NUESTRA VISIÓN</span>
             <Lightbulb className="w-5 h-5 text-yellow-400" />
           </div>
           
-          <div className="flex items-center justify-center gap-4 text-sm uppercase tracking-widest text-blue-300">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[8px] leading-none uppercase tracking-[0.08em] text-blue-300 sm:text-[10px] sm:tracking-[0.12em] md:text-xs lg:gap-4 lg:text-sm lg:tracking-widest">
             <span>LOC: HUAMACHUCO_LIBERTAD</span>
             <span className="text-green-400">⬥</span>
             <span>2025</span>
@@ -137,21 +136,28 @@ export function Vision() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
+        <div className="grid gap-8 md:gap-12 lg:grid-cols-2 lg:gap-20 items-center mb-24">
           {/* Imagen con badge */}
           <div className="relative">
-            <div ref={imageRef} className="relative h-[700px] rounded-3xl overflow-hidden ">
-              <ImageStack
-                           images={[
-                          {
-                            src: "/img-la-empresa/vision/vision001",
-                            alt: "Trabajo operativo",
-                          },
-                          
-                        ]}
-
-                className="w-full h-full object-cover"
-              />             
+            <div ref={imageRef} className="relative h-[420px] rounded-3xl overflow-hidden sm:h-[420px] md:h-[640px] lg:h-[700px]">
+             <ImageStack
+  images={[
+    {
+      src: "/img-la-empresa/mision/mision001",
+      alt: "Trabajo operativo",
+    },
+  ]}
+  className="w-full"
+  stackedLayoutOverrides={{
+    1: {
+      stackHeight: "h-[420px] sm:h-[420px] md:h-[640px] lg:h-[700px]",
+      slots: {
+        primary: "absolute inset-0 h-full w-full z-10",
+      },
+    },
+  }}
+/>
+         
             </div>
           </div>
 

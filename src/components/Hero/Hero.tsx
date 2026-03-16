@@ -335,22 +335,22 @@ export function Hero() {
             {/* Línea + etiqueta */}
             <div className="flex items-center gap-4 mb-6">
               <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" />
-              <span className="text-xs tracking-[0.5em] uppercase font-bold text-emerald-400">
+              <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.5em] uppercase font-bold text-emerald-400">
                 Santa Isabel de Cushuro
               </span>
             </div>
 
-            <h1 className="text-xl sm:text-2xl font-bold md:text-3xl xl:text-4xl font-bold tracking-tighter text-white">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-white">
               PRODUCCIÓN Y SUMINISTRO
             </h1>
-            <span className="text-xl sm:text-2xl font-bold md:text-3xl xl:text-4xl font-bold tracking-tighter text-white">
+            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-white">
               DE ÓXIDO DE CALCIO
             </span>
             <div className="pt-6 flex gap-4">
             <a
             href="/Productos/cal-viva"
             >
-            <button className="px-6 py-3 rounded-full bg-emerald-500 text-white text-sm font-medium hover:bg-blue-600 transition">
+            <button className="px-6 py-3 rounded-full bg-emerald-500 text-white text-xs sm:text-sm font-medium hover:bg-blue-600 transition">
             Más información
             </button>
             </a>
@@ -359,25 +359,25 @@ export function Hero() {
                target="_blank"
             rel="noopener noreferrer"
             >
-              <button className="px-6 py-3 rounded-full border border-white/30 text-white text-sm hover:border-white transition">
+              <button className="px-6 py-3 rounded-full border border-white/30 text-white text-xs sm:text-sm hover:border-white transition">
                 Contacto
               </button>
               </a>
             </div>
             {/* Badges / iconos */}
-<div className="flex flex-wrap gap-6 text-emerald-400 font-semibold pt-4">
+<div className="flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base text-emerald-400 font-semibold pt-4">
   
-  <div className="reveal-badge flex items-center gap-3">
+  <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
     <Flame size={26} />
     <span>Cal viva</span>
   </div>
 
-  <div className="reveal-badge flex items-center gap-3">
+  <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
     <Beaker size={26} />
     <span>Cal hidratada</span>
   </div>
 
-  <div className="reveal-badge flex items-center gap-3">
+  <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
     <Mountain size={26} />
     <span>Piedra caliza</span>
   </div>

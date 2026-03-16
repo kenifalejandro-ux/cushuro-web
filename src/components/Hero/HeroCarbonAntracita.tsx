@@ -116,29 +116,29 @@ export function HeroCarbonAntracita() {
             <div className="flex items-center gap-4 mb-6">
               <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
   
-               <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
+               <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
     CALERA SANTA ISABEL DE CUSHURO
   </span>
 </div>
 </div>
             
-           <h1 className="reveal-title text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+           <h1 className="reveal-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
   Carbón Antracita
 </h1>
 
-<p className="reveal-subtitle text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight">
+<p className="reveal-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black text-white tracking-tight leading-tight">
 Combustible mineral de alto poder calorífico para procesos térmicos,
  metalúrgicos y hornos industriales que requieren estabilidad energética 
  y bajo contenido de volátiles.
 
 </p>
-            <div className="flex gap-6 font-black text-emerald-400">
-  <div className="reveal-badge flex items-center gap-2">
+            <div className="flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base font-black text-emerald-400">
+  <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
     <Factory size={20} />
     <span>Alta energía y baja volatilidad</span>
   </div>
 
-  <div className="reveal-badge flex items-center gap-2">
+  <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
     <Pickaxe size={20} />
     <span>Rendimiento para operación industrial</span>
   </div>

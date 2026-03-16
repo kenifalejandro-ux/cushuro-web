@@ -10,10 +10,19 @@ import ServiceCard from "./ServiceCard";
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
+    {
+    title: "Piedra Caliza",
+    category: "Materia prima",
+    image: "img-productos/piedra-caliza/operario-con-piedra-caliza",
+    href: "/Productos/piedra-caliza",
+    description:
+      "Mineral natural utilizado en construcción, producción de cal y aplicaciones industriales.",
+  },
   {
     title: "Cal Viva",
     category: "Producto industrial",
-    image: "img-inicio/servicios-inicio/cal-viva/cal-viva",
+    image: "img-productos/cal-viva/oxido-de-calcio001",
+    href: "/Productos/cal-viva",
     description:
       "Óxido de calcio de alta pureza utilizado en procesos industriales, metalúrgicos y de tratamiento químico.",
   },
@@ -21,36 +30,42 @@ const services = [
     title: "Cal Agrícola",
     category: "Sector agrícola",
     image: "img-inicio/servicios-inicio/cal-agricola/calagricola",
+    href: "/Productos/cal-agricola",
     description:
       "Mejora la estructura del suelo, corrige acidez y optimiza la absorción de nutrientes en cultivos.",
   },
-  {
-    title: "Piedra Caliza",
-    category: "Materia prima",
-    image: "img-inicio/servicios-inicio/piedra-caliza/piedra-caliza",
-    description:
-      "Mineral natural utilizado en construcción, producción de cal y aplicaciones industriales.",
-  },
+
   {
     title: "Carbón Antracita",
     category: "Combustible sólido",
-    image: "img-inicio/servicios-inicio/antracita-carbon/Antracita-carbon",
+    image: "img-inicio/servicios-inicio/antracita-carbon/vestigio-carbon-antracita",
+    href: "/Productos/carbon-antracita",
     description:
       "Carbón de alto poder calorífico y baja emisión, ideal para procesos térmicos industriales.",
   },
   {
     title: "Carbón tipo Cisco",
     category: "Uso industrial",
-    image: "img-inicio/servicios-inicio/carbon-cisco/carbon-cisco",
+    image: "img-productos/carbon-tipo-cisco/carbon-tipo-cisco",
+    href: "/Productos/carbon-cisco",
     description:
       "Variante especializada para combustión eficiente en hornos y procesos metalúrgicos.",
   },
   {
-    title: "Transporte y Maquinaria",
-    category: "servicios",
-    image: "img-inicio/servicios-inicio/transporte/servicio-de-transporte",
+    title: "Transporte Logístico",
+    category: "Servicio industrial",
+    image: "img-servicios/hero/transporte-logistico/transporte-logistico003",
+    href: "/Servicios-Industriales/transporte-logistico-especializado",
     description:
-      "Flota y maquinaria pesada para transporte de materiales, movimiento de tierra y Operaciones logísticas.",
+      "Servicio especializado para el traslado continuo de materiales y abastecimiento en operaciones mineras e industriales.",
+  },
+  {
+    title: "Operación con Maquinaria",
+    category: "Servicio industrial",
+    image: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria001",
+    href: "/Servicios-Industriales/operacion-con-maquinaria-pesada",
+    description:
+      "Movimiento de tierras, extracción y soporte operativo con maquinaria pesada bajo planificación técnica y supervisión especializada.",
   },
 ];
 

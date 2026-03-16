@@ -116,35 +116,35 @@ export function HeroCarbonCisco() {
             <div className="flex items-center gap-4 mb-6">
               <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
   
-               <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
+               <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
     CALERA SANTA ISABEL DE CUSHURO
   </span>
 </div>
 </div>
 
-         <h1 className="reveal-title text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+         <h1 className="reveal-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
   CARBÓN TIPO CISCO
 </h1>
 
-<p className="reveal-subtitle text-2xl lg:text-3xl font-semibold text-white tracking-tight leading-snug max-w-4xl">
+<p className="reveal-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-semibold text-white tracking-tight leading-snug max-w-4xl">
   Fracción fina de carbón mineral obtenida mediante clasificación controlada,
   diseñada para procesos térmicos industriales que requieren rápida ignición,
   estabilidad de llama y optimización del rendimiento energético.
 </p>
 
-<div className="flex gap-6 font-semibold text-emerald-400 mt-6 flex-wrap">
+<div className="mt-6 flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base font-semibold text-emerald-400">
 
-  <div className="reveal-badge flex items-center gap-2">
+  <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
     <Factory size={20} />
     <span>Encendido rápido y combustión eficiente</span>
   </div>
 
-  <div className="reveal-badge flex items-center gap-2">
+  <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
     <Pickaxe size={20} />
     <span>Clasificación granulométrica controlada</span>
   </div>
 
-  <div className="reveal-badge flex items-center gap-2">
+  <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
     <Flame size={20} />
     <span>Optimización costo–rendimiento industrial</span>
   </div>

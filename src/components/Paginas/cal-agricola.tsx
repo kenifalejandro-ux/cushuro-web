@@ -116,7 +116,7 @@ export default function CalAgricola() {
 ];
 
   return (
-    <div className="bg-white">
+    <div className="dark-image bg-white">
 
      {/* HERO IMÁGENES + INTRO */}
 <section className="py-20 bg-zinc-50">
@@ -356,7 +356,7 @@ El proceso garantiza alta reactividad química, estabilidad granulométrica y
   </div>
 </section>
     {/* Ventajas Competitivas */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-emerald-900 text-white">
+      <section className="light-image py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-emerald-900 text-white">
         <div className="container mx-auto px-6">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

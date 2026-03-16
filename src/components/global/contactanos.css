@@ -1,0 +1,128 @@
+.contactanos-theme {
+  /* Colores base */
+  --primary-color: #1a1a1a;
+  --secondary-color: #141414;
+  --accent-color: #00ffdd;
+  --footer-color: blue;
+  --tertiary-color: #ffffff;
+  --background-color: #ffffff;
+  --container-bg: #000000;
+  --overlay-bg: rgb(6, 7, 7);
+  --section-bg: linear-gradient(to bottom, #ffffff);
+  --fade-light-bg: linear-gradient(to bottom, #ffffff);
+
+  /* Texto */
+  --primary-text: #000000;
+  --secondary-text: #1d1d1d;
+  --tertiary-text: #ffffff;
+  --light-text: #bdbdbd;
+
+  --font-family-base: "Inter", sans-serif;
+  --font-family-title: "Inter", sans-serif;
+  --font-family-description: "Inter", sans-serif;
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --font-size-md: clamp(0.85rem, 1.5vw + 0.5rem, 1.1rem);
+  --font-size-xs: clamp(0.65rem, 1.5vw + 0.5rem, 0.85rem);
+  --font-size-sm: clamp(0.85rem, 2vw + 0.65rem, 0.9rem);
+  --font-size-h1: clamp(3rem, 4vw, 4rem);
+  --font-size-h2: clamp(1.5rem, 3vw, 4rem);
+  --font-size-h3: clamp(1rem, 3vw, 2rem);
+  --font-size-p: clamp(1rem, 2.5vw, 1.4rem);
+
+  --line-height-heading: 1.2;
+  --line-height-body: 1.6;
+
+  /* Espaciados */
+  --padding-section: clamp(1rem, 5vw, 3rem);
+  --padding-container: clamp(1.5rem, 4vw, 2.5rem);
+  --margin-section: clamp(2rem, 5vw, 6rem);
+  --gap-sm: clamp(0.5rem, 2vw, 1rem);
+  --gap-md: clamp(1rem, 3vw, 2rem);
+  --gap-lg: clamp(2rem, 4vw, 3rem);
+
+  /* Transiciones y animaciones */
+  --transition-duration: 0.3s;
+  --transition-easing: ease-in-out;
+  --animation-duration: 1s;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Estados y accesibilidad */
+  --focus-outline: 2px solid var(--accent-color);
+  --hover-opacity: 0.8;
+  --disabled-opacity: 0.5;
+
+  /* Layout */
+  --container-width: clamp(320px, 90vw, 1400px);
+  --container-max-width: clamp(1200px, 95vw, 1400px);
+  --border-radius: clamp(0.5rem, 1vw, 1rem);
+  --box-shadow-light: 0 clamp(4px, 1vw, 8px) clamp(8px, 2vw, 16px) rgba(0, 0, 0, 0.1);
+  --box-shadow-dark: 0 clamp(4px, 1vw, 8px) clamp(8px, 2vw, 16px) rgba(0, 0, 0, 0.2);
+
+  /* Dimensiones del banner */
+  --banner-width: 100%;
+  --banner-height: 100px;
+  --logo-max-width: clamp(200px, 15vw, 250px);
+
+  /* Imágenes normales */
+  --img-normal-width: clamp(280px, 100%, 1200px);
+  --img-normal-height: clamp(200px, 100%, 800px);
+  --img-normal-min-width: clamp(260px, 95vw, 280px);
+  --img-normal-max-width: clamp(400px, 95vw, 600px);
+  --img-normal-min-height: clamp(180px, 90vh, 200px);
+  --img-normal-max-height: clamp(800px, 90vh, 900px);
+
+  /* Imágenes parallax */
+  --img-parallax-width: clamp(320px, 100vw, 1600px);
+  --img-parallax-height: clamp(400px, 100vh, 1000px);
+  --img-parallax-min-width: clamp(300px, 98vw, 320px);
+  --img-parallax-max-width: clamp(1600px, 98vw, 1800px);
+  --img-parallax-min-height: clamp(380px, 95vh, 400px);
+  --img-parallax-max-height: clamp(1000px, 95vh, 1200px);
+
+  /* Imágenes panorámicas */
+  --img-panoramic-width: clamp(300px, 100%, 1800px);
+  --img-panoramic-height: clamp(350px, 65vh, 1200px);
+  --img-panoramic-min-width: clamp(280px, 95vw, 300px);
+  --img-panoramic-max-width: clamp(1800px, 95vw, 2000px);
+  --img-panoramic-min-height: clamp(120px, 35vh, 150px);
+  --img-panoramic-max-height: clamp(600px, 45vh, 700px);
+
+  /* Imágenes de galería */
+  --img-gallery-width: clamp(150px, 50vw, 400px);
+  --img-gallery-height: clamp(150px, 50vw, 400px);
+  --img-gallery-min-width: clamp(120px, 45vw, 150px);
+  --img-gallery-max-width: clamp(400px, 55vw, 500px);
+  --img-gallery-min-height: clamp(120px, 45vw, 150px);
+  --img-gallery-max-height: clamp(400px, 55vw, 500px);
+
+  /* Imágenes hero */
+  --img-hero-width: clamp(300px, 100%, 1400px);
+  --img-hero-height: clamp(250px, 60vh, 900px);
+  --img-hero-min-width: clamp(280px, 95vw, 300px);
+  --img-hero-max-width: clamp(1400px, 95vw, 1600px);
+  --img-hero-min-height: clamp(220px, 55vh, 250px);
+  --img-hero-max-height: clamp(900px, 65vh, 1000px);
+
+  /* Textos */
+  --text-width: clamp(280px, 90%, 800px);
+  --text-font-size: clamp(16px, 2.5vw, 20px);
+  --text-min-width: clamp(260px, 85vw, 280px);
+  --text-max-width: clamp(600px, 50vw, 600px);
+  --text-min-font-size: clamp(14px, 2vw, 16px);
+  --text-max-font-size: clamp(20px, 3vw, 24px);
+
+  /* Márgenes */
+  --margin-xs: clamp(0.25rem, 1vw, 0.5rem);
+  --margin-sm: clamp(0.5rem, 1.5vw, 1rem);
+  --margin-md: clamp(1rem, 2vw, 2rem);
+  --margin-lg: clamp(2rem, 3vw, 3rem);
+  --margin-xl: clamp(3rem, 4vw, 5rem);
+
+  /* Mobile */
+  --gap-mobile: clamp(30px, 8vw, 40px);
+}

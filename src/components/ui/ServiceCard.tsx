@@ -6,6 +6,7 @@
 
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { LCPImage } from "./LCPImage";
 import { OptimizedImage } from "./OptimizedImage";
@@ -15,6 +16,7 @@ type Props = {
   category: string;
   description: string;
   image: string;
+  href?: string;
   priority?: boolean;
   imageWidth?: number;
   imageHeight?: number;
@@ -28,6 +30,7 @@ export default function ServiceCard({
   category,
   description,
   image,
+  href,
   priority = false,
   imageWidth,
   imageHeight,
@@ -103,7 +106,18 @@ export default function ServiceCard({
 
         <p className="text-zinc-600 text-sm leading-relaxed">{description}</p>
 
-        <div className="mt-6 text-zinc-400 group-hover:text-blue-800 transition">→</div>
+        {href ? (
+          <Link
+            to={href}
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-blue-800 transition hover:text-emerald-700"
+            aria-label={`Más información sobre ${title}`}
+          >
+            Más información
+            <span aria-hidden="true">→</span>
+          </Link>
+        ) : (
+          <div className="mt-6 text-zinc-400 transition group-hover:text-blue-800">→</div>
+        )}
       </div>
     </div>
   );

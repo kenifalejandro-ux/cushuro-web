@@ -5,7 +5,7 @@ import { Factory, Pickaxe } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
-const HERO_PANORAMIC_IMAGE = "img-servicios/hero/transporte-logistico/transporte-logistico001";
+const HERO_PANORAMIC_IMAGE = "img-servicios/hero/transporte-logistico/transporte-logistico002";
 const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroTransporteLogistico() {
@@ -17,9 +17,7 @@ export function HeroTransporteLogistico() {
   const glowPosition = { x: 50, y: 50 };
 
   const heroSlides = [
-    {
-      poster: "img-servicios/hero/transporte-logistico/transporte-logistico001",
-    },
+
     {
       poster: "img-servicios/hero/transporte-logistico/transporte-logistico002",
     },
@@ -185,28 +183,28 @@ export function HeroTransporteLogistico() {
             <div className="flex items-center gap-4 mb-6">
               <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
   
-               <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
+               <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
        CALERA SANTA ISABEL DE CUSHURO
      </span>
     </div>
    </div>
 
-            <h1 className="reveal-title text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
+            <h1 className="reveal-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight">
              Transporte Logístico Especializado para Operaciones Mineras
             </h1>
 
-            <p className="reveal-subtitle text-xl lg:text-2xl font-black text-white/80 tracking-tight leading-tight">
+            <p className="reveal-subtitle text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white/80 tracking-tight leading-tight">
              Servicio de transporte de materiales mineros con capacidad operativa 
              diaria de hasta 176 TM, garantizando continuidad productiva y control
               logístico permanente.
             </p>
-            <div className="flex gap-6 font-black text-emerald-400">
-              <div className="reveal-badge flex items-center gap-2">
+            <div className="flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base font-black text-emerald-400">
+              <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
                 <Factory size={20} />
                 <span>176 TM / día</span>
               </div>
 
-              <div className="reveal-badge flex items-center gap-2">
+              <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
                 <Pickaxe size={20} />
                 <span>Especializado en Minería</span>
               </div>

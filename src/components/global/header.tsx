@@ -245,7 +245,7 @@ export function Header({
     }, 200);
   };
 
-  /* -------- HEADER CLASSES -------- */
+  /* -------- HEADER CLASSES BANNER-------- */
   const headerClasses = `
     fixed top-0 left-0 right-0 z-[100]
     transition-all duration-300 bg-white/20 backdrop-blur-lg
@@ -255,9 +255,15 @@ export function Header({
         ? "bg-black/0 text-white"
         : isScrolled
           ? "bg-white/0 text-black shadow-lg"
-          : "bg-transparent text-black"
+        : "bg-transparent text-black"
     }
   `;
+  const desktopNavTextClasses =
+    isDarkTheme || isScrolled
+      ? "text-gray-900 hover:text-gray-600"
+      : "text-white hover:text-gray-300";
+  const desktopNavUnderlineClasses =
+    isDarkTheme || isScrolled ? "bg-gray-900/60" : "bg-white/60";
 
   return (
     <>
@@ -283,13 +289,19 @@ export function Header({
               onClick={() => setIsModalOpen(false)}
             >
               {shouldShowLogo ? (
-                <img src={logoSrc} alt={brandName} className="h-15 md:h-20 mt-5" />
+                <img
+                  src={logoSrc}
+                  alt={brandName}
+                  className="h-12 mt-2 sm:h-14 md:h-16 md:mt-3 lg:h-15 lg:mt-5"
+                />
               ) : (
                 <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                   <span className="text-white text-xl">{brandName.charAt(0)}</span>
                 </div>
               )}
-              <span className="text-xl md:text-2xl text-black-900">{brandName}</span>
+              <span className="text-sm sm:text-base md:text-lg lg:text-xl text-black-900">
+                {brandName}
+              </span>
             </NavLink>
 
             {/* NAV DESKTOP - lg: (1024px+) */}
@@ -319,8 +331,8 @@ export function Header({
                       aria-haspopup="menu"
                       aria-expanded={isDropdownOpen}
                       className={`
-                        relative px-4 py-2 text-white rounded-lg transition-colors flex items-center gap-1 text-base font-medium cursor-default
-                        ${isDarkTheme ? "!text-gray-800 hover:!text-gray-600" : "hover:text-gray-300"}
+                        relative px-4 py-2 rounded-lg transition-colors flex items-center gap-1 text-base font-medium cursor-default
+                        ${desktopNavTextClasses}
                       `}
                     >
                       {tab.label}
@@ -350,7 +362,7 @@ export function Header({
                     {/* DROPDOWN DESKTOP */}
                     {isDropdownOpen && (
                       <div
-                        className="absolute top-full left-0 mt-3 w-72 bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100 transition-all duration-200"
+                        className="absolute top-full left-0 mt-3 w-72 rounded-2xl overflow-hidden border border-gray-100 bg-white text-black shadow-2xl transition-all duration-200"
                         onMouseEnter={() => handleSubmenuEnter(tab.label)}
                         onMouseLeave={handleSubmenuLeave}
                       >
@@ -358,7 +370,7 @@ export function Header({
                           <NavLink
                             key={service.id}
                             to={service.href}
-                            className="block px-6 py-4 hover:bg-purple-600 hover:text-white transition-colors"
+                            className="block px-6 py-4 text-black transition-colors hover:bg-blue-800 hover:text-white"
                             onClick={() => setOpenDesktopSubmenu(null)}
                           >
                             <div className="font-medium">{service.name}</div>
@@ -373,15 +385,16 @@ export function Header({
                     key={tab.href}
                     to={tab.href}
                     className={`
-                      relative px-4 text-white py-2 rounded-lg transition-colors text-base font-medium
-                      ${isDarkTheme ? "!text-gray-800 hover:!text-gray-600" : "hover:text-gray-300"}
+                      relative px-4 py-2 rounded-lg transition-colors text-base font-medium
+                      ${desktopNavTextClasses}
                     `}
                   >
                     {tab.label}
                     <span
                       className={`
-                        absolute bottom-0 left-4 right-4 h-0.5 bg-white/60 rounded-full
+                        absolute bottom-0 left-4 right-4 h-0.5 rounded-full
                         transition-all duration-300
+                        ${desktopNavUnderlineClasses}
                         ${isActive ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0 hover:opacity-50 hover:scale-x-75"}
                       `}
                     />
@@ -394,7 +407,9 @@ export function Header({
             <button
               onClick={() => setIsModalOpen(true)}
               className={`lg:hidden p-2 rounded-lg transition-colors ${
-                isDarkTheme ? "text-zinc-900 hover:text-zinc-700" : "text-white hover:text-zinc-200"
+                isDarkTheme || isScrolled
+                  ? "text-zinc-900 hover:text-zinc-700"
+                  : "text-white hover:text-zinc-200"
               }`}
             >
               <Menu className="w-6 h-6" />

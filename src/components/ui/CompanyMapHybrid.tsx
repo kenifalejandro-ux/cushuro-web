@@ -1,3 +1,5 @@
+/**client/src/components/ui/CompanyMapHybrid.tsx */
+
 "use client";
 
 import * as L from "leaflet";
@@ -106,34 +108,6 @@ function FitBounds({
   return null;
 }
 
-function ZoomControls({
-  minZoom = 3,
-  maxZoom = 12,
-}: {
-  minZoom?: number;
-  maxZoom?: number;
-}) {
-  const map = useMap();
-
-  return (
-    <div className="absolute left-6 top-6 z-[1000] flex flex-col gap-2">
-      <button
-        onClick={() => map.setZoom(Math.min(map.getZoom() + 1, maxZoom))}
-        className="h-10 w-10 rounded-full bg-white shadow hover:bg-gray-100"
-      >
-        +
-      </button>
-
-      <button
-        onClick={() => map.setZoom(Math.max(map.getZoom() - 1, minZoom))}
-        className="h-10 w-10 rounded-full bg-white shadow hover:bg-gray-100"
-      >
-        -
-      </button>
-    </div>
-  );
-}
-
 export default function CompanyMapHybrid({
   locations,
   title,
@@ -147,13 +121,13 @@ export default function CompanyMapHybrid({
 
 }: CompanyMapHybridProps) {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const markerRefs = useRef<Record<number, L.Marker | null>>({});
+  const activeIndexRef = useRef<number | null>(null);
   const markerIcon = useMemo(() => getPulsingMarkerIcon(), []);
   const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
   const mapRef = useRef<L.Map | null>(null);
-  const [mapMode, setMapMode] = useState<"satellite" | "map">("satellite");
+  const [mapMode, setMapMode] = useState<"satellite" | "map">("map");
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -285,17 +259,16 @@ export default function CompanyMapHybrid({
   click: () => {
     if (!isTouchDevice) return;
 
-    setActiveIndex((prev) => {
-      if (prev === index) {
-        markerRefs.current[index]?.closePopup();
-        return null;
-      }
+    if (activeIndexRef.current === index) {
+      markerRefs.current[index]?.closePopup();
+      activeIndexRef.current = null;
+      return;
+    }
 
-      Object.values(markerRefs.current).forEach((m) => m?.closePopup());
+    Object.values(markerRefs.current).forEach((m) => m?.closePopup());
 
-      markerRefs.current[index]?.openPopup();
-      return index;
-          });
+    markerRefs.current[index]?.openPopup();
+    activeIndexRef.current = index;
   },
             }}
             >
@@ -369,7 +342,9 @@ export default function CompanyMapHybrid({
         </MapContainer>
         <div className="absolute right-6 top-6 z-[1000] flex overflow-hidden rounded-full bg-white shadow-lg">
   <button
+    type="button"
     onClick={() => setMapMode("map")}
+    aria-pressed={mapMode === "map"}
     className={`px-4 py-2 text-sm font-semibold ${
       mapMode === "map" ? "bg-green-600 text-white" : "text-gray-600"
     }`}
@@ -378,12 +353,14 @@ export default function CompanyMapHybrid({
   </button>
 
   <button
+    type="button"
     onClick={() => setMapMode("satellite")}
+    aria-pressed={mapMode === "satellite"}
     className={`px-4 py-2 text-sm font-semibold ${
       mapMode === "satellite" ? "bg-green-600 text-white" : "text-gray-600"
     }`}
   >
-    3D
+    Satelite
   </button>
 </div>
       </div>

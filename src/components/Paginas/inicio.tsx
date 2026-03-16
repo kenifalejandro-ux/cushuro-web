@@ -115,7 +115,7 @@ export default function Inicio() {
   }, []);
 
   return (
-    <div className="min-h-screen   bg-white">
+    <div className="dark-image min-h-screen bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SEO
           title="Diseño Web Lima 2026 | Agencia Profesional Páginas Web y Branding – Zincel"

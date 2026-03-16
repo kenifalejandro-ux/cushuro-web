@@ -224,17 +224,17 @@ export default function HeroLaEmpresa() {
             <div className="flex items-center gap-4 mb-6">
             {/* Línea + etiqueta */}
             <div className="flex items-center gap-4 mb-6">
-              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" />  <span className="text-xs tracking-[0.4em] uppercase font-bold text-emerald-400">
+              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" />  <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
     SANTA ISABEL DE CUSHURO
   </span>
     </div>
        </div>
          </div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               {isLoaded ? medioAmbienteServices[0].title : "Cargando experiencia..."}
             </h1>
 
-            <p className="mt-6 text-lg text-white/80">
+            <p className="mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-white/80">
               {isLoaded
                 ? medioAmbienteServices[0].description
                 : "Preparando animaciones y contenido visual."}

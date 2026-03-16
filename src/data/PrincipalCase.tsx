@@ -28,8 +28,6 @@ export const PrincipalCase = [
     hoverClass: "hover:bg-blue-800",
   },
 
-
- 
   {
     id: "suministro-de-oxido-de-calcio",
     name: "Suministro de calcio",

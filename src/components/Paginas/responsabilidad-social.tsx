@@ -193,16 +193,16 @@ export const ResponsabilidadSocial: React.FC = () => {
   ];
 
   return (
-    <div ref={containerRef} className="bg-white text-zinc-900 font-light overflow-hidden">
+    <div ref={containerRef} className="dark-image bg-white text-zinc-900 font-light overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex flex-col items-center justify-center px-6 py-24 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
-          <h1 className="hero-title-social text-6xl md:text-8xl font-light tracking-tighter text-zinc-800">
+          <h1 className="hero-title-social text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-light tracking-tighter text-zinc-800">
             Compromiso<br />
             <span className="text-blue-600">Social</span>
           </h1>
           <div className="hero-line-social h-[1px] w-48 bg-emerald-500 mx-auto" />
-          <p className="text-xl md:text-2xl text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed">
             En Santa Isabel de Cushuro no alteramos vidas; las transformamos. No cambiamos entornos; los mejoramos. 
             No alteramos sus costumbres, lo ayudamos a preservarlas. Nuestro compromiso es con las personas y su futuro.
           </p>
@@ -261,7 +261,7 @@ export const ResponsabilidadSocial: React.FC = () => {
       </section>        
 
       {/* Pilares Grid */}
-      <section   className="relative min-h-screen rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-zinc-800">
+      <section   className="light-image relative min-h-screen rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-zinc-800">
         <h2 className="text-center text-4xl font-light text-emerald-600 mb-20 uppercase tracking-widest reveal-social">
           Nuestros Pilares
         </h2>

@@ -145,7 +145,7 @@ export default function Politicas() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-b  from-zinc-950 via-zinc-900 to-zinc-950 py-24 md:py-32 overflow-hidden"
+      className="light-image relative bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-24 md:py-32 overflow-hidden"
     >
       
       {/* Elementos decorativos */}

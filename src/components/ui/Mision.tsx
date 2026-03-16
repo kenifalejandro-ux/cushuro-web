@@ -1,4 +1,4 @@
-/* client/src/components/sections/Mision.tsx */
+/* client/src/components/ui/Mision.tsx */
 
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
@@ -100,7 +100,7 @@ export function Mision() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-zinc-600"
+      className="light-image relative min-h-screen rounded-t-[80px] md:rounded-t-[220px] lg:rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-zinc-600"
       
     >
       
@@ -122,7 +122,7 @@ export function Mision() {
             <Sparkles className="w-5 h-5 text-yellow-400" />
           </div>
           
-          <div className="flex items-center justify-center gap-4 text-sm uppercase tracking-wider text-blue-200">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[8px] leading-none uppercase tracking-[0.08em] text-blue-200 sm:text-[10px] sm:tracking-[0.12em] md:text-xs lg:gap-4 lg:text-md lg:tracking-wider">
             <span>LOC: HUAMACHUCO_LIBERTAD</span>
             <span className="text-green-400">•</span>
             <span>2025</span>
@@ -131,7 +131,7 @@ export function Mision() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+        <div className="grid gap-8 md:gap-12 lg:grid-cols-2 lg:gap-16 items-center mb-20">
           {/* Contenido principal */}
           <div ref={contentRef} className="order-2 lg:order-1">
             <div className="">
@@ -171,17 +171,25 @@ competitivo dentro del mercado empresarial local y regional.
          {/* Imagen */}
 <div ref={imageContainerRef} className="order-1 lg:order-2">
   {/* Quitamos shadow-2xl, border y cualquier fondo */}
-  <div className="relative h-[700px] overflow-hidden"> 
-    <ImageStack
-      images={[
-        {
-          src: "/img-la-empresa/mision/mision001",
-          alt: "Trabajo operativo",
-        },
-      ]}
-      // Forzamos sin bordes ni sombras aquí también
-      className="w-full h-full object-cover border-none shadow-none bg-transparent"
-        />
+  <div className="relative h-[420px] overflow-hidden sm:h-[420px] md:h-[640px] lg:h-[700px]"> 
+   <ImageStack
+  images={[
+    {
+      src: "/img-la-empresa/mision/mision001",
+      alt: "Trabajo operativo",
+    },
+  ]}
+  className="w-full"
+  stackedLayoutOverrides={{
+    1: {
+      stackHeight: "h-[420px] sm:h-[420px] md:h-[640px] lg:h-[700px]",
+      slots: {
+        primary: "absolute inset-0 h-full w-full z-10",
+      },
+    },
+  }}
+/>
+
             </div>
            </div>
         </div>

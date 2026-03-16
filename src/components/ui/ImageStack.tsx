@@ -1,9 +1,12 @@
 /* client/src/components/ui/ImageStack.tsx */
 
-/* client/src/components/ui/ImageStack.tsx */
 
 import type { ReactNode } from "react";
 import { OptimizedImage } from "./OptimizedImage";
+import { cn } from "./utils";
+
+type VisibleCount = 1 | 2 | 3;
+type StackLayer = "primary" | "secondary" | "tertiary";
 
 export interface ImageStackImage {
   src: string;
@@ -23,11 +26,11 @@ export interface ImageStackProps {
   layout?: "stacked" | "inline";
   badge?: ImageStackBadge;
   className?: string;
-  fullScreen?: boolean; // ✅ NUEVO
+  fullScreen?: boolean;
+  imageClassName?: string;
+  inlineCardClassName?: string;
+  stackedLayoutOverrides?: Partial<Record<VisibleCount, ImageStackLayoutOverride>>;
 }
-
-type VisibleCount = 1 | 2 | 3;
-type StackLayer = "primary" | "secondary" | "tertiary";
 
 interface StackSlot {
   className: string;
@@ -37,6 +40,11 @@ interface StackSlot {
 interface StackLayout {
   stackHeight: string;
   slots: StackSlot[];
+}
+
+export interface ImageStackLayoutOverride {
+  stackHeight?: string;
+  slots?: Partial<Record<StackLayer, string>>;
 }
 
 const MAX_STACK_IMAGES = 3;
@@ -81,16 +89,29 @@ function toVisibleCount(imageCount: number): VisibleCount {
   return 3;
 }
 
-function InlineImageCard({ image }: { image: ImageStackImage }) {
+function InlineImageCard({
+  image,
+  cardClassName,
+  imageClassName,
+}: {
+  image: ImageStackImage;
+  cardClassName?: string;
+  imageClassName?: string;
+}) {
   return (
-    <div className="relative h-[280px] sm:h-[320px] lg:h-[380px] overflow-hidden">
+    <div
+      className={cn(
+        "relative h-[280px] overflow-hidden sm:h-[320px] lg:h-[380px]",
+        cardClassName
+      )}
+    >
       <OptimizedImage
         src={image.src}
         alt={image.alt}
         fill
         sizes={image.sizes ?? INLINE_SIZES}
         priority={image.priority}
-        className="object-cover"
+        className={cn("object-cover", imageClassName)}
       />
     </div>
   );
@@ -99,9 +120,11 @@ function InlineImageCard({ image }: { image: ImageStackImage }) {
 function StackedImageCard({
   image,
   slot,
+  imageClassName,
 }: {
   image: ImageStackImage;
   slot: StackSlot;
+  imageClassName?: string;
 }) {
   return (
     <div className={slot.className}>
@@ -112,7 +135,7 @@ function StackedImageCard({
           fill
           sizes={image.sizes ?? STACKED_SIZES}
           priority={image.priority}
-          className="object-cover" // ✅ CLAVE
+          className={cn("object-cover", imageClassName)}
         />
       </div>
     </div>
@@ -122,9 +145,11 @@ function StackedImageCard({
 export function ImageStack({
   images,
   layout = "stacked",
-  badge,
   className = "",
-  fullScreen = false, // ✅ nuevo
+  fullScreen = false,
+  imageClassName,
+  inlineCardClassName,
+  stackedLayoutOverrides,
 }: ImageStackProps) {
   const visibleImages = images.slice(0, MAX_STACK_IMAGES);
   const count = visibleImages.length;
@@ -137,31 +162,43 @@ export function ImageStack({
     const gridCols = INLINE_GRID_COLS[visibleCount];
 
     return (
-      <div className={`grid ${gridCols} gap-6 ${className}`}>
+      <div className={cn("grid gap-6", gridCols, className)}>
         {visibleImages.map((image) => (
-          <InlineImageCard key={image.src} image={image} />
+          <InlineImageCard
+            key={image.src}
+            image={image}
+            cardClassName={inlineCardClassName}
+            imageClassName={imageClassName}
+          />
         ))}
       </div>
     );
   }
 
   const stackedLayout = STACKED_LAYOUTS[visibleCount];
+  const stackedLayoutOverride = stackedLayoutOverrides?.[visibleCount];
+  const stackHeightClass = fullScreen
+    ? "h-screen"
+    : cn(stackedLayout.stackHeight, stackedLayoutOverride?.stackHeight);
 
   return (
     <div
-      className={`relative isolate w-full ${
-        fullScreen ? "h-screen" : stackedLayout.stackHeight
-      } ${className}`}
+      className={cn("relative isolate w-full", stackHeightClass, className)}
     >
       {stackedLayout.slots.map((slot, index) => {
         const image = visibleImages[index];
         if (!image) return null;
+        const slotOverride = stackedLayoutOverride?.slots?.[slot.layer];
 
         return (
           <StackedImageCard
             key={`${image.src}-${slot.layer}`}
             image={image}
-            slot={slot}
+            slot={{
+              ...slot,
+              className: cn(slot.className, slotOverride),
+            }}
+            imageClassName={imageClassName}
           />
         );
       })}

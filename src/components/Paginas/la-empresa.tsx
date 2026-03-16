@@ -118,7 +118,7 @@ export default function LaEmpresa() {
         ]}
       />
 
-      <div className="relative  bg-gradient-to-b from-white via-blue-50/30  to-white">
+      <div className="dark-image relative bg-gradient-to-b from-white via-blue-50/30 to-white">
              {/* Sección de Estadísticas */}
         <div className="relative z-30 bg-gradient-to-b from-blue-50/20 via-emerald-50/10 to-blue-50/20">
 

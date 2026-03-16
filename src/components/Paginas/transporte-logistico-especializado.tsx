@@ -9,7 +9,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ReorderImageStack from "../ui/ReorderImageStack";
-import { ParallaxSection } from "../ui/ParallaxSection";
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -61,14 +61,14 @@ export default function TransporteLogistico() {
   }, []);
 
 const images = [
-  { src: "img-servicios/hero/transporte-logistico/transporte-logistico001", alt: "Imagen 1" },
+  { src: "img-servicios/img/flota-calera-noche/flota-calera-noche", alt: "Imagen 1" },
   { src: "img-servicios/hero/transporte-logistico/transporte-logistico004", alt: "Imagen 2" },
   { src: "img-servicios/hero/transporte-logistico/transporte-logistico005", alt: "Imagen 3" },
 ];
 
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="dark-image min-h-screen bg-white">
       {/* Header Section 
       <section className="relative bg-gradient-to-br from-emerald-900 via-blue-800 to-blue-900 text-white py-20">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
@@ -336,7 +336,7 @@ Aseguramos continuidad operativa y reducción de riesgos logísticos en cada ope
   </div>
 </section>
     {/* capacidad operativa*/}
-     <section className="py-20 bg-zinc-900 text-white">
+     <section className="light-image py-20 bg-zinc-900 text-white">
   <div className="container mx-auto px-6 text-center max-w-4xl">
       <motion.h2
         initial={{ opacity: 0 }}

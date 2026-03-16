@@ -99,7 +99,7 @@ export function LaEmpresaSection({
   }, [reverse]);
 
   return (
-    <section ref={sectionRef} className={`relative bg-zinc-100 py-20 lg:py-32 ${styles.bg} transition-colors duration-500`}>
+    <section ref={sectionRef} className={`relative bg-zinc-100 py-20 lg:py-32 ${isDark ? "light-image" : "dark-image"} ${styles.bg} transition-colors duration-500`}>
 
 
       <div className="container mx-auto px-6 relative z-10">

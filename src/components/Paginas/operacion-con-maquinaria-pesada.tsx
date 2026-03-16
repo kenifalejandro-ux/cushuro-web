@@ -157,7 +157,7 @@ const images = [
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="dark-image min-h-screen bg-white">
       {/* Hero Section */}
       <section className="relative min-h-screen  overflow-hidden">
         {/* Mining Trucks Pattern Overlay */}
@@ -258,7 +258,7 @@ const images = [
       </section>
 
       {/* Flota de Maquinaria Section with Carousel */}
-      <section className="py-24 max-w-7x relative overflow-hidden bg-blue-900">
+      <section className="light-image py-24 max-w-7x relative overflow-hidden bg-blue-900">
         {/* Excavator and Gears Pattern */}
 
 
@@ -373,7 +373,7 @@ const images = [
       </ParallaxSection>
 
       {/* Seguridad y Control */}
-      <section className="py-24 bg-zinc-900 relative overflow-hidden">
+      <section className="light-image py-24 bg-zinc-900 relative overflow-hidden">
         {/* Safety Stripes Pattern */}
 
 

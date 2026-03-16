@@ -19,7 +19,18 @@ interface Props {
   layout?: "stacked" | "inline";
 }
 
-const layouts = [
+interface StackLayout {
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  width: string;
+  height: string;
+  x?: string;
+  zIndex: number;
+}
+
+const desktopLayouts: StackLayout[] = [
   {
     top: "0%",
     left: "0%",
@@ -43,12 +54,37 @@ const layouts = [
   },
 ];
 
+const mobileLayouts: StackLayout[] = [
+  {
+    top: "0%",
+    left: "50%",
+    x: "-50%",
+    width: "76%",
+    height: "80%",
+    zIndex: 30,
+  },
+  {
+    top: "16%",
+    right: "6%",
+    width: "70%",
+    height: "72%",
+    zIndex: 20,
+  },
+  {
+    bottom: "0%",
+    left: "6%",
+    width: "66%",
+    height: "66%",
+    zIndex: 10,
+  },
+];
+
 export default function ReorderImageStack({
   images,
   interval = 4000,
-  layout = "stacked",
 }: Props) {
   const [order, setOrder] = useState(images);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -63,16 +99,30 @@ export default function ReorderImageStack({
     return () => clearInterval(timer);
   }, [interval]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateViewport = () => setIsMobile(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
+
+  const activeLayouts = isMobile ? mobileLayouts : desktopLayouts;
+
   return (
-    <div className="relative w-full h-[650px]">
+    <div className="relative mx-auto h-[420px] w-full max-w-[360px] md:h-[650px] md:max-w-none">
       {order.map((image, index) => {
-        const layout = layouts[index];
+        const activeLayout = activeLayouts[index] ?? desktopLayouts[index];
 
         return (
           <motion.div
             key={image.src}
             animate={{
-              ...layout,
+              ...activeLayout,
             }}
             transition={{
               duration: 1,
@@ -80,13 +130,13 @@ export default function ReorderImageStack({
             }}
             className="absolute"
           >
-            <div className="relative w-full h-full overflow-hidden  ">
+            <div className="relative h-full w-full overflow-hidden">
               <OptimizedImage
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(max-width: 1024px) 80vw, 600px"
-                priority={image.priority} 
+                sizes="(max-width: 767px) 90vw, (max-width: 1024px) 80vw, 600px"
+                priority={image.priority}
               />
             </div>
           </motion.div>

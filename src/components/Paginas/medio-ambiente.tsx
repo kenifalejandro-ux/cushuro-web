@@ -105,18 +105,18 @@ export const MedioAmbiente: React.FC = () => {
     },
   ];
 return (
-  <div ref={containerRef} className="bg-white text-zinc-800 font-light overflow-hidden">
+  <div ref={containerRef} className="dark-image bg-white text-zinc-800 font-light overflow-hidden">
     {/* Hero Section */}
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 bg-zinc-80/30">
       <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8">
-        <h1 className="hero-title-env text-4xl md:text-8xl font-light tracking-tighter text-zinc-800  inline-block px-4 py-2 rounded-lg">
+        <h1 className="hero-title-env text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-light tracking-tighter text-zinc-800 inline-block px-4 py-2 rounded-lg">
           Santa Isabel <br />
           <span className="text-emerald-500 italic">De Curshuro SAC</span>
         </h1>
 
         <div className="hero-line-env w-[1px] h-32 bg-emerald-400 mx-auto" />
 
-        <p className="text-xl md:text-2xl text-zinc-800 max-w-3xl mx-auto font-light leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-800 max-w-3xl mx-auto font-light leading-relaxed">
          Tiene como objetivo lograr los más altos niveles de administración, en su gestión de preservación ambiental de los proyectos que emprenda la empresa.
         </p>
 

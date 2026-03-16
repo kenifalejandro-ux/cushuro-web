@@ -50,7 +50,7 @@ export function HeroarrowNavigator() {
   const next = PrincipalCase[(currentIndex + 1) % PrincipalCase.length];
 
   return (
-    <div ref={navRef} className="fixed bottom-65 right-8 flex gap-4 z-40">
+    <div ref={navRef} className="fixed bottom-25 right-8 flex gap-4 z-40 lg:bottom-60 md:bottom-60">
       {/* Prev */}
       <button
         onClick={() => navigate(prev.path)}

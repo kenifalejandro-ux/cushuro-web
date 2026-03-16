@@ -4,6 +4,7 @@ import { Facebook, Instagram, Linkedin, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { trackWhatsAppClick } from "@/utils/whatsapp";
+import Contact from "./Contact";
 import {
   DEFAULT_TABS,
   PRODUCTS_SUBMENU,
@@ -61,6 +62,7 @@ export default function Footer() {
                 </p>
               </div>
             </div>
+            
 
             <div className="my-8 h-px bg-zinc-600/40" />
 
@@ -171,77 +173,8 @@ export default function Footer() {
             </div>
           </section>
 
-          {/* ================= DERECHA - FORM================= */}
-          <div className="relative z-30 -mt-16 md:-mt-24 lg:-mt-20">
-            <section className="rounded-2xl relative min-h-[20vh]  bg-blue-900/50 backdrop-blur-lg p-8 shadow-2xl">
-              <h3 className="text-xl font-semibold leading-snug">
-                Déjanos tus datos y{" "}
-                <span className="text-emerald-600">
-                  uno de nuestros especialistas
-                </span>{" "}
-                se pondrá en contacto contigo.
-              </h3>
-
-              <form
-                className="mt-6 grid gap-4"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <input
-                    type="text"
-                    placeholder="Nombre"
-                    className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-                  />
-                  <input
-                    type="text"
-                    placeholder="Apellido"
-                    className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-                  />
-                </div>
-
-                <input
-                  type="email"
-                  placeholder="Correo electrónico"
-                  className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-                />
-
-                <input
-                  type="tel"
-                  placeholder="Teléfono"
-                  className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-                />
-
-                <textarea
-                  placeholder="Mensaje"
-                  rows={4}
-                  className="rounded-md bg-[#3a3533] p-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-                />
-
-                <label className="flex items-center gap-2 text-xs text-zinc-400">
-                  <input type="checkbox" className="h-4 w-4 accent-emerald-600" />
-                  Estoy de acuerdo con las políticas de privacidad.
-                </label>
-
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    trackWhatsAppClick({
-                      text: "Formulario Footer",
-                      section: "Footer",
-                      component: "FooterForm",
-                      variant: "Mineria",
-                      href: WHATSAPP_URL,
-                    })
-                  }
-                  className="mt-3 inline-flex h-12 items-center justify-center rounded-full bg-emerald-700 px-8 text-sm font-semibold text-zinc-100 transition hover:bg-emerald-900"
-                >
-                  ENVIAR
-                </a>
-              </form>
-            </section>
-          </div>
+          {/* ================= FORNULARIO BASE ================= */}
+         <Contact />
         </div>
 
         {/* ================= FOOTER BASE ================= */}

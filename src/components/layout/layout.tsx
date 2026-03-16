@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from "react";
 
+import BreadcrumbBar from "../global/BreadcrumbBar";
 import Footer from "../global/Footer";
 import { Header } from "../global/header";
 import HeroHeader from "../global/HeroHeader";
@@ -31,6 +32,7 @@ const Layout: React.FC<LayoutProps> = ({
       {!hideNavs && <Header logo={logo} brandName={brandName} />}
 
       {!hideNavs && <HeroHeader page={page as "inicio" } showVideo={showVideo} />}
+      {!hideNavs && <BreadcrumbBar />}
 
       <main role="main">
         {children}

@@ -4,9 +4,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import { HeroarrowNavigator } from "./components/global/HeroarrowNavigator";
-import { MainNavigationIndicator } from "./components/global/MainNavigationIndicator";
 import PageTransition from "./components/global/PageTransition";
-import { ScrollIndicator } from "./components/global/ScrollIndicator";
 import Layout from "./components/layout/layout";
 import { useGTMPageView } from "./hooks/useGTMPageView";
 import useParallaxEffect from "./hooks/useParallaxEffect";
@@ -32,6 +30,7 @@ const TransporteLogistico = lazy(() => import("./components/Paginas/transporte-l
 const MedioAmbiente = lazy(() => import("./components/Paginas/medio-ambiente"));
 const ResponsabilidadSocial = lazy(() => import("./components/Paginas/responsabilidad-social"));
 const Contacto = lazy(() => import("./components/Paginas/contacto"));
+const Formulario = lazy(() => import("./components/Paginas/formulario"));
 
 
 
@@ -48,7 +47,7 @@ function AppRoutes() {
         element={
           <Layout page="inicio" showVideo logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-white/50" />
+             
             </div>
 
             <Inicio />
@@ -64,7 +63,7 @@ function AppRoutes() {
         element={
           <Layout page="la-empresa" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-300" />
+            
             </div>
             <LaEmpresa />
             
@@ -78,7 +77,7 @@ function AppRoutes() {
         element={
           <Layout page="cal-viva" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+              
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <CalViva />
@@ -96,7 +95,7 @@ function AppRoutes() {
         element={
           <Layout page="cal-agricola" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+             
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <CalAgricola />
@@ -114,7 +113,7 @@ function AppRoutes() {
         element={
           <Layout page="piedra-caliza" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+           
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <PiedraCaliza />
@@ -131,7 +130,7 @@ function AppRoutes() {
         element={
           <Layout page="carbon-antracita" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+              
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <CarbonAntracita />
@@ -148,7 +147,7 @@ function AppRoutes() {
         element={
           <Layout page="carbon-cisco" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+             
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <CarbonCisco />
@@ -166,7 +165,7 @@ function AppRoutes() {
         element={
           <Layout page="operacion-con-maquinaria-pesada" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+            
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <OperacionMaquinaria />
@@ -183,7 +182,7 @@ function AppRoutes() {
         element={
           <Layout page="transporte-logistico-especializado" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+             
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <TransporteLogistico />
@@ -202,7 +201,7 @@ function AppRoutes() {
         element={
           <Layout page="medio-ambiente" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+            
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <MedioAmbiente />
@@ -219,7 +218,7 @@ function AppRoutes() {
         element={
           <Layout page="responsabilidad-social" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+            
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <ResponsabilidadSocial />
@@ -236,7 +235,7 @@ function AppRoutes() {
         element={
           <Layout page="contacto" showVideo={false} logo={siteLogo} brandName="">
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-              <ScrollIndicator color="text-zinc-100" />
+           
             </div>
             <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
               <Contacto />
@@ -248,8 +247,18 @@ function AppRoutes() {
         }
       />
 
+      <Route
+        path="formulario"
+        element={
+          <Suspense fallback={<div className="loading-spinner">Cargando...</div>}>
+            <Formulario />
+          </Suspense>
+        }
+      />
+
       {/* Ruta antigua para compatibilidad */}
       <Route path="/sobre-nosotros" element={<Navigate to="/la-empresa" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
 
 
     </Routes>

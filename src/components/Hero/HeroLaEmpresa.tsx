@@ -7,9 +7,16 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useInView } from "react-intersection-observer";
 
+import HeroMediaThumbnails from "@/components/ui/HeroMediaThumbnails";
 import { LCPImage } from "@/components/ui/LCPImage";
-import { initSlice, type Service } from "@/utils/MedioAmbienteGsap";
-
+import {
+  goToSlice,
+  initSlice,
+  scheduleInitialSliceAutoplay,
+  startSliceAutoplay,
+  stopSliceAutoplay,
+  type Service,
+} from "@/utils/MedioAmbienteGsap";
 
 const IMG_BASE = (import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL || "").replace(
   /\/+$/,
@@ -25,43 +32,49 @@ const medioAmbienteServices: Service[] = [
     image: toAssetUrl("img-la-empresa/hero-la-empresa/img003"),
     slug: "logistica-transporte",
     title: "Logística y Transporte",
-    description: "Flota propia y convoyes seguros que garantizan el traslado eficiente de piedra caliza y óxido de calcio a nuestros clientes.",
+    description:
+      "Flota propia y convoyes seguros que garantizan el traslado eficiente de piedra caliza y óxido de calcio a nuestros clientes.",
   },
   {
     image: toAssetUrl("img-la-empresa/hero-la-empresa/img001"),
     slug: "produccion-segura",
     title: "Producción Segura",
-    description: "Planta de cal con personal altamente capacitado y protegido, cumpliendo los más altos estándares de seguridad y calidad.",
+    description:
+      "Planta de cal con personal altamente capacitado y protegido, cumpliendo los más altos estándares de seguridad y calidad.",
   },
   {
     image: toAssetUrl("img-la-empresa/hero-la-empresa/img002"),
     slug: "equipo-en-campo",
     title: "Equipo en la Cantera",
-    description: "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+    description:
+      "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
   },
-    {
+  {
     image: toAssetUrl("img-inicio/hero/cantera001"),
     slug: "equipo-en-campo",
     title: "Equipo en la Cantera",
-    description: "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+    description:
+      "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
   },
-      {
+  {
     image: toAssetUrl("img-inicio/hero/cantera002"),
     slug: "equipo-en-campo",
     title: "Equipo en la Cantera",
-    description: "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+    description:
+      "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
   },
-      {
+  {
     image: toAssetUrl("img-inicio/hero/cantera003"),
     slug: "equipo-en-campo",
     title: "Equipo en la Cantera",
-    description: "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+    description:
+      "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
   },
 ];
 
-
 export default function HeroLaEmpresa() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
 
   const { ref, inView } = useInView({
@@ -76,19 +89,28 @@ export default function HeroLaEmpresa() {
 
     if (inView && !isLoaded) {
       void initSlice(medioAmbienteServices).then(() => {
-        if (!cancelled) setIsLoaded(true);
+        if (!cancelled) {
+          setActiveIndex(0);
+          setIsLoaded(true);
+        }
       });
     }
 
     return () => {
       cancelled = true;
-      if (window.__bkarsInterval) {
-        clearInterval(window.__bkarsInterval);
-        window.__bkarsInterval = null;
-      }
-      
+      stopSliceAutoplay();
     };
   }, [inView, isLoaded]);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    scheduleInitialSliceAutoplay(medioAmbienteServices, setActiveIndex);
+
+    return () => {
+      stopSliceAutoplay();
+    };
+  }, [isLoaded]);
 
   // 🔹 2️⃣ useGSAP VA FUERA DEL useEffect
   useGSAP(
@@ -96,54 +118,38 @@ export default function HeroLaEmpresa() {
       if (!isLoaded) return;
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(
-          [
-            ".service-text h1",
-            ".service-text p",
-            ".service-text a",
-            ".divider",
-          ],
-          { opacity: 1, y: 0, clearProps: "all" }
-        );
+        gsap.set([".service-text h1", ".service-text p", ".service-text a", ".divider"], {
+          opacity: 1,
+          y: 0,
+          clearProps: "all",
+        });
         return;
       }
 
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-     // Imagen fondo (ligero zoom + ajuste brillo)
-    tl.fromTo(
-      ".hero-bg",
-      { scale: 1.15, filter: "brightness(0.6)" },
-      { scale: 1, filter: "brightness(1)", duration: 2 }
-    )
-
-      // Línea industrial reveal
-      .from(
-        ".reveal-line",
-        { scaleX: 0, duration: 1, transformOrigin: "left", ease: "expo.inOut" },
-        "-=1.2"
+      // Imagen fondo (ligero zoom + ajuste brillo)
+      tl.fromTo(
+        ".hero-bg",
+        { scale: 1.15, filter: "brightness(0.6)" },
+        { scale: 1, filter: "brightness(1)", duration: 2 }
       )
 
-      // Texto principal
-      .from(
-        ".reveal-title",
-        { y: 40, opacity: 0, duration: 1 },
-        "-=0.6"
-      )
+        // Línea industrial reveal
+        .from(
+          ".reveal-line",
+          { scaleX: 0, duration: 1, transformOrigin: "left", ease: "expo.inOut" },
+          "-=1.2"
+        )
 
-      // Subtítulo
-      .from(
-        ".reveal-subtitle",
-        { y: 30, opacity: 0, duration: 0.8 },
-        "-=0.7"
-      )
+        // Texto principal
+        .from(".reveal-title", { y: 40, opacity: 0, duration: 1 }, "-=0.6")
 
-      // Stats / iconos
-      .from(
-        ".reveal-badge",
-        { y: 20, opacity: 0, stagger: 0.2, duration: 0.6 },
-        "-=0.6"
-      );
+        // Subtítulo
+        .from(".reveal-subtitle", { y: 30, opacity: 0, duration: 0.8 }, "-=0.7")
+
+        // Stats / iconos
+        .from(".reveal-badge", { y: 20, opacity: 0, stagger: 0.2, duration: 0.6 }, "-=0.6");
 
       gsap.to(".service-text a", {
         y: -8,
@@ -156,15 +162,23 @@ export default function HeroLaEmpresa() {
     { scope: heroRef, dependencies: [isLoaded] }
   );
 
+  const activeService = medioAmbienteServices[activeIndex] ?? medioAmbienteServices[0];
+
+  const handleThumbnailSelect = async (index: number) => {
+    stopSliceAutoplay();
+    await goToSlice(index, medioAmbienteServices, setActiveIndex);
+    startSliceAutoplay(medioAmbienteServices, setActiveIndex);
+  };
+
   return (
-<section
-  ref={(node) => {
-    ref(node);        // tu ref original de intersection observer
-    // @ts-ignore
-    heroRef.current = node;
-  }}
-      aria-label="Hero principal Medio Ambiente"
-      className="relative min-h-[75vh] w-full overflow-hidden bg-black"
+    <section
+      ref={(node) => {
+        ref(node); // tu ref original de intersection observer
+        // @ts-ignore
+        heroRef.current = node;
+      }}
+      aria-label="Hero principal La Empresa"
+      className="light-image relative min-h-[85vh] w-full overflow-hidden bg-black"
     >
       <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
         <LCPImage
@@ -212,39 +226,45 @@ export default function HeroLaEmpresa() {
 
       {/* ================= OVERLAYS ================= */}
       {/* Dark cinematic overlay */}
-      <div className="absolute inset-0 bg-black/40 z-20" />
+      <div className="absolute inset-0 z-20 bg-[linear-gradient(115deg,rgba(8,8,7,0.82)_0%,rgba(8,8,7,0.56)_46%,rgba(8,8,7,0.28)_100%)]" />
 
       {/* ===== CONTENIDO HERO ===== */}
-      <div className="relative z-30 flex min-h-[75vh] items-center">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="service-text max-w-xl text-white">
-            
-   {/* Texto */}
-          <div className="max-w-3xl  space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-            {/* Línea + etiqueta */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" />  <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
-    SANTA ISABEL DE CUSHURO
-  </span>
-    </div>
-       </div>
-         </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              {isLoaded ? medioAmbienteServices[0].title : "Cargando experiencia..."}
+<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-6xl px-6">
+          <div className="service-text max-w-3xl text-white">
+            <div className="mining-hero-eyebrow">
+              <div className="reveal-line mining-hero-line origin-left" />
+              <span></span>
+            </div>
+
+<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               {isLoaded ? activeService.title : "Cargando experiencia..."}
             </h1>
 
-            <p className="mt-6 text-base sm:text-lg md:text-xl lg:text-2xl text-white/80">
+            <p className="reveal-subtitle mining-hero-subtitle mt-6 max-w-[39rem]">
               {isLoaded
-                ? medioAmbienteServices[0].description
+                ? activeService.description
                 : "Preparando animaciones y contenido visual."}
             </p>
 
-            <hr className="divider my-8 w-12 border-white/40" />
-
+            <hr className="divider my-8 w-14 border-white/18" />
           </div>
         </div>
       </div>
+
+      {isLoaded ? (
+        <div className="absolute inset-x-0 bottom-4 z-40 flex justify-center px-6 sm:bottom-6 lg:bottom-8">
+          <HeroMediaThumbnails
+            items={medioAmbienteServices.map((service, index) => ({
+              src: service.image,
+              alt: `${service.title} ${index + 1}`,
+              label: `Mostrar ${service.title}`,
+            }))}
+            activeIndex={activeIndex}
+            onSelect={(index) => {
+              void handleThumbnailSelect(index);
+            }}
+          />
+        </div>
+      ) : null}
     </section>
   );
 }

@@ -3,14 +3,14 @@
 import { Facebook, Instagram, Linkedin, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { trackWhatsAppClick } from "@/utils/whatsapp";
+
 import Contact from "./Contact";
 import {
   DEFAULT_TABS,
   PRODUCTS_SUBMENU,
   RESPONSIBILITY_SUBMENU,
   SERVICES_SUBMENU,
-} from "./header";
+} from "./header.data";
 
 const SOCIAL_LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/", icon: Linkedin },
@@ -38,7 +38,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative text-white">
+    <footer className="light-image relative text-white">
       {/* Fondo oscuro tipo imagen */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#2b2726] via-[#2f2b2a] to-[#1f1c1b]" />
 
@@ -57,12 +57,9 @@ export default function Footer() {
                 <h2 className="text-2xl font-semibold tracking-wide text-emerald-600">
                   CALERA CUSHURO
                 </h2>
-                <p className="text-sm text-zinc-400">
-                  Industria Minera
-                </p>
+                <p className="text-sm text-zinc-400">Industria Minera</p>
               </div>
             </div>
-            
 
             <div className="my-8 h-px bg-zinc-600/40" />
 
@@ -90,16 +87,14 @@ export default function Footer() {
                   return (
                     <div key={tab.href} className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
-                        <NavLink
-                          to={tab.href}
-                          className="hover:text-emerald-600 transition-colors"
-                        >
+                        <NavLink to={tab.href} className="hover:text-emerald-600 transition-colors">
                           {tab.label}
                         </NavLink>
                         <button
                           type="button"
                           aria-expanded={isOpen}
                           aria-controls={submenuId}
+                          aria-label={`${isOpen ? "Ocultar" : "Mostrar"} submenu de ${tab.label}`}
                           onClick={() => toggleFooterSection(tab.label)}
                           className="text-zinc-400 hover:text-emerald-600 transition-colors"
                         >
@@ -165,6 +160,7 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Visitar ${label}`}
                   className="text-zinc-400 transition hover:text-emerald-600"
                 >
                   <Icon size={20} />
@@ -174,22 +170,19 @@ export default function Footer() {
           </section>
 
           {/* ================= FORNULARIO BASE ================= */}
-         <Contact />
+          <Contact />
         </div>
 
         {/* ================= FOOTER BASE ================= */}
         <div className="mt-16 flex flex-col items-center gap-3 border-t border-zinc-600/40 pt-6 text-xs text-zinc-400 md:flex-row md:justify-between">
-          <p>© {new Date().getFullYear()} Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.</p>
+          <p>
+            © {new Date().getFullYear()} Empresa de Transportes y Servicios Santa Isabel de Cushuro
+            S.A.C.
+          </p>
           <p>Huamachuco - La Libertad - Perú</p>
           <p className="text-emerald-600">
-
             Elaborado por:{" "}
-
-            <a
-              href="https://www.zincelideas.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.zincelideas.com" target="_blank" rel="noopener noreferrer">
               www.zincelideas.com
             </a>
           </p>

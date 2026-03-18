@@ -2,8 +2,10 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef, useEffect, useState } from "react";
 import { Flame, Beaker, Mountain } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { HeroMediaThumbnails } from "../ui/HeroMediaThumbnails";
 import { VideoPreview } from "../ui/VideoPreview";
 
 const IMG_BASE = import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
@@ -21,13 +23,12 @@ export function Hero() {
   const [showModel, setShowModel] = useState(false);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [isHeroInView, setIsHeroInView] = useState(false);
-  const [hasUserScrolled, setHasUserScrolled] = useState(false);
+  const [canStartHeroMedia, setCanStartHeroMedia] = useState(false);
+  const [isCoarsePointer, setIsCoarsePointer] = useState(false);
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const prevActiveIndexRef = useRef<number | null>(null);
-  const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 });
 
   const heroVideos = [
-
     {
       src: "video/hero/cantera002",
       poster: "img-inicio/hero/cantera002",
@@ -39,7 +40,7 @@ export function Hero() {
   ];
 
   // Controla cuántos videos se renderizan
-  const heroVideoCount = 3; // 1, 2 o 3
+  const heroVideoCount = isCoarsePointer ? 1 : 2;
   const activeVideos = heroVideos.slice(
     0,
     Math.max(1, Math.min(heroVideoCount, heroVideos.length))
@@ -182,8 +183,6 @@ export function Hero() {
     { scope: heroRef }
   );
 
-
-
   // ============================
   // Visibilidad del hero para controlar reproducción
   // ============================
@@ -203,26 +202,44 @@ export function Hero() {
   }, []);
 
   // ============================
-  // En mobile, esperar scroll antes de reproducir
+  // En mobile, activar el video con una interacción temprana o tras una espera breve
   // ============================
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const isCoarsePointer =
-      "matchMedia" in window && window.matchMedia("(pointer: coarse)").matches;
+    const coarsePointer = "matchMedia" in window && window.matchMedia("(pointer: coarse)").matches;
 
-    if (!isCoarsePointer) {
-      setHasUserScrolled(true);
+    setIsCoarsePointer(coarsePointer);
+
+    if (!coarsePointer) {
+      setCanStartHeroMedia(true);
       return;
     }
 
-    const onFirstScroll = () => setHasUserScrolled(true);
-    window.addEventListener("scroll", onFirstScroll, {
+    const enableHeroMedia = () => setCanStartHeroMedia(true);
+    const timeoutId = window.setTimeout(enableHeroMedia, 500);
+
+    window.addEventListener("scroll", enableHeroMedia, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("touchstart", enableHeroMedia, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("pointerdown", enableHeroMedia, {
       passive: true,
       once: true,
     });
 
-    return () => window.removeEventListener("scroll", onFirstScroll);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", enableHeroMedia);
+      window.removeEventListener("touchstart", enableHeroMedia);
+      window.removeEventListener("pointerdown", enableHeroMedia);
+    };
   }, []);
+
+  const shouldRenderHeroVideos = !isCoarsePointer || isHeroInView || canStartHeroMedia;
 
   // ============================
   // Rotación automática de videos
@@ -242,7 +259,7 @@ export function Hero() {
   }, [activeVideoIndex, activeVideos.length]);
 
   useEffect(() => {
-    const canPlay = isHeroInView && hasUserScrolled;
+    const canPlay = isHeroInView && canStartHeroMedia;
     const activeVideo = videoRefs.current[activeVideoIndex];
 
     if (activeVideo && prevActiveIndexRef.current !== activeVideoIndex) {
@@ -262,14 +279,13 @@ export function Hero() {
         video.pause();
       }
     });
-  }, [activeVideoIndex, activeVideos.length, hasUserScrolled, isHeroInView]);
+  }, [activeVideoIndex, activeVideos.length, canStartHeroMedia, isHeroInView]);
   // Animación GSAP simple y elegante (igual que tus otros heroes de producto)
   useGSAP(
     () => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.fromTo(
-
         ".hero-bg",
         { scale: 1.08, filter: "brightness(0.65)" },
         { scale: 1, filter: "brightness(1)", duration: 2.2 }
@@ -282,109 +298,124 @@ export function Hero() {
     { scope: heroRef }
   );
   return (
-    <section ref={heroRef} className="relative min-h-[85vh] w-full overflow-hidden bg-black">
+    <section
+      ref={heroRef}
+      className="light-image relative min-h-[85vh] w-full overflow-hidden bg-black"
+    >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">
         <LCPImage
-          src="img/hero/cantera001"
-          alt="Cantera de mármol profesional"
+          src="img-inicio/hero/cantera001"
+          alt="Cantera de piedra caliza de "
           width={1920}
           height={1080}
+          sizes="100vw"
           priority
           className="opacity-40"
         />
       </div>
 
       {/* --- 2. VIDEOS OPTIMIZADOS --- */}
-      <div className="absolute inset-0 z-10">
-        {activeVideos.map((video, index) => {
-          const isActive = index === activeVideoIndex;
-          return (
-            <VideoPreview
-              key={video.src}
-              ref={(node) => {
-                videoRefs.current[index] = node;
-              }}
-              src={video.src}
-              poster={video.poster}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                isActive ? "opacity-100" : "opacity-0"
-              }`}
-              autoPlay={false}
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              controls={false}
-              useInternalOpacity={false}
-              deferOnMobileScroll={false}
-              aria-hidden={!isActive}
-            />
-          );
-        })}
-      </div>
+      {shouldRenderHeroVideos && (
+        <div className="absolute inset-0 z-10">
+          {activeVideos.map((video, index) => {
+            const isActive = index === activeVideoIndex;
+            return (
+              <VideoPreview
+                key={video.src}
+                ref={(node) => {
+                  videoRefs.current[index] = node;
+                }}
+                src={video.src}
+                poster={video.poster}
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+                  isActive ? "opacity-100" : "opacity-0"
+                }`}
+                autoPlay={false}
+                muted
+                loop
+                playsInline
+                preload={isCoarsePointer ? (isActive ? "auto" : "none") : "metadata"}
+                controls={false}
+                useInternalOpacity={false}
+                deferOnMobileScroll={false}
+                aria-hidden={!isActive}
+              />
+            );
+          })}
+        </div>
+      )}
 
       {/* Overlay oscuro */}
-      <div className="absolute inset-0 bg-black/30 z-20" />
-
+      <div className="absolute inset-0 z-20 bg-[linear-gradient(115deg,rgba(8,8,7,0.92)_0%,rgba(8,8,7,0.56)_48%,rgba(8,8,7,0.1)_100%)]" />
 
       {/* ================= CONTENIDO ================= */}
-      <div className="relative z-30 flex min-h-[85vh] items-center">
-        <div className="mx-auto max-w-7xl px-6 w-full">
-          <div className="max-w-3xl space-y-6">
+<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
+          <div className="max-w-3xl space-y-7 md:space-y-8">
             {/* Línea + etiqueta */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" />
-              <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.5em] uppercase font-bold text-emerald-400">
-                Santa Isabel de Cushuro
-              </span>
+            <div className="mining-hero-eyebrow ">
+              <div className="reveal-line mining-hero-line origin-left" />
+              <span></span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-white">
-              PRODUCCIÓN Y SUMINISTRO
+<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               Produccion y suministro de oxido de calcio
             </h1>
-            <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter text-white">
-              DE ÓXIDO DE CALCIO
-            </span>
-            <div className="pt-6 flex gap-4">
-            <a
-            href="/Productos/cal-viva"
-            >
-            <button className="px-6 py-3 rounded-full bg-emerald-500 text-white text-xs sm:text-sm font-medium hover:bg-blue-600 transition">
-            Más información
-            </button>
-            </a>
-            <a
-            href="https://wa.me/51959173472?text=Escríbenos%20para%20más%20información"
-               target="_blank"
-            rel="noopener noreferrer"
-            >
-              <button className="px-6 py-3 rounded-full border border-white/30 text-white text-xs sm:text-sm hover:border-white transition">
+
+            <p className="reveal-subtitle mining-hero-subtitle max-w-[40rem]">
+              15 anos de experiencia, 5 hornos operativos y capacidad diaria de 176 TM para atender
+              operaciones mineras e industriales con continuidad y control.
+            </p>
+
+            <div className="mining-hero-actions">
+              <Link
+                to="/Productos/cal-viva"
+                aria-label="Ver informacion comercial de cal viva"
+                className="mining-hero-cta-primary"
+              >
+                Ver cal viva
+              </Link>
+              <a
+                href="https://wa.me/51959173472?text=Escr%C3%ADbenos%20para%20m%C3%A1s%20informaci%C3%B3n"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contactar por WhatsApp a "
+                className="mining-hero-cta-secondary"
+              >
                 Contacto
-              </button>
               </a>
             </div>
-            {/* Badges / iconos */}
-<div className="flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base text-emerald-400 font-semibold pt-4">
-  
-  <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-    <Flame size={26} />
-    <span>Cal viva</span>
-  </div>
+            {/* Badges / iconos
+            <div className="mining-hero-badge-list">
+              <div className="reveal-badge mining-hero-badge">
+                <Flame size={18} />
+                <span>Cal viva</span>
+              </div>
 
-  <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-    <Beaker size={26} />
-    <span>Cal hidratada</span>
-  </div>
+              <div className="reveal-badge mining-hero-badge">
+                <Beaker size={18} />
+                <span>Cal hidratada</span>
+              </div>
 
-  <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-    <Mountain size={26} />
-    <span>Piedra caliza</span>
-  </div>
-
-</div>
+              <div className="reveal-badge mining-hero-badge">
+                <Mountain size={18} />
+                <span>Piedra caliza</span>
+              </div>
+            </div> */}
           </div>
+
         </div>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-4 z-40 flex justify-center px-6 sm:bottom-6 lg:bottom-8">
+        <HeroMediaThumbnails
+          items={activeVideos.map((video, index) => ({
+            src: video.poster,
+            alt: `Vista operativa ${index + 1} de `,
+            label: `Mostrar vista operativa ${index + 1}`,
+          }))}
+          activeIndex={activeVideoIndex}
+          onSelect={setActiveVideoIndex}
+        />
       </div>
     </section>
   );

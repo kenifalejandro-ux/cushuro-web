@@ -15,60 +15,47 @@ export function HeroCalViva() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const badgeRef = useRef<HTMLSpanElement>(null);
   const [glowPosition, setGlowPosition] = useState({ x: 50, y: 50 });
-  
 
- useEffect(() => {
-  const ctx = gsap.context(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-    // Imagen fondo (ligero zoom + ajuste brillo)
-    tl.fromTo(
-      ".hero-bg",
-      { scale: 1.15, filter: "brightness(0.6)" },
-      { scale: 1, filter: "brightness(1)", duration: 2 }
-    )
-
-      // Línea industrial reveal
-      .from(
-        ".reveal-line",
-        { scaleX: 0, duration: 1, transformOrigin: "left", ease: "expo.inOut" },
-        "-=1.2"
+      // Imagen fondo (ligero zoom + ajuste brillo)
+      tl.fromTo(
+        ".hero-bg",
+        { scale: 1.15, filter: "brightness(0.6)" },
+        { scale: 1, filter: "brightness(1)", duration: 2 }
       )
 
-      // Texto principal
-      .from(
-        ".reveal-title",
-        { y: 40, opacity: 0, duration: 1 },
-        "-=0.6"
-      )
+        // Línea industrial reveal
+        .from(
+          ".reveal-line",
+          { scaleX: 0, duration: 1, transformOrigin: "left", ease: "expo.inOut" },
+          "-=1.2"
+        )
 
-      // Subtítulo
-      .from(
-        ".reveal-subtitle",
-        { y: 30, opacity: 0, duration: 0.8 },
-        "-=0.7"
-      )
+        // Texto principal
+        .from(".reveal-title", { y: 40, opacity: 0, duration: 1 }, "-=0.6")
 
-      // Stats / iconos
-      .from(
-        ".reveal-badge",
-        { y: 20, opacity: 0, stagger: 0.2, duration: 0.6 },
-        "-=0.6"
-      );
+        // Subtítulo
+        .from(".reveal-subtitle", { y: 30, opacity: 0, duration: 0.8 }, "-=0.7")
 
-  }, heroRef);
+        // Stats / iconos
+        .from(".reveal-badge", { y: 20, opacity: 0, stagger: 0.2, duration: 0.6 }, "-=0.6");
+    }, heroRef);
 
-  return () => ctx.revert();
-}, []);
+    return () => ctx.revert();
+  }, []);
 
   // Parallax y float
   useGSAP(
     () => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(
-          [titleRef.current, subtitleRef.current,  badgeRef.current],
-          { opacity: 1, y: 0, clearProps: "all" }
-        );
+        gsap.set([titleRef.current, subtitleRef.current, badgeRef.current], {
+          opacity: 1,
+          y: 0,
+          clearProps: "all",
+        });
         return;
       }
 
@@ -83,65 +70,54 @@ export function HeroCalViva() {
     { scope: heroRef }
   );
 
-
   return (
-    <section ref={heroRef} className="relative min-h-[75vh] w-full overflow-hidden bg-black">
+    <section
+      ref={heroRef}
+      className=" light-image  relative min-h-[85vh] w-full overflow-hidden bg-black"
+    >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">
-       <LCPImage
-  src={HERO_PANORAMIC_IMAGE}
-  alt={HERO_PANORAMIC_ALT}
-  width={2560}
-  height={1080}
-  sizes="100vw"
-  priority
-  pictureClassName="block w-full h-full overflow-hidden"
-  className="hero-bg scale-[1.01] opacity-85"
-/>
+        <LCPImage
+          src={HERO_PANORAMIC_IMAGE}
+          alt={HERO_PANORAMIC_ALT}
+          width={2560}
+          height={1080}
+          sizes="100vw"
+          priority
+          pictureClassName="block w-full h-full overflow-hidden"
+          className="hero-bg scale-[1.01] opacity-85"
+        />
       </div>
 
       {/* Overlay oscuro */}
-      <div className="absolute inset-0 bg-gradient-to-r from-zinc-700/30 via-zinc-700/30 to-zinc-1/30 z-10" />
-
-
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(10,10,9,0.8)_0%,rgba(10,10,9,0.56)_50%,rgba(10,10,9,0.26)_100%)]" />
 
       {/* ================= CONTENIDO ln-91-70================= */}
-      <div className="relative z-30 flex min-h-[75vh] items-center">
-        <div className="mx-auto max-w-7xl px-6 w-full">
+<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
+          {/* Texto */}
+          <div className="max-w-3xl space-y-7 md:space-y-8">
+            <div className="mining-hero-eyebrow">
+              <div className="reveal-line mining-hero-line origin-left" />
+              <span></span>
+            </div>
 
-           {/* Texto */}
-          <div className="max-w-3xl  space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-            {/* Línea + etiqueta */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
-  
-               <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
-    CALERA SANTA ISABEL DE CUSHURO
-  </span>
-</div>
-</div>
-            
-           <h1 className="reveal-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
-  Cal Viva
-</h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Cal viva</h1>
 
-<p className="reveal-subtitle text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black text-white tracking-tight leading-tight">
-  Producción de Óxido de Calcio (CaO) 
-  de alta pureza orientado al sector minero e
-  industrial.
-</p>
-            <div className="flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base font-black text-emerald-400">
-  <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
-    <Factory size={20} />
-    <span>176 TM / día</span>
-  </div>
+            <p className="reveal-subtitle mining-hero-subtitle max-w-[37rem]">
+              Oxido de calcio de alta pureza para procesos mineros e industriales que exigen
+              estabilidad, continuidad y control tecnico.
+            </p>
+            <div className="mining-hero-badge-list">
+              <div className="reveal-badge mining-hero-badge">
+                <Factory size={18} />
+                <span>176 TM / día</span>
+              </div>
 
-  <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
-    <Pickaxe size={20} />
-    <span>Especializado en Minería</span>
-  </div>
-</div>
+              <div className="reveal-badge mining-hero-badge">
+                <Pickaxe size={18} />
+                <span>Especializado en mineria</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

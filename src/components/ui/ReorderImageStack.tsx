@@ -114,7 +114,7 @@ export default function ReorderImageStack({
   const activeLayouts = isMobile ? mobileLayouts : desktopLayouts;
 
   return (
-    <div className="relative mx-auto h-[420px] w-full max-w-[360px] md:h-[650px] md:max-w-none">
+    <div className="relative mx-auto h-[420px] w-full max-w-[360px] rounded-[32px] md:h-[650px] md:max-w-none">
       {order.map((image, index) => {
         const activeLayout = activeLayouts[index] ?? desktopLayouts[index];
 
@@ -130,7 +130,7 @@ export default function ReorderImageStack({
             }}
             className="absolute"
           >
-            <div className="relative h-full w-full overflow-hidden">
+            <div className="relative h-full w-full overflow-hidden rounded-[32px]">
               <OptimizedImage
                 src={image.src}
                 alt={image.alt}

@@ -4,12 +4,13 @@ import { gsap } from "gsap";
 import { Factory, Pickaxe } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { HeroMediaThumbnails } from "../ui/HeroMediaThumbnails";
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
-const HERO_PANORAMIC_IMAGE = "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria001";
+const HERO_PANORAMIC_IMAGE =
+  "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria001";
 const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroMaquinariaPesada() {
-
   const heroRef = useRef<HTMLDivElement>(null);
   const modelContainerRef = useRef<HTMLDivElement>(null);
 
@@ -117,7 +118,10 @@ export function HeroMaquinariaPesada() {
   }, [activeVideoIndex, activeSlides.length]);
 
   return (
-    <section ref={heroRef} className="relative min-h-[75vh] w-full overflow-hidden bg-black">
+    <section
+      ref={heroRef}
+      className="light-image  relative min-h-[85vh] w-full overflow-hidden bg-black"
+    >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">
         <LCPImage
@@ -155,61 +159,62 @@ export function HeroMaquinariaPesada() {
       </div>
 
       {/* Overlay oscuro */}
-      <div className="absolute inset-0 bg-black/30 z-20" />
+      <div className="absolute inset-0 z-20 bg-[linear-gradient(115deg,rgba(8,8,7,0.82)_0%,rgba(8,8,7,0.58)_48%,rgba(8,8,7,0.28)_100%)]" />
 
       {/* Glow dinámico */}
       <div
         className="absolute inset-0 z-20 pointer-events-none"
         style={{
           background: `radial-gradient(
-            600px at ${glowPosition.x}% ${glowPosition.y}%,
-            rgba(247, 184, 12, 0.29),
+            520px at ${glowPosition.x}% ${glowPosition.y}%,
+            rgba(214, 175, 103, 0.12),
             transparent 70%
           )`,
         }}
       />
-      
 
+      {/* ================= CONTENIDO ln-91-70================= */}
+<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
+          {/* Texto */}
+          <div className="max-w-3xl space-y-7 md:space-y-8">
+            <div className="mining-hero-eyebrow">
+              <div className="reveal-line mining-hero-line origin-left" />
+              <span></span>
+            </div>
 
-
-        {/* ================= CONTENIDO ln-91-70================= */}
-      <div className="relative z-30 flex min-h-[75vh] items-center">
-        <div className="mx-auto max-w-7xl px-6 w-full">
-
-           {/* Texto */}
-          <div className="max-w-3xl  space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-            {/* Línea + etiqueta */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
-  
-               <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
-    CALERA SANTA ISABEL DE CUSHURO
-  </span>
-</div>
-</div>
-
-            <h1 className="reveal-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight leading-tight">
-              Operación con Maquinaria Pesada
+<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               Operacion con maquinaria pesada
             </h1>
 
-            <p className="reveal-subtitle text-base sm:text-lg md:text-xl lg:text-2xl font-black text-white/80 tracking-tight leading-tight">
-             Movimiento de tierras, extracción y soporte operativo en minería no metálica, 
-con maquinaria pesada y control técnico en campo.
+            <p className="reveal-subtitle mining-hero-subtitle max-w-[39rem]">
+              Movimiento de tierras, extraccion y soporte operativo en mineria no metalica con
+              maquinaria pesada y control tecnico en campo.
             </p>
-            <div className="flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base font-black text-emerald-400">
-              <div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
-  <Factory size={20} />
-  <span>Equipos de Alto Rendimiento</span>
-</div>
+            <div className="mining-hero-badge-list">
+              <div className="reveal-badge mining-hero-badge">
+                <Factory size={18} />
+                <span>Equipos de Alto Rendimiento</span>
+              </div>
 
-<div className="reveal-badge flex w-full items-center gap-2 sm:w-auto">
-  <Pickaxe size={20} />
-  <span>Operación en Minería No Metálica</span>
-</div>
+              <div className="reveal-badge mining-hero-badge">
+                <Pickaxe size={18} />
+                <span>Operacion en mineria no metalica</span>
+              </div>
             </div>
           </div>
+
         </div>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-4 z-40 flex justify-center px-6 sm:bottom-6 lg:bottom-8">
+        <HeroMediaThumbnails
+          items={activeSlides.map((slide, index) => ({
+            src: slide.poster,
+            alt: `Vista de maquinaria ${index + 1}`,
+            label: `Mostrar vista de maquinaria ${index + 1}`,
+          }))}
+          activeIndex={activeVideoIndex}
+          onSelect={setActiveVideoIndex}
+        />
       </div>
     </section>
   );

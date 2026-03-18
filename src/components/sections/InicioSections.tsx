@@ -166,7 +166,7 @@ export function ContentIntro({
   }, [reverse, descriptionParagraphs.length]);
 
   return (
-    <section ref={sectionRef} className="relative dark-image overflow-hidden py-32 lg:py-48 ">
+    <section ref={sectionRef} className="relative overflow-hidden py-28 lg:py-36">
       <div
         className={`grid lg:grid-cols-2 gap-20 items-center ${
           reverse ? "lg:[&>*:first-child]:order-2" : ""
@@ -179,31 +179,28 @@ export function ContentIntro({
             className={`relative overflow-hidden rounded-2xl ${imageContainerClassName ?? ""}`}
             data-mining-image
           >
-            <div className="transition-transform duration-[1200ms] ease-out hover:scale-[1.02]">
+            <div className="transition-transform duration-700 ease-out">
               {imageElement}
             </div>
           </div>
         </div>
 
         {/* Texto */}
-        <div className="max-w-xl space-y-4 sm:space-y-5 lg:space-y-6">
-          <span
-            className="inline-block text-xs sm:text-sm md:text-base lg:text-4xl font-medium uppercase tracking-[0.24em] text-neutral-400
-  after:content-[''] after:block after:mt-2 after:h-[2px] after:w-22 after:bg-blue-800"
-          >
-            CALERA
+        <div className="max-w-xl space-y-5 sm:space-y-6 lg:space-y-7">
+          <span className="inline-block text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-stone-500 after:mt-3 after:block after:h-px after:w-12 after:bg-zinc-300 after:content-['']">
+            
           </span>
 
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight leading-[1.05]"
+            className="text-[clamp(2.4rem,4vw,5rem)] font-semibold leading-[0.98] tracking-[-0.05em] text-zinc-950"
           >
             {title}
           </h2>
 
           <div
             ref={textRef}
-            className="space-y-4 text-neutral-600 text-sm sm:text-base md:text-lg lg:text-md leading-relaxed"
+            className="space-y-5 text-sm leading-7 text-zinc-600 sm:text-base md:text-lg"
           >
             {descriptionParagraphs.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
@@ -222,13 +219,11 @@ export default function IntroConcept() {
     <section className="relative">
       <ContentIntro
         title="Santa Isabel de Cushuro"
-        description={`Somos una empresa con más de 15 años de trayectoria dedicada a la producción y comercialización de óxido de calcio.
+        description={`Somos una empresa con más de 15 años de trayectoria dedicada a la producción y comercialización de óxido de calcio para los sectores minero, agrícola e industrial.
 
-Contamos con amplia experiencia en logística, recursos humanos y concesiones mineras no metálicas (piedra caliza y carbón de piedra), lo que nos permite brindar un servicio eficiente y confiable en el suministro de óxido de calcio para los sectores minero, agrícola e industrial. 
+Integramos planta, logística, capital humano y concesiones mineras no metálicas para asegurar continuidad operativa, calidad técnica y respuesta confiable en cada suministro.
 
-Aplicamos estrictos estándares de calidad en el cuidado del medio ambiente, la seguridad y la producción, consolidándonos como una organización socialmente responsable en cada proyecto que desarrollamos.
-
-Nuestro objeto social está orientado a generar bienestar y mejorar la calidad de vida en nuestras comunidades de influencia, impulsando el desarrollo local y disminuyendo el desempleo a través de la creación de mejores oportunidades laborales.`}
+Trabajamos con foco en seguridad, trazabilidad, medio ambiente y desarrollo local, consolidando una operación responsable en nuestras comunidades de influencia.`}
         imageContainerClassName="overflow-visible rounded-none"
         imageElement={
           <ReorderImageStack
@@ -248,7 +243,6 @@ Nuestro objeto social está orientado a generar bienestar y mejorar la calidad d
                 alt: "Colaboración como proceso creativo",
               },
             ]}
-      
           />
         }
       />

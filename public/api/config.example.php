@@ -18,7 +18,7 @@ return [
 
     // Opcional: si lo dejas vacio, la API permite el mismo host actual y localhost.
     'allowed_origins' => [
-        'https://www.tu-dominio.com',
+        'https://kenifa.sg-host.com',
         'https://kenifa.sg-host.com',
     ],
 

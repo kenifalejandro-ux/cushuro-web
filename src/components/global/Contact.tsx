@@ -10,9 +10,7 @@ const PRODUCT_OPTIONS = [
   "Cal Viva",
   "Cal Agricola",
   "Carbon Antracita",
-  "Carbon Cisco",
-  "Transporte Logistico",
-  "Operacion con maquinaria",
+  "Carbon Tipo Cisco",
   "Cotizacion general",
 ];
 
@@ -24,10 +22,16 @@ export default function Contact({ className = "" }: ContactProps) {
 
   return (
     <div className={`relative z-30 ${className}`}>
-      <section className="rounded-2xl relative min-h-[20vh] bg-blue-900/50 backdrop-blur-lg p-8 shadow-2xl -mt-26 md:-23 ">
-        <h3 className="text-xl font-semibold leading-snug">
+      <section className="relative -mt-30  min-h-[20vh] overflow-hidden rounded-[2rem] border border-stone-700/70 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.12),transparent_30%),linear-gradient(160deg,#18181b_0%,#27272a_55%,#292524_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.68)]">
+        <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/70 to-transparent" />
+        <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-stone-300">
+          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+          Atencion Comercial
+        </div>
+
+        <h3 className="max-w-xl text-xl font-semibold leading-snug text-stone-100">
           Déjanos tus datos y{" "}
-          <span className="text-emerald-600">
+          <span className="text-emerald-400">
             uno de nuestros especialistas
           </span>{" "}
           se pondrá en contacto contigo.
@@ -37,71 +41,105 @@ export default function Contact({ className = "" }: ContactProps) {
           id="contactForm"
           action="/formulario"
           method="POST"
-          autoComplete="off"
-          className="mt-6 grid gap-4"
+          className="mt-8 grid gap-4"
         >
           <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="Nombres" className="sr-only">
+                Nombre
+              </label>
+              <input
+                type="text"
+                id="Nombres"
+                name="Nombre"
+                placeholder="Nombre"
+                autoComplete="name"
+                required
+                className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+              />
+            </div>
+            <div>
+              <label htmlFor="empresa" className="sr-only">
+                Empresa
+              </label>
+              <input
+                type="text"
+                id="empresa"
+                name="Empresa"
+                placeholder="Empresa"
+                autoComplete="organization"
+                required
+                className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="correo" className="sr-only">
+              Correo electronico
+            </label>
             <input
-              type="text"
-              id="Nombres"
-              name="Nombre"
-              placeholder="Nombre"
+              type="email"
+              id="correo"
+              name="Correo"
+              placeholder="Correo electrónico"
+              autoComplete="email"
               required
-              className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-            />
-            <input
-              type="text"
-              id="empresa"
-              name="Empresa"
-              placeholder="Empresa"
-              required
-              className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+              className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
             />
           </div>
 
-          <input
-            type="email"
-            id="correo"
-            name="Correo"
-            placeholder="Correo electrónico"
-            required
-            className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-          />
+          <div>
+            <label htmlFor="telefono" className="sr-only">
+              Telefono
+            </label>
+            <input
+              type="tel"
+              id="telefono"
+              name="Telefono"
+              placeholder="Teléfono"
+              autoComplete="tel"
+              inputMode="tel"
+              required
+              className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+            />
+          </div>
 
-          <input
-            type="tel"
-            id="telefono"
-            name="Telefono"
-            placeholder="Teléfono"
-            required
-            className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-          />
-
-          <select
-            id="producto"
-            name="Producto"
-            required
-            defaultValue=""
-            className="h-11 rounded-md bg-[#3a3533] px-4 text-sm text-white focus:outline-none focus:ring-1 focus:ring-emerald-600"
-          >
-            <option value="" disabled className="text-zinc-400">
-              Selecciona un producto o servicio
-            </option>
-            {PRODUCT_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
+          <div>
+            <label htmlFor="producto" className="sr-only">
+              Producto o servicio
+            </label>
+            <select
+              id="producto"
+              name="Producto"
+              required
+              defaultValue=""
+              className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+            >
+              <option value="" disabled className="text-stone-500">
+                Selecciona un producto o servicio
               </option>
-            ))}
-          </select>
+              {PRODUCT_OPTIONS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
 
-          <textarea
-            id="Mensaje"
-            name="Mensaje"
-            placeholder="Mensaje"
-            rows={4}
-            required
-            className="rounded-md bg-[#3a3533] p-4 text-sm text-white placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-600"
-          />
+          <div>
+            <label htmlFor="Mensaje" className="sr-only">
+              Mensaje
+            </label>
+            <textarea
+              id="Mensaje"
+              name="Mensaje"
+              placeholder="Mensaje"
+              rows={4}
+              required
+              className="w-full rounded-xl border border-white/8 bg-black/20 p-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+            />
+          </div>
 
           <input type="hidden" name="recaptcha_token" id="recaptcha_token" />
           <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
@@ -119,24 +157,24 @@ export default function Contact({ className = "" }: ContactProps) {
           <div
             id="mensaje"
             aria-live="polite"
-            className="hidden rounded-lg border border-[#d6d6d6] bg-white/70 px-4 py-3 text-sm text-[#b42318]"
+            className="hidden rounded-xl border border-red-400/30 bg-red-950/20 px-4 py-3 text-sm text-red-200"
           />
 
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
-              type="submit"
-              className="flex-1 mt-3 inline-flex h-12 items-center justify-center rounded-full bg-emerald-700 px-8 text-sm font-semibold text-zinc-100 transition hover:bg-emerald-900"
-            >
-              ENVIAR
-            </button>
+  type="submit"
+  className="mt-3 inline-flex h-12 min-h-[50px] flex-1 items-center justify-center rounded-full bg-emerald-700 px-8 text-sm font-semibold text-stone-50 transition hover:bg-emerald-600"
+>
+  ENVIAR
+</button>
 
-            <button
-              type="button"
-              id="clear-form"
-              className="flex-1 mt-3 inline-flex h-12 items-center justify-center rounded-full bg-zinc-600 px-8 text-sm font-semibold text-white transition hover:bg-zinc-700"
-            >
-              BORRAR
-            </button>
+<button
+  type="button"
+  id="clear-form"
+  className="mt-3 inline-flex h-12 min-h-[50px] flex-1 items-center justify-center rounded-full border border-stone-500/60 bg-stone-800/80 px-8 text-sm font-semibold text-stone-100 transition hover:bg-stone-700"
+>
+  BORRAR
+</button>
           </div>
         </form>
       </section>

@@ -218,7 +218,7 @@ export default function ReforestacionGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-32 px-6 bg-zinc-800 text-white">
+    <section ref={sectionRef} className="light-image py-32 px-6 bg-zinc-800 text-white">
       <div className="max-w-7xl mx-auto">
         <div ref={headingRef} className="mb-24 text-center space-y-4">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight">Reforestación Activa</h2>

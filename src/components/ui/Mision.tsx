@@ -100,7 +100,7 @@ export function Mision() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative min-h-screen rounded-t-[80px] md:rounded-t-[220px] lg:rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-zinc-600"
+      className="light-image relative min-h-screen rounded-t-[80px] md:rounded-t-[220px] lg:rounded-t-[520px] overflow-hidden bg-zinc-600 px-4 py-20 md:px-8 lg:px-16"
       
     >
       
@@ -122,7 +122,7 @@ export function Mision() {
             <Sparkles className="w-5 h-5 text-yellow-400" />
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[8px] leading-none uppercase tracking-[0.08em] text-blue-200 sm:text-[10px] sm:tracking-[0.12em] md:text-xs lg:gap-4 lg:text-md lg:tracking-wider">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[8px] leading-none uppercase tracking-[0.08em] text-stone-300 sm:text-[10px] sm:tracking-[0.12em] md:text-xs lg:gap-4 lg:text-md lg:tracking-wider">
             <span>LOC: HUAMACHUCO_LIBERTAD</span>
             <span className="text-green-400">•</span>
             <span>2025</span>
@@ -157,12 +157,12 @@ competitivo dentro del mercado empresarial local y regional.
                 <div className=" backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center">
                   <CheckCircle2 className="w-10 h-10 text-amber-500 mx-auto mb-3" />
                   <p className="text-white font-semibold">Calidad</p>
-                  <p className="text-blue-200 text-sm">Certificada</p>
+                  <p className="text-stone-300 text-sm">Certificada</p>
                 </div>
                 <div className=" backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center">
                   <CheckCircle2 className="w-10 h-10 text-amber-500 mx-auto mb-3" />
                   <p className="text-white font-semibold">Compromiso</p>
-                  <p className="text-blue-200 text-sm">Social</p>
+                  <p className="text-stone-300 text-sm">Social</p>
                 </div>
               </div>
             </div>

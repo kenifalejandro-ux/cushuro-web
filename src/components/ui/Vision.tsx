@@ -110,7 +110,7 @@ export function Vision() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative min-h-screen rounded-b-[80px] md:rounded-b-[220px] lg:rounded-b-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-gradient-to-br from-zinc-600 via-zinc-600 to-zinc-600"
+      className="light-image relative min-h-screen rounded-b-[80px] md:rounded-b-[220px] lg:rounded-b-[520px] overflow-hidden bg-gradient-to-br from-zinc-600 via-zinc-600 to-zinc-600 px-4 py-20 md:px-8 lg:px-16"
     >
 
   {/* CONTENIDO (Asegúrate de que tenga z-10) */}
@@ -127,7 +127,7 @@ export function Vision() {
             <Lightbulb className="w-5 h-5 text-yellow-400" />
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[8px] leading-none uppercase tracking-[0.08em] text-blue-300 sm:text-[10px] sm:tracking-[0.12em] md:text-xs lg:gap-4 lg:text-sm lg:tracking-widest">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-[8px] leading-none uppercase tracking-[0.08em] text-stone-300 sm:text-[10px] sm:tracking-[0.12em] md:text-xs lg:gap-4 lg:text-sm lg:tracking-widest">
             <span>LOC: HUAMACHUCO_LIBERTAD</span>
             <span className="text-green-400">⬥</span>
             <span>2025</span>

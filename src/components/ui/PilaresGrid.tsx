@@ -220,7 +220,7 @@ export default function PilaresGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="dark-image py-20 px-6 lg:px-12">
+    <section ref={sectionRef} className="light-image py-20 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {services.map((service, i) => (

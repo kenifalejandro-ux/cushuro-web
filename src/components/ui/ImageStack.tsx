@@ -1,6 +1,5 @@
 /* client/src/components/ui/ImageStack.tsx */
 
-
 import type { ReactNode } from "react";
 import { OptimizedImage } from "./OptimizedImage";
 import { cn } from "./utils";
@@ -63,18 +62,18 @@ const INLINE_GRID_COLS: Record<VisibleCount, string> = {
 
 const STACKED_LAYOUTS: Record<VisibleCount, StackLayout> = {
   1: {
-    stackHeight: "h-[500px] lg:h-[650px]",
+    stackHeight: "h-[420px] lg:h-[580px]",
     slots: [{ className: "absolute inset-0 h-full w-full z-10", layer: "primary" }],
   },
   2: {
-    stackHeight: "h-[540px] lg:h-[680px]",
+    stackHeight: "h-[460px] lg:h-[620px]",
     slots: [
-      { className: "absolute left-0 top-0 h-[75%] w-[85%] z-10", layer: "primary" },
-      { className: "absolute right-0 bottom-0 h-[66%] w-[74%] z-20", layer: "secondary" },
+      { className: "absolute left-0 top-0 h-[76%] w-[84%] z-10", layer: "primary" },
+      { className: "absolute right-0 bottom-0 h-[66%] w-[72%] z-20", layer: "secondary" },
     ],
   },
   3: {
-    stackHeight: "h-[580px] lg:h-[720px]",
+    stackHeight: "h-[420px] lg:h-[560px]",
     slots: [
       { className: "absolute left-0 top-0 h-[64%] w-[74%] z-10", layer: "primary" },
       { className: "absolute left-[12%] bottom-0 h-[62%] w-[78%] z-20", layer: "secondary" },
@@ -89,6 +88,15 @@ function toVisibleCount(imageCount: number): VisibleCount {
   return 3;
 }
 
+function ImageOverlay() {
+  return (
+    <>
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(24,24,27,0.08)_100%)]" />
+      <div className="absolute inset-0 ring-1 ring-inset ring-white/35" />
+    </>
+  );
+}
+
 function InlineImageCard({
   image,
   cardClassName,
@@ -101,7 +109,7 @@ function InlineImageCard({
   return (
     <div
       className={cn(
-        "relative h-[280px] overflow-hidden sm:h-[320px] lg:h-[380px]",
+        "group relative h-[280px] overflow-hidden rounded-[1.75rem] border border-white/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(243,245,248,0.88))] shadow-[0_18px_40px_-28px_rgba(24,24,27,0.20)] sm:h-[320px] lg:h-[380px]",
         cardClassName
       )}
     >
@@ -111,8 +119,12 @@ function InlineImageCard({
         fill
         sizes={image.sizes ?? INLINE_SIZES}
         priority={image.priority}
-        className={cn("object-cover", imageClassName)}
+        className={cn(
+          "object-cover transition-transform duration-700 group-hover:scale-[1.03]",
+          imageClassName
+        )}
       />
+      <ImageOverlay />
     </div>
   );
 }
@@ -128,15 +140,40 @@ function StackedImageCard({
 }) {
   return (
     <div className={slot.className}>
-      <div className="relative h-full w-full overflow-hidden">
+      <div className="group relative h-full w-full overflow-hidden rounded-[2rem] border border-white/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(242,245,247,0.86))] shadow-[0_24px_55px_-32px_rgba(24,24,27,0.22)]">
         <OptimizedImage
           src={image.src}
           alt={image.alt}
           fill
           sizes={image.sizes ?? STACKED_SIZES}
           priority={image.priority}
-          className={cn("object-cover", imageClassName)}
+          className={cn(
+            "object-cover transition-transform duration-700 group-hover:scale-[1.025]",
+            imageClassName
+          )}
         />
+        <ImageOverlay />
+      </div>
+    </div>
+  );
+}
+
+function StackBadge({ badge }: { badge: ImageStackBadge }) {
+  return (
+    <div className="absolute bottom-5 left-5 z-40 max-w-[220px] rounded-[1.25rem] border border-white/80 bg-white/78 px-4 py-3 shadow-[0_18px_40px_-24px_rgba(24,24,27,0.18)] backdrop-blur-md">
+      <div className="flex items-start gap-3">
+        {badge.icon ? (
+          <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+            {badge.icon}
+          </div>
+        ) : null}
+
+        <div className="min-w-0">
+          <div className="text-lg font-semibold tracking-[-0.04em] text-zinc-900">
+            {badge.value}
+          </div>
+          <p className="text-xs leading-5 text-zinc-600">{badge.label}</p>
+        </div>
       </div>
     </div>
   );
@@ -145,6 +182,7 @@ function StackedImageCard({
 export function ImageStack({
   images,
   layout = "stacked",
+  badge,
   className = "",
   fullScreen = false,
   imageClassName,
@@ -182,12 +220,11 @@ export function ImageStack({
     : cn(stackedLayout.stackHeight, stackedLayoutOverride?.stackHeight);
 
   return (
-    <div
-      className={cn("relative isolate w-full", stackHeightClass, className)}
-    >
+    <div className={cn("relative isolate w-full", stackHeightClass, className)}>
       {stackedLayout.slots.map((slot, index) => {
         const image = visibleImages[index];
         if (!image) return null;
+
         const slotOverride = stackedLayoutOverride?.slots?.[slot.layer];
 
         return (
@@ -202,6 +239,8 @@ export function ImageStack({
           />
         );
       })}
+
+      {badge ? <StackBadge badge={badge} /> : null}
     </div>
   );
 }

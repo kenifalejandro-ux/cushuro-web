@@ -23,12 +23,13 @@ type Props = {
 
 const stylePresets = {
   minimalista: {
-    container: "bg-transparent border-zinc-200/60",
-    containerShadow: "shadow-none",
-    divider: "border-zinc-200/60",
-    card: "bg-white border-zinc-200/60",
-    cardShadow: "shadow-none hover:shadow-md",
-    label: "text-zinc-500 tracking-[0.3em] font-medium",
+    container: "bg-[rgba(247,245,240,0.94)] border-stone-200/80 backdrop-blur-xl",
+    containerShadow: "shadow-[0_26px_50px_-40px_rgba(24,24,27,0.28)]",
+    divider: "border-stone-200/80",
+    card: "bg-[linear-gradient(180deg,rgba(255,255,255,0.97),rgba(245,244,240,0.94))] border-stone-200/80",
+    cardShadow:
+      "shadow-[0_18px_40px_-34px_rgba(24,24,27,0.22)] hover:shadow-[0_22px_44px_-34px_rgba(24,24,27,0.24)]",
+    label: "text-stone-500 tracking-[0.22em] font-medium",
     cardGlow: "opacity-0",
     bubble: "opacity-0",
     gridAccent: "opacity-60",
@@ -59,14 +60,15 @@ const stylePresets = {
     inlineAccent: "opacity-90",
   },
   industrial: {
-    container: "bg-gradient-to-br from-stone-50 via-zinc-50 to-stone-100 border-stone-300/80 ",
-    containerShadow: "shadow-sm ",
-    divider: "border-stone-300/70 ",
-    card: "bg-gradient-to-br from-zinc-50 to-stone-100 border-stone-300/80 ",
-    cardShadow: "shadow-[0_18px_40px_-30px_rgba(41,37,36,0.55)] hover:shadow-xl ",
-    label: "text-stone-600 tracking-[0.3em] font-semibold ",
+    container: "bg-zinc-950/88 border-white/10 backdrop-blur-xl",
+    containerShadow: "shadow-[0_28px_60px_-48px_rgba(15,23,42,0.85)]",
+    divider: "border-white/10",
+    card: "bg-zinc-950 border-white/10",
+    cardShadow:
+      "shadow-[0_20px_40px_-32px_rgba(15,23,42,0.75)] hover:shadow-[0_26px_50px_-36px_rgba(15,23,42,0.85)]",
+    label: "text-zinc-400 tracking-[0.28em] font-semibold",
     cardGlow: "opacity-0 group-hover:opacity-100 ",
-    bubble: "opacity-10 ",
+    bubble: "opacity-0",
     gridAccent: "opacity-100 ",
     inlineAccent: "opacity-100 ",
   },
@@ -222,8 +224,8 @@ export default function Metricas({
 
   const valueClass =
     estilo === "minimalista"
-      ? `${vista === "mobile" ? "text-2xl" : "text-3xl"} font-semibold tracking-tight`
-      : `${vista === "mobile" ? "text-3xl" : "text-4xl lg:text-5xl"} font-black tracking-tight`;
+      ? `${vista === "mobile" ? "text-2xl" : "text-3xl lg:text-[2.6rem]"} font-semibold tracking-[-0.05em]`
+      : `${vista === "mobile" ? "text-3xl" : "text-4xl lg:text-[2.8rem]"} font-semibold tracking-tight`;
 
   const labelClass = `${vista === "mobile" ? "text-[11px]" : "text-xs"} uppercase ${preset.label}`;
 
@@ -268,7 +270,9 @@ export default function Metricas({
               >
                 <Counter value={m.valor} active={visible[i]} reducedMotionEnabled={reducedMotion} />
               </div>
-              <div className={`${labelClass} text-zinc-100 text-center md:text-left`}>{m.etiqueta}</div>
+              <div className={`${labelClass} text-zinc-100 text-center md:text-left`}>
+                {m.etiqueta}
+              </div>
             </div>
           </div>
         ))}
@@ -326,35 +330,31 @@ export default function Metricas({
 
   /* ---------- GRID ---------- */
   return (
-    <div
-      ref={sectionRef}
-      className="relative left-1/2 right-1/2 w-screen -translate-x-1/2 min-h-[20vh]  bg-white/10 backdrop-blur-lg"
-    >
+    <div ref={sectionRef} className="relative">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-4 lg:gap-8 relative top-0 left-0 right-0 z-[100] transition-all duration-300">
+        <div
+          className={`grid grid-cols-1 gap-6 rounded-[1.85rem] border  px-6 py-8 md:grid-cols-3 md:gap-4 md:px-8 md:py-10 lg:grid-cols-3 lg:gap-8 ${preset.container} ${preset.containerShadow}`}
+        >
           {data.map((m, i) => (
             <div
               key={i}
               data-metrica-item
-              className="relative pl-0 md:pl-4 text-center md:text-left mt-10"
+              className={`relative mt-2 pl-0 text-center md:mt-0 md:pl-8 md:text-left ${i > 0 ? `md:border-l ${preset.divider}` : ""}`}
             >
-              {/**lineas horizontales 
-          <div
-            className={`absolute left-1/2 top-0 h-1 w-12 -translate-x-1/2 rounded-full md:left-0 md:top-2 md:h-10 md:w-1 md:translate-x-0 ${preset.gridAccent}`}
-            style={{ backgroundColor: color }}
-            aria-hidden
-          />*/}
+              <div className="mx-auto mb-5 h-px w-10 bg-zinc-300 md:mx-0" aria-hidden />
               <div
                 ref={(el) => {
                   metricRefs.current[i] = el;
                 }}
-                className={`${valueClass} mb-2 transition-transform hover:-translate-y-0.5`}
+                className={`${valueClass} mb-3 transition-transform hover:-translate-y-0.5`}
                 style={{ color }}
               >
                 <Counter value={m.valor} active={visible[i]} reducedMotionEnabled={reducedMotion} />
               </div>
 
-              <div className={labelClass}>{m.etiqueta}</div>
+              <div className={`${labelClass} ${estilo === "industrial" ? "text-zinc-300" : ""}`}>
+                {m.etiqueta}
+              </div>
             </div>
           ))}
         </div>

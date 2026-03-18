@@ -4,6 +4,7 @@ import { resolveLCPImageSources } from "@/components/ui/lcpImageSources";
 
 let gsapInstance: typeof import("gsap").gsap | null = null;
 let currentIndex = 0;
+let autoplayTimeoutId: number | null = null;
 
 export interface Service {
   image: string;
@@ -165,10 +166,28 @@ export async function updateText(service: Service, animate = false) {
   }
 }
 
-export async function animateTransition(nextIndex: number, services: Service[]) {
+export function stopSliceAutoplay() {
+  if (autoplayTimeoutId !== null) {
+    clearTimeout(autoplayTimeoutId);
+    autoplayTimeoutId = null;
+  }
+  if (window.__bkarsInterval) {
+    clearInterval(window.__bkarsInterval);
+    window.__bkarsInterval = null;
+  }
+}
+
+export async function animateTransition(
+  nextIndex: number,
+  services: Service[],
+  onChange?: (index: number) => void
+) {
   const gsap = await loadGsap();
   const nextService = services[nextIndex];
   if (!nextService) return;
+
+  currentIndex = nextIndex;
+  onChange?.(nextIndex);
 
   if (!nextService.selectedImage) {
     await preloadImages([nextService]);
@@ -210,10 +229,9 @@ export async function animateTransition(nextIndex: number, services: Service[]) 
   });
 }
 
-async function autoTransition(services: Service[]) {
+async function autoTransition(services: Service[], onChange?: (index: number) => void) {
   const nextIndex = (currentIndex + 1) % services.length;
-  await animateTransition(nextIndex, services);
-  currentIndex = nextIndex;
+  await animateTransition(nextIndex, services, onChange);
 }
 
 export async function initSlice(services: Service[]) {
@@ -231,24 +249,52 @@ export async function initSlice(services: Service[]) {
   await preloadImages([services[0]]);
   setBaseImage(services[0]);
   void updateText(services[0], false);
+}
 
-  if (services.length === 1) {
-    setTimeout(() => {
-      void animateTransition(0, services);
-    }, 100);
-    return;
-  }
+export function startSliceAutoplay(
+  services: Service[],
+  onChange?: (index: number) => void,
+  delayMs = 3000
+) {
+  if (services.length <= 1) return;
 
-  if (services.length > 1) {
-    if (window.__bkarsInterval) {
-      clearInterval(window.__bkarsInterval);
-      window.__bkarsInterval = null;
-    }
-    setTimeout(() => {
-      void autoTransition(services);
-      window.__bkarsInterval = window.setInterval(() => {
-        void autoTransition(services);
-      }, 3000);
-    }, 1500);
-  }
+  stopSliceAutoplay();
+
+  window.__bkarsInterval = window.setInterval(() => {
+    void autoTransition(services, onChange);
+  }, delayMs);
+}
+
+export function getCurrentSliceIndex() {
+  return currentIndex;
+}
+
+export function setCurrentSliceIndex(index: number) {
+  currentIndex = index;
+}
+
+export async function goToSlice(
+  index: number,
+  services: Service[],
+  onChange?: (index: number) => void
+) {
+  if (!services[index]) return;
+  await animateTransition(index, services, onChange);
+}
+
+export function scheduleInitialSliceAutoplay(
+  services: Service[],
+  onChange?: (index: number) => void,
+  initialDelayMs = 1500,
+  intervalMs = 3000
+) {
+  if (services.length <= 1) return;
+
+  stopSliceAutoplay();
+
+  autoplayTimeoutId = window.setTimeout(() => {
+    void autoTransition(services, onChange);
+    startSliceAutoplay(services, onChange, intervalMs);
+    autoplayTimeoutId = null;
+  }, initialDelayMs);
 }

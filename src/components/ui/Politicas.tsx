@@ -61,14 +61,14 @@ const PoliticasBlock = ({
   return (
     <div
       ref={blockRef}
-      className="relative bg-zinc-800/70 backdrop-blur-md border border-zinc-700 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-500 group"
+      className="group relative rounded-[1.5rem] border border-white/8 bg-zinc-950/88 p-8 transition-colors duration-300 hover:border-emerald-700/30"
     >
-      
+      <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-emerald-700/55 via-stone-500/30 to-transparent" />
       <div className="flex items-center gap-4 mb-6">
-        <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg group-hover:scale-110 transition-transform duration-300">
+        <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-emerald-700/20 bg-[linear-gradient(145deg,rgba(16,185,129,0.14),rgba(245,158,11,0.08))] text-emerald-400 transition-colors duration-300 group-hover:border-emerald-700/35 group-hover:text-emerald-300">
           {icon}
         </div>
-        <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+        <h3 className="text-xl font-bold text-white transition-colors group-hover:text-emerald-300">
           {title}
         </h3>
       </div>
@@ -145,24 +145,22 @@ export default function Politicas() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 py-24 md:py-32 overflow-hidden"
+      className="light-image relative overflow-hidden bg-[linear-gradient(180deg,#151515_0%,#1d1d1d_55%,#24201d_100%)] py-24 md:py-32"
     >
-      
-      {/* Elementos decorativos */}
-      <div className="absolute top-20 left-20 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-20 w-56 h-56 bg-indigo-600/10 rounded-full blur-3xl" />
+      <div className="absolute top-20 left-20 h-40 w-40 rounded-full bg-emerald-700/8 blur-3xl" />
+      <div className="absolute bottom-20 right-20 h-56 w-56 rounded-full bg-amber-500/8 blur-3xl" />
 
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Título */}
         <div className="text-center max-w-4xl mx-auto mb-20">
           <div className="flex justify-center mb-6">
-            <Layers className="w-10 h-10 text-blue-500" />
+            <Layers className="w-10 h-10 text-emerald-500" />
           </div>
 
           <h2
             ref={titleRef}
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
+            className="mb-6 text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl"
           >
            Nuestras Políticas
           </h2>
@@ -192,7 +190,7 @@ export default function Politicas() {
 <div className="absolute inset-0 pointer-events-none -mt-30 overflow-hidden" aria-hidden="true">
 
   {/* Fondo base */}
-  <div className="absolute inset-0 bg-gradient-to-b  from-blue-950 via-zinc-900 to-blue-900" />
+  <div className="absolute inset-0 bg-gradient-to-b from-stone-900 via-zinc-900 to-stone-950" />
 
   {/* ================= RIGHT SIDE (RADAR GRANDE) ================= */}
   <svg

@@ -10,7 +10,7 @@ import ServiceCard from "./ServiceCard";
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
-    {
+  {
     title: "Piedra Caliza",
     category: "Materia prima",
     image: "img-productos/piedra-caliza/operario-con-piedra-caliza",
@@ -200,13 +200,17 @@ export default function ServicesGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="dark-image py-20 px-6 lg:px-12 ">
+    <section ref={sectionRef} className="px-6 py-28 lg:px-12">
       <div className="max-w-7xl mx-auto">
-        <div ref={headingRef} className="mb-12 text-center">
-          <h2 className="text-md lg:text-xl font-normal text-zinc-300">
-            CALERA SANTA ISABEL DE CUSHURO
+        <div ref={headingRef} className="mb-14 text-center">
+          <p className="b2b-eyebrow text-center">Materiales y capacidades</p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-zinc-900 lg:text-5xl">
+            Soluciones para abastecimiento y soporte industrial
           </h2>
-          <p className="mt-3 text-2xl lg:text-4xl font-bold text-zinc-600">Nuestros servicios</p>
+          <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-zinc-600 sm:text-base">
+            Una presentación más clara de productos y servicios con foco en continuidad operativa,
+            pureza de materiales y capacidad técnica.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">

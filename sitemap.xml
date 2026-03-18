@@ -4,157 +4,91 @@
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
 >
   <url>
-    <loc>https://www.zincelideas.com/</loc>
-    <lastmod>2026-02-06</lastmod>
+    <loc>https://kenifa.sg-host.com/</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/ImageInicio/build-branding-1920.avif</image:loc>
-      <image:title>Diseno web y branding profesional para empresas en Peru | Zincel</image:title>
+      <image:loc>https://kenifa.sg-host.com/imagenes-optim/flota-calera-noche/flota-calera-noche-1920.webp</image:loc>
+      <image:title> - Produccion y logistica industrial</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/ImageInicio/Mockups-responsive-1920.avif</image:loc>
-      <image:title>Mockup de pagina web responsiva en distintos dispositivos - Zincel</image:title>
+      <image:loc>https://kenifa.sg-host.com/logo-caldera/logo-caldera-cushuro.png</image:loc>
+      <image:title>Logo de </image:title>
     </image:image>
   </url>
-
   <url>
-    <loc>https://www.zincelideas.com/Productos</loc>
-    <lastmod>2026-02-06</lastmod>
+    <loc>https://kenifa.sg-host.com/la-empresa</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://kenifa.sg-host.com/Productos/cal-viva</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/Productos/imagenes/desarrollo-web-1920.avif</image:loc>
-      <image:title>Diseno y desarrollo web optimizado para SEO - Zincel</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/Productos/imagenes/branding-1920.avif</image:loc>
-      <image:title>Branding, identidad visual y estrategia de marca - Zincel</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/Productos/imagenes/visual3d-1920.avif</image:loc>
-      <image:title>Diseno visual creativo y experiencia 3D - Zincel</image:title>
-    </image:image>
   </url>
-
   <url>
-    <loc>https://www.zincelideas.com/Productos/desarrollo-web</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kenifa.sg-host.com/Productos/cal-agricola</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/Productos/imagenes/desarrollo-web-1920.avif</image:loc>
-      <image:title>Desarrollo web profesional - Zincel</image:title>
-    </image:image>
   </url>
-
   <url>
-    <loc>https://www.zincelideas.com/Productos/diseno-ui-ux</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kenifa.sg-host.com/Productos/piedra-caliza</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://kenifa.sg-host.com/Productos/carbon-antracita</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/desarrollo-web/developper-web-1920.avif</image:loc>
-      <image:title>Diseno UI UX enfocado en experiencia de usuario y conversion - Zincel</image:title>
+      <image:loc>https://kenifa.sg-host.com/imagenes-optim/vestigio-carbon-antracita/vestigio-carbon-antracita-1920.webp</image:loc>
+      <image:title>Carbon antracita para procesos termicos e industria</image:title>
     </image:image>
   </url>
-
   <url>
-    <loc>https://www.zincelideas.com/Productos/branding</loc>
-    <lastmod>2026-02-06</lastmod>
+    <loc>https://kenifa.sg-host.com/Productos/carbon-cisco</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kenifa.sg-host.com/Servicios-Industriales/operacion-con-maquinaria-pesada</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/Productos/imagenes/branding-1920.avif</image:loc>
-      <image:title>Branding e identidad visual para empresas - Zincel</image:title>
-    </image:image>
+    <priority>0.8</priority>
   </url>
-
   <url>
-    <loc>https://www.zincelideas.com/Productos/modelado-3d</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/Productos/imagenes/visual3d-1920.avif</image:loc>
-      <image:title>Modelado 3D y visuales de alto impacto - Zincel</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.zincelideas.com/Portfolio</loc>
-    <lastmod>2026-02-06</lastmod>
+    <loc>https://kenifa.sg-host.com/Servicios-Industriales/transporte-logistico-especializado</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/trabajos/puerta-del-valle/carrusel/puerta-del-valle-Logo-1920.avif</image:loc>
-      <image:title>Proyectos de diseno web y branding - Zincel</image:title>
+      <image:loc>https://kenifa.sg-host.com/imagenes-optim/flota-calera-noche/flota-calera-noche-1920.webp</image:loc>
+      <image:title>Transporte logistico especializado para mineria e industria</image:title>
     </image:image>
   </url>
-
   <url>
-    <loc>https://www.zincelideas.com/la-empresa</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/quienes-somos/imagenes/panoramic/team-work-1920.avif</image:loc>
-      <image:title>Equipo creativo y profesional de Zincel</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.zincelideas.com/precios-web</loc>
-    <lastmod>2026-02-06</lastmod>
+    <loc>https://kenifa.sg-host.com/compromiso-ambiental-y-social/medio-ambiente</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/planes-web/paquete-basico-1920.avif</image:loc>
-      <image:title>Planes de desarrollo web y branding - Zincel</image:title>
-    </image:image>
   </url>
-
   <url>
-    <loc>https://www.zincelideas.com/Portfolio/puerta-del-valle</loc>
-    <lastmod>2026-02-06</lastmod>
+    <loc>https://kenifa.sg-host.com/compromiso-ambiental-y-social/responsabilidad-social</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://kenifa.sg-host.com/contacto</loc>
+    <lastmod>2026-03-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/Hero/puerta-del-valle/puerta-del-valle-hero-1920.avif</image:loc>
-      <image:title>Landing page conceptual Puerta del Valle - Zincel Ideas</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.zincelideas.com/Portfolio/tiesto-coffee</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/Hero/tiesto-coffee/Hero/Hero-tiesto-1920.avif</image:loc>
-      <image:title>Landing page Tiesto Coffee - Branding y diseno web</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.zincelideas.com/Portfolio/inti-pintay</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/trabajos/inti-pintay/image-nuesto-proceso/logo-intipintay-1920.avif</image:loc>
-      <image:title>Diseno web para Inti Pintay Cafe - Zincel Ideas</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://www.zincelideas.com/Portfolio/bkars</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <image:image>
-      <image:loc>https://www.zincelideas.com/imagenes-optim/trabajos/imagenes/bkars/bkars-1920.avif</image:loc>
-      <image:title>Landing page BKARS - Diseno web automotriz</image:title>
-    </image:image>
   </url>
 </urlset>

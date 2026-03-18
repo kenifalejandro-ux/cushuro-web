@@ -68,69 +68,68 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
 
 export function MiningStats() {
   return (
-    // Usamos bg-blue-900 o similar para el fondo principal, manteniendo la paleta.
-    <section className="relative py-24 bg-zinc-100 text-zinc-700 overflow-hidden">
-      
-      {/* Background Decor: Blueprint Grid sutil en color blanco/gris claro */}
-      <div className="absolute inset-0 opacity-[0.05]" 
-           style={{ backgroundImage: `radial-gradient(#ffffff 0.5px, transparent 0.5px)`, backgroundSize: '24px 24px' }} 
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f4efe6_0%,#ede4d7_100%)] py-24 text-zinc-800">
+      <div
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          backgroundImage: "radial-gradient(rgba(39,39,42,0.45) 0.6px, transparent 0.6px)",
+          backgroundSize: "24px 24px",
+        }}
       />
-      
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-700/55 to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="border-l-4 border-emerald-600 pl-6 mb-20">
-          <div className="flex items-center gap-4 mb-2 text-emerald-600 font-mono text-xs tracking-widest">
-            <span className="animate-pulse">● DATOS DE OPERACIÓN EN VIVO</span>
-            {/* Usamos el RUC de la empresa del PDF */}
-            <span className="text-blue-400">RUC: 20482610944</span>
+        <div className="mb-20 border-l-4 border-emerald-700 pl-6">
+          <div className="mb-2 flex items-center gap-4 font-mono text-xs tracking-widest text-emerald-700">
+            <span>● OPERACION Y CAPACIDAD</span>
+            <span className="text-stone-600">RUC: 20482610944</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter italic">
-            Calera Santa Isabel de Cushuro <span className="text-emerald-600">S.A.C</span>
+          <h2 className="text-4xl font-semibold tracking-[-0.05em] text-zinc-950 md:text-5xl">
+             <span className="text-emerald-600">S.A.C</span>
           </h2>
-              <p className="text-1xl md:text-3xl font-normal text-zinc-700 tracking-tighter italic">
-            "Fortalecemos Industrias, cuidamos comunidades"
+          <p className="text-base leading-7 text-stone-600 md:text-xl md:leading-8">
+            Indicadores clave de producción, personal, seguridad y cobertura operativa.
           </p>
         </div>
 
-     
-        {/* Las tarjetas ahora usan un fondo azul más oscuro y bordes para un look de panel */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-zinc-100 bg-blue-700 backdrop-blur-sm">
+        <div className="overflow-hidden rounded-[1.85rem] border border-stone-300 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.08),transparent_30%),linear-gradient(180deg,#171717_0%,#242424_58%,#2b2725_100%)] shadow-[0_28px_60px_-34px_rgba(24,24,27,0.34)]">
+          <div className="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-3">
           {STATS.map((stat, idx) => (
             <motion.div 
               key={stat.id}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative p-10 border border-white/5 hover:bg-emerald-900/10 transition-all duration-300"
+              className="group relative overflow-hidden border border-white/5 bg-white/[0.015] p-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-colors duration-300 hover:bg-white/[0.03]"
             >
-              {/* Corner Accents mantienen el color esmeralda como acento de UI */}
+              <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-emerald-500/60 via-stone-400/35 to-transparent" />
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-emerald-600/30 group-hover:border-emerald-600" />
               <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-emerald-600/30 group-hover:border-emerald-600" />
 
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
-                  <stat.icon className="w-8 h-8 text-emerald-600 opacity-80 group-hover:opacity-100 transition-opacity" />
-                  <span className="text-[10px] font-mono text-blue-400 group-hover:text-emerald-600">ID_STAT_{stat.id}</span>
+                  <stat.icon className="h-8 w-8 text-emerald-400 opacity-90 transition-opacity group-hover:opacity-100" />
+                  <span className="text-[10px] font-mono text-stone-400 group-hover:text-emerald-400">ID_STAT_{stat.id}</span>
                 </div>
                 
                 <div>
-                  <div className="text-5xl font-black font-mono tracking-tighter text-white">
+                  <div className="text-5xl font-black font-mono tracking-tighter text-stone-50">
                     <CountUp end={stat.value} suffix={stat.suffix} />
                   </div>
-                  <h3 className="text-sm font-bold text-blue-300 mt-1 tracking-widest uppercase">
+                  <h3 className="mt-1 text-sm font-bold uppercase tracking-widest text-stone-300">
                     {stat.label}
                   </h3>
                 </div>
 
-                <p className="text-xs text-blue-200/70 font-medium leading-relaxed">
+                <p className="text-xs font-medium leading-relaxed text-stone-400">
                   {stat.subtext}
                 </p>
               </div>
             </motion.div>
           ))}
+          </div>
         </div>
       </div>
-      
     </section>
   );
 }

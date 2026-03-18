@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { GraduationCap, Sprout, Users, BookOpen, Activity, Palette, Trophy, Quote } from 'lucide-react';
+import PageSEO from "../global/PageSEO";
 import PilaresGrid from '../ui/PilaresGrid';
 import ReorderImageStack from '../ui/ReorderImageStack';
 import { ImageStack } from '../ui/ImageStack';
@@ -194,12 +195,13 @@ export const ResponsabilidadSocial: React.FC = () => {
 
   return (
     <div ref={containerRef} className="dark-image bg-white text-zinc-900 font-light overflow-hidden">
+      <PageSEO pageId="responsabilidad-social" />
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex flex-col items-center justify-center px-6 py-24 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
           <h1 className="hero-title-social text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-light tracking-tighter text-zinc-800">
             Compromiso<br />
-            <span className="text-blue-600">Social</span>
+            <span className="text-emerald-600">Social</span>
           </h1>
           <div className="hero-line-social h-[1px] w-48 bg-emerald-500 mx-auto" />
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed">
@@ -209,56 +211,79 @@ export const ResponsabilidadSocial: React.FC = () => {
         </div>
       </section>
 
-      {/* Filosofía Section */}
-      <section className="reveal-social py-24 px-6 ">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-          <div className="space-y-8">
-            <h2 className="text-4xl md:text-5xl font-light text-zinc-800 tracking-tight leading-tight">
-              Más que minería, <br />
-              <span className="text-emerald-600">es humanidad</span>
-            </h2>
-            <div className="space-y-6 text-zinc-600 text-lg leading-relaxed">
-              <p>
-                Entendemos que cada proyecto minero toca vidas reales. Por eso, nuestro compromiso social 
-                no es un añadido: es el corazón de nuestra operación.
-              </p>
-              <p>
-                Respetamos costumbres, celebramos culturas, protegemos la salud y el ambiente. 
-                Sin distinción de raza, religión o posición económica.
-              </p>
-              <div className="pl-6 border-l-2 border-blue-500 py-2 italic text-zinc-700 text-lg">
-                "La verdadera riqueza no está en lo que extraemos, sino en lo que construimos con las comunidades."
-              </div>
-            </div>
-          </div>
-          <div 
-            ref={(el) => { imageRefs.current[0] = el }}
-              className="relative h-[600px]  overflow-hidden  order-2 md:order-1"
-            >
-            <ReorderImageStack
-                  images={[
-                    {
-                      src: "/img-responsabilidad-social/mineria/imagenes/img-001",
-                      alt: "Monitoreo ambiental",
-                    },
-                    {
-                      src: "/img-medio-ambiente/hero/medio-ambiente/reforestacion-medio-ambiente",
-                      alt: "Control de emisiones",
-                    },
-                    {
-                      src: "/img-responsabilidad-social/mineria/imagenes/img-002",
-                      alt: "Gestión de residuos",
-                    },
-                  ]}
-                />
-            <div className="parallax-inner absolute inset-[-20%] flex items-center justify-center">
-              <div className="text-center opacity-30">
-                <Users className="w-20  h-20 mx-auto mb-4" />
-              </div>
-            </div>
+     {/* Filosofía Section */}
+<section className="reveal-social bg-white px-6 py-24 md:py-32">
+  <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2 md:gap-20">
+    <div className="order-1 space-y-8">
+      <div className="inline-flex items-center gap-3 rounded-full border border-zinc-200/80 bg-white px-4 py-2 shadow-[0_10px_24px_rgba(24,24,27,0.06)]">
+        <span className="h-2 w-2 rounded-full bg-emerald-500" />
+        <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-600">
+          Filosofía social
+        </span>
+      </div>
+
+      <h2 className="text-4xl font-medium leading-[0.95] tracking-[-0.05em] text-zinc-900 md:text-5xl lg:text-6xl">
+        Más que minería, <br />
+        <span className="text-emerald-600 tracking-[-0.06em]">
+          es humanidad
+        </span>
+      </h2>
+
+      <div className="max-w-2xl space-y-5 text-base leading-8 text-zinc-600 md:text-lg">
+        <p>
+          Entendemos que cada proyecto minero toca vidas reales. Por eso,
+          nuestro compromiso social no es un añadido: es parte esencial de
+          nuestra operación.
+        </p>
+
+        <p>
+          Respetamos costumbres, celebramos culturas y protegemos la salud y el
+          ambiente, promoviendo relaciones sostenibles con las comunidades de
+          nuestro entorno.
+        </p>
+      </div>
+
+      <div className="max-w-xl rounded-[1.75rem] border border-zinc-200/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(245,247,244,0.9))] px-6 py-5 shadow-[0_18px_40px_-28px_rgba(24,24,27,0.14)]">
+        <p className="text-sm leading-7 italic text-zinc-700 md:text-base">
+          “La verdadera riqueza no está en lo que extraemos, sino en lo que
+          construimos con las comunidades.”
+        </p>
+      </div>
+    </div>
+
+    <div
+      ref={(el) => {
+        imageRefs.current[0] = el;
+      }}
+      className="relative order-2"
+    >
+      <div className="relative mx-auto max-w-[42rem]">
+        <ReorderImageStack
+          images={[
+            {
+              src: "/img-responsabilidad-social/mineria/imagenes/img-001",
+              alt: "Relación social con comunidades",
+            },
+            {
+              src: "/img-medio-ambiente/hero/medio-ambiente/reforestacion-medio-ambiente",
+              alt: "Reforestación y compromiso ambiental",
+            },
+            {
+              src: "/img-responsabilidad-social/mineria/imagenes/img-002",
+              alt: "Desarrollo social y entorno comunitario",
+            },
+          ]}
+        />
+
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="rounded-full border border-white/20 bg-white/10 p-6 backdrop-blur-[2px]">
+            <Users className="h-12 w-12 text-white/70 md:h-16 md:w-16" />
           </div>
         </div>
-      </section>        
+      </div>
+    </div>
+  </div>
+</section>  
 
       {/* Pilares Grid */}
       <section   className="light-image relative min-h-screen rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-zinc-800">
@@ -279,7 +304,7 @@ export const ResponsabilidadSocial: React.FC = () => {
                 key={i}
                 className="pillar-social p-15 w-[350px]  transition-all duration-100 group  hover:shadow-lg"
               >
-                <div className="w-14 h-14 bg-zinc-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-50 transition-colors">
+                <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-zinc-50 transition-colors group-hover:bg-stone-100">
                   <Icon className="w-7 h-7 text-emerald-600 group-hover:text-zinc-600 transition-colors" />
                 </div>
                 <h3 className="text-xl font-medium text-zinc-100 mb-4">{pillar.title}</h3>
@@ -288,7 +313,7 @@ export const ResponsabilidadSocial: React.FC = () => {
                   <ul className="mt-5 space-y-2">
                     {(pillar.commitments ?? []).map((commitment, j) => (
                       <li key={j} className="flex items-start gap-2 text-zinc-100 text-sm leading-relaxed">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-blue-400 shrink-0" />
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/80" />
                         {commitment}
                       </li>
                     ))}
@@ -304,7 +329,7 @@ export const ResponsabilidadSocial: React.FC = () => {
          </section>
 
       {/* Quote Section */}
-      <section className="py-24 px-6 bg-zinc-800 text-white overflow-hidden relative reveal-social">
+      <section className="light-image py-24 px-6 bg-zinc-800 text-white overflow-hidden relative reveal-social">
         <div className="max-w-5xl mx-auto text-center relative z-10 space-y-10">
           <Quote className="w-12 h-12 text-emerald-500/40 mx-auto" />
           <h2 className="text-3xl md:text-5xl font-light leading-tight">
@@ -315,44 +340,68 @@ export const ResponsabilidadSocial: React.FC = () => {
         </div>
       </section>
 
-      {/* Educación por el Trabajo Section */}
-      <section className="py-32 px-6 bg-zinc-50/50">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-          <div 
-            ref={(el) => { imageRefs.current[1] = el }}
-              className="relative h-[600px]  overflow-hidden  order-2 md:order-1"
-            >
-            <ImageStack
-                  images={[
-                    {
-                      src: "/img-responsabilidad-social/educacion-trabajo/imagenes/img001",
-                      alt: "Monitoreo ambiental",
-                    },  
-                  ]}
-                />
-          </div>
-          <div className="reveal-social space-y-10 order-1 md:order-2">
-            <h2 className="text-4xl md:text-5xl font-light text-zinc-800 tracking-tight leading-tight">
-              Educación <br /> <span className="text-blue-600 tracking-tighter italic">por el Trabajo</span>
-            </h2>
-            <div className="space-y-6 text-zinc-600 text-lg leading-relaxed font-light">
-              <p>
-                No solo generamos empleos; formamos profesionales. Cada trabajador es una oportunidad de desarrollo, 
-                cada capacitación es una inversión en el futuro.
-              </p>
-              <p>
-                Articulamos educación con trabajo, salud con productividad y cultura con desarrollo integral. 
-              </p>
-              <div className="p-10 bg-white border border-blue-100 rounded-3xl shadow-sm">
-                <p className="text-zinc-800 font-medium mb-3 italic">Nuestro compromiso:</p>
-                <p className="text-sm">
-                  Formar con el apoyo de la inversión privada para construir puentes de desarrollo sostenible y paz social.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+     {/* Educación por el Trabajo Section */}
+<section className="bg-[#f5f7f8] px-6 py-24 md:py-32">
+  <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2 md:gap-20">
+    <div
+      ref={(el) => {
+        imageRefs.current[1] = el;
+      }}
+      className="order-2 md:order-1"
+    >
+      <ImageStack
+        className="mx-auto max-w-[38rem]"
+        images={[
+          {
+            src: "/img-responsabilidad-social/educacion-trabajo/imagenes/img001",
+            alt: "Educación por el trabajo",
+          },
+        ]}
+      />
+    </div>
+
+    <div className="reveal-social order-1 space-y-8 md:order-2">
+      <div className="inline-flex items-center gap-3 rounded-full border border-white/80 bg-white/75 px-4 py-2 shadow-[0_10px_24px_rgba(24,24,27,0.06)] backdrop-blur-sm">
+        <span className="h-2 w-2 rounded-full bg-emerald-500" />
+        <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-600">
+          Desarrollo social
+        </span>
+      </div>
+
+      <h2 className="text-4xl font-medium leading-[0.95] tracking-[-0.05em] text-zinc-900 md:text-5xl lg:text-6xl">
+        Educación <br />
+        <span className="text-emerald-600 italic tracking-[-0.06em]">
+          por el Trabajo
+        </span>
+      </h2>
+
+      <div className="max-w-2xl space-y-5 text-base leading-8 text-zinc-600 md:text-lg">
+        <p>
+          No solo generamos empleos; formamos profesionales. Cada trabajador
+          representa una oportunidad de desarrollo y cada capacitación una
+          inversión concreta en el futuro.
+        </p>
+
+        <p>
+          Articulamos educación con trabajo, salud con productividad y cultura
+          con desarrollo integral para fortalecer el crecimiento sostenible en
+          nuestro entorno.
+        </p>
+      </div>
+
+      <div className="max-w-xl rounded-[2rem] border border-white/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.92),rgba(245,247,250,0.88))] p-8 shadow-[0_18px_45px_-28px_rgba(24,24,27,0.14)]">
+        <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-zinc-500">
+          Nuestro compromiso
+        </p>
+
+        <p className="text-base leading-7 text-zinc-700 md:text-lg">
+          Formar con el apoyo de la inversión privada para construir puentes de
+          desarrollo sostenible y paz social.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
     </div>
   );
 };

@@ -4,7 +4,9 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Leaf, Trees, Droplets, Mountain, ArrowDown, Waves, Wind, Sun } from 'lucide-react';
+import { Mountain, ArrowDown, Waves, Wind, Sun } from 'lucide-react';
+import PageSEO from "../global/PageSEO";
+import EnvironmentalHealthSection from '../ui/EnvironmentalHealthSection';
 import ReorderImageStack from '../ui/ReorderImageStack';
 import ReforestacionGrid from '../ui/ReforestacionGrid';
 
@@ -87,25 +89,15 @@ export const MedioAmbiente: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
-  const reforestationCards = [
-    { 
-      title: 'Especies Nativas', 
-      desc: 'Protección de Quinual, quishuar, eucalipto y aliso. Especies que resistieron el tiempo.',
-      icon: Trees 
-    },
-    { 
-      title: 'Desarrollo Sostenible', 
-      desc: 'No solo plantamos árboles; cultivamos futuro. Cada árbol es empleo y oxígeno.',
-      icon: Leaf 
-    },
-    { 
-      title: 'Inversión Comunitaria', 
-      desc: 'Devolver a la tierra lo que nos permite prosperar a través de la reforestación activa.',
-      icon: Mountain 
-    },
+  const environmentalHealthItems = [
+    { icon: Waves, title: 'Agua', description: 'Control y protección hídrica.' },
+    { icon: Wind, title: 'Aire', description: 'Monitoreo de emisiones.' },
+    { icon: Sun, title: 'Residuos', description: 'Gestión responsable.' },
+    { icon: Mountain, title: 'Suelos', description: 'Restauración progresiva.' },
   ];
 return (
   <div ref={containerRef} className="dark-image bg-white text-zinc-800 font-light overflow-hidden">
+    <PageSEO pageId="medio-ambiente" />
     {/* Hero Section */}
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 bg-zinc-80/30">
       <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8">
@@ -141,7 +133,7 @@ return (
 
           <div className="space-y-6 text-zinc-800 text-lg leading-relaxed">
             <p>
-              En Calera Santa Isabel de Cushuro S.A.C., la preservación ambiental es
+              En  S.A.C., la preservación ambiental es
               un eje transversal de gestión. Cada etapa del proceso productivo incorpora
               criterios de responsabilidad ambiental y control sostenible.
             </p>
@@ -220,13 +212,13 @@ return (
 
       {/* Título */}
       <div className="space-y-5">
-        <span className="text-sm uppercase tracking-[0.4em] text-blue-600 font-medium">
+        <span className="text-sm font-medium uppercase tracking-[0.4em] text-emerald-700">
           Impacto Económico
         </span>
 
         <h2 className="text-5xl md:text-6xl font-light text-zinc-900 tracking-tight leading-tight">
           Producción con <br />
-          <span className="text-blue-600 font-normal">Propósito</span>
+          <span className="font-normal text-emerald-700">Propósito</span>
         </h2>
       </div>
 
@@ -249,21 +241,21 @@ return (
         {/* Lista Mejorada */}
         <ul className="space-y-4 text-sm text-zinc-600 leading-relaxed">
                       <li className="flex items-start gap-4">
-            <span className="text-blue-600 font-semibold">02</span>
+            <span className="font-semibold text-amber-600">02</span>
             <p>Mantemiento de carreteras en la zona de influencia.</p>
           </li>
             <li className="flex items-start gap-4">
-            <span className="text-blue-600 font-semibold">02</span>
+            <span className="font-semibold text-amber-600">02</span>
             <p>Mantemiento de vías de centros poblados.</p>
           </li>
 
           <li className="flex items-start gap-4">
-            <span className="text-blue-600 font-semibold">03</span>
+            <span className="font-semibold text-amber-600">03</span>
             <p>Impulsar la mejora continua en la calidad de atención de los servicios de salud.</p>
           </li>
 
           <li className="flex items-start gap-4">
-            <span className="text-blue-600 font-semibold">04</span>
+            <span className="font-semibold text-amber-600">04</span>
             <p>Preservar la salud ambiental del distrito y promover el desarrollo regional sostenible.</p>
           </li>
         </ul>
@@ -274,54 +266,12 @@ return (
   </div>
 </section>
 
-    {/* Salud Ambiental */}
-    <section className="py-32 px-6 bg-emerald-50/20">
-      <div className="max-w-4xl mx-auto space-y-20">
-        <div className="text-center space-y-6 reveal-section">
-          <h2 className="text-5xl font-light text-zinc-800">
-            Salud Ambiental
-          </h2>
-
-          <p className="text-zinc-800 text-xl leading-relaxed font-light">
-            Nuestra responsabilidad incluye el monitoreo permanente del aire,
-            agua y suelo, reduciendo factores contaminantes y promoviendo
-            estándares de salubridad alineados con la normativa vigente.
-          </p>
-
-          <p className="text-zinc-800 text-base leading-relaxed font-light">
-            Asimismo, promovemos alianzas con autoridades locales y entidades
-            de salud para contribuir al bienestar integral de la población
-            y fortalecer la calidad de vida en nuestra zona de influencia.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            { icon: Waves, title: 'Agua', desc: 'Control y protección hídrica.' },
-            { icon: Wind, title: 'Aire', desc: 'Monitoreo de emisiones.' },
-            { icon: Sun, title: 'Residuos', desc: 'Gestión responsable.' },
-            { icon: Mountain, title: 'Suelos', desc: 'Restauración progresiva.' },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="reveal-section p-8 bg-white rounded-2xl shadow-sm border border-zinc-800 flex flex-col items-center text-center space-y-4"
-            >
-              <div className="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500">
-                <item.icon className="w-6 h-6" />
-              </div>
-
-              <h4 className="font-medium text-zinc-800">
-                {item.title}
-              </h4>
-
-              <p className="text-xs text-zinc-800">
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <EnvironmentalHealthSection
+      title="Salud Ambiental"
+      intro="Nuestra responsabilidad incluye el monitoreo permanente del aire, agua y suelo, reduciendo factores contaminantes y promoviendo estándares de salubridad alineados con la normativa vigente."
+      supportingText="Asimismo, promovemos alianzas con autoridades locales y entidades de salud para contribuir al bienestar integral de la población y fortalecer la calidad de vida en nuestra zona de influencia."
+      items={environmentalHealthItems}
+    />
   </div>
 );
 }

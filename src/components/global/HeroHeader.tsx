@@ -1,9 +1,8 @@
 import React, { lazy, Suspense, useRef } from "react";
 
 import { useVideoInView } from "../ui/useVideoInView";
+import HeroInicio from "../Hero/Hero";
 
-// Lazy load de heroes inicio
-const HeroInicio = lazy(() => import("../Hero/Hero"));
 // Lazy load de heroes la empresa
 const HeroLaEmpresa = lazy(() => import("../Hero/HeroLaEmpresa"));
 // Lazy load de heroes Products

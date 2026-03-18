@@ -17,7 +17,6 @@ export default function HeroMedioAmbiente() {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.fromTo(
-
         ".hero-bg",
         { scale: 1.08, filter: "brightness(0.65)" },
         { scale: 1, filter: "brightness(1)", duration: 2.2 }
@@ -31,7 +30,10 @@ export default function HeroMedioAmbiente() {
   );
 
   return (
-    <section ref={heroRef} className="relative min-h-[65vh] w-full overflow-hidden bg-black">
+    <section
+      ref={heroRef}
+      className="light-image  relative min-h-[85vh] w-full overflow-hidden bg-black"
+    >
       {/* Imagen principal con zoom sutil */}
       <LCPImage
         src={HERO_IMAGE}
@@ -44,53 +46,37 @@ export default function HeroMedioAmbiente() {
       />
 
       {/* Overlay oscuro suave */}
-
- 
-      <div className="absolute inset-0 bg-gradient-to-r from-black/0 via-black/40 to-black/40 z-10" />
-  {/* Centro */}
-  <div className="absolute w-full top-0 w-1/3 h-full backdrop-blur-xs z-10" />
-
-  <div className="relative z-20 text-white p-10">
-    Contenido aquí
-  </div>
-   {/* ================= CONTENIDO ln-91-70================= */}
-      <div className="relative z-30 flex min-h-[65vh] items-center">
-        <div className="mx-auto max-w-7xl px-6 w-full">
-
-           {/* Texto */}
-          <div className="max-w-3xl  space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-            {/* Línea + etiqueta */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
-  
-               <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
-    CALERA SANTA ISABEL DE CUSHURO
-  </span>
-</div>
-</div>
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(8,8,7,0.78)_0%,rgba(8,8,7,0.48)_46%,rgba(8,8,7,0.24)_100%)]" />
+      {/* ================= CONTENIDO ln-91-70================= */}
+<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
+          {/* Texto */}
+          <div className="max-w-3xl space-y-7 md:space-y-8">
+            <div className="mining-hero-eyebrow">
+              <div className="reveal-line mining-hero-line origin-left" />
+              <span></span>
+            </div>
 
             {/* Título */}
-            <h1 className="reveal-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white leading-none">
-              COMPROMISO AMBIENTAL
-            </h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Compromiso ambiental</h1>
 
             {/* Subtítulo */}
-            <p className="reveal-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-medium max-w-xl">
-             Desarrollamos conciencia y responsabilidad en todo el equipo para operar bajo los más altos estándares de gestión ambiental.            </p>
+            <p className="reveal-subtitle mining-hero-subtitle max-w-[39rem]">
+              Desarrollamos una cultura operativa basada en responsabilidad ambiental, trazabilidad
+              y estandares de gestion sostenibles en toda la cadena productiva.
+            </p>
 
             {/* Badges / iconos */}
-            <div className="flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base text-emerald-400 font-semibold pt-4">
-              <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-                <Sprout size={26} />
+            <div className="mining-hero-badge-list">
+              <div className="reveal-badge mining-hero-badge">
+                <Sprout size={18} />
                 <span>Reforestación</span>
               </div>
-              <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-                <Heart size={26} />
+              <div className="reveal-badge mining-hero-badge">
+                <Heart size={18} />
                 <span>Salud Comunitaria</span>
               </div>
-              <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-                <Users size={26} />
+              <div className="reveal-badge mining-hero-badge">
+                <Users size={18} />
                 <span>Cultura e Identidad</span>
               </div>
             </div>

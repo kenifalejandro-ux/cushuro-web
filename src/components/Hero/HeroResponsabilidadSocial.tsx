@@ -1,6 +1,5 @@
 /**client/src/components/Hero/HeroResponsabilidadSocial.tsx */
 
-
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef } from "react";
@@ -20,7 +19,6 @@ export default function HeroResponsabilidadSocial() {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl.fromTo(
-
         ".hero-bg",
         { scale: 1.08, filter: "brightness(0.65)" },
         { scale: 1, filter: "brightness(1)", duration: 2.2 }
@@ -34,7 +32,10 @@ export default function HeroResponsabilidadSocial() {
   );
 
   return (
-    <section ref={heroRef} className="relative min-h-[78vh] w-full overflow-hidden bg-black">
+    <section
+      ref={heroRef}
+      className="light-image  relative min-h-[78vh] w-full overflow-hidden bg-black"
+    >
       {/* Imagen principal con zoom sutil */}
       <LCPImage
         src={HERO_IMAGE}
@@ -47,51 +48,42 @@ export default function HeroResponsabilidadSocial() {
       />
 
       {/* Overlay oscuro suave */}
-     <div className="absolute inset-0 backdrop-blur-[3px] bg-zinc-950/30 z-10" />
-     
-        {/* ================= CONTENIDO ln-91-70================= */}
-      <div className="relative z-30 flex min-h-[75vh] items-center">
-        <div className="mx-auto max-w-7xl px-6 w-full">
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(8,8,7,0.78)_0%,rgba(8,8,7,0.5)_48%,rgba(8,8,7,0.26)_100%)] backdrop-blur-[2px]" />
 
-           {/* Texto */}
-          <div className="max-w-3xl  space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-            {/* Línea + etiqueta */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="reveal-line h-1 w-32 bg-gradient-to-r from-emerald-400 to-amber-400 origin-left" /> 
-  
-               <span className="text-[10px] sm:text-xs md:text-sm tracking-[0.18em] sm:tracking-[0.28em] lg:tracking-[0.4em] uppercase font-bold text-emerald-400">
-    CALERA SANTA ISABEL DE CUSHURO
-  </span>
-</div>
-</div>
+      {/* ================= CONTENIDO ln-91-70================= */}
+<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
+          {/* Texto */}
+          <div className="max-w-3xl space-y-7 md:space-y-8">
+            <div className="mining-hero-eyebrow">
+              <div className="reveal-line mining-hero-line origin-left" />
+              <span></span>
+            </div>
 
             {/* Título */}
-            <h1 className="reveal-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white leading-none">
-              Responsabilidad Social
-            </h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Responsabilidad social</h1>
 
             {/* Subtítulo */}
-            <p className="reveal-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 font-medium max-w-xl">
-              Contribuimos al desarrollo humano de nuestras comunidades mediante educación, cultura, salud y recreación.
+            <p className="reveal-subtitle mining-hero-subtitle max-w-[39rem]">
+              Contribuimos al desarrollo humano de nuestras comunidades con iniciativas de
+              educacion, salud, cultura y recreacion articuladas a largo plazo.
             </p>
 
             {/* Badges / iconos */}
-            <div className="flex flex-col items-start gap-3 text-[11px] sm:flex-row sm:flex-wrap sm:gap-6 sm:text-xs md:text-sm lg:text-base text-emerald-400 font-semibold pt-4">
-              <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-                <BookOpen size={26} />
+            <div className="mining-hero-badge-list">
+              <div className="reveal-badge mining-hero-badge">
+                <BookOpen size={18} />
                 <span>Educación</span>
               </div>
-              <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-                <Heart size={26} />
+              <div className="reveal-badge mining-hero-badge">
+                <Heart size={18} />
                 <span>Salud Comunitaria</span>
               </div>
-              <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-                <Users size={26} />
+              <div className="reveal-badge mining-hero-badge">
+                <Users size={18} />
                 <span>Cultura e Identidad</span>
               </div>
-              <div className="reveal-badge flex w-full items-center gap-3 sm:w-auto">
-                <Trophy size={26} />
+              <div className="reveal-badge mining-hero-badge">
+                <Trophy size={18} />
                 <span>Deporte y Recreación</span>
               </div>
             </div>

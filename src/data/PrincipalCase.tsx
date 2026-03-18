@@ -1,8 +1,6 @@
 // client/src/data/PrincipalCase.tsx
 
 export const PrincipalCase = [
-  // client/src/data/mainSections.ts
-
   {
     id: "inicio",
     name: "Inicio",
@@ -29,17 +27,25 @@ export const PrincipalCase = [
   },
 
   {
-    id: "suministro-de-oxido-de-calcio",
-    name: "Suministro de calcio",
-    path: "/Servicios-Industriales/suministro-de-oxido-de-calcio",
+    id: "transporte-logistico-especializado",
+    name: "Transporte Logistico",
+    path: "/Servicios-Industriales/transporte-logistico-especializado",
     color: "from-zinc-100", // el color principal de tu marca o el que quieras
     arrowColor: "text-zinc-100",
     hoverClass: "hover:bg-blue-800",
   },
   {
     id: "medio-ambiente",
-    name: "Suministro de calcio",
+    name: "Compromiso Ambiental",
     path: "/compromiso-ambiental-y-social/medio-ambiente",
+    color: "from-zinc-100", // el color principal de tu marca o el que quieras
+    arrowColor: "text-zinc-100",
+    hoverClass: "hover:bg-blue-800",
+  },
+    {
+    id: "contacto",
+    name: "Contacto Comercial",
+    path: "/contacto",
     color: "from-zinc-100", // el color principal de tu marca o el que quieras
     arrowColor: "text-zinc-100",
     hoverClass: "hover:bg-blue-800",

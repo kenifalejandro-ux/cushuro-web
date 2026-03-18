@@ -4,11 +4,13 @@
 
 import { motion } from "motion/react";
 import { Construction, TrendingUp, ShieldCheck, Wrench, Truck, ShoppingCart, MapPin, CheckCircle2, Mountain, AlertTriangle, ClipboardCheck, Users } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ReorderImageStack from "../ui/ReorderImageStack";
-import { ParallaxSection } from "../ui/ParallaxSection";
+import PageSEO from "../global/PageSEO";
+import FeatureCardsSection from "../ui/FeatureCardsSection";
+import ProductIntroSection from "../ui/ProductIntroSection";
+import SplitProcessFlow from "../ui/SplitProcessFlow";
 import {
   Carousel,
   CarouselContent,
@@ -20,10 +22,7 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 export default function OperacionMaquinaria() {
-  const imageRef = useRef<HTMLDivElement | null>(null);
   const machineryRef = useRef<HTMLDivElement>(null);
-  const equipmentRef = useRef<HTMLDivElement>(null);
-  const methodologyRef = useRef<HTMLDivElement>(null);
   
 
   
@@ -47,51 +46,57 @@ export default function OperacionMaquinaria() {
         }
       );
     }
-
-    // Animación de equipos
-    if (equipmentRef.current) {
-      const items = equipmentRef.current.querySelectorAll(".equipment-item");
-      gsap.fromTo(
-        items,
-        { opacity: 0, x: -30 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.5,
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: equipmentRef.current,
-            start: "top 75%",
-          },
-        }
-      );
-    }
-
-    // Animación de metodología
-    if (methodologyRef.current) {
-      const steps = methodologyRef.current.querySelectorAll(".methodology-step");
-      gsap.fromTo(
-        steps,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.12,
-          scrollTrigger: {
-            trigger: methodologyRef.current,
-            start: "top 70%",
-          },
-        }
-      );
-    }
   }, []);
 
-const images = [
-  { src: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria001", alt: "Imagen 1" },
-  { src: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria002", alt: "Imagen 2" },
-  { src: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria003", alt: "Imagen 3" },
-];
+  const images = [
+    {
+      src: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria001",
+      alt: "Maquinaria pesada operando en cantera",
+    },
+    {
+      src: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria002",
+      alt: "Equipo de soporte operativo en extraccion minera no metalica",
+    },
+    {
+      src: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria003",
+      alt: "Operacion con maquinaria pesada para carguio y movimiento de tierras",
+    },
+  ];
+
+  const introCards = [
+    {
+      icon: Construction,
+      iconClassName: "text-amber-700",
+      title: "Movimiento de Tierras",
+      description:
+        "Ejecutamos nivelacion, corte, relleno y conformacion de plataformas para operaciones mineras no metalicas.",
+    },
+    {
+      icon: ShoppingCart,
+      iconClassName: "text-emerald-600",
+      title: "Extraccion y Carguio",
+      description:
+        "Operacion controlada para extraccion eficiente de material en cantera, con rendimiento sostenido y control tecnico.",
+    },
+    {
+      icon: Wrench,
+      iconClassName: "text-zinc-700",
+      title: "Soporte Operativo en Campo",
+      description:
+        "Preparamos accesos, mantenemos vias internas y damos soporte logistico a la operacion diaria.",
+    },
+    {
+      icon: ShieldCheck,
+      iconClassName: "text-emerald-500",
+      title: "Planificacion y Control",
+      items: [
+        "Evaluacion tecnica del terreno y condiciones geomecanicas",
+        "Seleccion estrategica de maquinaria segun tipo de material",
+        "Supervision permanente por personal tecnico especializado",
+      ],
+      note: "Trabajamos con planificacion tecnica, control operativo y foco en continuidad de rendimiento.",
+    },
+  ];
   const operaciones = [
     {
       icon: <Mountain className="w-8 h-8" />,
@@ -158,107 +163,29 @@ const images = [
 
   return (
     <div className="dark-image min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative min-h-screen  overflow-hidden">
-        {/* Mining Trucks Pattern Overlay */}
+      <PageSEO pageId="operacion-con-maquinaria-pesada" />
+      <ProductIntroSection
+        images={images}
+        eyebrow="SERVICIOS INDUSTRIALES"
+        title="Capacidad operativa en campo con maquinaria pesada"
+        description="Ejecutamos movimiento de tierras, extraccion, carguio y conformacion de terreno para proyectos de mineria no metalica bajo planificacion tecnica, supervision especializada y continuidad operativa."
+        cards={introCards}
+      />
 
-
-        <div className="container mx-auto px-6 py-20 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
-             {/* Image Stack */}
-            <motion.div
-              ref={imageRef}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <ReorderImageStack images={images} />
-            </motion.div>
-            {/* Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-1 w-16 bg-emerald-500" />
-                  <span className="text-zinc-400 tracking-wider uppercase text-sm font-medium">Operaciones de Campo</span>
-                </div>
-                <h1 className="text-xl lg:text-2xl xl:text-4xl font-black text-zinc-800 leading-tight">
-                  Capacidad Operativa en Campo
-                </h1>
-                <p className="text-xl text-zinc-800 leading-relaxed max-w-2xl">
-                  Ejecutamos movimiento de tierras, extracción y conformación de terreno en proyectos de minería no metálica, bajo planificación técnica y supervisión especializada.
-                </p>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8">
-                <div className="space-y-2">
-                  <div className="text-3xl font-black text-emerald-400">100%</div>
-                  <div className="text-sm text-zinc-400 uppercase tracking-wide">Control</div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-3xl font-black text-emerald-400">24/7</div>
-                  <div className="text-sm text-zinc-400 uppercase tracking-wide">Operación</div>
-                </div>
-                <div className="space-y-2">
-                  <div className="text-3xl font-black text-emerald-400">Alto</div>
-                  <div className="text-sm text-zinc-400 uppercase tracking-wide">Rendimiento</div>
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Operaciones Section */}
-      <section className="py-24 bg-white relative">        
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-3 mb-4">
-              <div className="h-px w-12 bg-blue-900" />
-              <span className="text-emerald-600 font-medium uppercase tracking-wider text-sm">Servicios Especializados</span>
-              <div className="h-px w-12 bg-blue-900" />
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-zinc-900 mb-4">Operaciones en Campo</h2>
-          </motion.div>
-
-          <div ref={machineryRef} className="grid md:grid-cols-3 gap-8">
-            {operaciones.map((op, index) => (
-              <motion.div
-                key={index}
-                className="machinery-card group relative bg-gradient-to-br from-zinc-50 to-white border-2 border-zinc-200 hover:border-emerald-500 rounded-none p-8 transition-all duration-300 hover:shadow-2xl"
-                whileHover={{ y: -5 }}
-              >
-                {/* Corner Accent */}
-                <div className="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-blue-900 transition-all duration-300 group-hover:border-emerald-500" />
-                <div className="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-blue-900 transition-all duration-300 group-hover:border-emerald-500" />
-                
-                <div className="relative z-10">
-                  <div className="mb-6 text-blue-900 group-hover:text-emerald-600 transition-colors duration-300">
-                    {op.icon}
-                  </div>
-                  <h3 className="text-2xl font-black text-zinc-900 mb-4">{op.title}</h3>
-                  <p className="text-zinc-600 leading-relaxed">{op.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FeatureCardsSection
+        sectionRef={machineryRef}
+        sectionClassName="py-24 bg-white relative"
+        eyebrow="Servicios Especializados"
+        title="Operaciones en Campo"
+        items={operaciones}
+        gridClassName="grid gap-8 md:grid-cols-3"
+        itemClassName="machinery-card"
+        hoverY={-5}
+        variant="detailed"
+      />
 
       {/* Flota de Maquinaria Section with Carousel */}
-      <section className="light-image py-24 max-w-7x relative overflow-hidden bg-blue-900">
+      <section className="light-image py-24 max-w-7x relative overflow-hidden b2b-dark-section">
         {/* Excavator and Gears Pattern */}
 
 
@@ -275,7 +202,7 @@ const images = [
               <span className="text-emerald-400 font-medium uppercase tracking-wider text-sm">Equipamiento</span>
               <div className="h-px w-12 bg-emerald-500" />
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-zinc-100 mb-4">Flota de Maquinaria</h2>
+            <h2 className="b2b-section-title-dark mb-4">Flota de Maquinaria</h2>
           </motion.div>
 
           {/* Carousel */}
@@ -291,19 +218,19 @@ const images = [
                 {maquinaria.map((equipo, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                     <div className="p-2">
-                      <div className="bg-zinc-800 backdrop-blur-sm border-2 border-zinc-700 hover:border-emerald-500 rounded-none p-8 h-full transition-all duration-300 group">
+                      <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-8 transition-all duration-300 group">
                         <div className="mb-6 text-zinc-100 group-hover:scale-110 transition-transform duration-300">
                           {equipo.icon}
                         </div>
-                        <h3 className="text-xl font-black text-white mb-3">{equipo.name}</h3>
+                        <h3 className="text-xl font-semibold tracking-tight text-white mb-3">{equipo.name}</h3>
                         <p className="text-zinc-400 text-sm leading-relaxed">{equipo.description}</p>
                       </div>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="bg-blue-900 hover:bg-emerald-600 text-white border-none" />
-              <CarouselNext className="bg-blue-900 hover:bg-emerald-600 text-white border-none" />
+              <CarouselPrevious className="border-white/10 bg-zinc-950 text-white hover:bg-zinc-800" />
+              <CarouselNext className="border-white/10 bg-zinc-950 text-white hover:bg-zinc-800" />
             </Carousel>
           </div>
 
@@ -315,7 +242,7 @@ const images = [
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-16 text-center"
           >
-            <div className="inline-block bg-zinc-800 backdrop-blur-sm border border-zinc-700 rounded-none px-8 py-4">
+            <div className="inline-block rounded-full border border-white/10 bg-white/5 px-8 py-4">
               <p className="text-zinc-400 text-sm mb-3 uppercase tracking-widest">Operamos con maquinaria de marcas reconocidas</p>
               <div className="flex items-center gap-8 text-emerald-400 font-black text-xl">
                 <span>CATERPILLAR</span>
@@ -329,51 +256,25 @@ const images = [
         </div>
       </section>
 
-      {/* Metodología Operativa */}
-      <ParallaxSection className="py-24 bg-white relative">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center gap-3 mb-4">
-              <div className="h-px w-12 bg-blue-900" />
-              <span className="text-emerald-600 font-medium uppercase tracking-wider text-sm">Proceso Técnico</span>
-              <div className="h-px w-12 bg-blue-900" />
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-black text-zinc-900 mb-4">Metodología Operativa</h2>
-          </motion.div>
-
-          <div ref={methodologyRef} className="max-w-4xl mx-auto space-y-6">
-            {metodologia.map((item, index) => (
-              <div
-                key={index}
-                className="methodology-step group flex items-start gap-6 bg-gradient-to-r from-zinc-50 to-white border-l-4 border-blue-900 hover:border-emerald-500 p-6 transition-all duration-300 hover:shadow-lg"
-              >
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-blue-900 group-hover:bg-emerald-600 text-white flex items-center justify-center transition-colors duration-300">
-                    <span className="text-2xl font-black">{item.step}</span>
-                  </div>
-                </div>
-                <div className="flex-1 pt-2">
-                  <div className="flex items-start gap-3">
-                    <div className="text-emerald-600 mt-1 group-hover:scale-110 transition-transform duration-300">
-                      {item.icon}
-                    </div>
-                    <p className="text-zinc-700 text-lg leading-relaxed">{item.text}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </ParallaxSection>
+      <SplitProcessFlow
+        eyebrow="Proceso Tecnico"
+        title="Metodologia Operativa"
+        description="Organizamos cada operacion desde la evaluacion tecnica del terreno hasta la supervision permanente, alineando maquinaria, tiempos de ejecucion y control en campo."
+        imagePosition="right"
+        image={{
+          src: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria002",
+          alt: "Supervision tecnica y operacion con maquinaria pesada en campo",
+          aspectClassName: "aspect-[5/4] md:aspect-[4/3]",
+        }}
+        steps={metodologia.map(({ step, text, icon }) => ({
+          step,
+          description: text,
+          icon,
+        }))}
+      />
 
       {/* Seguridad y Control */}
-      <section className="light-image py-24 bg-zinc-900 relative overflow-hidden">
+      <section className="light-image py-24 b2b-dark-section relative overflow-hidden">
         {/* Safety Stripes Pattern */}
 
 
@@ -391,7 +292,7 @@ const images = [
                 <span className="text-yellow-400 font-medium uppercase tracking-wider text-sm">Compromiso Total</span>
                 <AlertTriangle className="w-6 h-6 text-yellow-400" />
               </div>
-              <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">Seguridad y Control Operativo</h2>
+              <h2 className="b2b-section-title-dark mb-6">Seguridad y Control Operativo</h2>
             </motion.div>
 
             <motion.div
@@ -399,7 +300,7 @@ const images = [
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-zinc-900/50 backdrop-blur-sm border-2 border-zinc-700 rounded-none p-10"
+              className="rounded-2xl border border-white/10 bg-white/5 p-10 backdrop-blur-sm"
             >
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -427,6 +328,7 @@ const images = [
             </motion.div>
           </div>
         </div>
+
       </section>
     </div>
   );

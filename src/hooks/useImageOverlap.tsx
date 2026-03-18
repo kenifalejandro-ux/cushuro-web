@@ -22,13 +22,44 @@ export function useImageOverlap({
 
   const debounceRef = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
-  const darkImagesRef = useRef<HTMLElement[]>([]);
-  const lightImagesRef = useRef<HTMLElement[]>([]);
 
-  const collectImages = useCallback(() => {
-    darkImagesRef.current = Array.from(document.querySelectorAll<HTMLElement>(".dark-image"));
-    lightImagesRef.current = Array.from(document.querySelectorAll<HTMLElement>(".light-image"));
+  const getThemeFromNode = useCallback((node: Element | null): "dark" | "light" | null => {
+    let current = node instanceof HTMLElement ? node : null;
+
+    while (current && current !== document.body) {
+      if (current.classList.contains("light-image")) {
+        return "light";
+      }
+
+      if (current.classList.contains("dark-image")) {
+        return "dark";
+      }
+
+      current = current.parentElement;
+    }
+
+    return null;
   }, []);
+
+  const getThemeAtPoint = useCallback(
+    (target: HTMLElement, x: number, y: number): "dark" | "light" | null => {
+      const stack = document.elementsFromPoint(x, y);
+
+      for (const node of stack) {
+        if (node === target || target.contains(node)) {
+          continue;
+        }
+
+        const theme = getThemeFromNode(node);
+        if (theme) {
+          return theme;
+        }
+      }
+
+      return null;
+    },
+    [getThemeFromNode]
+  );
 
   const getOverlapState = useCallback((): OverlapState => {
     const target = document.getElementById(targetElementId);
@@ -37,41 +68,32 @@ export function useImageOverlap({
     }
 
     const targetRect = target.getBoundingClientRect();
+    const sampleY = Math.min(
+      Math.max(targetRect.top + targetRect.height / 2, 0),
+      window.innerHeight - 1
+    );
+    const samplePoints = [
+      targetRect.left + targetRect.width * 0.2,
+      targetRect.left + targetRect.width * 0.5,
+      targetRect.left + targetRect.width * 0.8,
+    ]
+      .map((point) => Math.min(Math.max(point, 0), window.innerWidth - 1))
+      .filter((point, index, all) => all.indexOf(point) === index);
 
-    const darkImages = darkImagesRef.current;
-    const lightImages = lightImagesRef.current;
+    const themes = samplePoints.map((x) => getThemeAtPoint(target, x, sampleY));
+    const centerTheme = themes[Math.floor(themes.length / 2)] ?? null;
+    const lightCount = themes.filter((theme) => theme === "light").length;
+    const darkCount = themes.filter((theme) => theme === "dark").length;
 
-    let isDarkOverlapping = false;
-    let isLightOverlapping = false;
+    const resolvedTheme =
+      centerTheme ??
+      (lightCount > darkCount ? "light" : darkCount > lightCount ? "dark" : themes.find(Boolean) ?? null);
 
-    // Dark images
-    darkImages.forEach((img) => {
-      const imgRect = img.getBoundingClientRect();
-      if (
-        targetRect.bottom > imgRect.top &&
-        targetRect.top < imgRect.bottom &&
-        targetRect.left < imgRect.right &&
-        targetRect.right > imgRect.left
-      ) {
-        isDarkOverlapping = true;
-      }
-    });
-
-    // Light images
-    lightImages.forEach((img) => {
-      const imgRect = img.getBoundingClientRect();
-      if (
-        targetRect.bottom > imgRect.top &&
-        targetRect.top < imgRect.bottom &&
-        targetRect.left < imgRect.right &&
-        targetRect.right > imgRect.left
-      ) {
-        isLightOverlapping = true;
-      }
-    });
-
-    return { isDarkOverlapping, isLightOverlapping };
-  }, [targetElementId]);
+    return {
+      isDarkOverlapping: resolvedTheme === "dark",
+      isLightOverlapping: resolvedTheme === "light",
+    };
+  }, [getThemeAtPoint, targetElementId]);
 
   const runMeasure = useCallback(() => {
     const newState = getOverlapState();
@@ -101,7 +123,6 @@ export function useImageOverlap({
   }, [debounceDelay, runMeasure]);
 
   useEffect(() => {
-    collectImages();
     scheduleMeasure();
 
     const handleScroll = () => {
@@ -109,12 +130,10 @@ export function useImageOverlap({
     };
 
     const handleResize = () => {
-      collectImages();
       scheduleMeasure();
     };
 
     const observer = new MutationObserver(() => {
-      collectImages();
       scheduleMeasure();
     });
 
@@ -140,7 +159,7 @@ export function useImageOverlap({
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [collectImages, scheduleMeasure]);
+  }, [scheduleMeasure]);
 
   return overlapState;
 }

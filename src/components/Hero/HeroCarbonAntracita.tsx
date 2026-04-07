@@ -6,10 +6,26 @@ import { useEffect, useRef, useState } from "react";
 import { Factory, Pickaxe, Droplets, ShieldCheck } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 const HERO_PANORAMIC_IMAGE = "img-productos/hero/carbon-antracita/carbon-antracita";
-const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroCarbonAntracita() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Vista panoramica de operacion minera y produccion de cal",
+      title: "Carbon antracita",
+      subtitle:
+        "Combustible mineral de alto poder calorifico para procesos termicos y hornos industriales que requieren estabilidad energetica y bajo contenido de volatiles.",
+      badges: ["Alta energía y baja volatilidad", "Rendimiento para operación industrial"],
+    },
+    en: {
+      alt: "Panoramic view of mining operations and lime production",
+      title: "Anthracite coal",
+      subtitle:
+        "High-calorific mineral fuel for thermal processes and industrial kilns that require energy stability and low volatile content.",
+      badges: ["High energy and low volatility", "Performance for industrial operation"],
+    },
+  });
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -79,7 +95,7 @@ export function HeroCarbonAntracita() {
       <div className="absolute inset-0 z-0">
         <LCPImage
           src={HERO_PANORAMIC_IMAGE}
-          alt={HERO_PANORAMIC_ALT}
+          alt={copy.alt}
           width={2560}
           height={1080}
           sizes="100vw"
@@ -101,21 +117,20 @@ export function HeroCarbonAntracita() {
               <span></span>
             </div>
 
-            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Carbon antracita</h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">{copy.title}</h1>
 
             <p className="reveal-subtitle mining-hero-subtitle max-w-[40rem]">
-              Combustible mineral de alto poder calorifico para procesos termicos y hornos
-              industriales que requieren estabilidad energetica y bajo contenido de volatiles.
+              {copy.subtitle}
             </p>
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <Factory size={18} />
-                <span>Alta energía y baja volatilidad</span>
+                <span>{copy.badges[0]}</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
                 <Pickaxe size={18} />
-                <span>Rendimiento para operación industrial</span>
+                <span>{copy.badges[1]}</span>
               </div>
             </div>
           </div>

@@ -6,11 +6,33 @@ import { useEffect, useRef, useState } from "react";
 
 import { HeroMediaThumbnails } from "../ui/HeroMediaThumbnails";
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 const HERO_PANORAMIC_IMAGE =
   "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria001";
-const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroMaquinariaPesada() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Vista panoramica de operacion minera y produccion de cal",
+      slideAlt: "Vista operativa",
+      title: "Operacion con maquinaria pesada",
+      subtitle:
+        "Movimiento de tierras, extraccion y soporte operativo en mineria no metalica con maquinaria pesada y control tecnico en campo.",
+      badges: ["Equipos de Alto Rendimiento", "Operacion en mineria no metalica"],
+      thumbnailAlt: "Vista de maquinaria",
+      thumbnailLabel: "Mostrar vista de maquinaria",
+    },
+    en: {
+      alt: "Panoramic view of mining operations and lime production",
+      slideAlt: "Operational view",
+      title: "Heavy equipment operations",
+      subtitle:
+        "Earthmoving, extraction, and operational support in non-metallic mining with heavy equipment and technical control in the field.",
+      badges: ["High-performance equipment", "Non-metallic mining operation"],
+      thumbnailAlt: "Equipment view",
+      thumbnailLabel: "Show equipment view",
+    },
+  });
   const heroRef = useRef<HTMLDivElement>(null);
   const modelContainerRef = useRef<HTMLDivElement>(null);
 
@@ -126,7 +148,7 @@ export function HeroMaquinariaPesada() {
       <div className="absolute inset-0 z-0">
         <LCPImage
           src={HERO_PANORAMIC_IMAGE}
-          alt={HERO_PANORAMIC_ALT}
+          alt={copy.alt}
           width={2560}
           height={1080}
           sizes="100vw"
@@ -143,7 +165,7 @@ export function HeroMaquinariaPesada() {
             <LCPImage
               key={slide.poster}
               src={slide.poster}
-              alt={`Vista operativa ${index + 1}`}
+              alt={`${copy.slideAlt} ${index + 1}`}
               width={1920}
               height={1080}
               sizes="100vw"
@@ -182,22 +204,21 @@ export function HeroMaquinariaPesada() {
               <span></span>
             </div>
 
-<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               Operacion con maquinaria pesada
+<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               {copy.title}
             </h1>
 
             <p className="reveal-subtitle mining-hero-subtitle max-w-[39rem]">
-              Movimiento de tierras, extraccion y soporte operativo en mineria no metalica con
-              maquinaria pesada y control tecnico en campo.
+              {copy.subtitle}
             </p>
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <Factory size={18} />
-                <span>Equipos de Alto Rendimiento</span>
+                <span>{copy.badges[0]}</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
                 <Pickaxe size={18} />
-                <span>Operacion en mineria no metalica</span>
+                <span>{copy.badges[1]}</span>
               </div>
             </div>
           </div>
@@ -209,8 +230,8 @@ export function HeroMaquinariaPesada() {
         <HeroMediaThumbnails
           items={activeSlides.map((slide, index) => ({
             src: slide.poster,
-            alt: `Vista de maquinaria ${index + 1}`,
-            label: `Mostrar vista de maquinaria ${index + 1}`,
+            alt: `${copy.thumbnailAlt} ${index + 1}`,
+            label: `${copy.thumbnailLabel} ${index + 1}`,
           }))}
           activeIndex={activeVideoIndex}
           onSelect={setActiveVideoIndex}

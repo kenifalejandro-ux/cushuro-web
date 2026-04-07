@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,7 +61,31 @@ export default function ProductCapacitySection({
   stats,
   locations = defaultLocations,
 }: ProductCapacitySectionProps) {
+  const copy = useLocalizedContent({
+    es: {
+      eyebrow: "Capacidad Operativa",
+      strategicLocations: "Ubicaciones estratégicas",
+      presence: "Presencia operativa",
+      defaultLocations,
+    },
+    en: {
+      eyebrow: "Operational capacity",
+      strategicLocations: "Strategic locations",
+      presence: "Operational presence",
+      defaultLocations: [
+        {
+          title: "Main Plant Location",
+          description: "Caserío Rodeopampa – Marcabal – Huamachuco – La Libertad",
+        },
+        {
+          title: "Branch Plant Location",
+          description: "Bambamarca – Cajamarca",
+        },
+      ],
+    },
+  });
   const sectionRef = useRef<HTMLElement>(null);
+  const resolvedLocations = locations === defaultLocations ? copy.defaultLocations : locations;
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -103,7 +128,7 @@ export default function ProductCapacitySection({
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [stats, locations]);
+  }, [resolvedLocations, stats]);
 
   return (
     <section
@@ -121,7 +146,7 @@ export default function ProductCapacitySection({
           <div className="mb-5 flex items-center justify-center gap-3">
             <span className="h-px w-12 bg-zinc-300" />
             <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-zinc-500">
-              Capacidad Operativa
+              {copy.eyebrow}
             </span>
             <span className="h-px w-12 bg-zinc-300" />
           </div>
@@ -169,7 +194,7 @@ export default function ProductCapacitySection({
         </div>
 
         {/* Ubicaciones */}
-        {locations.length ? (
+        {resolvedLocations.length ? (
           <div className="capacity-location-card mt-12 rounded-3xl border border-zinc-200 bg-white p-7 shadow-[0_14px_40px_-32px_rgba(24,24,27,0.18)] md:p-9">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div className="flex items-start gap-4">
@@ -179,16 +204,16 @@ export default function ProductCapacitySection({
 
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">
-                    Ubicaciones estratégicas
+                    {copy.strategicLocations}
                   </p>
                   <h3 className="mt-2 text-xl font-semibold text-zinc-950">
-                    Presencia operativa
+                    {copy.presence}
                   </h3>
                 </div>
               </div>
 
               <div className="grid gap-5 md:min-w-[58%] md:grid-cols-2">
-                {locations.map(({ title: locationTitle, description }, index) => (
+                {resolvedLocations.map(({ title: locationTitle, description }, index) => (
                   <div
                     key={`${locationTitle}-${index}`}
                     className="rounded-2xl border border-stone-200 bg-stone-50 p-5"

@@ -6,10 +6,34 @@ import { useEffect, useRef, useState } from "react";
 import { Factory, Pickaxe, Droplets, ShieldCheck, Flame } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 const HERO_PANORAMIC_IMAGE = "img-productos/hero/carbon-tipo-cisco/carbon-tipo-cisco";
-const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroCarbonCisco() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Vista panoramica de operacion minera y produccion de cal",
+      title: "Carbon tipo cisco",
+      subtitle:
+        "Fraccion fina de carbon mineral obtenida mediante clasificacion controlada para procesos termicos que requieren ignicion rapida, estabilidad de llama y rendimiento energetico consistente.",
+      badges: [
+        "Encendido rápido y combustión eficiente",
+        "Clasificación granulométrica controlada",
+        "Optimización costo-rendimiento industrial",
+      ],
+    },
+    en: {
+      alt: "Panoramic view of mining operations and lime production",
+      title: "Carbon cisco",
+      subtitle:
+        "Fine coal fraction obtained through controlled classification for thermal processes that require rapid ignition, flame stability, and consistent energy performance.",
+      badges: [
+        "Fast ignition and efficient combustion",
+        "Controlled particle-size classification",
+        "Industrial cost-performance optimization",
+      ],
+    },
+  });
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -79,7 +103,7 @@ export function HeroCarbonCisco() {
       <div className="absolute inset-0 z-0">
         <LCPImage
           src={HERO_PANORAMIC_IMAGE}
-          alt={HERO_PANORAMIC_ALT}
+          alt={copy.alt}
           width={2560}
           height={1080}
           sizes="100vw"
@@ -101,28 +125,26 @@ export function HeroCarbonCisco() {
               <span></span>
             </div>
 
-            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Carbon tipo cisco</h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">{copy.title}</h1>
 
             <p className="reveal-subtitle mining-hero-subtitle max-w-[40rem]">
-              Fraccion fina de carbon mineral obtenida mediante clasificacion controlada para
-              procesos termicos que requieren ignicion rapida, estabilidad de llama y rendimiento
-              energetico consistente.
+              {copy.subtitle}
             </p>
 
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <Factory size={18} />
-                <span>Encendido rápido y combustión eficiente</span>
+                <span>{copy.badges[0]}</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
                 <Pickaxe size={18} />
-                <span>Clasificación granulométrica controlada</span>
+                <span>{copy.badges[1]}</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
                 <Flame size={18} />
-                <span>Optimización costo-rendimiento industrial</span>
+                <span>{copy.badges[2]}</span>
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@
 
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 export type ProductAdvantagesItem = {
   icon: LucideIcon;
@@ -20,9 +21,22 @@ type ProductAdvantagesGridProps = {
 
 export default function ProductAdvantagesGrid({
   items,
-  title = "Ventajas competitivas",
-  eyebrow = "Capacidades diferenciales",
+  title,
+  eyebrow,
 }: ProductAdvantagesGridProps) {
+  const copy = useLocalizedContent({
+    es: {
+      title: "Ventajas competitivas",
+      eyebrow: "Capacidades diferenciales",
+      keyCapabilities: "capacidades clave",
+    },
+    en: {
+      title: "Competitive advantages",
+      eyebrow: "Differential capabilities",
+      keyCapabilities: "key capabilities",
+    },
+  });
+
   return (
     <section className="bg-zinc-900/70 rounded-[0rem] light-image py-28 text-stone-100 md:py-36">
       <div className="mx-auto  max-w-6xl px-6">
@@ -30,11 +44,11 @@ export default function ProductAdvantagesGrid({
           <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-stone-900">
-                {eyebrow}
+                {eyebrow ?? copy.eyebrow}
               </p>
 
               <h2 className="mt-5 text-4xl font-medium leading-[0.95] tracking-[-0.05em] text-white md:text-5xl">
-                {title}
+                {title ?? copy.title}
               </h2>
             </div>
 
@@ -44,7 +58,7 @@ export default function ProductAdvantagesGrid({
               </span>
 
               <span className="pb-1 text-[11px] font-medium uppercase tracking-[0.22em] text-stone-900">
-                capacidades clave
+                {copy.keyCapabilities}
               </span>
             </div>
           </div>

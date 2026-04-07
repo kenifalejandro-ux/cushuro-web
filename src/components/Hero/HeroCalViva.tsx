@@ -6,10 +6,26 @@ import { useEffect, useRef, useState } from "react";
 import { Factory, Pickaxe, Droplets, ShieldCheck } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 const HERO_PANORAMIC_IMAGE = "img-productos/hero/cal-viva/cal_viva";
-const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroCalViva() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Vista panoramica de operacion minera y produccion de cal",
+      title: "Cal viva",
+      subtitle:
+        "Oxido de calcio de alta pureza para procesos mineros e industriales que exigen estabilidad, continuidad y control tecnico.",
+      badges: ["176 TM / día", "Especializado en mineria"],
+    },
+    en: {
+      alt: "Panoramic view of mining operations and lime production",
+      title: "Quicklime",
+      subtitle:
+        "High-purity calcium oxide for mining and industrial processes that demand stability, continuity, and technical control.",
+      badges: ["176 TM / day", "Specialized in mining"],
+    },
+  });
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -79,7 +95,7 @@ export function HeroCalViva() {
       <div className="absolute inset-0 z-0">
         <LCPImage
           src={HERO_PANORAMIC_IMAGE}
-          alt={HERO_PANORAMIC_ALT}
+          alt={copy.alt}
           width={2560}
           height={1080}
           sizes="100vw"
@@ -90,7 +106,7 @@ export function HeroCalViva() {
       </div>
 
       {/* Overlay oscuro */}
-      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(10,10,9,0.8)_0%,rgba(10,10,9,0.56)_50%,rgba(10,10,9,0.26)_100%)]" />
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(10,10,9,0.4)_0%,rgba(10,10,9,0.2)_50%,rgba(10,10,9,0)_100%)]" />
 
       {/* ================= CONTENIDO ln-91-70================= */}
 <div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
@@ -101,21 +117,20 @@ export function HeroCalViva() {
               <span></span>
             </div>
 
-            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Cal viva</h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">{copy.title}</h1>
 
             <p className="reveal-subtitle mining-hero-subtitle max-w-[37rem]">
-              Oxido de calcio de alta pureza para procesos mineros e industriales que exigen
-              estabilidad, continuidad y control tecnico.
+              {copy.subtitle}
             </p>
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <Factory size={18} />
-                <span>176 TM / día</span>
+                <span>{copy.badges[0]}</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
                 <Pickaxe size={18} />
-                <span>Especializado en mineria</span>
+                <span>{copy.badges[1]}</span>
               </div>
             </div>
           </div>

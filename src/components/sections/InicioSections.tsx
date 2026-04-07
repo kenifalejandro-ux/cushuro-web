@@ -6,6 +6,7 @@ import { Star } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 import ReorderImageStack from "../ui/ReorderImageStack";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -215,34 +216,65 @@ export function ContentIntro({
 /* ================= MAIN ABOUT SECTION  COLLEGE IMAGES================= */
 
 export default function IntroConcept() {
-  return (
-    <section className="relative">
-      <ContentIntro
-        title="Santa Isabel de Cushuro"
-        description={`Somos una empresa con más de 15 años de trayectoria dedicada a la producción y comercialización de óxido de calcio para los sectores minero, agrícola e industrial.
+  const copy = useLocalizedContent({
+    es: {
+      title: "Santa Isabel de Cushuro",
+      description: `Somos una empresa con más de 15 años de trayectoria dedicada a la producción y comercialización de óxido de calcio para los sectores minero, agrícola e industrial.
 
 Integramos planta, logística, capital humano y concesiones mineras no metálicas para asegurar continuidad operativa, calidad técnica y respuesta confiable en cada suministro.
 
-Trabajamos con foco en seguridad, trazabilidad, medio ambiente y desarrollo local, consolidando una operación responsable en nuestras comunidades de influencia.`}
+Trabajamos con foco en seguridad, trazabilidad, medio ambiente y desarrollo local, consolidando una operación responsable en nuestras comunidades de influencia.`,
+      images: [
+        {
+          src: "/img-inicio/inicio-img/img002",
+          alt: "Producción industrial y operación minera",
+          priority: true,
+        },
+        {
+          src: "/img-inicio/inicio-img/img001",
+          alt: "Operación técnica y coordinación industrial",
+        },
+        {
+          src: "/img-inicio/inicio-img/img003",
+          alt: "Equipo y continuidad operativa",
+        },
+      ],
+    },
+    en: {
+      title: "Santa Isabel de Cushuro",
+      description: `We are a company with more than 15 years of experience dedicated to the production and commercialization of calcium oxide for the mining, agricultural, and industrial sectors.
+
+We integrate plant operations, logistics, human capital, and non-metallic mining concessions to ensure operational continuity, technical quality, and reliable response in every supply.
+
+We work with a focus on safety, traceability, the environment, and local development, consolidating a responsible operation within our communities of influence.`,
+      images: [
+        {
+          src: "/img-inicio/inicio-img/img002",
+          alt: "Industrial production and mining operations",
+          priority: true,
+        },
+        {
+          src: "/img-inicio/inicio-img/img001",
+          alt: "Technical operations and industrial coordination",
+        },
+        {
+          src: "/img-inicio/inicio-img/img003",
+          alt: "Teamwork and operational continuity",
+        },
+      ],
+    },
+  });
+
+  return (
+    <section className="relative">
+      <ContentIntro
+        title={copy.title}
+        description={copy.description}
         imageContainerClassName="overflow-visible rounded-none"
         imageElement={
           <ReorderImageStack
             layout="stacked"
-            images={[
-              {
-                src: "/img-inicio/inicio-img/img002",
-                alt: "Comunicación como tensión creativa",
-                priority: true, // 👈 SOLO ESTA
-              },
-              {
-                src: "/img-inicio/inicio-img/img001",
-                alt: "Colaboración como proceso creativo",
-              },
-              {
-                src: "/img-inicio/inicio-img/img003",
-                alt: "Colaboración como proceso creativo",
-              },
-            ]}
+            images={copy.images}
           />
         }
       />

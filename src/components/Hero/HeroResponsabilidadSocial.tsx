@@ -6,11 +6,27 @@ import { useRef } from "react";
 import { Users, BookOpen, Heart, Trophy } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 const HERO_IMAGE = "img-responsabilidad-social/hero/hero002"; // ← cambia por tu imagen real
-const HERO_ALT = "Niños en aula y comunidad apoyada por Calera Santa Isabel";
 
 export default function HeroResponsabilidadSocial() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Niños en aula y comunidad apoyada por Calera Santa Isabel",
+      title: "Responsabilidad social",
+      subtitle:
+        "Contribuimos al desarrollo humano de nuestras comunidades con iniciativas de educacion, salud, cultura y recreacion articuladas a largo plazo.",
+      badges: ["Educación", "Salud Comunitaria", "Cultura e Identidad", "Deporte y Recreación"],
+    },
+    en: {
+      alt: "Children in a classroom and community supported by Calera Santa Isabel",
+      title: "Social responsibility",
+      subtitle:
+        "We contribute to the human development of our communities with long-term initiatives in education, health, culture, and recreation.",
+      badges: ["Education", "Community Health", "Culture and Identity", "Sports and Recreation"],
+    },
+  });
   const heroRef = useRef<HTMLElement>(null);
 
   // Animación GSAP simple y elegante (igual que tus otros heroes de producto)
@@ -37,9 +53,9 @@ export default function HeroResponsabilidadSocial() {
       className="light-image  relative min-h-[78vh] w-full overflow-hidden bg-black"
     >
       {/* Imagen principal con zoom sutil */}
-      <LCPImage
+        <LCPImage
         src={HERO_IMAGE}
-        alt={HERO_ALT}
+        alt={copy.alt}
         width={2560}
         height={1080}
         sizes="100vw"
@@ -60,31 +76,30 @@ export default function HeroResponsabilidadSocial() {
             </div>
 
             {/* Título */}
-            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Responsabilidad social</h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">{copy.title}</h1>
 
             {/* Subtítulo */}
             <p className="reveal-subtitle mining-hero-subtitle max-w-[39rem]">
-              Contribuimos al desarrollo humano de nuestras comunidades con iniciativas de
-              educacion, salud, cultura y recreacion articuladas a largo plazo.
+              {copy.subtitle}
             </p>
 
             {/* Badges / iconos */}
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <BookOpen size={18} />
-                <span>Educación</span>
+                <span>{copy.badges[0]}</span>
               </div>
               <div className="reveal-badge mining-hero-badge">
                 <Heart size={18} />
-                <span>Salud Comunitaria</span>
+                <span>{copy.badges[1]}</span>
               </div>
               <div className="reveal-badge mining-hero-badge">
                 <Users size={18} />
-                <span>Cultura e Identidad</span>
+                <span>{copy.badges[2]}</span>
               </div>
               <div className="reveal-badge mining-hero-badge">
                 <Trophy size={18} />
-                <span>Deporte y Recreación</span>
+                <span>{copy.badges[3]}</span>
               </div>
             </div>
           </div>

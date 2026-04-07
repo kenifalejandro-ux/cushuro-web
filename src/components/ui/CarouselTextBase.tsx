@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { type ReactNode, useEffect, useMemo, useRef } from "react";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,38 +50,72 @@ interface CarouselProjectLogoProps {
   imageClassName: string;
 }
 
-const DEFAULT_PROJECTS: MiningProject[] = [
-  {
-    name: "MINERA BORRO MISQUICHILCA S.A",
-    desc: "Desbloqueando valor para un futuro mejor.",
-    logo: "img-inicio/logo-clientes/borro-minera.png",
-    mineral: "Au / Ag",
-    zone: "La Libertad, PE",
-    front: "Tajo Norte",
-    status: "Operación 24/7",
-    refCode: "M-011",
-  },
-  {
-    name: "SUMMA GOLD CORPORATION",
-    desc: "Producción formal y optimizada en Huamachuco.",
-    logo: "img-inicio/logo-clientes/summa-gold.png",
-    mineral: "Au",
-    zone: "Huamachuco, PE",
-    front: "Zona Central",
-    status: "Extracción Activa",
-    refCode: "M-024",
-  },
-  {
-    name: "COMPAÑÍA MINERA QUIRUVILCA S.A",
-    desc: "Operaciones de extracción y logística minera.",
-    logo: "logos/quiruvilca.png",
-    mineral: "Pb / Zn / Ag",
-    zone: "Santiago de Chuco, PE",
-    front: "Planta Sur",
-    status: "Ruta Logística",
-    refCode: "M-031",
-  },
-];
+const DEFAULT_PROJECTS: Record<"es" | "en", MiningProject[]> = {
+  es: [
+    {
+      name: "MINERA BORRO MISQUICHILCA S.A",
+      desc: "Desbloqueando valor para un futuro mejor.",
+      logo: "img-inicio/logo-clientes/borro-minera.png",
+      mineral: "Au / Ag",
+      zone: "La Libertad, PE",
+      front: "Tajo Norte",
+      status: "Operación 24/7",
+      refCode: "M-011",
+    },
+    {
+      name: "SUMMA GOLD CORPORATION",
+      desc: "Producción formal y optimizada en Huamachuco.",
+      logo: "img-inicio/logo-clientes/summa-gold.png",
+      mineral: "Au",
+      zone: "Huamachuco, PE",
+      front: "Zona Central",
+      status: "Extracción Activa",
+      refCode: "M-024",
+    },
+    {
+      name: "COMPAÑÍA MINERA QUIRUVILCA S.A",
+      desc: "Operaciones de extracción y logística minera.",
+      logo: "logos/quiruvilca.png",
+      mineral: "Pb / Zn / Ag",
+      zone: "Santiago de Chuco, PE",
+      front: "Planta Sur",
+      status: "Ruta Logística",
+      refCode: "M-031",
+    },
+  ],
+  en: [
+    {
+      name: "MINERA BORRO MISQUICHILCA S.A",
+      desc: "Unlocking value for a better future.",
+      logo: "img-inicio/logo-clientes/borro-minera.png",
+      mineral: "Au / Ag",
+      zone: "La Libertad, PE",
+      front: "North Pit",
+      status: "24/7 Operation",
+      refCode: "M-011",
+    },
+    {
+      name: "SUMMA GOLD CORPORATION",
+      desc: "Formal and optimized production in Huamachuco.",
+      logo: "img-inicio/logo-clientes/summa-gold.png",
+      mineral: "Au",
+      zone: "Huamachuco, PE",
+      front: "Central Area",
+      status: "Active Extraction",
+      refCode: "M-024",
+    },
+    {
+      name: "COMPAÑÍA MINERA QUIRUVILCA S.A",
+      desc: "Mining extraction and logistics operations.",
+      logo: "logos/quiruvilca.png",
+      mineral: "Pb / Zn / Ag",
+      zone: "Santiago de Chuco, PE",
+      front: "South Plant",
+      status: "Logistics Route",
+      refCode: "M-031",
+    },
+  ],
+};
 
 export function resolveAssetUrl(value: string) {
   if (!value) return resolveFallbackAsset();
@@ -117,10 +152,10 @@ export function CarouselProjectLogo({
 }
 
 export function CarouselTextBase({
-  projects = DEFAULT_PROJECTS,
-  headingEyebrow = "Nuestros clientes",
-  headingTitle = "Empresas que confían en nosotros",
-  headingDescription = "Aliados del sector minero e industrial que confían en nuestra capacidad operativa, presencia y ejecución.",
+  projects,
+  headingEyebrow,
+  headingTitle,
+  headingDescription,
   className = "",
   variantName,
   speed,
@@ -130,15 +165,32 @@ export function CarouselTextBase({
   entryDirection = -64,
   renderProject,
 }: CarouselTextBaseProps) {
+  const localizedDefaults = useLocalizedContent({
+    es: {
+      projects: DEFAULT_PROJECTS.es,
+      headingEyebrow: "Nuestros clientes",
+      headingTitle: "Empresas que confían en nosotros",
+      headingDescription:
+        "Aliados del sector minero e industrial que confían en nuestra capacidad operativa, presencia y ejecución.",
+    },
+    en: {
+      projects: DEFAULT_PROJECTS.en,
+      headingEyebrow: "Our clients",
+      headingTitle: "Companies that trust us",
+      headingDescription:
+        "Partners in the mining and industrial sectors who rely on our operational capacity, presence, and execution.",
+    },
+  });
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const trackEntryRef = useRef<HTMLDivElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const carouselItems = useMemo(() => {
-    if (!projects.length) return DEFAULT_PROJECTS.concat(DEFAULT_PROJECTS);
-    return [...projects, ...projects];
-  }, [projects]);
+    const activeProjects = projects?.length ? projects : localizedDefaults.projects;
+    return [...activeProjects, ...activeProjects];
+  }, [localizedDefaults.projects, projects]);
 
   useEffect(() => {
     const track = carouselRef.current;
@@ -281,7 +333,7 @@ export function CarouselTextBase({
         <div className="flex items-center justify-center gap-3" data-heading-item>
           <span className="h-px w-8 bg-zinc-300 md:w-10" />
           <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">
-            {headingEyebrow}
+            {headingEyebrow || localizedDefaults.headingEyebrow}
           </p>
           <span className="h-px w-8 bg-zinc-300 md:w-10" />
         </div>
@@ -290,14 +342,14 @@ export function CarouselTextBase({
           className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-zinc-950 md:text-5xl"
           data-heading-item
         >
-          {headingTitle}
+          {headingTitle || localizedDefaults.headingTitle}
         </h2>
 
         <p
           className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-zinc-600 md:text-base"
           data-heading-item
         >
-          {headingDescription}
+          {headingDescription || localizedDefaults.headingDescription}
         </p>
       </div>
 

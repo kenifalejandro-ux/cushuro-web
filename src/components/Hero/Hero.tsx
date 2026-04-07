@@ -7,10 +7,42 @@ import { Link } from "react-router-dom";
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
 import { HeroMediaThumbnails } from "../ui/HeroMediaThumbnails";
 import { VideoPreview } from "../ui/VideoPreview";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 const IMG_BASE = import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
 
 export function Hero() {
+  const copy = useLocalizedContent({
+    es: {
+      heroImageAlt: "Cantera de piedra caliza de Santa Isabel de Cushuro",
+      title: "Produccion y suministro de oxido de calcio",
+      subtitle:
+        "15 anos de experiencia, 5 hornos operativos y capacidad diaria de 176 TM para atender operaciones mineras e industriales con continuidad y control.",
+      ctaPrimary: "Ver cal viva",
+      ctaPrimaryAria: "Ver informacion comercial de cal viva",
+      ctaSecondary: "Contacto",
+      ctaSecondaryAria: "Contactar por WhatsApp a Santa Isabel de Cushuro",
+      thumbnails: {
+        alt: "Vista operativa",
+        label: "Mostrar vista operativa",
+      },
+    },
+    en: {
+      heroImageAlt: "Limestone quarry of Santa Isabel de Cushuro",
+      title: "Production and supply of calcium oxide",
+      subtitle:
+        "15 years of experience, 5 operating kilns, and daily capacity of 176 TM to serve mining and industrial operations with continuity and control.",
+      ctaPrimary: "View quicklime",
+      ctaPrimaryAria: "View quicklime commercial information",
+      ctaSecondary: "Contact",
+      ctaSecondaryAria: "Contact Santa Isabel de Cushuro on WhatsApp",
+      thumbnails: {
+        alt: "Operational view",
+        label: "Show operational view",
+      },
+    },
+  });
+
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -306,7 +338,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0">
         <LCPImage
           src="img-inicio/hero/cantera001"
-          alt="Cantera de piedra caliza de "
+          alt={copy.heroImageAlt}
           width={1920}
           height={1080}
           sizes="100vw"
@@ -358,30 +390,29 @@ export function Hero() {
               <span></span>
             </div>
 
-<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               Produccion y suministro de oxido de calcio
+<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               {copy.title}
             </h1>
 
             <p className="reveal-subtitle mining-hero-subtitle max-w-[40rem]">
-              15 anos de experiencia, 5 hornos operativos y capacidad diaria de 176 TM para atender
-              operaciones mineras e industriales con continuidad y control.
+              {copy.subtitle}
             </p>
 
             <div className="mining-hero-actions">
               <Link
                 to="/Productos/cal-viva"
-                aria-label="Ver informacion comercial de cal viva"
+                aria-label={copy.ctaPrimaryAria}
                 className="mining-hero-cta-primary"
               >
-                Ver cal viva
+                {copy.ctaPrimary}
               </Link>
               <a
                 href="https://wa.me/51959173472?text=Escr%C3%ADbenos%20para%20m%C3%A1s%20informaci%C3%B3n"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Contactar por WhatsApp a "
+                aria-label={copy.ctaSecondaryAria}
                 className="mining-hero-cta-secondary"
               >
-                Contacto
+                {copy.ctaSecondary}
               </a>
             </div>
             {/* Badges / iconos
@@ -410,8 +441,8 @@ export function Hero() {
         <HeroMediaThumbnails
           items={activeVideos.map((video, index) => ({
             src: video.poster,
-            alt: `Vista operativa ${index + 1} de `,
-            label: `Mostrar vista operativa ${index + 1}`,
+            alt: `${copy.thumbnails.alt} ${index + 1}`,
+            label: `${copy.thumbnails.label} ${index + 1}`,
           }))}
           activeIndex={activeVideoIndex}
           onSelect={setActiveVideoIndex}

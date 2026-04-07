@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
 
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 import { OptimizedImage } from "./OptimizedImage";
 import { ParallaxSection } from "./ParallaxSection";
 
@@ -46,6 +47,14 @@ export default function SplitProcessFlow({
   sectionClassName = "bg-stone-100 py-28 md:py-36",
 }: SplitProcessFlowProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const copy = useLocalizedContent({
+    es: {
+      eyebrow: "Proceso operativo",
+    },
+    en: {
+      eyebrow: "Operational process",
+    },
+  });
   const imageAspectClassName = image?.aspectClassName ?? "aspect-[4/3]";
   const panelOrderClass = imagePosition === "right" ? "lg:order-2" : "lg:order-1";
   const stepsOrderClass = imagePosition === "right" ? "lg:order-1" : "lg:order-2";
@@ -81,7 +90,7 @@ export default function SplitProcessFlow({
         <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div className={`self-start lg:sticky lg:top-24 ${panelOrderClass}`}>
             <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-zinc-500">
-              {eyebrow}
+              {eyebrow === "Proceso operativo" ? copy.eyebrow : eyebrow}
             </p>
 
             <h2 className="mt-5 text-4xl font-medium leading-[0.95] tracking-[-0.05em] text-zinc-950 md:text-5xl">

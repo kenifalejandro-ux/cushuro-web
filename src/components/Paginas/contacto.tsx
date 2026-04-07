@@ -1,7 +1,13 @@
 /**client/src/components/Paginas/contacto.tsx */
 
-import React from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
+import { lazy, Suspense } from "react";
+
+/** componente MAP */
+import { LazyOnView, } from "../ui/LazyOnView";
+import { type CompanyLocationItem } from "../sections/CompanyLocationMap";
 import {
   Mail,
   MapPin,
@@ -13,14 +19,122 @@ import {
 } from "lucide-react";
 import PageSEO from "../global/PageSEO";
 import { ImageStack } from "../ui/ImageStack";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 const CONTACT_EMAIL = "administracion@cushuro.com";
 const WHATSAPP_LABEL = "+51 986 671 128";
 const WHATSAPP_URL = "https://wa.me/51986671128";
 
+const LazyCompanyMapHybrid = lazy(() => import("../ui/CompanyMapHybrid"));
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function App() {
+  const copy = useLocalizedContent({
+    es: {
+      hero: {
+        eyebrow: "División Minera No Metálica",
+        title: "Contacto Comercial",
+        description:
+          "Atendemos requerimientos de cotización y abastecimiento para Óxido de Calcio, Cal Hidratada, Cal Agrícola y Piedra Caliza con enfoque técnico, continuidad operativa y atención comercial directa.",
+      },
+      imageAlt: "Producción industrial de óxido de calcio",
+      highlights: [
+        "Producción continua para requerimientos industriales",
+        "176 TM diarias de capacidad estimada",
+        "Registro vigente en Bienes Fiscalizados",
+        "Facturación electrónica – RUC 20482610944",
+      ],
+      channelsTitle: "Canales de atención",
+      emailLabel: "Correo corporativo",
+      whatsappLabelTitle: "WhatsApp comercial",
+      companyLabel: "Razón social",
+      companyName: "Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.",
+      officeLabel: "Oficina",
+      officeAddress: "Av. Vía Aviación Oeste N°155 – Huamachuco, La Libertad",
+      plantLabel: "Planta",
+      plantAddress: "Centro de Producción Cas. Rodeopampa – Marcabal",
+      map: {
+        title: "Ubicación de nuestras plantas",
+        subtitle: "Conoce nuestras sedes operativas en La Libertad y Cajamarca.",
+      },
+      locations: [
+        {
+          id: "cushuro-main-office",
+          companyName: "EMPRESA DE TRANSPORTES Y Productos SANTA ISABEL DE CUSHURO S.A.C.",
+          city: "Huamachuco, La Libertad",
+          address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
+          productionCenter: "CASERIO RODEOPAMPA - MARCABAL - HUAMACHUCO.",
+          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+          imageAlt: "Planta y Compromiso Ambiental Y Social de Calera Cushuro",
+          coordinates: [-78.0489, -7.8154] as [number, number],
+        },
+        {
+          id: "bambamarca-plant",
+          companyName: "Planta Bambamarca - Santa Isabel de Cushuro",
+          city: "Bambamarca, Cajamarca",
+          address: "Bambamarca - Cajamarca, Perú.",
+          productionCenter: "Zona Industrial Bambamarca.",
+          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002",
+          imageAlt: "Planta de producción en Bambamarca - Cajamarca",
+          coordinates: [-78.5213, -6.6828] as [number, number],
+        },
+      ] satisfies CompanyLocationItem[],
+    },
+    en: {
+      hero: {
+        eyebrow: "Non-metallic Mining Division",
+        title: "Commercial Contact",
+        description:
+          "We handle quotation and supply requests for Calcium Oxide, Hydrated Lime, Agricultural Lime, and Limestone with a technical approach, operational continuity, and direct commercial support.",
+      },
+      imageAlt: "Industrial quicklime production",
+      highlights: [
+        "Continuous production for industrial requirements",
+        "Estimated capacity of 176 TM per day",
+        "Current registration in controlled goods",
+        "Electronic invoicing – RUC 20482610944",
+      ],
+      channelsTitle: "Contact channels",
+      emailLabel: "Corporate email",
+      whatsappLabelTitle: "Commercial WhatsApp",
+      companyLabel: "Corporate name",
+      companyName: "Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.",
+      officeLabel: "Office",
+      officeAddress: "Av. Vía Aviación Oeste N°155 – Huamachuco, La Libertad",
+      plantLabel: "Plant",
+      plantAddress: "Production Center Cas. Rodeopampa – Marcabal",
+      map: {
+        title: "Location of our plants",
+        subtitle: "Explore our operational sites in La Libertad and Cajamarca.",
+      },
+      locations: [
+        {
+          id: "cushuro-main-office",
+          companyName: "SANTA ISABEL DE CUSHURO TRANSPORT AND PRODUCTS COMPANY S.A.C.",
+          city: "Huamachuco, La Libertad",
+          address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
+          productionCenter: "RODEOPAMPA - MARCABAL - HUAMACHUCO PRODUCTION CENTER.",
+          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+          imageAlt: "Cushuro lime plant and environmental-social commitment",
+          coordinates: [-78.0489, -7.8154] as [number, number],
+        },
+        {
+          id: "bambamarca-plant",
+          companyName: "Bambamarca Plant - Santa Isabel de Cushuro",
+          city: "Bambamarca, Cajamarca",
+          address: "Bambamarca - Cajamarca, Peru.",
+          productionCenter: "Bambamarca Industrial Zone.",
+          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002",
+          imageAlt: "Production plant in Bambamarca - Cajamarca",
+          coordinates: [-78.5213, -6.6828] as [number, number],
+        },
+      ] satisfies CompanyLocationItem[],
+    },
+  });
+
   return (
-    <div className="bg-white  text-zinc-900 selection:bg-emerald-100 mt-30">
+    <div className="bg-white max-w-7xl mx-auto  text-zinc-900 selection:bg-emerald-100 mt-30">
       <PageSEO pageId="contacto" />
 
       <main>
@@ -37,19 +151,17 @@ export default function App() {
                 <div className="h-px w-10 bg-emerald-600" />
                 <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
                   <Factory size={14} className="text-emerald-600" />
-                  División Minera No Metálica
+                  {copy.hero.eyebrow}
                 </span>
                 <div className="h-px w-10 bg-emerald-600" />
               </div>
 
               <h1 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 sm:text-5xl lg:text-6xl">
-                Contacto Comercial
+                {copy.hero.title}
               </h1>
 
               <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-zinc-600 sm:text-lg">
-                Atendemos requerimientos de cotización y abastecimiento para
-                Óxido de Calcio, Cal Hidratada, Cal Agrícola y Piedra Caliza
-                con enfoque técnico, continuidad operativa y atención comercial directa.
+                {copy.hero.description}
               </p>
             </motion.div>
 
@@ -64,11 +176,11 @@ export default function App() {
               >
                 <div className="overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-50">
                   <ImageStack
-                    layout="stacked"
+                    layout="inline"
                     images={[
                       {
-                        src: "/img-productos/cal-viva/oxido-de-calcio001",
-                        alt: "Producción industrial de óxido de calcio",
+                        src: "/contacto/imagenes/contacto",
+                        alt: copy.imageAlt,
                         priority: true,
                       },
                     ]}
@@ -76,12 +188,7 @@ export default function App() {
                 </div>
 
                 <div className="space-y-4 border-t border-zinc-200 pt-8">
-                  {[
-                    "Producción continua para requerimientos industriales",
-                    "176 TM diarias de capacidad estimada",
-                    "Registro vigente en Bienes Fiscalizados",
-                    "Facturación electrónica – RUC 20482610944",
-                  ].map((item, i) => (
+                  {copy.highlights.map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <CheckCircle2
                         size={18}
@@ -104,7 +211,7 @@ export default function App() {
               >
                 <div className="border-t border-zinc-900 pt-6">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
-                    Canales de atención
+                    {copy.channelsTitle}
                   </p>
                 </div>
 
@@ -120,7 +227,7 @@ export default function App() {
                       />
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                          Correo corporativo
+                          {copy.emailLabel}
                         </p>
                         <p className="mt-2 text-sm leading-7 sm:text-base">
                           {CONTACT_EMAIL}
@@ -146,7 +253,7 @@ export default function App() {
                       />
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                          WhatsApp comercial
+                          {copy.whatsappLabelTitle}
                         </p>
                         <p className="mt-2 text-sm leading-7 sm:text-base">
                           {WHATSAPP_LABEL}
@@ -168,10 +275,10 @@ export default function App() {
                     />
                     <div>
                       <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                        Razón social
+                        {copy.companyLabel}
                       </p>
                       <p className="mt-2 text-sm leading-7 text-zinc-700 sm:text-[15px]">
-                        Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.
+                        {copy.companyName}
                       </p>
                     </div>
                   </div>
@@ -184,36 +291,47 @@ export default function App() {
                     <div className="space-y-5">
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                          Oficina
+                          {copy.officeLabel}
                         </p>
                         <p className="mt-2 text-sm leading-7 text-zinc-700 sm:text-[15px]">
-                          Av. Vía Aviación Oeste N°155 – Huamachuco, La Libertad
+                          {copy.officeAddress}
                         </p>
                       </div>
 
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                          Planta
+                          {copy.plantLabel}
                         </p>
                         <p className="mt-2 text-sm leading-7 text-zinc-700 sm:text-[15px]">
-                          Centro de Producción Cas. Rodeopampa – Marcabal
+                          {copy.plantAddress}
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-12 border-t border-zinc-200 pt-6">
-                  <p className="max-w-md text-sm leading-7 text-zinc-500">
-                    Esta sección está diseñada como bloque independiente para
-                    mantener una transición limpia hacia el footer sin saturar
-                    visualmente la parte inferior del sitio.
-                  </p>
-                </div>
+          
               </motion.div>
             </div>
           </div>
+          {/* ================= UBICACIÓN MAPS================= */}
+
+        <LazyOnView minHeight={560}>
+          <Suspense fallback={<div className="mt-12 h-[520px] md:h-[640px]" />}>
+            <LazyCompanyMapHybrid
+              className="mt-12 pb-20"
+              title={copy.map.title}
+              subtitle={copy.map.subtitle}
+              locations={copy.locations}
+              center={[-78.3, -7.2]}
+              projectionScale={1300}
+              primaryColor="#0e5814"
+              mapClassName="h-[520px] md:h-[640px]"
+            />
+          </Suspense>
+        </LazyOnView>
         </section>
+        
       </main>
     </div>
   );

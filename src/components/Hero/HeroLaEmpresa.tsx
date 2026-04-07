@@ -17,6 +17,7 @@ import {
   stopSliceAutoplay,
   type Service,
 } from "@/utils/MedioAmbienteGsap";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 const IMG_BASE = (import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL || "").replace(
   /\/+$/,
@@ -27,55 +28,117 @@ const toAssetUrl = (path: string) => {
   return IMG_BASE ? `${IMG_BASE}/${normalized}` : `/${normalized}`;
 };
 
-const medioAmbienteServices: Service[] = [
-  {
-    image: toAssetUrl("img-la-empresa/hero-la-empresa/img003"),
-    slug: "logistica-transporte",
-    title: "Logística y Transporte",
-    description:
-      "Flota propia y convoyes seguros que garantizan el traslado eficiente de piedra caliza y óxido de calcio a nuestros clientes.",
-  },
-  {
-    image: toAssetUrl("img-la-empresa/hero-la-empresa/img001"),
-    slug: "produccion-segura",
-    title: "Producción Segura",
-    description:
-      "Planta de cal con personal altamente capacitado y protegido, cumpliendo los más altos estándares de seguridad y calidad.",
-  },
-  {
-    image: toAssetUrl("img-la-empresa/hero-la-empresa/img002"),
-    slug: "equipo-en-campo",
-    title: "Equipo en la Cantera",
-    description:
-      "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
-  },
-  {
-    image: toAssetUrl("img-inicio/hero/cantera001"),
-    slug: "equipo-en-campo",
-    title: "Equipo en la Cantera",
-    description:
-      "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
-  },
-  {
-    image: toAssetUrl("img-inicio/hero/cantera002"),
-    slug: "equipo-en-campo",
-    title: "Equipo en la Cantera",
-    description:
-      "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
-  },
-  {
-    image: toAssetUrl("img-inicio/hero/cantera003"),
-    slug: "equipo-en-campo",
-    title: "Equipo en la Cantera",
-    description:
-      "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
-  },
-];
-
 export default function HeroLaEmpresa() {
+  const copy = useLocalizedContent({
+    es: {
+      services: [
+        {
+          image: toAssetUrl("img-la-empresa/hero-la-empresa/img003"),
+          slug: "logistica-transporte",
+          title: "Logística y Transporte",
+          description:
+            "Flota propia y convoyes seguros que garantizan el traslado eficiente de piedra caliza y óxido de calcio a nuestros clientes.",
+        },
+        {
+          image: toAssetUrl("img-la-empresa/hero-la-empresa/img001"),
+          slug: "produccion-segura",
+          title: "Producción Segura",
+          description:
+            "Planta de cal con personal altamente capacitado y protegido, cumpliendo los más altos estándares de seguridad y calidad.",
+        },
+        {
+          image: toAssetUrl("img-la-empresa/hero-la-empresa/img002"),
+          slug: "equipo-en-campo",
+          title: "Equipo en la Cantera",
+          description:
+            "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+        },
+        {
+          image: toAssetUrl("img-inicio/hero/cantera001"),
+          slug: "equipo-en-campo",
+          title: "Equipo en la Cantera",
+          description:
+            "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+        },
+        {
+          image: toAssetUrl("img-inicio/hero/cantera002"),
+          slug: "equipo-en-campo",
+          title: "Equipo en la Cantera",
+          description:
+            "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+        },
+        {
+          image: toAssetUrl("img-inicio/hero/cantera003"),
+          slug: "equipo-en-campo",
+          title: "Equipo en la Cantera",
+          description:
+            "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
+        },
+      ] satisfies Service[],
+      loadingTitle: "Cargando experiencia...",
+      loadingDescription: "Preparando animaciones y contenido visual.",
+      heroAria: "Hero principal La Empresa",
+      heroImageAlt: "Compromiso ambiental con maquinaria pesada",
+      thumbAlt: "Vista de",
+      thumbLabel: "Mostrar",
+    },
+    en: {
+      services: [
+        {
+          image: toAssetUrl("img-la-empresa/hero-la-empresa/img003"),
+          slug: "transport-logistics",
+          title: "Logistics and Transport",
+          description:
+            "Our own fleet and secure convoys ensure efficient delivery of limestone and calcium oxide to our customers.",
+        },
+        {
+          image: toAssetUrl("img-la-empresa/hero-la-empresa/img001"),
+          slug: "safe-production",
+          title: "Safe Production",
+          description:
+            "Lime plant with highly trained and protected personnel, meeting the highest standards of safety and quality.",
+        },
+        {
+          image: toAssetUrl("img-la-empresa/hero-la-empresa/img002"),
+          slug: "quarry-team",
+          title: "Quarry Team",
+          description:
+            "Our engineers and operators working in the quarry with professionalism, commitment, and full respect for safety.",
+        },
+        {
+          image: toAssetUrl("img-inicio/hero/cantera001"),
+          slug: "quarry-team",
+          title: "Quarry Team",
+          description:
+            "Our engineers and operators working in the quarry with professionalism, commitment, and full respect for safety.",
+        },
+        {
+          image: toAssetUrl("img-inicio/hero/cantera002"),
+          slug: "quarry-team",
+          title: "Quarry Team",
+          description:
+            "Our engineers and operators working in the quarry with professionalism, commitment, and full respect for safety.",
+        },
+        {
+          image: toAssetUrl("img-inicio/hero/cantera003"),
+          slug: "quarry-team",
+          title: "Quarry Team",
+          description:
+            "Our engineers and operators working in the quarry with professionalism, commitment, and full respect for safety.",
+        },
+      ] satisfies Service[],
+      loadingTitle: "Loading experience...",
+      loadingDescription: "Preparing animations and visual content.",
+      heroAria: "Main Company hero",
+      heroImageAlt: "Environmental commitment with heavy equipment",
+      thumbAlt: "View of",
+      thumbLabel: "Show",
+    },
+  });
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
+  const medioAmbienteServices = copy.services;
 
   const { ref, inView } = useInView({
     threshold: 0.15,
@@ -177,13 +240,13 @@ export default function HeroLaEmpresa() {
         // @ts-ignore
         heroRef.current = node;
       }}
-      aria-label="Hero principal La Empresa"
+      aria-label={copy.heroAria}
       className="light-image relative min-h-[85vh] w-full overflow-hidden bg-black"
     >
       <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
         <LCPImage
           src={medioAmbienteServices[0].image}
-          alt="Compromiso ambiental con maquinaria pesada"
+          alt={copy.heroImageAlt}
           width={1920}
           height={1080}
           sizes="100vw"
@@ -236,13 +299,13 @@ export default function HeroLaEmpresa() {
               <span></span>
             </div>
 
-<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               {isLoaded ? activeService.title : "Cargando experiencia..."}
+<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               {isLoaded ? activeService.title : copy.loadingTitle}
             </h1>
 
             <p className="reveal-subtitle mining-hero-subtitle mt-6 max-w-[39rem]">
               {isLoaded
                 ? activeService.description
-                : "Preparando animaciones y contenido visual."}
+                : copy.loadingDescription}
             </p>
 
             <hr className="divider my-8 w-14 border-white/18" />
@@ -255,8 +318,8 @@ export default function HeroLaEmpresa() {
           <HeroMediaThumbnails
             items={medioAmbienteServices.map((service, index) => ({
               src: service.image,
-              alt: `${service.title} ${index + 1}`,
-              label: `Mostrar ${service.title}`,
+              alt: `${copy.thumbAlt} ${service.title} ${index + 1}`,
+              label: `${copy.thumbLabel} ${service.title}`,
             }))}
             activeIndex={activeIndex}
             onSelect={(index) => {

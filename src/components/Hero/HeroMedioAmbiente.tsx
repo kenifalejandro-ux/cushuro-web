@@ -4,11 +4,27 @@ import { useRef } from "react";
 import { Users, Sprout, Heart, Trophy } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 const HERO_IMAGE = "img-medio-ambiente/hero/poster/HeroMedioAmbiente"; // ← cambia por tu imagen real
-const HERO_ALT = "Niños en aula y comunidad apoyada por Calera Santa Isabel";
 
 export default function HeroMedioAmbiente() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Niños en aula y comunidad apoyada por Calera Santa Isabel",
+      title: "Compromiso ambiental",
+      subtitle:
+        "Desarrollamos una cultura operativa basada en responsabilidad ambiental, trazabilidad y estandares de gestion sostenibles en toda la cadena productiva.",
+      badges: ["Reforestación", "Salud Comunitaria", "Cultura e Identidad"],
+    },
+    en: {
+      alt: "Children in a classroom and community supported by Calera Santa Isabel",
+      title: "Environmental commitment",
+      subtitle:
+        "We develop an operating culture based on environmental responsibility, traceability, and sustainable management standards throughout the production chain.",
+      badges: ["Reforestation", "Community Health", "Culture and Identity"],
+    },
+  });
   const heroRef = useRef<HTMLElement>(null);
 
   // Animación GSAP simple y elegante (igual que tus otros heroes de producto)
@@ -35,9 +51,9 @@ export default function HeroMedioAmbiente() {
       className="light-image  relative min-h-[85vh] w-full overflow-hidden bg-black"
     >
       {/* Imagen principal con zoom sutil */}
-      <LCPImage
+        <LCPImage
         src={HERO_IMAGE}
-        alt={HERO_ALT}
+        alt={copy.alt}
         width={2560}
         height={1080}
         sizes="100vw"
@@ -57,27 +73,26 @@ export default function HeroMedioAmbiente() {
             </div>
 
             {/* Título */}
-            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Compromiso ambiental</h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">{copy.title}</h1>
 
             {/* Subtítulo */}
             <p className="reveal-subtitle mining-hero-subtitle max-w-[39rem]">
-              Desarrollamos una cultura operativa basada en responsabilidad ambiental, trazabilidad
-              y estandares de gestion sostenibles en toda la cadena productiva.
+              {copy.subtitle}
             </p>
 
             {/* Badges / iconos */}
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <Sprout size={18} />
-                <span>Reforestación</span>
+                <span>{copy.badges[0]}</span>
               </div>
               <div className="reveal-badge mining-hero-badge">
                 <Heart size={18} />
-                <span>Salud Comunitaria</span>
+                <span>{copy.badges[1]}</span>
               </div>
               <div className="reveal-badge mining-hero-badge">
                 <Users size={18} />
-                <span>Cultura e Identidad</span>
+                <span>{copy.badges[2]}</span>
               </div>
             </div>
           </div>

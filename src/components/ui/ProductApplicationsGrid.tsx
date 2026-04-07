@@ -7,6 +7,7 @@ import type { LucideIcon } from "lucide-react";
 import { Factory } from "lucide-react";
 
 import { OptimizedImage } from "./OptimizedImage";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 type ProductApplicationsGridProps = {
   items: string[];
@@ -21,10 +22,20 @@ type ProductApplicationsGridProps = {
 
 export default function ProductApplicationsGrid({
   items,
-  title = "Aplicaciones en Operaciones Mineras",
+  title,
   icon: Icon = Factory,
   image,
 }: ProductApplicationsGridProps) {
+  const copy = useLocalizedContent({
+    es: {
+      eyebrow: "Aplicaciones",
+      title: "Aplicaciones en Operaciones Mineras",
+    },
+    en: {
+      eyebrow: "Applications",
+      title: "Applications in Mining Operations",
+    },
+  });
   const imageAspectClassName = image?.aspectClassName ?? "aspect-[6/5] md:aspect-[8/4]";
 
   return (
@@ -36,11 +47,11 @@ export default function ProductApplicationsGrid({
           </div>
 
           <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-500">
-            Aplicaciones
+            {copy.eyebrow}
           </p>
 
           <h2 className="mt-4 text-4xl font-medium leading-[0.96] tracking-[-0.05em] text-zinc-950 md:text-5xl">
-            {title}
+            {title ?? copy.title}
           </h2>
 
           {image ? (

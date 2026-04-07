@@ -15,13 +15,11 @@ import {
   type Tab,
 } from "./header.data";
 import { useImageOverlap } from "../../hooks/useImageOverlap";
+import { useSiteLanguage, type SiteLanguage } from "../../context/SiteLanguageContext";
 
 const IMG_BASE = import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
-const HEADER_LANGUAGE_STORAGE_KEY = "cushuro-header-language";
 
 gsap.registerPlugin(ScrollTrigger);
-
-type HeaderLanguage = "es" | "en";
 
 type HeaderCopy = {
   address: string;
@@ -53,7 +51,7 @@ interface HeaderProps {
   };
 }
 
-const HEADER_COPY: Record<HeaderLanguage, HeaderCopy> = {
+const HEADER_COPY: Record<SiteLanguage, HeaderCopy> = {
   es: {
     address: "Dirección",
     brandName: "Santa Isabel de Cushuro",
@@ -124,14 +122,11 @@ export function Header({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openDesktopSubmenu, setOpenDesktopSubmenu] = useState<string | null>(null);
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(null);
-  const [language, setLanguage] = useState<HeaderLanguage>(() => {
-    if (typeof window === "undefined") return "es";
-    return window.localStorage.getItem(HEADER_LANGUAGE_STORAGE_KEY) === "en" ? "en" : "es";
-  });
 
   const lastScrollY = useRef(0);
   const navRef = useRef<HTMLElement>(null);
   const submenuTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { language, toggleLanguage } = useSiteLanguage();
 
   const location = useLocation();
   const isProductsActive = location.pathname.startsWith("/Productos");
@@ -234,13 +229,6 @@ export function Header({
   }, []);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    window.localStorage.setItem(HEADER_LANGUAGE_STORAGE_KEY, language);
-    document.documentElement.lang = language === "en" ? "en" : "es";
-  }, [language]);
-
-  useEffect(() => {
     return () => {
       if (submenuTimeout.current) {
         clearTimeout(submenuTimeout.current);
@@ -265,7 +253,7 @@ export function Header({
   };
 
   const handleLanguageToggle = () => {
-    setLanguage((current) => (current === "es" ? "en" : "es"));
+    toggleLanguage();
   };
 
   const elevatedHeader = isScrolled || isContactPage || forceWhiteLogo || useLightHeader;

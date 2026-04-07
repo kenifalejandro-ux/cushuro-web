@@ -7,18 +7,14 @@ import gsap from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  Leaf,
-  Users,
   HardHat,
-  Heart,
-  Award,
   Layers,
-  FileCheck,
   Moon,
   ShieldAlert,
   Ban,
 } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,6 +80,70 @@ const PoliticasBlock = ({
 export default function Politicas() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const copy = useLocalizedContent({
+    es: {
+      title: "Nuestras Políticas",
+      description:
+        "Operamos con los más altos estándares de calidad, seguridad y responsabilidad, comprometidos con el desarrollo sostenible del sector minero y el bienestar de nuestras comunidades.",
+      items: [
+        {
+          icon: <HardHat className="w-8 h-8" />,
+          title: "Seguridad y Salud Ocupacional",
+          description:
+            "Establecemos la identificación de peligros y el control de riesgos como pilares fundamentales para proteger la integridad del personal en todas nuestras operaciones mineras.",
+        },
+        {
+          icon: <Moon className="w-8 h-8" />,
+          title: "Política de Fatiga y Somnolencia",
+          description:
+            "Gestionamos estrictamente los turnos y periodos de descanso para asegurar que el personal opere maquinaria y equipos en condiciones óptimas de alerta y capacidad física.",
+        },
+        {
+          icon: <ShieldAlert className="w-8 h-8" />,
+          title: "Negativa al Trabajo Inseguro",
+          description:
+            "Se reconoce el derecho y la obligación de detener cualquier labor que no cuente con los controles de seguridad necesarios o represente un riesgo no controlado para la vida.",
+        },
+        {
+          icon: <Ban className="w-8 h-8" />,
+          title: "Política de Alcohol y Drogas",
+          description:
+            "Prohibición absoluta del consumo, posesión o ingreso bajo el efecto de sustancias que alteren la capacidad psicomotriz, garantizando un entorno de trabajo 100% sobrio y seguro.",
+        },
+      ],
+    },
+    en: {
+      title: "Our Policies",
+      description:
+        "We operate under the highest standards of quality, safety, and responsibility, committed to the sustainable development of the mining sector and the well-being of our communities.",
+      items: [
+        {
+          icon: <HardHat className="w-8 h-8" />,
+          title: "Occupational Safety and Health",
+          description:
+            "We establish hazard identification and risk control as fundamental pillars to protect the integrity of personnel across all our mining operations.",
+        },
+        {
+          icon: <Moon className="w-8 h-8" />,
+          title: "Fatigue and Drowsiness Policy",
+          description:
+            "We strictly manage shifts and rest periods to ensure personnel operate machinery and equipment under optimal alertness and physical capacity.",
+        },
+        {
+          icon: <ShieldAlert className="w-8 h-8" />,
+          title: "Right to Refuse Unsafe Work",
+          description:
+            "The right and obligation to stop any task lacking the necessary safety controls or representing an uncontrolled risk to life is recognized.",
+        },
+        {
+          icon: <Ban className="w-8 h-8" />,
+          title: "Alcohol and Drugs Policy",
+          description:
+            "Absolute prohibition of consuming, possessing, or entering under the influence of substances that alter psychomotor capacity, guaranteeing a 100% sober and safe workplace.",
+        },
+      ],
+    },
+  });
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -111,37 +171,6 @@ export default function Politicas() {
     return () => ctx.revert();
   }, []);
 
-  const Politicas = [
-  {
-    icon: <HardHat className="w-8 h-8" />,
-    title: "Seguridad y Salud Ocupacional",
-    description:
-      "Establecemos la identificación de peligros y el control de riesgos como pilares fundamentales para proteger la integridad del personal en todas nuestras operaciones mineras.",
-    gradient: "from-amber-500 to-red-600",
-  },
-  {
-    icon: <Moon className="w-8 h-8" />,
-    title: "Política de Fatiga y Somnolencia",
-    description:
-      "Gestionamos estrictamente los turnos y periodos de descanso para asegurar que el personal opere maquinaria y equipos en condiciones óptimas de alerta y capacidad física.",
-    gradient: "from-slate-700 to-slate-900",
-  },
-  {
-    icon: <ShieldAlert className="w-8 h-8" />,
-    title: "Negativa al Trabajo Inseguro",
-    description:
-      "Se reconoce el derecho y la obligación de detener cualquier labor que no cuente con los controles de seguridad necesarios o represente un riesgo no controlado para la vida.",
-    gradient: "from-red-600 to-red-800",
-  },
-  {
-    icon: <Ban className="w-8 h-8" />,
-    title: "Política de Alcohol y Drogas",
-    description:
-      "Prohibición absoluta del consumo, posesión o ingreso bajo el efecto de sustancias que alteren la capacidad psicomotriz, garantizando un entorno de trabajo 100% sobrio y seguro.",
-    gradient: "from-orange-600 to-red-700",
-  },
-];
-
   return (
     <section
       ref={sectionRef}
@@ -162,19 +191,17 @@ export default function Politicas() {
             ref={titleRef}
             className="mb-6 text-4xl font-semibold tracking-[-0.04em] text-white md:text-6xl"
           >
-           Nuestras Políticas
+           {copy.title}
           </h2>
 
           <p className="text-zinc-400 text-lg md:text-xl leading-relaxed">
-            Operamos con los más altos estándares de calidad, seguridad y responsabilidad,
-             comprometidos con el desarrollo sostenible del sector minero y el bienestar
-              de nuestras comunidades.
+            {copy.description}
           </p>
         </div>
 
         {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Politicas.map((item, index) => (
+          {copy.items.map((item, index) => (
             <PoliticasBlock
               key={item.title}
               icon={item.icon}

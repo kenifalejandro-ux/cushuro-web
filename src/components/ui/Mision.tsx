@@ -4,7 +4,8 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ImageStack } from './ImageStack';
-import { Target, Sparkles, CheckCircle2, Leaf, Shield, Users } from 'lucide-react';
+import { Sparkles, CheckCircle2 } from 'lucide-react';
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +15,32 @@ export function Mision() {
   const imageContainerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const pillarsRef = useRef<HTMLDivElement>(null);
+  const copy = useLocalizedContent({
+    es: {
+      badge: "NUESTRA MISIÓN",
+      purposeTitle: "Nuestro Propósito",
+      purposeLabel: "Misión",
+      description:
+        "La misión de CALERA “SANTA ISABEL DE CUSHURO SAC” es otorgar productos de calidad en el suministro de óxido de calcio con responsabilidad ambiental, social, integridad e identificación con nuestro personal, proveedores, clientes y comunidad, fomentando la capacitación permanente de nuestros recursos humanos y logrando un posicionamiento competitivo dentro del mercado empresarial local y regional.",
+      qualityTitle: "Calidad",
+      qualitySubtitle: "Certificada",
+      commitmentTitle: "Compromiso",
+      commitmentSubtitle: "Social",
+      imageAlt: "Trabajo operativo",
+    },
+    en: {
+      badge: "OUR MISSION",
+      purposeTitle: "Our Purpose",
+      purposeLabel: "Mission",
+      description:
+        "The mission of CALERA “SANTA ISABEL DE CUSHURO SAC” is to provide quality products in the supply of calcium oxide with environmental and social responsibility, integrity, and strong identification with our personnel, suppliers, clients, and community, fostering permanent training of our human resources and achieving a competitive position in the local and regional business market.",
+      qualityTitle: "Quality",
+      qualitySubtitle: "Certified",
+      commitmentTitle: "Commitment",
+      commitmentSubtitle: "Social",
+      imageAlt: "Operational work",
+    },
+  });
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -116,9 +143,9 @@ export function Mision() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm font-semibold mb-6 shadow-xl">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md   text-white text-sm font-semibold mb-6 shadow-xl">
             <Sparkles className="w-5 h-5 text-yellow-400" />
-            <span>NUESTRA MISIÓN</span>
+            <span>{copy.badge}</span>
             <Sparkles className="w-5 h-5 text-yellow-400" />
           </div>
           
@@ -138,31 +165,26 @@ export function Mision() {
               <div className="flex items-start gap-4 mb-6">
                 
                 <div>
-                  <h2 className="text-3xl font-bold text-white mb-2">Nuestro Propósito</h2>
-                  <p className="text-amber-500 text-sm uppercase tracking-wider">Misión</p>
+                  <h2 className="text-3xl font-bold text-white mb-2">{copy.purposeTitle}</h2>
+                  <p className="text-amber-500 text-sm uppercase tracking-wider">{copy.purposeLabel}</p>
                 </div>
               </div>
              
                 <p className="text-md text-zinc-100 leading-relaxed">
-                  La misión de CALERA “SANTA ISABEL DE CUSHURO SAC”,
-                  es otorgar Productos de calidad en el suministro de Óxido de calcio con
-                    responsabilidad ambiental, social, Integridad e
-Identificación con nuestro Personal, Proveedores, Clientes y Comunidad,fomentando la
-capacitación permanente de nuestros Recursos Humanos, logrando un posicionamiento
-competitivo dentro del mercado empresarial local y regional.
+                  {copy.description}
                 </p>
              
 
               <div className="mt-8 grid grid-cols-2 gap-4">
-                <div className=" backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center">
+                <div className=" backdrop-blur-md  p-6 text-center">
                   <CheckCircle2 className="w-10 h-10 text-amber-500 mx-auto mb-3" />
-                  <p className="text-white font-semibold">Calidad</p>
-                  <p className="text-stone-300 text-sm">Certificada</p>
+                  <p className="text-white font-semibold">{copy.qualityTitle}</p>
+                  <p className="text-stone-300 text-sm">{copy.qualitySubtitle}</p>
                 </div>
-                <div className=" backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center">
+                <div className=" backdrop-blur-md  p-6 text-center">
                   <CheckCircle2 className="w-10 h-10 text-amber-500 mx-auto mb-3" />
-                  <p className="text-white font-semibold">Compromiso</p>
-                  <p className="text-stone-300 text-sm">Social</p>
+                  <p className="text-white font-semibold">{copy.commitmentTitle}</p>
+                  <p className="text-stone-300 text-sm">{copy.commitmentSubtitle}</p>
                 </div>
               </div>
             </div>
@@ -173,10 +195,12 @@ competitivo dentro del mercado empresarial local y regional.
   {/* Quitamos shadow-2xl, border y cualquier fondo */}
   <div className="relative h-[420px] overflow-hidden sm:h-[420px] md:h-[640px] lg:h-[700px]"> 
    <ImageStack
-  images={[
+     layout="stacked"
+    showOverlay={false}
+     images={[
     {
-      src: "/img-la-empresa/mision/mision001",
-      alt: "Trabajo operativo",
+      src: "/img-la-empresa/mision/mision",
+      alt: copy.imageAlt,
     },
   ]}
   className="w-full"

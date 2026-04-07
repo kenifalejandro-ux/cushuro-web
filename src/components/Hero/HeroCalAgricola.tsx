@@ -6,10 +6,26 @@ import { useEffect, useRef, useState } from "react";
 import { Factory, Pickaxe, Droplets, ShieldCheck } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 const HERO_PANORAMIC_IMAGE = "img-productos/hero/cal-agricola/cal-agricola";
-const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroCalAgricola() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Vista panoramica de operacion minera y produccion de cal",
+      title: "Cal agricola",
+      subtitle:
+        "De alta pureza para remediacion minera, estabilidad del suelo y mejora sostenida de la productividad agricola.",
+      badges: ["Producción por lotes controlados", "Uso agrícola y cierre minero"],
+    },
+    en: {
+      alt: "Panoramic view of mining operations and lime production",
+      title: "Agricultural lime",
+      subtitle:
+        "High-purity material for mining remediation, soil stability, and sustained improvement of agricultural productivity.",
+      badges: ["Controlled batch production", "Agricultural and mine closure use"],
+    },
+  });
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -79,7 +95,7 @@ export function HeroCalAgricola() {
       <div className="absolute inset-0 z-0">
         <LCPImage
           src={HERO_PANORAMIC_IMAGE}
-          alt={HERO_PANORAMIC_ALT}
+          alt={copy.alt}
           width={2560}
           height={1080}
           sizes="100vw"
@@ -101,21 +117,20 @@ export function HeroCalAgricola() {
               <span></span>
             </div>
 
-            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Cal agricola</h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">{copy.title}</h1>
 
             <p className="reveal-subtitle mining-hero-subtitle max-w-[37rem]">
-              De alta pureza para remediacion minera, estabilidad del suelo y mejora sostenida de la
-              productividad agricola.
+              {copy.subtitle}
             </p>
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <Factory size={18} />
-                <span>Producción por lotes controlados</span>
+                <span>{copy.badges[0]}</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
                 <Pickaxe size={18} />
-                <span>Uso agrícola y cierre minero</span>
+                <span>{copy.badges[1]}</span>
               </div>
             </div>
           </div>

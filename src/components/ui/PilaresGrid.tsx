@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 import ServiceCard from "./ServiceCard";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,76 +18,142 @@ type PilarService = {
   showColorAlways?: boolean;
 };
 
-const services: PilarService[] = [
-  {
-    title: "Día del Minero",
-    category: "Cultura Organizacional",
-    image: "img-responsabilidad-social/pilares-img/imagenes/img001",
-    description:
-      "Homenaje y reconocimiento a la labor de nuestros colaboradores, fortaleciendo la identidad y el bienestar del trabajador minero.",
-  },
-  {
-    title: "Evento deportivo",
-    category: "Deporte y Salud",
-    image: "img-responsabilidad-social/pilares-img/imagenes/img002",
-    description:
-      "Impulsamos la integración comunitaria y el estilo de vida saludable mediante la práctica deportiva en nuestra región.",
-  },
-  {
-    title: "Regalo de canastas navideñas - Rodeopampa",
-    category: "Compromiso Social",
-    image: "img-responsabilidad-social/pilares-img/imagenes/img003",
-    description:
-      "Distribución de apoyo solidario en el caserío Rodeopampa, compartiendo bienestar con las familias locales en fechas festivas.",
-  },
-  {
-    title: "Regalo de canastas navideñas - Huamachuco",
-    category: "Proyección Social",
-    image: "img-responsabilidad-social/pilares-img/imagenes/img004",
-    description:
-      "Acciones de solidaridad dirigidas a la población de Huamachuco, reafirmando nuestro compromiso de apoyo a la provincia.",
-  },
-  {
-    title: "Compartir con los niños",
-    category: "Educación y Niñez",
-    image: "img-responsabilidad-social/pilares-img/imagenes/img005",
-    description:
-      "Actividades de sano esparcimiento y apoyo infantil para mejorar la calidad de vida de las nuevas generaciones de nuestra zona.",
-  },
-  {
-    title: "Actividad Cultural",
-    category: "Identidad Local",
-    image: "img-responsabilidad-social/pilares-img/imagenes/img006",
-    description:
-      "Fomento y respeto por las costumbres locales e idiosincrasia de la población, promoviendo la interculturalidad.",
-  },
-  {
-    title: "Actividad de limpieza - Rodeopampa",
-    category: "Actividad de limpieza",
-    image: "/img-medio-ambiente/reforestacion-activa/limpieza",
-    description:
-      "Jornada de limpieza destacando su compromiso con la conservación del medio ambiente.",
-  },
-  {
-    title: "Entrega de canastas navideñas - Marcabal",
-    category: "Responsabilidad Social",
-    image: "img-responsabilidad-social/pilares-img/imagenes/img008",
-    description:
-      "Soporte directo a las familias del distrito de Marcabal, buscando generar un impacto positivo en la comunidad.",
-  },
-  {
-    title: "Entrega de canastas navideñas - Equipo San Isabel de Cushuro",
-    category: "Relaciones Comunitarias",
-    image: "img-responsabilidad-social/pilares-img/imagenes/img009",
-    description:
-      "Iniciativa de proyección social liderada por Equipo San Isabel de Cushuro, reafirmando nuestro compromiso con el bienestar de las familias en nuestras zonas de influencia operativa.",
-  },
-];
-
 export default function PilaresGrid() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const services = useLocalizedContent<PilarService[]>({
+    es: [
+      {
+        title: "Día del Minero",
+        category: "Cultura Organizacional",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img001",
+        description:
+          "Homenaje y reconocimiento a la labor de nuestros colaboradores, fortaleciendo la identidad y el bienestar del trabajador minero.",
+      },
+      {
+        title: "Evento deportivo",
+        category: "Deporte y Salud",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img002",
+        description:
+          "Impulsamos la integración comunitaria y el estilo de vida saludable mediante la práctica deportiva en nuestra región.",
+      },
+      {
+        title: "Regalo de canastas navideñas - Rodeopampa",
+        category: "Compromiso Social",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img003",
+        description:
+          "Distribución de apoyo solidario en el caserío Rodeopampa, compartiendo bienestar con las familias locales en fechas festivas.",
+      },
+      {
+        title: "Regalo de canastas navideñas - Huamachuco",
+        category: "Proyección Social",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img004",
+        description:
+          "Acciones de solidaridad dirigidas a la población de Huamachuco, reafirmando nuestro compromiso de apoyo a la provincia.",
+      },
+      {
+        title: "Compartir con los niños",
+        category: "Educación y Niñez",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img005",
+        description:
+          "Actividades de sano esparcimiento y apoyo infantil para mejorar la calidad de vida de las nuevas generaciones de nuestra zona.",
+      },
+      {
+        title: "Actividad Cultural",
+        category: "Identidad Local",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img006",
+        description:
+          "Fomento y respeto por las costumbres locales e idiosincrasia de la población, promoviendo la interculturalidad.",
+      },
+      {
+        title: "Actividad de limpieza - Rodeopampa",
+        category: "Actividad de limpieza",
+        image: "/img-medio-ambiente/reforestacion-activa/limpieza",
+        description:
+          "Jornada de limpieza destacando su compromiso con la conservación del medio ambiente.",
+      },
+      {
+        title: "Entrega de canastas navideñas - Marcabal",
+        category: "Responsabilidad Social",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img008",
+        description:
+          "Soporte directo a las familias del distrito de Marcabal, buscando generar un impacto positivo en la comunidad.",
+      },
+      {
+        title: "Entrega de canastas navideñas - Equipo San Isabel de Cushuro",
+        category: "Relaciones Comunitarias",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img009",
+        description:
+          "Iniciativa de proyección social liderada por Equipo San Isabel de Cushuro, reafirmando nuestro compromiso con el bienestar de las familias en nuestras zonas de influencia operativa.",
+      },
+    ],
+    en: [
+      {
+        title: "Miner's Day",
+        category: "Organizational Culture",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img001",
+        description:
+          "Tribute and recognition to the work of our collaborators, strengthening the identity and well-being of mining workers.",
+      },
+      {
+        title: "Sports event",
+        category: "Sports and Health",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img002",
+        description:
+          "We promote community integration and a healthy lifestyle through sports in our region.",
+      },
+      {
+        title: "Christmas basket gifts - Rodeopampa",
+        category: "Social Commitment",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img003",
+        description:
+          "Distribution of solidarity support in the Rodeopampa hamlet, sharing well-being with local families during the holiday season.",
+      },
+      {
+        title: "Christmas basket gifts - Huamachuco",
+        category: "Social Outreach",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img004",
+        description:
+          "Solidarity actions aimed at the people of Huamachuco, reaffirming our commitment to supporting the province.",
+      },
+      {
+        title: "Sharing with children",
+        category: "Education and Childhood",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img005",
+        description:
+          "Healthy recreation and child support activities to improve the quality of life of the new generations in our area.",
+      },
+      {
+        title: "Cultural activity",
+        category: "Local Identity",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img006",
+        description:
+          "Promotion and respect for local customs and community identity, encouraging intercultural coexistence.",
+      },
+      {
+        title: "Cleanup activity - Rodeopampa",
+        category: "Cleanup activity",
+        image: "/img-medio-ambiente/reforestacion-activa/limpieza",
+        description:
+          "Cleanup day highlighting our commitment to environmental conservation.",
+      },
+      {
+        title: "Christmas basket delivery - Marcabal",
+        category: "Social Responsibility",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img008",
+        description:
+          "Direct support for families in the district of Marcabal, seeking to create a positive impact in the community.",
+      },
+      {
+        title: "Christmas basket delivery - Santa Isabel de Cushuro Team",
+        category: "Community Relations",
+        image: "img-responsabilidad-social/pilares-img/imagenes/img009",
+        description:
+          "Social outreach initiative led by the Santa Isabel de Cushuro Team, reaffirming our commitment to the well-being of families in our operational areas of influence.",
+      },
+    ],
+  });
 
   useEffect(() => {
     if (!sectionRef.current) return;

@@ -1,20 +1,65 @@
 import { useEffect } from "react";
 import { initContactanosPage } from "./contactanos";
+import { useLocalizedContent, useSiteLanguage } from "../../context/SiteLanguageContext";
 
 type ContactProps = {
   className?: string;
 };
 
 const PRODUCT_OPTIONS = [
-  "Piedra Caliza",
-  "Cal Viva",
-  "Cal Agricola",
-  "Carbon Antracita",
-  "Carbon Tipo Cisco",
-  "Cotizacion general",
+  { value: "Piedra Caliza", labelEs: "Piedra Caliza", labelEn: "Limestone" },
+  { value: "Cal Viva", labelEs: "Cal Viva", labelEn: "Quicklime" },
+  { value: "Cal Agricola", labelEs: "Cal Agricola", labelEn: "Agricultural Lime" },
+  { value: "Carbon Antracita", labelEs: "Carbon Antracita", labelEn: "Anthracite Coal" },
+  { value: "Carbon Tipo Cisco", labelEs: "Carbon Tipo Cisco", labelEn: "Carbon Cisco" },
+  { value: "Cotizacion general", labelEs: "Cotizacion general", labelEn: "General quotation" },
 ];
 
 export default function Contact({ className = "" }: ContactProps) {
+  const { language } = useSiteLanguage();
+  const copy = useLocalizedContent({
+    es: {
+      badge: "Atencion Comercial",
+      titleStart: "Déjanos tus datos y",
+      titleHighlight: "uno de nuestros especialistas",
+      titleEnd: "se pondrá en contacto contigo.",
+      fields: {
+        name: "Nombre",
+        company: "Empresa",
+        email: "Correo electrónico",
+        phone: "Teléfono",
+        product: "Producto o servicio",
+        productPlaceholder: "Selecciona un producto o servicio",
+        message: "Mensaje",
+        website: "Sitio web",
+      },
+      actions: {
+        submit: "ENVIAR",
+        clear: "BORRAR",
+      },
+    },
+    en: {
+      badge: "Commercial Support",
+      titleStart: "Leave us your details and",
+      titleHighlight: "one of our specialists",
+      titleEnd: "will get in touch with you.",
+      fields: {
+        name: "Name",
+        company: "Company",
+        email: "Email",
+        phone: "Phone",
+        product: "Product or service",
+        productPlaceholder: "Select a product or service",
+        message: "Message",
+        website: "Website",
+      },
+      actions: {
+        submit: "SEND",
+        clear: "CLEAR",
+      },
+    },
+  });
+
   useEffect(() => {
     const cleanup = initContactanosPage();
     return () => cleanup();
@@ -26,15 +71,15 @@ export default function Contact({ className = "" }: ContactProps) {
         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/70 to-transparent" />
         <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-stone-300">
           <span className="h-2 w-2 rounded-full bg-emerald-500" />
-          Atencion Comercial
+          {copy.badge}
         </div>
 
         <h3 className="max-w-xl text-xl font-semibold leading-snug text-stone-100">
-          Déjanos tus datos y{" "}
+          {copy.titleStart}{" "}
           <span className="text-emerald-400">
-            uno de nuestros especialistas
+            {copy.titleHighlight}
           </span>{" "}
-          se pondrá en contacto contigo.
+          {copy.titleEnd}
         </h3>
 
         <form
@@ -46,13 +91,13 @@ export default function Contact({ className = "" }: ContactProps) {
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="Nombres" className="sr-only">
-                Nombre
+                {copy.fields.name}
               </label>
               <input
                 type="text"
                 id="Nombres"
                 name="Nombre"
-                placeholder="Nombre"
+                placeholder={copy.fields.name}
                 autoComplete="name"
                 required
                 className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
@@ -60,13 +105,13 @@ export default function Contact({ className = "" }: ContactProps) {
             </div>
             <div>
               <label htmlFor="empresa" className="sr-only">
-                Empresa
+                {copy.fields.company}
               </label>
               <input
                 type="text"
                 id="empresa"
                 name="Empresa"
-                placeholder="Empresa"
+                placeholder={copy.fields.company}
                 autoComplete="organization"
                 required
                 className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
@@ -76,13 +121,13 @@ export default function Contact({ className = "" }: ContactProps) {
 
           <div>
             <label htmlFor="correo" className="sr-only">
-              Correo electronico
+              {copy.fields.email}
             </label>
             <input
               type="email"
               id="correo"
               name="Correo"
-              placeholder="Correo electrónico"
+              placeholder={copy.fields.email}
               autoComplete="email"
               required
               className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
@@ -91,13 +136,13 @@ export default function Contact({ className = "" }: ContactProps) {
 
           <div>
             <label htmlFor="telefono" className="sr-only">
-              Telefono
+              {copy.fields.phone}
             </label>
             <input
               type="tel"
               id="telefono"
               name="Telefono"
-              placeholder="Teléfono"
+              placeholder={copy.fields.phone}
               autoComplete="tel"
               inputMode="tel"
               required
@@ -107,7 +152,7 @@ export default function Contact({ className = "" }: ContactProps) {
 
           <div>
             <label htmlFor="producto" className="sr-only">
-              Producto o servicio
+              {copy.fields.product}
             </label>
             <select
               id="producto"
@@ -117,11 +162,11 @@ export default function Contact({ className = "" }: ContactProps) {
               className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
             >
               <option value="" disabled className="text-stone-500">
-                Selecciona un producto o servicio
+                {copy.fields.productPlaceholder}
               </option>
               {PRODUCT_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
+                <option key={option.value} value={option.value}>
+                  {language === "en" ? option.labelEn : option.labelEs}
                 </option>
               ))}
             </select>
@@ -129,12 +174,12 @@ export default function Contact({ className = "" }: ContactProps) {
 
           <div>
             <label htmlFor="Mensaje" className="sr-only">
-              Mensaje
+              {copy.fields.message}
             </label>
             <textarea
               id="Mensaje"
               name="Mensaje"
-              placeholder="Mensaje"
+              placeholder={copy.fields.message}
               rows={4}
               required
               className="w-full rounded-xl border border-white/8 bg-black/20 p-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
@@ -143,7 +188,7 @@ export default function Contact({ className = "" }: ContactProps) {
 
           <input type="hidden" name="recaptcha_token" id="recaptcha_token" />
           <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-            <label htmlFor="website">Sitio web</label>
+            <label htmlFor="website">{copy.fields.website}</label>
             <input
               type="text"
               id="website"
@@ -162,19 +207,19 @@ export default function Contact({ className = "" }: ContactProps) {
 
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
-  type="submit"
-  className="mt-3 inline-flex h-12 min-h-[50px] flex-1 items-center justify-center rounded-full bg-emerald-700 px-8 text-sm font-semibold text-stone-50 transition hover:bg-emerald-600"
->
-  ENVIAR
-</button>
+              type="submit"
+              className="mt-3 inline-flex h-12 min-h-[50px] flex-1 items-center justify-center rounded-full bg-emerald-700 px-8 text-sm font-semibold text-stone-50 transition hover:bg-emerald-600"
+            >
+              {copy.actions.submit}
+            </button>
 
-<button
-  type="button"
-  id="clear-form"
-  className="mt-3 inline-flex h-12 min-h-[50px] flex-1 items-center justify-center rounded-full border border-stone-500/60 bg-stone-800/80 px-8 text-sm font-semibold text-stone-100 transition hover:bg-stone-700"
->
-  BORRAR
-</button>
+            <button
+              type="button"
+              id="clear-form"
+              className="mt-3 inline-flex h-12 min-h-[50px] flex-1 items-center justify-center rounded-full border border-stone-500/60 bg-stone-800/80 px-8 text-sm font-semibold text-stone-100 transition hover:bg-stone-700"
+            >
+              {copy.actions.clear}
+            </button>
           </div>
         </form>
       </section>

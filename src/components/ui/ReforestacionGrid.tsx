@@ -6,41 +6,75 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Leaf, ShieldCheck, Users } from "lucide-react";
 import { useEffect, useRef } from "react";
 
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 import ServiceCard from "./ServiceCard";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const reforestationCards = [
-  {
-    title: "Plantación de Especies Nativas",
-    category: "Restauración ecológica",
-    description:
-      "Siembra anual de miles de árboles nativos en zonas degradadas, restaurando el equilibrio ecológico y capturando carbono.",
-    image: "/img-medio-ambiente/hero/medio-ambiente/reforestacion-medio-ambiente",
-    icon: Leaf,
-  },
-  {
-    title: "Monitoreo y Mantenimiento",
-    category: "Sostenibilidad forestal",
-    description:
-      "Seguimiento técnico continuo y cuidado de los bosques plantados para garantizar su supervivencia y crecimiento óptimo.",
-    image: "/img-medio-ambiente/sostenibilidad-forestal/monitoreo-mantenimiento",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Educación y Comunidad",
-    category: "Impacto social",
-    description:
-      "Participación activa en el cuidado del medio ambiente a través de programas de limpieza y conservación del medio ambiente.",
-    image: "/img-medio-ambiente/reforestacion-activa/limpieza",
-    icon: Users,
-  },
-];
 
 export default function ReforestacionGrid() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const copy = useLocalizedContent({
+    es: {
+      title: "Reforestación Activa",
+      cards: [
+        {
+          title: "Plantación de Especies Nativas",
+          category: "Restauración ecológica",
+          description:
+            "Siembra anual de miles de árboles nativos en zonas degradadas, restaurando el equilibrio ecológico y capturando carbono.",
+          image: "/img-medio-ambiente/hero/medio-ambiente/reforestacion-medio-ambiente",
+          icon: Leaf,
+        },
+        {
+          title: "Monitoreo y Mantenimiento",
+          category: "Sostenibilidad forestal",
+          description:
+            "Seguimiento técnico continuo y cuidado de los bosques plantados para garantizar su supervivencia y crecimiento óptimo.",
+          image: "/img-medio-ambiente/sostenibilidad-forestal/monitoreo-mantenimiento",
+          icon: ShieldCheck,
+        },
+        {
+          title: "Educación y Comunidad",
+          category: "Impacto social",
+          description:
+            "Participación activa en el cuidado del medio ambiente a través de programas de limpieza y conservación del medio ambiente.",
+          image: "/img-medio-ambiente/reforestacion-activa/limpieza",
+          icon: Users,
+        },
+      ],
+    },
+    en: {
+      title: "Active Reforestation",
+      cards: [
+        {
+          title: "Native Species Planting",
+          category: "Ecological restoration",
+          description:
+            "Annual planting of thousands of native trees in degraded areas, restoring ecological balance and capturing carbon.",
+          image: "/img-medio-ambiente/hero/medio-ambiente/reforestacion-medio-ambiente",
+          icon: Leaf,
+        },
+        {
+          title: "Monitoring and Maintenance",
+          category: "Forest sustainability",
+          description:
+            "Continuous technical monitoring and care of planted forests to ensure their survival and optimal growth.",
+          image: "/img-medio-ambiente/sostenibilidad-forestal/monitoreo-mantenimiento",
+          icon: ShieldCheck,
+        },
+        {
+          title: "Education and Community",
+          category: "Social impact",
+          description:
+            "Active environmental care through cleanup and conservation programs developed with the community.",
+          image: "/img-medio-ambiente/reforestacion-activa/limpieza",
+          icon: Users,
+        },
+      ],
+    },
+  });
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -221,12 +255,12 @@ export default function ReforestacionGrid() {
     <section ref={sectionRef} className="light-image py-32 px-6 bg-zinc-800 text-white">
       <div className="max-w-7xl mx-auto">
         <div ref={headingRef} className="mb-24 text-center space-y-4">
-          <h2 className="text-4xl md:text-6xl font-light tracking-tight">Reforestación Activa</h2>
+          <h2 className="text-4xl md:text-6xl font-light tracking-tight">{copy.title}</h2>
           <div className="h-[1px] w-24 bg-emerald-500 mx-auto" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {reforestationCards.map((card, i) => (
+          {copy.cards.map((card, i) => (
             <div
               key={i}
               ref={(el) => {

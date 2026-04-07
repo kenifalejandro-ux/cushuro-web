@@ -11,6 +11,7 @@ import {
   RESPONSIBILITY_SUBMENU,
   SERVICES_SUBMENU,
 } from "./header.data";
+import { useLocalizedContent, useSiteLanguage } from "../../context/SiteLanguageContext";
 
 const SOCIAL_LINKS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/", icon: Linkedin },
@@ -18,16 +19,73 @@ const SOCIAL_LINKS = [
   { label: "Instagram", href: "https://www.instagram.com/", icon: Instagram },
 ];
 
-const WHATSAPP_NUMBER = "959173472";
-const WHATSAPP_URL = `https://wa.me/51${WHATSAPP_NUMBER}`;
-
 export default function Footer() {
   const [openFooterSections, setOpenFooterSections] = useState<Record<string, boolean>>({});
+  const { language } = useSiteLanguage();
+  const copy = useLocalizedContent({
+    es: {
+      brandSubtitle: "Industria Minera",
+      company: "Empresa",
+      contact: "Contacto",
+      mobileToggle: {
+        hide: "Ocultar submenu de",
+        show: "Mostrar submenu de",
+      },
+      contactLines: {
+        plant: "Planta: Centro de Producción Cas. Rodeopampa – Marcabal",
+        phones: "Celulares:",
+        email: "E-mail:",
+      },
+      visitLabel: "Visitar",
+      location: "Huamachuco - La Libertad - Perú",
+      developedBy: "Elaborado por:",
+      tabs: {
+        "La Empresa": "La Empresa",
+        Productos: "Productos",
+        "Servicios-Industriales": "Servicios Industriales",
+        "compromiso-ambiental-y-social": "Compromiso Ambiental y Social",
+        Contacto: "Contacto",
+      },
+    },
+    en: {
+      brandSubtitle: "Mining Industry",
+      company: "Company",
+      contact: "Contact",
+      mobileToggle: {
+        hide: "Hide submenu for",
+        show: "Show submenu for",
+      },
+      contactLines: {
+        plant: "Plant: Production Center Cas. Rodeopampa – Marcabal",
+        phones: "Phones:",
+        email: "E-mail:",
+      },
+      visitLabel: "Visit",
+      location: "Huamachuco - La Libertad - Peru",
+      developedBy: "Developed by:",
+      tabs: {
+        "La Empresa": "Company",
+        Productos: "Products",
+        "Servicios-Industriales": "Industrial Services",
+        "compromiso-ambiental-y-social": "Environmental Commitment",
+        Contacto: "Contact",
+      },
+    },
+  });
 
   const footerSubmenus: Record<string, { name: string; href: string }[]> = {
-    Productos: PRODUCTS_SUBMENU,
-    "Servicios-Industriales": SERVICES_SUBMENU,
-    "compromiso-ambiental-y-social": RESPONSIBILITY_SUBMENU,
+    Productos: PRODUCTS_SUBMENU.map((item) => ({
+      href: item.href,
+      name: language === "en" ? item.nameEn : item.name,
+    })),
+    "Servicios-Industriales": SERVICES_SUBMENU.map((item) => ({
+      href: item.href,
+      name: language === "en" ? item.nameEn : item.name,
+    })),
+    "compromiso-ambiental-y-social": RESPONSIBILITY_SUBMENU.map((item) => ({
+      href: item.href,
+      name: language === "en" ? item.nameEn : item.name,
+    })),
   };
 
   const toggleFooterSection = (label: string) => {
@@ -57,7 +115,7 @@ export default function Footer() {
                 <h2 className="text-2xl font-semibold tracking-wide text-emerald-600">
                   CALERA CUSHURO
                 </h2>
-                <p className="text-sm text-zinc-400">Industria Minera</p>
+                <p className="text-sm text-zinc-400">{copy.brandSubtitle}</p>
               </div>
             </div>
 
@@ -66,11 +124,12 @@ export default function Footer() {
             {/* Enlaces */}
             <div className="grid gap-10 md:grid-cols-2 text-sm text-zinc-300">
               <div className="space-y-3">
-                <p className="font-semibold text-white">Empresa</p>
+                <p className="font-semibold text-white">{copy.company}</p>
                 {DEFAULT_TABS.map((tab) => {
                   const submenu = footerSubmenus[tab.label];
                   const isOpen = Boolean(openFooterSections[tab.label]);
                   const submenuId = `footer-submenu-${tab.label.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+                  const tabLabel = copy.tabs[tab.label as keyof typeof copy.tabs] ?? tab.label;
 
                   if (!submenu) {
                     return (
@@ -79,7 +138,7 @@ export default function Footer() {
                         to={tab.href}
                         className="block hover:text-emerald-600 transition-colors"
                       >
-                        {tab.label}
+                        {tabLabel}
                       </NavLink>
                     );
                   }
@@ -88,13 +147,13 @@ export default function Footer() {
                     <div key={tab.href} className="space-y-2">
                       <div className="flex items-center justify-between gap-2">
                         <NavLink to={tab.href} className="hover:text-emerald-600 transition-colors">
-                          {tab.label}
+                          {tabLabel}
                         </NavLink>
                         <button
                           type="button"
                           aria-expanded={isOpen}
                           aria-controls={submenuId}
-                          aria-label={`${isOpen ? "Ocultar" : "Mostrar"} submenu de ${tab.label}`}
+                          aria-label={`${isOpen ? copy.mobileToggle.hide : copy.mobileToggle.show} ${tabLabel}`}
                           onClick={() => toggleFooterSection(tab.label)}
                           className="text-zinc-400 hover:text-emerald-600 transition-colors"
                         >
@@ -127,10 +186,10 @@ export default function Footer() {
               </div>
 
               <div className="space-y-3">
-                <p className="font-semibold text-white">Contacto</p>
-                <p>Planta: Centro de Producción Cas. Rodeopampa – Marcabal</p>
+                <p className="font-semibold text-white">{copy.contact}</p>
+                <p>{copy.contactLines.plant}</p>
                 <p className="text-emerald-600">
-                  Celulares:{" "}
+                  {copy.contactLines.phones}{" "}
                   <a href="tel:+51986671128" className="hover:underline">
                     986 671128
                   </a>{" "}
@@ -140,7 +199,7 @@ export default function Footer() {
                   </a>
                 </p>
                 <p className="text-emerald-600">
-                  E-mail:{" "}
+                  {copy.contactLines.email}{" "}
                   <a
                     href="mailto:administracion@cushuro.com"
                     target="_blank"
@@ -160,7 +219,7 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Visitar ${label}`}
+                  aria-label={`${copy.visitLabel} ${label}`}
                   className="text-zinc-400 transition hover:text-emerald-600"
                 >
                   <Icon size={20} />
@@ -179,9 +238,9 @@ export default function Footer() {
             © {new Date().getFullYear()} Empresa de Transportes y Servicios Santa Isabel de Cushuro
             S.A.C.
           </p>
-          <p>Huamachuco - La Libertad - Perú</p>
+          <p>{copy.location}</p>
           <p className="text-emerald-600">
-            Elaborado por:{" "}
+            {copy.developedBy}{" "}
             <a href="https://www.zincelideas.com" target="_blank" rel="noopener noreferrer">
               www.zincelideas.com
             </a>

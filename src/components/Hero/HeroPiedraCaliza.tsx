@@ -6,10 +6,26 @@ import { useEffect, useRef, useState } from "react";
 import { Factory, Pickaxe, Droplets, ShieldCheck } from "lucide-react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 const HERO_PANORAMIC_IMAGE = "img-productos/hero/piedra-caliza/piedra-caliza";
-const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroPiedraCaliza() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Vista panoramica de operacion minera y produccion de cal",
+      title: "Piedra caliza",
+      subtitle:
+        "Materia prima de alta pureza para producción de cal, metalurgia y aplicaciones industriales con trazabilidad directa desde cantera.",
+      badges: ["Cantera con abastecimiento continuo", "Integración directa a planta calera"],
+    },
+    en: {
+      alt: "Panoramic view of mining operations and lime production",
+      title: "Limestone",
+      subtitle:
+        "High-purity raw material for lime production, metallurgy, and industrial applications with direct traceability from quarry.",
+      badges: ["Quarry with continuous supply", "Direct integration with lime plant"],
+    },
+  });
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -76,7 +92,7 @@ export function HeroPiedraCaliza() {
       <div className="absolute inset-0 z-0">
         <LCPImage
           src={HERO_PANORAMIC_IMAGE}
-          alt={HERO_PANORAMIC_ALT}
+          alt={copy.alt}
           width={2560}
           height={1080}
           sizes="100vw"
@@ -87,7 +103,7 @@ export function HeroPiedraCaliza() {
       </div>
 
       {/* Overlay oscuro */}
-      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(10,10,9,0.78)_0%,rgba(10,10,9,0.5)_52%,rgba(10,10,9,0.22)_100%)]" />
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(10,10,9,0.78)_0%,rgba(10,10,9,0.6)_52%,rgba(10,10,9,0.22)_100%)]" />
 
       {/* ================= CONTENIDO ln-91-70================= */}
 <div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
@@ -98,21 +114,20 @@ export function HeroPiedraCaliza() {
               <span></span>
             </div>
 
-            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">Piedra caliza</h1>
+            <h1 className="reveal-title lg:text-5xl mining-hero-title max-w-[20ch]">{copy.title}</h1>
 
             <p className="reveal-subtitle mining-hero-subtitle max-w-[39rem]">
-              Materia prima de alta pureza para producción de cal, metalurgia y aplicaciones
-              industriales con trazabilidad directa desde cantera.
+              {copy.subtitle}
             </p>
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <Factory size={18} />
-                <span>Cantera con abastecimiento continuo</span>
+                <span>{copy.badges[0]}</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
                 <Pickaxe size={18} />
-                <span>Integración directa a planta calera</span>
+                <span>{copy.badges[1]}</span>
               </div>
             </div>
           </div>

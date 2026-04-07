@@ -4,7 +4,8 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ImageStack } from './ImageStack';
-import { Lightbulb, TrendingUp, Award, Shield, Zap, Star } from 'lucide-react';
+import { Lightbulb, TrendingUp, Shield } from 'lucide-react';
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +16,28 @@ export function Vision() {
   const badgeRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const pillarsGridRef = useRef<HTMLDivElement>(null);
+  const copy = useLocalizedContent({
+    es: {
+      badge: "NUESTRA VISIÓN",
+      futureTitle: "Nuestro Futuro",
+      futureLabel: "Visión",
+      description:
+        "La empresa CALERA “SANTA ISABEL DE CUSHURO SAC” se proyecta a consolidarse en el suministro de Óxido de Calcio en el mercado minero de la región La Libertad; por su organización, logística, ambiente de trabajo, cuidado del medio ambiente, seguridad y responsabilidad social, por lo cual debe ser considerada como una empresa con credibilidad y confianza.",
+      growthLabel: "Crecimiento",
+      safetyLabel: "Seguridad",
+      imageAlt: "Trabajo operativo",
+    },
+    en: {
+      badge: "OUR VISION",
+      futureTitle: "Our Future",
+      futureLabel: "Vision",
+      description:
+        "CALERA “SANTA ISABEL DE CUSHURO SAC” aims to consolidate its position in the supply of calcium oxide in the mining market of the La Libertad region through its organization, logistics, work environment, environmental care, safety, and social responsibility, being recognized as a company of credibility and trust.",
+      growthLabel: "Growth",
+      safetyLabel: "Safety",
+      imageAlt: "Operational work",
+    },
+  });
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -121,9 +144,9 @@ export function Vision() {
            <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16 py-5">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm font-semibold mb-6 shadow-xl">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md  text-white text-sm font-semibold mb-6 shadow-xl">
             <Lightbulb className="w-5 h-5 text-yellow-400 " />
-            <span>NUESTRA VISIÓN</span>
+            <span>{copy.badge}</span>
             <Lightbulb className="w-5 h-5 text-yellow-400" />
           </div>
           
@@ -141,10 +164,12 @@ export function Vision() {
           <div className="relative">
             <div ref={imageRef} className="relative h-[420px] rounded-3xl overflow-hidden sm:h-[420px] md:h-[640px] lg:h-[700px]">
              <ImageStack
-  images={[
-    {
-      src: "/img-la-empresa/mision/mision001",
-      alt: "Trabajo operativo",
+               layout="stacked"
+              showOverlay={false}
+           images={[
+           {
+             src: "/img-la-empresa/vision/vision",
+             alt: copy.imageAlt,
     },
   ]}
   className="w-full"
@@ -166,29 +191,25 @@ export function Vision() {
             <div className="">
               <div className="flex items-center gap-4 mb-6">                  
                 <div>
-                  <h2 className="text-4xl font-bold text-white">Nuestro Futuro</h2>
-                  <p className="text-amber-500 text-sm uppercase tracking-wider mt-1">Visión</p>
+                  <h2 className="text-4xl font-bold text-white">{copy.futureTitle}</h2>
+                  <p className="text-amber-500 text-sm uppercase tracking-wider mt-1">{copy.futureLabel}</p>
                 </div>
               </div>
 
                 <p className="text-md text-zinc-100 leading-relaxed font-medium">
-                  La empresa CALERA “SANTA ISABEL DE CUSHURO SAC”, se proyecta a consolidarse en el
-suministro de Óxido de Calcio en el mercado Minero de la Región La Libertad; por su
-Organización, Logística, ambiente de trabajo, cuidado del medio ambiente, seguridad y
-responsabilidad social, por lo cual debe ser considerada como una empresa con credibilidad y
-confianza.
+                  {copy.description}
                 </p>
           
               <div className="grid grid-cols-2 gap-4">
                 <div className=" text-white  p-6 text-center shadow-xl hover:scale-105 transition-transform duration-300">
                   <TrendingUp className="w-10 text-amber-500 h-10 mx-auto mb-3" />
                   <p className="text-3xl  font-bold">100%</p>
-                  <p className="text-sm uppercase tracking-wider mt-2">Crecimiento</p>
+                  <p className="text-sm uppercase tracking-wider mt-2">{copy.growthLabel}</p>
                 </div>
                 <div className=" text-white rounded-2xl p-6 text-center shadow-xl hover:scale-105 transition-transform duration-300">
                   <Shield className="w-10 text-amber-500 h-10 mx-auto mb-3" />
                   <p className="text-3xl font-bold">100%</p>
-                  <p className="text-sm uppercase tracking-wider mt-2">Seguridad</p>
+                  <p className="text-sm uppercase tracking-wider mt-2">{copy.safetyLabel}</p>
                 </div>
               </div>
             </div>

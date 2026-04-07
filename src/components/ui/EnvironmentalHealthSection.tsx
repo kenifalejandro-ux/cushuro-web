@@ -5,6 +5,7 @@
 
 import type { LucideIcon } from "lucide-react";
 import { motion } from "motion/react";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 export type EnvironmentalHealthItem = {
   icon: LucideIcon;
@@ -27,6 +28,15 @@ export default function EnvironmentalHealthSection({
   items,
   sectionClassName = "bg-[linear-gradient(180deg,#eef1ea_0%,#f6f5ef_100%)] px-6 py-24 md:py-32",
 }: EnvironmentalHealthSectionProps) {
+  const copy = useLocalizedContent({
+    es: {
+      eyebrow: "Salud Ambiental",
+    },
+    en: {
+      eyebrow: "Environmental Health",
+    },
+  });
+
   return (
     <section className={sectionClassName}>
       <div className="mx-auto max-w-6xl">
@@ -41,7 +51,7 @@ export default function EnvironmentalHealthSection({
           <div className="mx-auto mb-5 inline-flex items-center gap-3 rounded-full border border-zinc-200 bg-white/90 px-4 py-2 shadow-[0_10px_24px_-18px_rgba(24,24,27,0.2)]">
             <span className="h-2 w-2 rounded-full bg-emerald-500" />
             <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-600">
-              Salud Ambiental
+              {copy.eyebrow}
             </span>
           </div>
 

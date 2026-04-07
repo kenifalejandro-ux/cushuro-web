@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { LCPImage } from "./LCPImage";
 import { OptimizedImage } from "./OptimizedImage";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 type Props = {
   title: string;
@@ -33,6 +34,17 @@ export default function ServiceCard({
   icon: Icon,
   showColorAlways = false,
 }: Props) {
+  const copy = useLocalizedContent({
+    es: {
+      moreInfo: "Más información",
+      ariaPrefix: "Más información sobre",
+    },
+    en: {
+      moreInfo: "Learn more",
+      ariaPrefix: "Learn more about",
+    },
+  });
+
   const imageSizes = sizes ?? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw";
 
   const imageToneClass = showColorAlways
@@ -101,9 +113,9 @@ export default function ServiceCard({
           <Link
             to={href}
             className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-zinc-800 transition hover:text-emerald-700"
-            aria-label={`Más información sobre ${title}`}
+            aria-label={`${copy.ariaPrefix} ${title}`}
           >
-            Más información
+            {copy.moreInfo}
             <span aria-hidden="true">→</span>
           </Link>
         ) : (

@@ -11,6 +11,7 @@ import CarouselText from "../ui/CarouselText";
 import { LazyOnView } from "../ui/LazyOnView";
 import Metricas from "@/components/ui/Metricas";
 import ServicesGrid from "@/components/ui/ServicesGrid";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 const LazyCarouselPlanesWeb = lazy(() =>
   import("../ui/CarouselPlanesWeb").then((m) => ({ default: m.CarouselPlanesWeb }))
@@ -20,32 +21,76 @@ const LazyCompanyMapHybrid = lazy(() => import("../ui/CompanyMapHybrid"));
 
 gsap.registerPlugin(ScrollTrigger);
 
-const companyLocations: CompanyLocationItem[] = [
-  {
-    id: "cushuro-main-office",
-    companyName: "EMPRESA DE TRANSPORTES Y Productos SANTA ISABEL DE CUSHURO S.A.C.",
-    city: "Huamachuco, La Libertad",
-    address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
-    productionCenter: "CASERIO RODEOPAMPA - MARCABAL - HUAMACHUCO.",
-    imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
-    imageAlt: "Planta y Compromiso Ambiental Y Social de Calera Cushuro",
-    coordinates: [-78.0489, -7.8154],
-  },
-
-  // ✅ NUEVA PLANTA
-  {
-    id: "bambamarca-plant",
-    companyName: "Planta Bambamarca - Santa Isabel de Cushuro",
-    city: "Bambamarca, Cajamarca",
-    address: "Bambamarca - Cajamarca, Perú.",
-    productionCenter: "Zona Industrial Bambamarca.",
-    imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002", // usa otra imagen
-    imageAlt: "Planta de producción en Bambamarca - Cajamarca",
-    coordinates: [-78.5213, -6.6828], // Coordenadas aproximadas Bambamarca
-  },
-];
-
 export default function Inicio() {
+  const copy = useLocalizedContent({
+    es: {
+      metrics: [
+        { valor: "15+", etiqueta: "Años de experiencia" },
+        { valor: "5", etiqueta: "Hornos operativos 24/7" },
+        { valor: "176 TM", etiqueta: "Capacidad diaria" },
+      ],
+      map: {
+        title: "Ubicación de nuestras plantas",
+        subtitle: "Conoce nuestras sedes operativas en La Libertad y Cajamarca.",
+      },
+      locations: [
+        {
+          id: "cushuro-main-office",
+          companyName: "EMPRESA DE TRANSPORTES Y Productos SANTA ISABEL DE CUSHURO S.A.C.",
+          city: "Huamachuco, La Libertad",
+          address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
+          productionCenter: "CASERIO RODEOPAMPA - MARCABAL - HUAMACHUCO.",
+          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+          imageAlt: "Planta y Compromiso Ambiental Y Social de Calera Cushuro",
+          coordinates: [-78.0489, -7.8154] as [number, number],
+        },
+        {
+          id: "bambamarca-plant",
+          companyName: "Planta Bambamarca - Santa Isabel de Cushuro",
+          city: "Bambamarca, Cajamarca",
+          address: "Bambamarca - Cajamarca, Perú.",
+          productionCenter: "Zona Industrial Bambamarca.",
+          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002",
+          imageAlt: "Planta de producción en Bambamarca - Cajamarca",
+          coordinates: [-78.5213, -6.6828] as [number, number],
+        },
+      ] satisfies CompanyLocationItem[],
+    },
+    en: {
+      metrics: [
+        { valor: "15+", etiqueta: "Years of experience" },
+        { valor: "5", etiqueta: "24/7 operating kilns" },
+        { valor: "176 TM", etiqueta: "Daily capacity" },
+      ],
+      map: {
+        title: "Location of our plants",
+        subtitle: "Explore our operational sites in La Libertad and Cajamarca.",
+      },
+      locations: [
+        {
+          id: "cushuro-main-office",
+          companyName: "SANTA ISABEL DE CUSHURO TRANSPORT AND PRODUCTS COMPANY S.A.C.",
+          city: "Huamachuco, La Libertad",
+          address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
+          productionCenter: "RODEOPAMPA - MARCABAL - HUAMACHUCO PRODUCTION CENTER.",
+          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+          imageAlt: "Cushuro lime plant and environmental-social commitment",
+          coordinates: [-78.0489, -7.8154] as [number, number],
+        },
+        {
+          id: "bambamarca-plant",
+          companyName: "Bambamarca Plant - Santa Isabel de Cushuro",
+          city: "Bambamarca, Cajamarca",
+          address: "Bambamarca - Cajamarca, Peru.",
+          productionCenter: "Bambamarca Industrial Zone.",
+          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002",
+          imageAlt: "Production plant in Bambamarca - Cajamarca",
+          coordinates: [-78.5213, -6.6828] as [number, number],
+        },
+      ] satisfies CompanyLocationItem[],
+    },
+  });
+
   const heroRef = useRef<HTMLDivElement | null>(null);
   const responsiveRef = useRef<HTMLDivElement | null>(null);
 
@@ -107,11 +152,7 @@ export default function Inicio() {
             estilo="moderno"
             vista="desktop"
             color="#111111"
-            data={[
-              { valor: "15+", etiqueta: "Años de experiencia" },
-              { valor: "5", etiqueta: "Hornos operativos 24/7" },
-              { valor: "176 TM", etiqueta: "Capacidad diaria" },
-            ]}
+            data={copy.metrics}
           />
         </div>
         {/* ================= CONTENIDO ================= */}
@@ -134,9 +175,9 @@ export default function Inicio() {
           <Suspense fallback={<div className="mt-12 h-[520px] md:h-[640px]" />}>
             <LazyCompanyMapHybrid
               className="mt-12 pb-20"
-              title="Ubicación de nuestras plantas"
-              subtitle="Conoce nuestras sedes operativas en La Libertad y Cajamarca."
-              locations={companyLocations}
+              title={copy.map.title}
+              subtitle={copy.map.subtitle}
+              locations={copy.locations}
               center={[-78.3, -7.2]}
               projectionScale={1300}
               primaryColor="#0e5814"

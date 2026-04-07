@@ -6,10 +6,32 @@ import { useEffect, useRef, useState } from "react";
 
 import { HeroMediaThumbnails } from "../ui/HeroMediaThumbnails";
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 const HERO_PANORAMIC_IMAGE = "img-servicios/hero/transporte-logistico/transporte-logistico002";
-const HERO_PANORAMIC_ALT = "Vista panoramica de operacion minera y produccion de cal";
 
 export function HeroTransporteLogistico() {
+  const copy = useLocalizedContent({
+    es: {
+      alt: "Vista panoramica de operacion minera y produccion de cal",
+      slideAlt: "Vista operativa",
+      title: "Transporte logístico para operaciones mineras",
+      subtitle:
+        "Servicio especializado para traslado continuo de materiales con capacidad diaria de hasta 176 TM y control logistico permanente.",
+      badges: ["176 TM / día", "Especializado en mineria"],
+      thumbnailAlt: "Vista logística",
+      thumbnailLabel: "Mostrar vista logística",
+    },
+    en: {
+      alt: "Panoramic view of mining operations and lime production",
+      slideAlt: "Operational view",
+      title: "Logistics transport for mining operations",
+      subtitle:
+        "Specialized service for the continuous transport of materials with daily capacity of up to 176 TM and permanent logistics control.",
+      badges: ["176 TM / day", "Specialized in mining"],
+      thumbnailAlt: "Logistics view",
+      thumbnailLabel: "Show logistics view",
+    },
+  });
   const heroRef = useRef<HTMLDivElement>(null);
   const modelContainerRef = useRef<HTMLDivElement>(null);
 
@@ -127,7 +149,7 @@ export function HeroTransporteLogistico() {
       <div className="absolute inset-0 z-0">
         <LCPImage
           src={HERO_PANORAMIC_IMAGE}
-          alt={HERO_PANORAMIC_ALT}
+          alt={copy.alt}
           width={2560}
           height={1080}
           sizes="100vw"
@@ -144,7 +166,7 @@ export function HeroTransporteLogistico() {
             <LCPImage
               key={slide.poster}
               src={slide.poster}
-              alt={`Vista operativa ${index + 1}`}
+              alt={`${copy.slideAlt} ${index + 1}`}
               width={1920}
               height={1080}
               sizes="100vw"
@@ -183,22 +205,21 @@ export function HeroTransporteLogistico() {
               <span></span>
             </div>
 
-<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               Transporte logístico para operaciones mineras
+<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               {copy.title}
             </h1>
 
             <p className="reveal-subtitle mining-hero-subtitle max-w-[39rem]">
-              Servicio especializado para traslado continuo de materiales con capacidad diaria de
-              hasta 176 TM y control logistico permanente.
+              {copy.subtitle}
             </p>
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
                 <Factory size={18} />
-                <span>176 TM / día</span>
+                <span>{copy.badges[0]}</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
                 <Pickaxe size={18} />
-                <span>Especializado en mineria</span>
+                <span>{copy.badges[1]}</span>
               </div>
             </div>
           </div>
@@ -210,8 +231,8 @@ export function HeroTransporteLogistico() {
         <HeroMediaThumbnails
           items={activeSlides.map((slide, index) => ({
             src: slide.poster,
-            alt: `Vista logística ${index + 1}`,
-            label: `Mostrar vista logística ${index + 1}`,
+            alt: `${copy.thumbnailAlt} ${index + 1}`,
+            label: `${copy.thumbnailLabel} ${index + 1}`,
           }))}
           activeIndex={activeVideoIndex}
           onSelect={setActiveVideoIndex}

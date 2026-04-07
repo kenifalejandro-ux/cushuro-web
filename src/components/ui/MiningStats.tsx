@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 interface Stat {
   id: string;
@@ -22,16 +23,6 @@ interface Stat {
   suffix?: string;
   subtext: string;
 }
-
-// Datos extraídos del PDF proporcionado
-const STATS: Stat[] = [
-  { id: "produccion_diaria", icon: Factory, value: 176, suffix: " TM", label: "PRODUCCIÓN DIARIA", subtext: "Capacidad de óxido de calcio" },
-  { id: "hornos", icon: Package, value: 5, label: "HORNOS OPERATIVOS", subtext: "Capacidad instalada total" },
-  { id: "empleados_max", icon: Users, value: 90, suffix: "+", label: "PERSONAL EN OPERACIÓN", subtext: "Máximo de trabajadores rotativos" },
-  { id: "ubicacion", icon: MapPin, value: 2, suffix: "", label: "CENTRO DE PRODUCCIÓN", subtext: "Caserío Rodeopampa - Marcabal y Bambamarca - Cajamarca" },
-  { id: "seguridad_foco", icon: ShieldCheck, value: 100, suffix: "%", label: "COMPROMISO SEGURIDAD", subtext: "Deber ético y moral" },
-  { id: "clientes_mercado", icon: Truck, value: 2, suffix: "+", label: "SECTORES DE MERCADO", subtext: "Minero y Azucarero abastecidos" },
-];
 
 function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -67,6 +58,33 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
 }
 
 export function MiningStats() {
+  const copy = useLocalizedContent({
+    es: {
+      eyebrow: "OPERACION Y CAPACIDAD",
+      description: "Indicadores clave de producción, personal, seguridad y cobertura operativa.",
+      stats: [
+        { id: "produccion_diaria", icon: Factory, value: 176, suffix: " TM", label: "PRODUCCIÓN DIARIA", subtext: "Capacidad de óxido de calcio" },
+        { id: "hornos", icon: Package, value: 5, label: "HORNOS OPERATIVOS", subtext: "Capacidad instalada total" },
+        { id: "empleados_max", icon: Users, value: 90, suffix: "+", label: "PERSONAL EN OPERACIÓN", subtext: "Máximo de trabajadores rotativos" },
+        { id: "ubicacion", icon: MapPin, value: 2, suffix: "", label: "CENTRO DE PRODUCCIÓN", subtext: "Caserío Rodeopampa - Marcabal y Bambamarca - Cajamarca" },
+        { id: "seguridad_foco", icon: ShieldCheck, value: 100, suffix: "%", label: "COMPROMISO SEGURIDAD", subtext: "Deber ético y moral" },
+        { id: "clientes_mercado", icon: Truck, value: 2, suffix: "+", label: "SECTORES DE MERCADO", subtext: "Minero y Azucarero abastecidos" },
+      ] satisfies Stat[],
+    },
+    en: {
+      eyebrow: "OPERATIONS AND CAPACITY",
+      description: "Key indicators for production, workforce, safety, and operational coverage.",
+      stats: [
+        { id: "produccion_diaria", icon: Factory, value: 176, suffix: " TM", label: "DAILY OUTPUT", subtext: "Calcium oxide capacity" },
+        { id: "hornos", icon: Package, value: 5, label: "OPERATING KILNS", subtext: "Total installed capacity" },
+        { id: "empleados_max", icon: Users, value: 90, suffix: "+", label: "ACTIVE WORKFORCE", subtext: "Maximum rotating workers" },
+        { id: "ubicacion", icon: MapPin, value: 2, suffix: "", label: "PRODUCTION HUBS", subtext: "Rodeopampa - Marcabal hamlet and Bambamarca - Cajamarca" },
+        { id: "seguridad_foco", icon: ShieldCheck, value: 100, suffix: "%", label: "SAFETY COMMITMENT", subtext: "Ethical and moral duty" },
+        { id: "clientes_mercado", icon: Truck, value: 2, suffix: "+", label: "MARKET SECTORS", subtext: "Mining and sugar sectors supplied" },
+      ] satisfies Stat[],
+    },
+  });
+
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(180deg,#f4efe6_0%,#ede4d7_100%)] py-24 text-zinc-800">
       <div
@@ -81,20 +99,20 @@ export function MiningStats() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="mb-20 border-l-4 border-emerald-700 pl-6">
           <div className="mb-2 flex items-center gap-4 font-mono text-xs tracking-widest text-emerald-700">
-            <span>● OPERACION Y CAPACIDAD</span>
+            <span>{`● ${copy.eyebrow}`}</span>
             <span className="text-stone-600">RUC: 20482610944</span>
           </div>
           <h2 className="text-4xl font-semibold tracking-[-0.05em] text-zinc-950 md:text-5xl">
              <span className="text-emerald-600">S.A.C</span>
           </h2>
           <p className="text-base leading-7 text-stone-600 md:text-xl md:leading-8">
-            Indicadores clave de producción, personal, seguridad y cobertura operativa.
+            {copy.description}
           </p>
         </div>
 
         <div className="overflow-hidden rounded-[1.85rem] border border-stone-300 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.08),transparent_30%),linear-gradient(180deg,#171717_0%,#242424_58%,#2b2725_100%)] shadow-[0_28px_60px_-34px_rgba(24,24,27,0.34)]">
           <div className="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-3">
-          {STATS.map((stat, idx) => (
+          {copy.stats.map((stat, idx) => (
             <motion.div 
               key={stat.id}
               initial={{ opacity: 0 }}

@@ -1,5 +1,3 @@
-/* client/src/components/ui/ImageStack.tsx */
-
 import type { ReactNode } from "react";
 import { OptimizedImage } from "./OptimizedImage";
 import { cn } from "./utils";
@@ -28,6 +26,8 @@ export interface ImageStackProps {
   fullScreen?: boolean;
   imageClassName?: string;
   inlineCardClassName?: string;
+  stackedCardClassName?: string;
+  showOverlay?: boolean;
   stackedLayoutOverrides?: Partial<Record<VisibleCount, ImageStackLayoutOverride>>;
 }
 
@@ -109,7 +109,7 @@ function InlineImageCard({
   return (
     <div
       className={cn(
-        "group relative h-[280px] overflow-hidden rounded-[1.75rem] border border-white/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(243,245,248,0.88))] shadow-[0_18px_40px_-28px_rgba(24,24,27,0.20)] sm:h-[320px] lg:h-[380px]",
+        "group relative h-[280px] overflow-hidden ",
         cardClassName
       )}
     >
@@ -133,14 +133,23 @@ function StackedImageCard({
   image,
   slot,
   imageClassName,
+  cardClassName,
+  showOverlay = true,
 }: {
   image: ImageStackImage;
   slot: StackSlot;
   imageClassName?: string;
+  cardClassName?: string;
+  showOverlay?: boolean;
 }) {
   return (
     <div className={slot.className}>
-      <div className="group relative h-full w-full overflow-hidden rounded-[2rem] border border-white/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(242,245,247,0.86))] shadow-[0_24px_55px_-32px_rgba(24,24,27,0.22)]">
+      <div
+        className={cn(
+          "group relative h-full w-full overflow-hidden ]",
+          cardClassName
+        )}
+      >
         <OptimizedImage
           src={image.src}
           alt={image.alt}
@@ -152,7 +161,7 @@ function StackedImageCard({
             imageClassName
           )}
         />
-        <ImageOverlay />
+        {showOverlay ? <ImageOverlay /> : null}
       </div>
     </div>
   );
@@ -160,7 +169,7 @@ function StackedImageCard({
 
 function StackBadge({ badge }: { badge: ImageStackBadge }) {
   return (
-    <div className="absolute bottom-5 left-5 z-40 max-w-[220px] rounded-[1.25rem] border border-white/80 bg-white/78 px-4 py-3 shadow-[0_18px_40px_-24px_rgba(24,24,27,0.18)] backdrop-blur-md">
+    <div className="absolute bottom-5 left-5 z-40 max-w-[220px] rounded-[1.25rem]  px-4 py-3 shadow-[0_18px_40px_-24px_rgba(24,24,27,0.18)] backdrop-blur-md">
       <div className="flex items-start gap-3">
         {badge.icon ? (
           <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
@@ -187,6 +196,8 @@ export function ImageStack({
   fullScreen = false,
   imageClassName,
   inlineCardClassName,
+  stackedCardClassName,
+  showOverlay = true,
   stackedLayoutOverrides,
 }: ImageStackProps) {
   const visibleImages = images.slice(0, MAX_STACK_IMAGES);
@@ -236,6 +247,8 @@ export function ImageStack({
               className: cn(slot.className, slotOverride),
             }}
             imageClassName={imageClassName}
+            cardClassName={stackedCardClassName}
+            showOverlay={showOverlay}
           />
         );
       })}

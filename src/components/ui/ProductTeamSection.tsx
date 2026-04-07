@@ -5,6 +5,7 @@
 
 import { Users } from "lucide-react";
 import { motion } from "motion/react";
+import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 export type ProductTeamMember = {
   role: string;
@@ -28,6 +29,15 @@ export default function ProductTeamSection({
   accentClassName = "text-emerald-700",
   gridWidthClassName = "max-w-5xl",
 }: ProductTeamSectionProps) {
+  const copy = useLocalizedContent({
+    es: {
+      eyebrow: "Estructura Operativa",
+    },
+    en: {
+      eyebrow: "Operational structure",
+    },
+  });
+
   return (
     <section className="relative overflow-hidden bg-white py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-16">
@@ -42,7 +52,7 @@ export default function ProductTeamSection({
           <div className="mb-5 flex items-center justify-center gap-3">
             <span className="h-px w-12 bg-zinc-300" />
             <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-zinc-500">
-              Estructura Operativa
+              {copy.eyebrow}
             </span>
             <span className="h-px w-12 bg-zinc-300" />
           </div>

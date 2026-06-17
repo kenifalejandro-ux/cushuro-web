@@ -105,7 +105,7 @@ export function Header({
   brandName = "",
   tabs = DEFAULT_TABS,
   contactInfo = {
-    email: "administracion@cushuro.com",
+    email: "administracion@cushuro.pe",
     phone: "+51 986 671 128",
     address: "Huamachuco, La Libertad",
   },
@@ -259,7 +259,7 @@ export function Header({
   const elevatedHeader = isScrolled || isContactPage || forceWhiteLogo || useLightHeader;
 
   const headerClasses = `
-    fixed top-0 left-0 right-0 z-[100] transition-transform duration-300
+    fixed top-0 left-0 right-0 z-[1100] transition-transform duration-300
     ${isHidden ? "-translate-y-full" : "translate-y-0"}
   `;
 
@@ -284,10 +284,10 @@ export function Header({
 
   return (
     <>
-      <header id="banner" className={headerClasses}>
+      <header id="banner" className={headerClasses} >
         <div className={`w-full  border-y ${headerSurfaceClasses}`}>
           <div className="lg:hidden">
-            <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+            <div className="mx-auto  max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between gap-3">
                 <NavLink
                   to="/"
@@ -461,7 +461,7 @@ export function Header({
                                   <NavLink
                                     key={service.id}
                                     to={service.href}
-                                    className="block border-b border-zinc-200 px-6 py-4 transition-colors last:border-b-0 hover:bg-[#f4f7ea]"
+                                    className="block border-b  border-zinc-200 px-6 py-4 transition-colors last:border-b-0 hover:bg-[#f4f7ea]"
                                     onClick={() => setOpenDesktopSubmenu(null)}
                                   >
                                     <div className="font-semibold text-zinc-900">
@@ -483,7 +483,7 @@ export function Header({
                       <NavLink
                         key={tab.href}
                         to={tab.href}
-                        className={`relative rounded-lg px-4 py-2 text-base font-medium ${desktopNavTextClasses}`}
+                        className={`relative  rounded-lg px-4 py-2 text-base font-medium ${desktopNavTextClasses}`}
                       >
                         {getTabLabel(tab.label)}
                         <span
@@ -524,7 +524,7 @@ export function Header({
         aria-hidden={!isModalOpen}
         aria-label={copy.mobilePanelLabel}
         className={`
-          fixed top-0 right-0 z-[130] h-full w-full border-l border-zinc-200 md:w-96
+          fixed top-0 right-0 z-[1200] h-full w-full border-l border-zinc-200 md:w-96
           transform bg-white text-zinc-900 transition-transform duration-300
           ${isModalOpen ? "translate-x-0" : "translate-x-full"}
         `}

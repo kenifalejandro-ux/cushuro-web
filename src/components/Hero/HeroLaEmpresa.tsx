@@ -53,27 +53,29 @@ export default function HeroLaEmpresa() {
           description:
             "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
         },
-        {
-          image: toAssetUrl("img-inicio/hero/cantera001"),
-          slug: "equipo-en-campo",
-          title: "Equipo en la Cantera",
-          description:
-            "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
-        },
-        {
-          image: toAssetUrl("img-inicio/hero/cantera002"),
-          slug: "equipo-en-campo",
-          title: "Equipo en la Cantera",
-          description:
-            "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
-        },
+{
+  image: toAssetUrl("img-inicio/hero/cantera001"),
+  slug: "abastecimiento-materiales",
+  title: "Abastecimiento de Materiales",
+  description:
+    "Gestión eficiente en la descarga y acopio de insumos, garantizando un flujo operativo constante en nuestras instalaciones.",
+},
+
+{
+  image: toAssetUrl("img-inicio/hero/cantera002"),
+  slug: "extraccion-materiales",
+  title: "Extracción de Materiales",
+  description:
+    "Maquinaria de vanguardia operada por expertos para la extracción y movimiento de materiales con precisión y eficiencia.",
+},
+
         {
           image: toAssetUrl("img-inicio/hero/cantera003"),
-          slug: "equipo-en-campo",
-          title: "Equipo en la Cantera",
-          description:
-            "Nuestros ingenieros y operadores trabajando en la cantera con profesionalismo, compromiso y total respeto por la seguridad.",
-        },
+  slug: "transporte-carbon",
+  title: "Transporte de Carbón",
+  description:
+    "Logística especializada para el movimiento de grandes volúmenes de carbón, asegurando un suministro constante y eficiente.",
+},
       ] satisfies Service[],
       loadingTitle: "Cargando experiencia...",
       loadingDescription: "Preparando animaciones y contenido visual.",

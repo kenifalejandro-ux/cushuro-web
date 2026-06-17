@@ -29,6 +29,7 @@ export const PRODUCTS_SUBMENU: MenuItem[] = [
     nameEn: "Quicklime",
     subtitleEn: "Calcium oxide for productive operations",
   },
+  /**
   {
     id: "CalAgricola",
     name: "Cal Agricola",
@@ -52,7 +53,8 @@ export const PRODUCTS_SUBMENU: MenuItem[] = [
     href: "/Productos/carbon-cisco",
     nameEn: "Carbon Cisco",
     subtitleEn: "Supply for industrial thermal processes",
-  },
+  }, */
+
 ];
 
 export const SERVICES_SUBMENU: MenuItem[] = [

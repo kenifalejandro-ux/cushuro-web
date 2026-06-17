@@ -170,11 +170,12 @@ export default function CalViva() {
       team: {
         title: "Mano de Obra por Horno (35 TM)",
         members: [
-          { role: "Preparación de piedra", workers: 6 },
-          { role: "Transporte", workers: 4 },
-          { role: "Operador de quemado", workers: 1 },
+          { role: "Preparación de piedra", workers: 8 },
+          { role: "Transporte", workers: 22 },
+          { role: "Operador de quemado", workers: 4 },
           { role: "Preparadores de carbón", workers: 2 },
           { role: "Separación de desechos", workers: 2 },
+          { role: "Supervisión Técnica", workers: 2 },
         ],
         totalLabel: "Trabajadores totales por horno",
       },
@@ -331,11 +332,13 @@ export default function CalViva() {
       team: {
         title: "Workforce per Kiln (35 TM)",
         members: [
-          { role: "Stone preparation", workers: 6 },
-          { role: "Transport", workers: 4 },
-          { role: "Burning operator", workers: 1 },
+          { role: "Stone preparation", workers: 8 },
+          { role: "Transport", workers: 22 },
+          { role: "Burning operator", workers: 4 },
           { role: "Coal preparation", workers: 2 },
           { role: "Waste separation", workers: 2 },
+          { role: "Technical Supervision", workers: 2 },
+
         ],
         totalLabel: "Total workers per kiln",
       },
@@ -393,7 +396,7 @@ export default function CalViva() {
       <ProductTeamSection
         title={copy.team.title}
         members={copy.team.members}
-        totalValue={15}
+        totalValue={40}
         totalLabel={copy.team.totalLabel}
         accentClassName="text-emerald-700"
         gridWidthClassName="max-w-3xl"

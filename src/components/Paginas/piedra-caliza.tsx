@@ -153,10 +153,10 @@ export default function PiedraCaliza() {
       team: {
         title: "Equipo Operativo en Cantera",
         members: [
-          { role: "Operadores de Maquinaria Pesada", workers: 8 },
-          { role: "Personal de Clasificación y Selección", workers: 6 },
-          { role: "Supervisión Técnica", workers: 3 },
-          { role: "Logística y Transporte Interno", workers: 4 },
+          { role: "Operadores de Maquinaria Pesada", workers: 4 },
+          { role: "Personal de Clasificación y Selección", workers: 10 },
+          { role: "Supervisión Técnica", workers: 2 },
+          { role: "Logística y Transporte Interno", workers: 20 },
           { role: "Seguridad y Control Operativo", workers: 2 },
         ],
         totalLabel: "Personal Operativo en Cantera",
@@ -298,10 +298,10 @@ export default function PiedraCaliza() {
       team: {
         title: "Operational Quarry Team",
         members: [
-          { role: "Heavy Equipment Operators", workers: 8 },
-          { role: "Classification and Selection Personnel", workers: 6 },
-          { role: "Technical Supervision", workers: 3 },
-          { role: "Internal Logistics and Transport", workers: 4 },
+          { role: "Heavy Equipment Operators", workers: 4 },
+          { role: "Classification and Selection Personnel", workers: 10 },
+          { role: "Technical Supervision", workers: 2 },
+          { role: "Internal Logistics and Transport", workers: 20 },
           { role: "Safety and Operational Control", workers: 2 },
         ],
         totalLabel: "Operational Personnel in Quarry",
@@ -355,7 +355,7 @@ export default function PiedraCaliza() {
       <ProductTeamSection
         title={copy.team.title}
         members={copy.team.members}
-        totalValue={23}
+        totalValue={38}
         totalLabel={copy.team.totalLabel}
       />
 

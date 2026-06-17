@@ -15,22 +15,27 @@ const ROUTE_CRUMBS: Record<string, Crumb[]> = {
     { href: "/Productos", label: "Productos" },
     { label: "Cal Viva" },
   ],
+  /** reserva
   "/Productos/cal-agricola": [
     { href: "/Productos", label: "Productos" },
     { label: "Cal Agricola" },
-  ],
+  ],*/
+
   "/Productos/piedra-caliza": [
     { href: "/Productos", label: "Productos" },
     { label: "Piedra Caliza" },
   ],
+  /** 
   "/Productos/carbon-antracita": [
     { href: "/Productos", label: "Productos" },
     { label: "Carbon Antracita" },
   ],
+
   "/Productos/carbon-cisco": [
     { href: "/Productos", label: "Productos" },
     { label: "Carbon Cisco" },
-  ],
+  ],*/ 
+  
   "/Servicios-Industriales/transporte-logistico-especializado": [
     { href: "/Servicios-Industriales", label: "Servicios Industriales" },
     { label: "Transporte Logistico" },
@@ -62,14 +67,16 @@ const ROUTE_CRUMBS_EN: Record<string, Crumb[]> = {
     { href: "/Productos", label: "Products" },
     { label: "Quicklime" },
   ],
+    "/Productos/piedra-caliza": [
+    { href: "/Productos", label: "Products" },
+    { label: "Limestone" },
+  ],
+  /** 
   "/Productos/cal-agricola": [
     { href: "/Productos", label: "Products" },
     { label: "Agricultural Lime" },
   ],
-  "/Productos/piedra-caliza": [
-    { href: "/Productos", label: "Products" },
-    { label: "Limestone" },
-  ],
+
   "/Productos/carbon-antracita": [
     { href: "/Productos", label: "Products" },
     { label: "Anthracite Coal" },
@@ -77,7 +84,8 @@ const ROUTE_CRUMBS_EN: Record<string, Crumb[]> = {
   "/Productos/carbon-cisco": [
     { href: "/Productos", label: "Products" },
     { label: "Carbon Cisco" },
-  ],
+  ],*/
+  
   "/Servicios-Industriales/transporte-logistico-especializado": [
     { href: "/Servicios-Industriales", label: "Industrial Services" },
     { label: "Logistics Transport" },

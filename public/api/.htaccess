@@ -1,0 +1,8 @@
+<Files "config.php">
+    Require all denied
+</Files>
+
+<FilesMatch "^config\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

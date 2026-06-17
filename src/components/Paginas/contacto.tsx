@@ -21,7 +21,7 @@ import PageSEO from "../global/PageSEO";
 import { ImageStack } from "../ui/ImageStack";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
-const CONTACT_EMAIL = "administracion@cushuro.com";
+const CONTACT_EMAIL = "administracion@cushuro.pe";
 const WHATSAPP_LABEL = "+51 986 671 128";
 const WHATSAPP_URL = "https://wa.me/51986671128";
 

@@ -38,14 +38,14 @@ type PageConfig = {
   faq?: FAQItem[];
 };
 
-const FALLBACK_SITE_URL = "https://kenifa.sg-host.com";
+const FALLBACK_SITE_URL = "https://cushuro.pe";
 const SITE_NAME = "";
 const LEGAL_NAME = "Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.";
 const COMPANY_DESCRIPTION =
   "Producción y comercialización de cal viva, cal molida, cal hidratada, cal agrícola, piedra caliza, carbón antracita y carbón tipo zisco para minería e industria.";
-const CONTACT_EMAIL = "administracion@cushuro.com";
+const CONTACT_EMAIL = "administracion@cushuro.pe";
 const CONTACT_PHONE = "+51 986 671 128";
-const CONTACT_PHONE_ALT = "+51 910 582 455";
+const CONTACT_PHONE_ALT = "+51 986067417";
 const COMPANY_RUC = "20482610944";
 const SITE_LOCALE = "es_PE";
 const DEFAULT_IMAGE_PATH = "/imagenes-optim/flota-calera-noche/flota-calera-noche-1280.webp";
@@ -85,7 +85,7 @@ const pageConfigs: Record<PageId, PageConfig> = {
       {
         question: "¿Cómo puedo solicitar una cotización?",
         answer:
-          "Puede solicitar una cotización desde la página de contacto, por WhatsApp o escribiendo a administracion@cushuro.com.",
+          "Puede solicitar una cotización desde la página de contacto, por WhatsApp o escribiendo a administracion@cushuro.pe.",
       },
     ],
   },
@@ -403,7 +403,7 @@ const pageConfigs: Record<PageId, PageConfig> = {
       "proveedor de piedra caliza en huamachuco",
       "cotizar carbón antracita",
       "contacto para servicios industriales",
-      "administracion@cushuro.com",
+      "administracion@cushuro.pe",
     ],
     path: "/contacto",
     kind: "contact",
@@ -414,7 +414,7 @@ const pageConfigs: Record<PageId, PageConfig> = {
       {
         question: "¿Por qué medios puedo contactar a la empresa?",
         answer:
-          "Puede contactar por correo a administracion@cushuro.com o por los teléfonos 986 671 128 y 910 582 455.",
+          "Puede contactar por correo a administracion@cushuro.pe o por los teléfonos 986 671 128 y 986067417.",
       },
       {
         question: "¿Qué puedo solicitar desde la página de contacto?",

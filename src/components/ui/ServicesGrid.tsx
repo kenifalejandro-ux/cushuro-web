@@ -20,27 +20,20 @@ const SERVICES_COPY = {
       {
         title: "Piedra Caliza",
         category: "Materia prima",
-        image: "img-productos/piedra-caliza/operario-con-piedra-caliza",
-        href: "/Productos/piedra-caliza",
+        image: "img-inicio/servicios-inicio/piedra-caliza/piedra-caliza",
+        href: "/inicio/servicios-inicio/piedra-caliza",
         description:
           "Mineral natural utilizado en construcción, producción de cal y aplicaciones industriales.",
       },
       {
         title: "Cal Viva",
         category: "Producto industrial",
-        image: "img-productos/cal-viva/oxido-de-calcio001",
-        href: "/Productos/cal-viva",
+        image: "img-inicio/servicios-inicio/cal-viva/cal-viva",
+        href: "/inicio/servicios-inicio/cal-viva",
         description:
           "Óxido de calcio de alta pureza utilizado en procesos industriales, metalúrgicos y de tratamiento químico.",
       },
-      {
-        title: "Cal Agrícola",
-        category: "Sector agrícola",
-        image: "img-inicio/servicios-inicio/cal-agricola/calagricola",
-        href: "/Productos/cal-agricola",
-        description:
-          "Mejora la estructura del suelo, corrige acidez y optimiza la absorción de nutrientes en cultivos.",
-      },
+      /** 
       {
         title: "Carbón Antracita",
         category: "Combustible sólido",
@@ -56,7 +49,8 @@ const SERVICES_COPY = {
         href: "/Productos/carbon-cisco",
         description:
           "Variante especializada para combustión eficiente en hornos y procesos metalúrgicos.",
-      },
+      },*/
+
       {
         title: "Transporte Logístico",
         category: "Servicio industrial",
@@ -97,6 +91,7 @@ const SERVICES_COPY = {
         description:
           "High-purity calcium oxide used in industrial, metallurgical, and chemical treatment processes.",
       },
+      /**
       {
         title: "Agricultural Lime",
         category: "Agricultural sector",
@@ -121,6 +116,7 @@ const SERVICES_COPY = {
         description:
           "Specialized fuel variant for efficient combustion in kilns and metallurgical processes.",
       },
+       */
       {
         title: "Logistics Transport",
         category: "Industrial service",
@@ -285,7 +281,7 @@ export default function ServicesGrid() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10">
           {copy.services.map((service, i) => (
             <div
               key={i}

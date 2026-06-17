@@ -54,8 +54,8 @@ export const MedioAmbiente: React.FC = () => {
         title: "Producción con",
         accent: "Propósito",
         paragraphs: [
-          "Nuestra actividad industrial genera empleo directo e indirecto, dinamizando sectores como transporte, comercio, talleres mecánicos y servicios complementarios en el distrito de Marcabal – Huamachuco y localidades aledañas.",
-          "La producción de cal viva, cal hidratada, piedra caliza y carbón fortalece el crecimiento económico local. En ese marco, promovemos acciones orientadas a:",
+          "Nuestra actividad industrial genera empleo directo e indirecto, dinamizando sectores como transporte, comercio y servicios complementarios en el distrito de Marcabal – Huamachuco y localidades aledañas.",
+          "La producción de cal viv y piedra caliza fortalece el crecimiento económico local. En ese marco, promovemos acciones orientadas a:",
         ],
         items: [
           "Mantemiento de carreteras en la zona de influencia.",

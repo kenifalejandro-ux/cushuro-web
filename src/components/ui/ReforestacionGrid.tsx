@@ -78,7 +78,6 @@ export default function ReforestacionGrid() {
 
   useEffect(() => {
     if (!sectionRef.current) return;
-    const mm = gsap.matchMedia();
 
     const ctx = gsap.context(() => {
       if (headingRef.current) {
@@ -105,150 +104,72 @@ export default function ReforestacionGrid() {
       cardRefs.current.forEach((card, index) => {
         if (!card) return;
 
-        const direction = index % 2 === 0 ? 90 : -90;
-
-        gsap.fromTo(
-          card,
-          { autoAlpha: 0, x: direction, y: 40, filter: "blur(8px)" },
-          {
-            autoAlpha: 1,
-            x: 0,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 1.1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 86%",
-              once: true,
-            },
-          }
-        );
-
         const imageContainer = card.querySelector<HTMLElement>("[data-service-image]");
         const image = card.querySelector<HTMLImageElement>("img");
         const iconContainer = card.querySelector<HTMLElement>("[data-service-icon]");
         const content = card.querySelector<HTMLElement>("[data-service-content]");
-        if (!imageContainer || !image) return;
 
-        if (content) {
-          gsap.fromTo(
-            content,
-            { autoAlpha: 0, y: 16 },
-            {
+        const xOffset = index % 2 === 0 ? 60 : -60;
+
+        gsap.set(card, { autoAlpha: 0, x: xOffset, y: 30, filter: "blur(8px)" });
+        if (imageContainer) gsap.set(imageContainer, { autoAlpha: 0, scale: 0.95 });
+        if (image) gsap.set(image, { filter: "grayscale(50%)" });
+        if (iconContainer) gsap.set(iconContainer, { autoAlpha: 1, scale: 1 });
+        if (content) gsap.set(content, { autoAlpha: 0, y: 14 });
+
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 86%",
+          once: true,
+          onEnter: () => {
+            const tl = gsap.timeline({ delay: index * 0.1 });
+
+            tl.to(card, {
               autoAlpha: 1,
+              x: 0,
               y: 0,
-              duration: 0.85,
-              delay: 0.1,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 86%",
-                once: true,
-              },
-            }
-          );
-        }
-
-        // Imagen oculta al inicio en todos los tamaños.
-        gsap.set(imageContainer, {
-          autoAlpha: 0,
-          scale: 0.95,
-        });
-        gsap.set(image, { filter: "grayscale(100%)" });
-        if (iconContainer) {
-          gsap.set(iconContainer, { autoAlpha: 1, scale: 1 });
-        }
-
-        mm.add("(min-width: 431px)", () => {
-          const onEnter = () => {
-            gsap.to(imageContainer, {
-              autoAlpha: 1,
-              scale: 1,
-              duration: 0.8,
+              filter: "blur(0px)",
+              duration: 1,
               ease: "power3.out",
             });
-            gsap.to(image, {
-              filter: "grayscale(0%)",
-              duration: 0.8,
-              ease: "power3.out",
-            });
-            if (iconContainer) {
-              gsap.to(iconContainer, {
-                autoAlpha: 0,
-                scale: 0.92,
-                duration: 0.55,
-                ease: "power2.out",
-              });
+
+            if (content) {
+              tl.to(
+                content,
+                { autoAlpha: 1, y: 0, duration: 0.75, ease: "power2.out" },
+                "-=0.65"
+              );
             }
-          };
 
-          const onLeave = () => {
-            gsap.to(imageContainer, {
-              autoAlpha: 0,
-              scale: 0.95,
-              duration: 0.6,
-              ease: "power2.out",
-            });
-            gsap.to(image, {
-              filter: "grayscale(100%)",
-              duration: 0.6,
-              ease: "power2.out",
-            });
-            if (iconContainer) {
-              gsap.to(iconContainer, {
-                autoAlpha: 1,
-                scale: 1,
-                duration: 0.5,
-                ease: "power2.out",
-              });
+            if (imageContainer) {
+              tl.to(
+                imageContainer,
+                { autoAlpha: 1, scale: 1, duration: 0.9, ease: "power3.out" },
+                "-=0.5"
+              );
             }
-          };
 
-          card.addEventListener("mouseenter", onEnter);
-          card.addEventListener("mouseleave", onLeave);
+            if (image) {
+              tl.to(
+                image,
+                { filter: "grayscale(0%)", duration: 0.9, ease: "power2.out" },
+                "<"
+              );
+            }
 
-          return () => {
-            card.removeEventListener("mouseenter", onEnter);
-            card.removeEventListener("mouseleave", onLeave);
-          };
-        });
-
-        mm.add("(max-width: 430px)", () => {
-          ScrollTrigger.create({
-            trigger: card,
-            start: "top 85%",
-            once: true,
-            onEnter: () => {
-              gsap.to(imageContainer, {
-                autoAlpha: 1,
-                scale: 1,
-                duration: 1,
-                ease: "power3.out",
-              });
-              gsap.to(image, {
-                filter: "grayscale(0%)",
-                duration: 1,
-                ease: "power3.out",
-              });
-              if (iconContainer) {
-                gsap.to(iconContainer, {
-                  autoAlpha: 0,
-                  scale: 0.92,
-                  duration: 0.85,
-                  ease: "power3.out",
-                });
-              }
-            },
-          });
+            if (iconContainer) {
+              tl.to(
+                iconContainer,
+                { autoAlpha: 0, scale: 0.88, duration: 0.45, ease: "power2.in" },
+                "<+=0.1"
+              );
+            }
+          },
         });
       });
     }, sectionRef);
 
-    return () => {
-      mm.revert();
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (

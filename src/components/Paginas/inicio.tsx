@@ -174,7 +174,7 @@ export default function Inicio() {
         <LazyOnView minHeight={560}>
           <Suspense fallback={<div className="mt-12 h-[520px] md:h-[640px]" />}>
             <LazyCompanyMapHybrid
-              className="mt-12 pb-20"
+              className="mt-12 pb-20 "
               title={copy.map.title}
               subtitle={copy.map.subtitle}
               locations={copy.locations}

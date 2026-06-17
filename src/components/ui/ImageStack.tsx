@@ -1,3 +1,5 @@
+/**client/src/components/ui/ImageStack.tsx */
+
 import type { ReactNode } from "react";
 import { OptimizedImage } from "./OptimizedImage";
 import { cn } from "./utils";

@@ -21,10 +21,7 @@ const Operaciones = lazy(() => import("./components/Paginas/responsabilidad-soci
 
 // Lazy imports - submenú Productos
 const CalViva= lazy(() => import("./components/Paginas/cal-viva"));
-const CalAgricola= lazy(() => import("./components/Paginas/cal-agricola"));
 const PiedraCaliza = lazy(() => import("./components/Paginas/piedra-caliza"));
-const CarbonAntracita = lazy(() => import("./components/Paginas/carbon-antracita"));
-const CarbonCisco = lazy(() => import("./components/Paginas/carbon-cisco"));
 const OperacionMaquinaria = lazy(() => import("./components/Paginas/operacion-con-maquinaria-pesada"));
 const TransporteLogistico = lazy(() => import("./components/Paginas/transporte-logistico-especializado"));
 const MedioAmbiente = lazy(() => import("./components/Paginas/medio-ambiente"));
@@ -87,9 +84,9 @@ function AppRoutes() {
             <HeroarrowNavigator />
           </Layout>
         }
-      />
+      />cal-agricola
     
- {/* Productos/cal-agricola */}
+ {/* Productos/cal-agricola
       <Route
         path="/Productos/cal-agricola"
         element={
@@ -105,7 +102,7 @@ function AppRoutes() {
             <HeroarrowNavigator />
           </Layout>
         }
-      />
+      /> */}
 
  {/* Productos/piedra-caliza */}
       <Route
@@ -124,7 +121,7 @@ function AppRoutes() {
           </Layout>
         }
       />
-       {/* Productos/carbon-antracita */}
+       {/* Productos/carbon-antracita 
       <Route
         path="/Productos/carbon-antracita"
         element={
@@ -140,8 +137,9 @@ function AppRoutes() {
             <HeroarrowNavigator />
           </Layout>
         }
-      />
-           {/* Productos/carbon-cisco */}
+      />*/}
+
+           {/* Productos/carbon-cisco 
       <Route
         path="/Productos/carbon-cisco"
         element={
@@ -157,7 +155,7 @@ function AppRoutes() {
             <HeroarrowNavigator />
           </Layout>
         }
-      />
+      />*/}
 
                  {/* Servicios-Industriales/operacion-con-maquinaria-pesada */}
       <Route

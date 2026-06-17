@@ -194,18 +194,18 @@ export default function Footer() {
                     986 671128
                   </a>{" "}
                   /{" "}
-                  <a href="tel:+51910582455" className="hover:underline">
-                    910 582 455
+                  <a href="tel:+51986067417" className="hover:underline">
+                    986067417
                   </a>
                 </p>
                 <p className="text-emerald-600">
                   {copy.contactLines.email}{" "}
                   <a
-                    href="mailto:administracion@cushuro.com"
+                    href="mailto:administracion@cushuro.pe"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    administracion@cushuro.com
+                    administracion@cushuro.pe
                   </a>
                 </p>
               </div>

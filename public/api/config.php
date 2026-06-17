@@ -10,8 +10,8 @@ return [
     'email_from' => 'contacto@zincelideas.com',
     'email_from_name' => 'Formulario Web',
 
-    'recaptcha_site_key' => '6LfP0L8rAAAAAPpEytSVRORbhLu_RHUYJaA8vCRe',
-    'recaptcha_secret_key' => '6LfP0L8rAAAAAB0aapY5ZiuMiDGGvVdjwyHq6Fc9',
+    'recaptcha_secret_key' => getenv('RECAPTCHA_SECRET_KEY'),
+    'recaptcha_site_key' => getenv('RECAPTCHA_SITE_KEY'),
     'recaptcha_expected_action' => 'submit',
     'recaptcha_min_score' => 0.5,
 

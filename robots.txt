@@ -5,4 +5,4 @@ Disallow: /submit
 Disallow: /*?utm_*
 Disallow: /*?fbclid=*
 
-Sitemap: https://kenifa.sg-host.com/sitemap.xml
+Sitemap: https://cushuro.pe/sitemap.xml

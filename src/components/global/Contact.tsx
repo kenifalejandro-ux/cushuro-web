@@ -9,9 +9,6 @@ type ContactProps = {
 const PRODUCT_OPTIONS = [
   { value: "Piedra Caliza", labelEs: "Piedra Caliza", labelEn: "Limestone" },
   { value: "Cal Viva", labelEs: "Cal Viva", labelEn: "Quicklime" },
-  { value: "Cal Agricola", labelEs: "Cal Agricola", labelEn: "Agricultural Lime" },
-  { value: "Carbon Antracita", labelEs: "Carbon Antracita", labelEn: "Anthracite Coal" },
-  { value: "Carbon Tipo Cisco", labelEs: "Carbon Tipo Cisco", labelEn: "Carbon Cisco" },
   { value: "Cotizacion general", labelEs: "Cotizacion general", labelEn: "General quotation" },
 ];
 

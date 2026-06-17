@@ -1,6 +1,6 @@
 /*client/src/components/inicio/Footer.tsx*/
 
-import { Facebook, Instagram, Linkedin, ChevronDown } from "lucide-react";
+import { Facebook, Instagram, Linkedin, ChevronDown, MapPin, Phone, Mail } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -24,7 +24,7 @@ export default function Footer() {
   const { language } = useSiteLanguage();
   const copy = useLocalizedContent({
     es: {
-      brandSubtitle: "Industria Minera",
+      brandSubtitle: "",
       company: "Empresa",
       contact: "Contacto",
       mobileToggle: {
@@ -38,6 +38,7 @@ export default function Footer() {
       },
       visitLabel: "Visitar",
       location: "Huamachuco - La Libertad - Perú",
+      rightsReserved: "Todos los derechos reservados.",
       developedBy: "Elaborado por:",
       tabs: {
         "La Empresa": "La Empresa",
@@ -62,6 +63,7 @@ export default function Footer() {
       },
       visitLabel: "Visit",
       location: "Huamachuco - La Libertad - Peru",
+      rightsReserved: "All rights reserved.",
       developedBy: "Developed by:",
       tabs: {
         "La Empresa": "Company",
@@ -98,7 +100,7 @@ export default function Footer() {
   return (
     <footer className="light-image relative text-white">
       {/* Fondo oscuro tipo imagen */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#2b2726] via-[#2f2b2a] to-[#1f1c1b]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#141719] via-[#141719] to-[#141719]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16 md:px-10">
         <div className="grid gap-16 lg:grid-cols-2">
@@ -108,13 +110,11 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <img
                 src="/logo-caldera/logo-caldera-cushuro.png"
-                alt="Calera Cushuro"
-                className="h-16 w-16 object-contain"
+                alt="Logo santa isable de cushuro"
+                className="h-16 w-36 object-contain brightness-125 contrast-110 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
               />
               <div>
-                <h2 className="text-2xl font-semibold tracking-wide text-emerald-600">
-                  CALERA CUSHURO
-                </h2>
+
                 <p className="text-sm text-zinc-400">{copy.brandSubtitle}</p>
               </div>
             </div>
@@ -185,29 +185,46 @@ export default function Footer() {
                 })}
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <p className="font-semibold text-white">{copy.contact}</p>
-                <p>{copy.contactLines.plant}</p>
-                <p className="text-emerald-600">
-                  {copy.contactLines.phones}{" "}
-                  <a href="tel:+51986671128" className="hover:underline">
-                    986 671128
-                  </a>{" "}
-                  /{" "}
-                  <a href="tel:+51986067417" className="hover:underline">
-                    986067417
-                  </a>
-                </p>
-                <p className="text-emerald-600">
-                  {copy.contactLines.email}{" "}
-                  <a
-                    href="mailto:administracion@cushuro.pe"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    administracion@cushuro.pe
-                  </a>
-                </p>
+
+                <div className="flex items-start gap-3">
+                  <MapPin size={16} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <p className="text-zinc-300">{copy.contactLines.plant}</p>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Phone size={16} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <p className="text-zinc-300">
+                    <span className="block text-xs uppercase tracking-wide text-zinc-500">
+                      {copy.contactLines.phones}
+                    </span>
+                    <a href="tel:+51986671128" className="transition-colors hover:text-emerald-600">
+                      986 671128
+                    </a>{" "}
+                    /{" "}
+                    <a href="tel:+51986067417" className="transition-colors hover:text-emerald-600">
+                      986 067417
+                    </a>
+                  </p>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Mail size={16} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <p className="text-zinc-300">
+                    <span className="block text-xs uppercase tracking-wide text-zinc-500">
+                      {copy.contactLines.email}
+                    </span>
+                    <a
+                      href="mailto:administracion@cushuro.pe"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="break-all transition-colors hover:text-emerald-600"
+                    >
+                      administracion@cushuro.pe
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -236,7 +253,7 @@ export default function Footer() {
         <div className="mt-16 flex flex-col items-center gap-3 border-t border-zinc-600/40 pt-6 text-xs text-zinc-400 md:flex-row md:justify-between">
           <p>
             © {new Date().getFullYear()} Empresa de Transportes y Servicios Santa Isabel de Cushuro
-            S.A.C.
+            S.A.C. {copy.rightsReserved}
           </p>
           <p>{copy.location}</p>
           <p className="text-emerald-600">

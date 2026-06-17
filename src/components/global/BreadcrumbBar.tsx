@@ -152,13 +152,13 @@ export function BreadcrumbBar() {
   const crumbs = copy.routeCrumbs[location.pathname] ?? buildFallbackCrumbs(location.pathname);
 
   return (
-    <section className="dark-image border-b border-zinc-200/80 bg-zinc-100/10 backdrop-blur-sm">
+    <section className="dark-image border-b border-zinc-50 bg-zinc-100 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
         <nav
           aria-label={copy.ariaLabel}
           className="flex flex-wrap items-center gap-1.5 text-[11px] text-zinc-500 sm:text-xs md:text-sm"
         >
-          <Link to="/" className="font-medium text-emerald-600 transition-colors hover:text-emerald-700">
+          <Link to="/" className="font-medium text-amber-600 transition-colors hover:text-amber-700">
             {copy.home}
           </Link>
 

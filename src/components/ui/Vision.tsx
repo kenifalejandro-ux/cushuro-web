@@ -133,7 +133,7 @@ export function Vision() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative min-h-screen rounded-b-[80px] md:rounded-b-[220px] lg:rounded-b-[520px] overflow-hidden bg-gradient-to-br from-zinc-600 via-zinc-600 to-zinc-600 px-4 py-20 md:px-8 lg:px-16"
+      className="light-image relative min-h-screen rounded-b-[80px] md:rounded-b-[220px] lg:rounded-b-[520px] overflow-hidden bg-gradient-to-br from-zinc-800 via-zinc-800 to-zinc-800 px-4 py-20 md:px-8 lg:px-16"
     >
 
   {/* CONTENIDO (Asegúrate de que tenga z-10) */}

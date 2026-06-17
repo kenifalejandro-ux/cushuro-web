@@ -1,4 +1,7 @@
+/**client/src/components/global/contact.tsx */
+
 import { useEffect } from "react";
+import { ArrowRight } from "lucide-react";
 import { initContactanosPage } from "./contactanos";
 import { useLocalizedContent, useSiteLanguage } from "../../context/SiteLanguageContext";
 
@@ -16,7 +19,7 @@ export default function Contact({ className = "" }: ContactProps) {
   const { language } = useSiteLanguage();
   const copy = useLocalizedContent({
     es: {
-      badge: "Atencion Comercial",
+      badge: "Atención Comercial",
       titleStart: "Déjanos tus datos y",
       titleHighlight: "uno de nuestros especialistas",
       titleEnd: "se pondrá en contacto contigo.",
@@ -31,8 +34,8 @@ export default function Contact({ className = "" }: ContactProps) {
         website: "Sitio web",
       },
       actions: {
-        submit: "ENVIAR",
-        clear: "BORRAR",
+        submit: "Enviar solicitud",
+        clear: "Borrar",
       },
     },
     en: {
@@ -51,8 +54,8 @@ export default function Contact({ className = "" }: ContactProps) {
         website: "Website",
       },
       actions: {
-        submit: "SEND",
-        clear: "CLEAR",
+        submit: "Send request",
+        clear: "Clear",
       },
     },
   });
@@ -62,30 +65,30 @@ export default function Contact({ className = "" }: ContactProps) {
     return () => cleanup();
   }, []);
 
+  // Input minimal: línea inferior, sin caja. Foco esmeralda.
+  const fieldClasses =
+    "peer h-12 w-full border-0 border-b border-white/12 bg-transparent px-0 text-sm text-stone-100 placeholder:text-stone-500 transition-colors focus:border-emerald-500/80 focus:outline-none focus:ring-0";
+
   return (
     <div className={`relative z-30 ${className}`}>
-      <section className="relative -mt-30  min-h-[20vh] overflow-hidden rounded-[2rem] border border-stone-700/70 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.12),transparent_30%),linear-gradient(160deg,#18181b_0%,#27272a_55%,#292524_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.68)]">
-        <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/70 to-transparent" />
-        <div className="mb-4 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-stone-300">
-          <span className="h-2 w-2 rounded-full bg-emerald-500" />
+      <section className="relative -mt-30 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,#1a1a1d_0%,#201f22_60%,#211d1b_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.7)] sm:p-10">
+        {/* Hairline de acento superior */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/60 to-transparent" />
+
+        {/* Encabezado */}
+        <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.26em] text-stone-400">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
           {copy.badge}
         </div>
 
-        <h3 className="max-w-xl text-xl font-semibold leading-snug text-stone-100">
+        <h3 className="mt-5 max-w-md text-[22px] font-semibold leading-snug tracking-[-0.01em] text-stone-100">
           {copy.titleStart}{" "}
-          <span className="text-emerald-400">
-            {copy.titleHighlight}
-          </span>{" "}
+          <span className="text-emerald-400">{copy.titleHighlight}</span>{" "}
           {copy.titleEnd}
         </h3>
 
-        <form
-          id="contactForm"
-          action="/formulario"
-          method="POST"
-          className="mt-8 grid gap-4"
-        >
-          <div className="grid gap-4 sm:grid-cols-2">
+        <form id="contactForm" action="/formulario" method="POST" className="mt-10 grid gap-7">
+          <div className="grid gap-7 sm:grid-cols-2">
             <div>
               <label htmlFor="Nombres" className="sr-only">
                 {copy.fields.name}
@@ -97,7 +100,7 @@ export default function Contact({ className = "" }: ContactProps) {
                 placeholder={copy.fields.name}
                 autoComplete="name"
                 required
-                className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+                className={fieldClasses}
               />
             </div>
             <div>
@@ -111,40 +114,41 @@ export default function Contact({ className = "" }: ContactProps) {
                 placeholder={copy.fields.company}
                 autoComplete="organization"
                 required
-                className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+                className={fieldClasses}
               />
             </div>
           </div>
 
-          <div>
-            <label htmlFor="correo" className="sr-only">
-              {copy.fields.email}
-            </label>
-            <input
-              type="email"
-              id="correo"
-              name="Correo"
-              placeholder={copy.fields.email}
-              autoComplete="email"
-              required
-              className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="telefono" className="sr-only">
-              {copy.fields.phone}
-            </label>
-            <input
-              type="tel"
-              id="telefono"
-              name="Telefono"
-              placeholder={copy.fields.phone}
-              autoComplete="tel"
-              inputMode="tel"
-              required
-              className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
-            />
+          <div className="grid gap-7 sm:grid-cols-2">
+            <div>
+              <label htmlFor="correo" className="sr-only">
+                {copy.fields.email}
+              </label>
+              <input
+                type="email"
+                id="correo"
+                name="Correo"
+                placeholder={copy.fields.email}
+                autoComplete="email"
+                required
+                className={fieldClasses}
+              />
+            </div>
+            <div>
+              <label htmlFor="telefono" className="sr-only">
+                {copy.fields.phone}
+              </label>
+              <input
+                type="tel"
+                id="telefono"
+                name="Telefono"
+                placeholder={copy.fields.phone}
+                autoComplete="tel"
+                inputMode="tel"
+                required
+                className={fieldClasses}
+              />
+            </div>
           </div>
 
           <div>
@@ -156,13 +160,13 @@ export default function Contact({ className = "" }: ContactProps) {
               name="Producto"
               required
               defaultValue=""
-              className="h-12 w-full rounded-xl border border-white/8 bg-black/20 px-4 text-sm text-stone-100 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+              className={`${fieldClasses} cursor-pointer`}
             >
-              <option value="" disabled className="text-stone-500">
+              <option value="" disabled className="bg-[#1a1a1d] text-stone-500">
                 {copy.fields.productPlaceholder}
               </option>
               {PRODUCT_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
+                <option key={option.value} value={option.value} className="bg-[#1a1a1d] text-stone-100">
                   {language === "en" ? option.labelEn : option.labelEs}
                 </option>
               ))}
@@ -177,9 +181,9 @@ export default function Contact({ className = "" }: ContactProps) {
               id="Mensaje"
               name="Mensaje"
               placeholder={copy.fields.message}
-              rows={4}
+              rows={3}
               required
-              className="w-full rounded-xl border border-white/8 bg-black/20 p-4 text-sm text-stone-100 placeholder:text-stone-500 focus:border-emerald-500/60 focus:outline-none focus:ring-2 focus:ring-emerald-500/15"
+              className="w-full resize-none border-0 border-b border-white/12 bg-transparent px-0 py-3 text-sm text-stone-100 placeholder:text-stone-500 transition-colors focus:border-emerald-500/80 focus:outline-none focus:ring-0"
             />
           </div>
 
@@ -199,23 +203,24 @@ export default function Contact({ className = "" }: ContactProps) {
           <div
             id="mensaje"
             aria-live="polite"
-            className="hidden rounded-xl border border-red-400/30 bg-red-950/20 px-4 py-3 text-sm text-red-200"
+            className="hidden rounded-lg border border-red-400/30 bg-red-950/20 px-4 py-3 text-sm text-red-200"
           />
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <button
-              type="submit"
-              className="mt-3 inline-flex h-12 min-h-[50px] flex-1 items-center justify-center rounded-full bg-emerald-700 px-8 text-sm font-semibold text-stone-50 transition hover:bg-emerald-600"
-            >
-              {copy.actions.submit}
-            </button>
-
+          <div className="mt-2 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
             <button
               type="button"
               id="clear-form"
-              className="mt-3 inline-flex h-12 min-h-[50px] flex-1 items-center justify-center rounded-full border border-stone-500/60 bg-stone-800/80 px-8 text-sm font-semibold text-stone-100 transition hover:bg-stone-700"
+              className="order-2 text-[13px] font-medium uppercase tracking-[0.12em] text-stone-400 transition-colors hover:text-stone-200 sm:order-1"
             >
               {copy.actions.clear}
+            </button>
+
+            <button
+              type="submit"
+              className="group order-1 inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-8 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-all hover:bg-emerald-500 hover:shadow-[0_14px_34px_-14px_rgba(16,185,129,0.7)] sm:order-2"
+            >
+              {copy.actions.submit}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.2} />
             </button>
           </div>
         </form>

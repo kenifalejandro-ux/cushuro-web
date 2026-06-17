@@ -2,7 +2,7 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Globe, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Globe, Mail, MapPin, Menu, Phone, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -14,7 +14,6 @@ import {
   type MenuItem,
   type Tab,
 } from "./header.data";
-import { useImageOverlap } from "../../hooks/useImageOverlap";
 import { useSiteLanguage, type SiteLanguage } from "../../context/SiteLanguageContext";
 
 const IMG_BASE = import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
@@ -24,9 +23,10 @@ gsap.registerPlugin(ScrollTrigger);
 type HeaderCopy = {
   address: string;
   brandName: string;
-  brandStrip: string;
+  brandTagline: string;
   closeMenuLabel: string;
   contact: string;
+  ctaQuote: string;
   email: string;
   languageSectionTitle: string;
   mobilePanelLabel: string;
@@ -44,6 +44,8 @@ interface HeaderProps {
   logoDark?: string;
   brandName?: string;
   tabs?: Tab[];
+  /** Ruta del CTA de cotización. */
+  quoteHref?: string;
   contactInfo?: {
     email?: string;
     phone?: string;
@@ -55,9 +57,10 @@ const HEADER_COPY: Record<SiteLanguage, HeaderCopy> = {
   es: {
     address: "Dirección",
     brandName: "Santa Isabel de Cushuro",
-    brandStrip: "",
+    brandTagline: "Santa Isabel · Minería",
     closeMenuLabel: "Cerrar menu de navegacion",
     contact: "CONTACTO",
+    ctaQuote: "Cotización",
     email: "Correo",
     languageSectionTitle: "Idioma",
     mobilePanelLabel: "Panel de navegacion y contacto",
@@ -65,21 +68,22 @@ const HEADER_COPY: Record<SiteLanguage, HeaderCopy> = {
     openMenuLabel: "Abrir menu de navegacion",
     phone: "Teléfono",
     switchLanguageAriaLabel: "Cambiar idioma a inglés",
-    switchLanguageLabel: "English",
+    switchLanguageLabel: "EN",
     tabs: {
       "La Empresa": "La Empresa",
       Productos: "Productos",
-      "Servicios-Industriales": "Servicios-Industriales",
-      "compromiso-ambiental-y-social": "compromiso-ambiental-y-social",
+      "Servicios-Industriales": "Servicios",
+      "compromiso-ambiental-y-social": "Compromiso",
       Contacto: "Contacto",
     },
   },
   en: {
     address: "Address",
     brandName: "Santa Isabel de Cushuro",
-    brandStrip: "",
+    brandTagline: "Santa Isabel · Mining",
     closeMenuLabel: "Close navigation menu",
     contact: "CONTACT",
+    ctaQuote: "Get a quote",
     email: "Email",
     languageSectionTitle: "Language",
     mobilePanelLabel: "Navigation and contact panel",
@@ -87,12 +91,12 @@ const HEADER_COPY: Record<SiteLanguage, HeaderCopy> = {
     openMenuLabel: "Open navigation menu",
     phone: "Phone",
     switchLanguageAriaLabel: "Switch language to Spanish",
-    switchLanguageLabel: "Español",
+    switchLanguageLabel: "ES",
     tabs: {
       "La Empresa": "Company",
       Productos: "Products",
-      "Servicios-Industriales": "Industrial Services",
-      "compromiso-ambiental-y-social": "Environmental Commitment",
+      "Servicios-Industriales": "Services",
+      "compromiso-ambiental-y-social": "Commitment",
       Contacto: "Contact",
     },
   },
@@ -104,20 +108,13 @@ export function Header({
   logoDark = "img-inicio/logo/logo-caldera-cushuro.png",
   brandName = "",
   tabs = DEFAULT_TABS,
+  quoteHref = "/contacto",
   contactInfo = {
     email: "administracion@cushuro.pe",
     phone: "+51 986 671 128",
     address: "Huamachuco, La Libertad",
   },
 }: HeaderProps) {
-  const { isDarkOverlapping, isLightOverlapping } = useImageOverlap({
-    targetElementId: "banner",
-    debounceDelay: 10,
-  });
-
-  const useLightHeader = isLightOverlapping && !isDarkOverlapping;
-
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openDesktopSubmenu, setOpenDesktopSubmenu] = useState<string | null>(null);
@@ -132,8 +129,6 @@ export function Header({
   const isProductsActive = location.pathname.startsWith("/Productos");
   const isServicesActive = location.pathname.startsWith("/Servicios-Industriales");
   const isResponsibilityActive = location.pathname.startsWith("/compromiso-ambiental-y-social");
-  const isContactPage = location.pathname.startsWith("/contacto");
-  const forceWhiteLogo = location.pathname.startsWith("/Productos/");
 
   const copy = HEADER_COPY[language];
   const displayBrandName = brandName.trim() || copy.brandName;
@@ -164,23 +159,16 @@ export function Header({
     return `${IMG_BASE}/${value.replace(/^\//, "")}`;
   };
 
-  const logoSrc = resolveAssetUrl(
-    logo ?? (forceWhiteLogo ? logoDark : useLightHeader || !isScrolled ? logoLight : logoDark)
-  );
+  // Header oscuro: usamos siempre el logo claro (sobre fondo acero).
+  const logoSrc = resolveAssetUrl(logo ?? logoLight ?? logoDark);
   const shouldShowLogo = Boolean(logoSrc);
-  const desktopContactTab = tabs.find((tab) => tab.label === "Contacto");
   const desktopPrimaryTabs = tabs.filter((tab) => tab.label !== "Contacto");
-  const isDesktopContactActive = Boolean(
-    desktopContactTab && location.pathname === desktopContactTab.href
-  );
 
   useEffect(() => {
     let ticking = false;
 
     const update = () => {
       const current = window.scrollY;
-
-      setIsScrolled(current > 10);
 
       if (current > lastScrollY.current && current > 120) {
         setIsHidden(true);
@@ -214,16 +202,13 @@ export function Header({
       if (!navTabs.length) return;
 
       gsap.from(navTabs, {
-        opacity: 1,
+        opacity: 0,
         y: 10,
         duration: 0.6,
-        stagger: 0.1,
+        stagger: 0.08,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: navTabs[0],
-          start: "top 90%",
-          toggleActions: "play none none none",
-        },
+        // Sólo animamos opacidad/posición; nunca tocamos el color.
+        clearProps: "opacity,transform",
       });
     });
   }, []);
@@ -256,345 +241,260 @@ export function Header({
     toggleLanguage();
   };
 
-  const elevatedHeader = isScrolled || isContactPage || forceWhiteLogo || useLightHeader;
-
-  const headerClasses = `
-    fixed top-0 left-0 right-0 z-[1100] transition-transform duration-300
-    ${isHidden ? "-translate-y-full" : "translate-y-0"}
-  `;
-
-  const headerSurfaceClasses = elevatedHeader
-    ? "border-zinc-200/80 bg-white/96 text-zinc-900 shadow-[0_18px_48px_-34px_rgba(24,24,27,0.26)] backdrop-blur-xl"
-    : "border-zinc-200/60 bg-white/80 text-zinc-900 shadow-[0_18px_42px_-34px_rgba(24,24,27,0.22)] backdrop-blur-md";
-
-  const rowDividerClasses = elevatedHeader ? "border-zinc-200/80" : "border-zinc-300/60";
-  const topLineClasses = elevatedHeader ? "bg-zinc-500/70" : "bg-zinc-600/60";
-  const topMetaTextClasses = elevatedHeader ? "text-zinc-500" : "text-zinc-600/85";
-  const topContactClasses = isDesktopContactActive
-    ? "text-zinc-950"
-    : "text-zinc-700 transition-colors hover:text-[#6d9219]";
-
-  const desktopNavTextClasses =
-    "text-zinc-800 transition-colors hover:text-[#6d9219] focus-visible:outline-none focus-visible:text-[#6d9219]";
-  const desktopNavUnderlineClasses = "bg-[#000000]";
-  const desktopLanguageButtonClasses =
-    "inline-flex items-center gap-2 rounded-full border border-zinc-300/90 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-[#92be1f] hover:text-[#6d9219]";
-  const mobileActionButtonClasses =
-    "inline-flex items-center justify-center rounded-xl border border-zinc-300/90 px-3 py-2.5 text-zinc-900 transition-colors hover:border-[#92be1f] hover:text-[#6d9219]";
-
   return (
     <>
-      <header id="banner" className={headerClasses} >
-        <div className={`w-full  border-y ${headerSurfaceClasses}`}>
-          <div className="lg:hidden">
-            <div className="mx-auto  max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-              <div className="flex items-center justify-between gap-3">
-                <NavLink
-                  to="/"
-                  className="relative z-[110] flex min-w-0 items-center"
-                  onClick={() => setIsModalOpen(false)}
+      <header
+        id="banner"
+        className={`fixed left-0 right-0 top-0 z-[1100] transition-transform duration-300 ${
+          isHidden ? "-translate-y-full" : "translate-y-0"
+        }`}
+      >
+        {/* ===================== BARRA UTILITARIA ===================== */}
+        <div className="border-b border-white/[0.07] bg-[#0c0d0e]">
+          <div className="mx-auto flex h-11 max-w-7xl items-center justify-between gap-3 px-4 font-mono text-[9px] uppercase tracking-[0.12em] text-white/50 sm:h-12 sm:px-6 sm:text-[10px] sm:tracking-[0.14em] lg:h-14 lg:px-8 lg:text-[11px]">
+            <span className="flex min-w-0 items-center gap-2 sm:gap-2.5">
+              <MapPin className="h-3 w-3 shrink-0 text-[#d97706] sm:h-3.5 sm:w-3.5" />
+              <span className="truncate">{contactInfo.address}</span>
+            </span>
+            <div className="flex items-center gap-3 sm:gap-6">
+              {contactInfo.phone && (
+                <a
+                  href={`tel:${contactInfo.phone}`}
+                  className="flex items-center gap-1.5 transition-colors hover:text-[#d97706] sm:gap-2"
                 >
-                  {shouldShowLogo ? (
-                    <img
-                      src={logoSrc}
-                      alt={displayBrandName}
-                      className="h-12 w-auto max-w-[13rem] object-contain sm:h-14"
-                    />
-                  ) : (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#6d9219] via-[#87b11d] to-[#26400d]">
-                      <span className="text-xl font-semibold text-white">
-                        {displayBrandName.charAt(0) || "S"}
-                      </span>
-                    </div>
-                  )}
-                </NavLink>
-
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    aria-label={copy.switchLanguageAriaLabel}
-                    onClick={handleLanguageToggle}
-                    className={mobileActionButtonClasses}
+                  <Phone className="h-3 w-3 shrink-0 text-[#d97706]" />
+                  <span className="whitespace-nowrap">{contactInfo.phone}</span>
+                </a>
+              )}
+              {contactInfo.email && (
+                <>
+                  <span className="hidden text-white/15 sm:inline">|</span>
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="hidden items-center gap-2 transition-colors hover:text-[#d97706] sm:flex"
                   >
-                    <Globe className="h-4 w-4" />
-                    <span className="hidden sm:inline">{copy.switchLanguageLabel}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setIsModalOpen(true)}
-                    aria-expanded={isModalOpen}
-                    aria-controls="mobile-navigation-drawer"
-                    aria-label={isModalOpen ? copy.closeMenuLabel : copy.openMenuLabel}
-                    className={`${mobileActionButtonClasses} ${isModalOpen ? "pointer-events-none opacity-0" : "opacity-100"}`}
-                  >
-                    <Menu className="h-6 w-6" />
-                  </button>
-                </div>
-              </div>
+                    <Mail className="h-3 w-3 shrink-0 text-[#d97706]" />
+                    <span className="whitespace-nowrap">{contactInfo.email}</span>
+                  </a>
+                </>
+              )}
+              <span className="text-white/15">|</span>
+              <button
+                type="button"
+                aria-label={copy.switchLanguageAriaLabel}
+                onClick={handleLanguageToggle}
+                className="flex items-center gap-1.5 text-white/70 transition-colors hover:text-[#d97706]"
+              >
+                <Globe className="h-3 w-3 shrink-0" />
+                {copy.switchLanguageLabel}
+              </button>
             </div>
-
-            <div className="h-[2px] bg-[#b45309]" />
-            <div className="h-[10px] bg-[#d97706]" />
           </div>
+        </div>
 
-          <div className="hidden lg:block">
-            <div className={`border-b ${rowDividerClasses}`}>
-              <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-                <div className="flex items-start gap-8 xl:gap-10">
-                  <NavLink
-                    to="/"
-                    className="relative z-[110] flex shrink-0 items-center"
-                    onClick={() => setIsModalOpen(false)}
-                  >
-                    {shouldShowLogo ? (
-                      <img
-                        src={logoSrc}
-                        alt={displayBrandName}
-                        className="h-[4.6rem] w-auto max-w-[16rem] object-contain"
-                      />
-                    ) : (
-                      <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-[#6d9219] via-[#87b11d] to-[#26400d]">
-                        <span className="text-2xl font-semibold text-white">
-                          {displayBrandName.charAt(0) || "S"}
-                        </span>
-                      </div>
-                    )}
-                  </NavLink>
-
-                  <div className="flex min-w-0 flex-1 items-center gap-4 pt-8">
-                    <span
-                      className={`shrink-0 pl-1 text-[10px] font-semibold uppercase tracking-[0.42em] ${topMetaTextClasses}`}
-                    >
-                      {copy.brandStrip}
+        {/* ===================== BARRA PRINCIPAL ===================== */}
+        <div className="border-b border-white/[0.08] bg-[#141719]/95 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+          <div className="mx-auto flex h-[92px] max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-[94px] lg:gap-9 lg:px-8">
+            {/* Logo lockup */}
+            <NavLink
+              to="/"
+              className="relative z-[110] flex shrink-0 items-center gap-3.5"
+              onClick={() => setIsModalOpen(false)}
+            >
+              {shouldShowLogo ? (
+                <img
+                  src={logoSrc}
+                  alt={displayBrandName}
+                  className="h-11 w-auto max-w-[13rem] object-contain brightness-125 contrast-110 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] lg:h-[3.4rem]"
+                />
+              ) : (
+                <>
+                  <div className="flex h-[50px] w-[50px] items-center justify-center border border-[#d97706]/50 bg-[linear-gradient(150deg,#1c1f22,#0e1012)]">
+                    <span className="text-[26px] font-bold leading-none text-[#d97706]">
+                      {displayBrandName.charAt(0) || "C"}
                     </span>
+                  </div>
+                  <div className="hidden flex-col leading-none sm:flex">
+                    <span className="text-[23px] font-semibold tracking-[0.02em] text-white">
+                      CUSHURO
+                    </span>
+                    <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.26em] text-white/40">
+                      {copy.brandTagline}
+                    </span>
+                  </div>
+                </>
+              )}
+            </NavLink>
 
-                    <div className={`h-px flex-1 ${topLineClasses}`} />
+            {/* Navegación desktop */}
+            <nav
+              ref={navRef}
+              className="hidden items-center gap-1 text-[13.5px] font-medium tracking-[0.04em] text-white lg:flex"
+            >
+              {desktopPrimaryTabs.map((tab) => {
+                const tabHasSubmenu = hasSubmenu(tab.label);
+                const submenuItems = getSubmenuByTab(tab.label);
+                const isDropdownOpen = openDesktopSubmenu === tab.label;
+                const isActive =
+                  tab.label === "Productos"
+                    ? isProductsActive
+                    : tab.label === "Servicios-Industriales"
+                      ? isServicesActive
+                      : tab.label === "compromiso-ambiental-y-social"
+                        ? isResponsibilityActive
+                        : location.pathname === tab.href;
 
-                    {desktopContactTab ? (
-                      <NavLink
-                        to={desktopContactTab.href}
-                        className={`group relative shrink-0 translate-y-[5px] text-[13px] font-semibold uppercase tracking-[0.14em] ${topContactClasses}`}
+                if (tabHasSubmenu) {
+                  return (
+                    <div
+                      key={tab.href}
+                      className="group relative"
+                      onMouseEnter={() => handleSubmenuEnter(tab.label)}
+                      onMouseLeave={handleSubmenuLeave}
+                    >
+                      <button
+                        type="button"
+                        aria-haspopup="menu"
+                        aria-expanded={isDropdownOpen}
+                        className="relative flex items-center gap-1.5 px-3.5 py-2.5 uppercase text-white transition-colors"
                       >
-                        {copy.contact}
+                        {getTabLabel(tab.label)}
+                        <svg
+                          className="h-3 w-3 text-[#d97706] transition-transform duration-200 group-hover:rotate-180"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2.4}
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
+                        </svg>
                         <span
-                          className={`absolute -bottom-0.5 left-0 h-px bg-current transition-all duration-300 ${
-                            isDesktopContactActive
-                              ? "w-full opacity-100"
-                              : "w-0 opacity-0 group-hover:w-full group-hover:opacity-70"
+                          className={`absolute inset-x-3.5 bottom-1 h-[2px] bg-[#d97706] transition-all duration-300 ${
+                            isActive ? "opacity-100" : "opacity-0 group-hover:opacity-60"
                           }`}
                         />
-                      </NavLink>
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-            </div>
+                      </button>
 
-            <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-              <div className="flex items-center justify-between gap-8">
-                <nav
-                  ref={navRef}
-                  className="relative flex min-w-0 flex-wrap items-center gap-1 xl:gap-4"
-                >
-                  {desktopPrimaryTabs.map((tab) => {
-                    const tabHasSubmenu = hasSubmenu(tab.label);
-                    const submenuItems = getSubmenuByTab(tab.label);
-                    const isDropdownOpen = openDesktopSubmenu === tab.label;
-                    const isActive =
-                      tab.label === "Productos"
-                        ? isProductsActive
-                        : tab.label === "Servicios-Industriales"
-                          ? isServicesActive
-                          : tab.label === "compromiso-ambiental-y-social"
-                            ? isResponsibilityActive
-                            : location.pathname === tab.href;
-
-                    if (tabHasSubmenu) {
-                      return (
+                      {isDropdownOpen && (
                         <div
-                          key={tab.href}
-                          className="group relative"
+                          className="absolute left-0 top-[calc(100%+14px)] w-[340px] overflow-hidden border border-white/10 bg-[#141719] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.85)]"
                           onMouseEnter={() => handleSubmenuEnter(tab.label)}
                           onMouseLeave={handleSubmenuLeave}
                         >
-                          <button
-                            type="button"
-                            aria-haspopup="menu"
-                            aria-expanded={isDropdownOpen}
-                            className={`relative flex items-center gap-1 rounded-lg px-4 py-2 text-base font-medium ${desktopNavTextClasses}`}
-                          >
-                            {getTabLabel(tab.label)}
-                            <svg
-                              className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7 7-7-7"
-                              />
-                            </svg>
+                          <div className="h-[2px] bg-gradient-to-r from-[#d97706] to-transparent" />
+                          {submenuItems.map((service, index) => {
+                            const itemCopy = getMenuItemCopy(service);
 
-                            <span
-                              className={`absolute bottom-0 left-4 right-4 h-px rounded-full transition-all duration-300 ${desktopNavUnderlineClasses} ${
-                                isActive
-                                  ? "opacity-100 scale-x-100"
-                                  : "opacity-0 scale-x-0 group-hover:opacity-60 group-hover:scale-x-75"
-                              }`}
-                            />
-                          </button>
-
-                          {isDropdownOpen && (
-                            <div
-                              className="absolute   top-full left-0 mt-3 w-80 overflow-hidden rounded-[1.1rem] border border-zinc-200 bg-white text-zinc-900 shadow-[0_24px_42px_-28px_rgba(24,24,27,0.24)]"
-                              onMouseEnter={() => handleSubmenuEnter(tab.label)}
-                              onMouseLeave={handleSubmenuLeave}
-                            >
-                              {submenuItems.map((service) => {
-                                const itemCopy = getMenuItemCopy(service);
-
-                                return (
-                                  <NavLink
-                                    key={service.id}
-                                    to={service.href}
-                                    className="block border-b  border-zinc-200 px-6 py-4 transition-colors last:border-b-0 hover:bg-[#f4f7ea]"
-                                    onClick={() => setOpenDesktopSubmenu(null)}
-                                  >
-                                    <div className="font-semibold text-zinc-900">
-                                      {itemCopy.name}
-                                    </div>
-                                    <div className="mt-1 text-sm text-zinc-600">
-                                      {itemCopy.subtitle}
-                                    </div>
-                                  </NavLink>
-                                );
-                              })}
-                            </div>
-                          )}
+                            return (
+                              <NavLink
+                                key={service.id}
+                                to={service.href}
+                                className="block border-b border-white/[0.06] px-5 py-4 transition-colors last:border-b-0 hover:bg-[#d97706]/[0.07]"
+                                onClick={() => setOpenDesktopSubmenu(null)}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span className="text-[15px] font-semibold text-white">
+                                    {itemCopy.name}
+                                  </span>
+                                  <span className="font-mono text-[10px] tracking-[0.1em] text-[#d97706]">
+                                    {String(index + 1).padStart(2, "0")}
+                                  </span>
+                                </div>
+                                <div className="mt-1 text-[12.5px] text-white/50">
+                                  {itemCopy.subtitle}
+                                </div>
+                              </NavLink>
+                            );
+                          })}
                         </div>
-                      );
-                    }
+                      )}
+                    </div>
+                  );
+                }
 
-                    return (
-                      <NavLink
-                        key={tab.href}
-                        to={tab.href}
-                        className={`relative  rounded-lg px-4 py-2 text-base font-medium ${desktopNavTextClasses}`}
-                      >
-                        {getTabLabel(tab.label)}
-                        <span
-                          className={`absolute bottom-0 left-4 right-4 h-px rounded-full transition-all duration-300 ${desktopNavUnderlineClasses} ${
-                            isActive
-                              ? "opacity-100 scale-x-100"
-                              : "opacity-0 scale-x-0 hover:opacity-60 hover:scale-x-75"
-                          }`}
-                        />
-                      </NavLink>
-                    );
-                  })}
-                </nav>
+                return (
+                  <NavLink
+                    key={tab.href}
+                    to={tab.href}
+                    className="relative px-3.5 py-2.5 uppercase text-white transition-colors"
+                  >
+                    {getTabLabel(tab.label)}
+                    <span
+                      className={`absolute inset-x-3.5 bottom-1 h-[2px] bg-[#d97706] transition-all duration-300 ${
+                        isActive ? "opacity-100" : "opacity-0 hover:opacity-60"
+                      }`}
+                    />
+                  </NavLink>
+                );
+              })}
+            </nav>
 
-                <button
-                  type="button"
-                  aria-label={copy.switchLanguageAriaLabel}
-                  onClick={handleLanguageToggle}
-                  className={desktopLanguageButtonClasses}
-                >
-                  <Globe className="h-4 w-4" />
-                  <span>{copy.switchLanguageLabel}</span>
-                </button>
-              </div>
+            {/* CTA + acciones */}
+            <div className="flex items-center gap-2.5">
+              <NavLink
+                to={quoteHref}
+                className="hidden items-center gap-2 border border-[#d97706] bg-[#d97706] px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.06em] text-[#150d02] transition-all duration-200 hover:bg-[#ea8a0c] hover:shadow-[0_12px_30px_-12px_rgba(217,119,6,0.7)] lg:inline-flex"
+              >
+                {copy.ctaQuote}
+                <ArrowRight className="h-[15px] w-[15px]" strokeWidth={2.2} />
+              </NavLink>
+
+              {/* Menú (móvil) */}
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                aria-expanded={isModalOpen}
+                aria-controls="mobile-navigation-drawer"
+                aria-label={isModalOpen ? copy.closeMenuLabel : copy.openMenuLabel}
+                className={`inline-flex items-center justify-center border border-white/15 px-3 py-2.5 text-white transition-colors hover:border-[#d97706] hover:text-[#d97706] lg:hidden ${
+                  isModalOpen ? "pointer-events-none opacity-0" : "opacity-100"
+                }`}
+              >
+                <Menu className="h-6 w-6" />
+              </button>
             </div>
-
-            <div className="h-[3px] bg-[#d97706]" />
-            <div className="h-[10px] bg-[#d9770]" />
-            
           </div>
+
+          {/* Línea de precisión */}
+          <div className="h-[2px] bg-[linear-gradient(90deg,#b45309_0%,#d97706_38%,#f59e0b_50%,#d97706_62%,#b45309_100%)]" />
         </div>
       </header>
 
+      {/* ===================== DRAWER MÓVIL ===================== */}
       <aside
         id="mobile-navigation-drawer"
         role="dialog"
         aria-modal={isModalOpen || undefined}
         aria-hidden={!isModalOpen}
         aria-label={copy.mobilePanelLabel}
-        className={`
-          fixed top-0 right-0 z-[1200] h-full w-full border-l border-zinc-200 md:w-96
-          transform bg-white text-zinc-900 transition-transform duration-300
-          ${isModalOpen ? "translate-x-0" : "translate-x-full"}
-        `}
+        className={`fixed right-0 top-0 z-[1200] h-full w-full transform border-l border-white/10 bg-[#0c0d0e] text-white transition-transform duration-300 md:w-96 ${
+          isModalOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="flex h-full flex-col">
-          <div className="flex items-center justify-between border-b border-zinc-200 p-6">
-            <h2 className="text-lg font-semibold uppercase tracking-[0.16em] text-zinc-900">
-              {displayBrandName}
-            </h2>
-            <button type="button" onClick={closeModal} aria-label={copy.closeMenuLabel}>
-              <X className="h-8 w-8" />
+          <div className="flex items-center justify-between border-b border-white/10 p-6">
+            <div className="flex flex-col leading-none">
+              <span className="text-[20px] font-semibold tracking-[0.02em] text-white">CUSHURO</span>
+              <span className="mt-1 font-mono text-[9px] uppercase tracking-[0.26em] text-white/40">
+                {copy.brandTagline}
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={closeModal}
+              aria-label={copy.closeMenuLabel}
+              className="text-white/70 transition-colors hover:text-[#d97706]"
+            >
+              <X className="h-7 w-7" />
             </button>
           </div>
 
           <div className="flex-1 space-y-6 overflow-y-auto p-6">
-            {contactInfo.email && (
-              <a
-                href={`mailto:${contactInfo.email}`}
-                onClick={closeModal}
-                className="flex items-start gap-4 rounded-2xl border border-zinc-200 p-4 transition-colors hover:bg-[#f4f7ea]"
-              >
-                <Mail className="h-6 w-6 text-[#6d9219]" />
-                <div>
-                  <p className="text-sm text-zinc-500">{copy.email}</p>
-                  <p className="text-zinc-900">{contactInfo.email}</p>
-                </div>
-              </a>
-            )}
-
-            {contactInfo.phone && (
-              <a
-                href={`tel:${contactInfo.phone}`}
-                onClick={closeModal}
-                className="flex items-start gap-4 rounded-2xl border border-zinc-200 p-4 transition-colors hover:bg-[#f4f7ea]"
-              >
-                <Phone className="h-6 w-6 text-[#6d9219]" />
-                <div>
-                  <p className="text-sm text-zinc-500">{copy.phone}</p>
-                  <p className="text-zinc-900">{contactInfo.phone}</p>
-                </div>
-              </a>
-            )}
-
-            {contactInfo.address && (
-              <div className="flex items-start gap-4 rounded-2xl border border-zinc-200 p-4 transition-colors hover:bg-[#f4f7ea]">
-                <MapPin className="h-6 w-6 text-[#6d9219]" />
-                <div>
-                  <p className="text-sm text-zinc-500">{copy.address}</p>
-                  <p className="text-zinc-900">{contactInfo.address}</p>
-                </div>
-              </div>
-            )}
-
-            <div className="rounded-2xl border border-zinc-200 p-4">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-zinc-500">
-                {copy.languageSectionTitle}
+            {/* Navegación */}
+            <div>
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#d97706]">
+                {copy.navigation}
               </p>
-              <button
-                type="button"
-                aria-label={copy.switchLanguageAriaLabel}
-                onClick={handleLanguageToggle}
-                className="inline-flex items-center gap-2 rounded-full border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-[#92be1f] hover:text-[#6d9219]"
-              >
-                <Globe className="h-4 w-4" />
-                <span>{copy.switchLanguageLabel}</span>
-              </button>
-            </div>
-
-            <div className="border-t border-zinc-200 pt-6">
-              <p className="mb-3 text-sm text-zinc-500">{copy.navigation}</p>
               <nav className="space-y-1">
                 {tabs.map((tab) => {
                   const tabHasSubmenu = hasSubmenu(tab.label);
@@ -611,28 +511,24 @@ export function Header({
                               current === tab.label ? null : tab.label
                             )
                           }
-                          className="flex w-full items-center justify-between rounded-xl px-4 py-3 transition-colors hover:bg-[#f4f7ea]"
+                          className="flex w-full items-center justify-between px-4 py-3 text-[15px] font-medium uppercase tracking-[0.04em] text-white transition-colors hover:bg-[#d97706]/[0.07]"
                         >
                           <span>{getTabLabel(tab.label)}</span>
                           <svg
-                            className={`h-5 w-5 transition-transform duration-200 ${
+                            className={`h-5 w-5 text-[#d97706] transition-transform duration-200 ${
                               isMobileSubmenuOpen ? "rotate-180" : ""
                             }`}
                             fill="none"
                             stroke="currentColor"
+                            strokeWidth={2}
                             viewBox="0 0 24 24"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 9l-7 7-7-7"
-                            />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
                           </svg>
                         </button>
 
                         {isMobileSubmenuOpen && (
-                          <div className="ml-4 mt-1 space-y-1 border-l border-zinc-200 pl-4">
+                          <div className="ml-4 mt-1 space-y-1 border-l border-white/10 pl-4">
                             {submenuItems.map((service) => {
                               const itemCopy = getMenuItemCopy(service);
 
@@ -644,10 +540,12 @@ export function Header({
                                     closeModal();
                                     setOpenMobileSubmenu(null);
                                   }}
-                                  className="block rounded-xl px-4 py-2.5 text-sm transition-colors hover:bg-[#f4f7ea]"
+                                  className="block px-4 py-2.5 transition-colors hover:bg-[#d97706]/[0.07]"
                                 >
-                                  <div className="font-medium">{itemCopy.name}</div>
-                                  <div className="text-xs text-zinc-500">{itemCopy.subtitle}</div>
+                                  <div className="text-[14px] font-medium text-white">
+                                    {itemCopy.name}
+                                  </div>
+                                  <div className="text-[12px] text-white/45">{itemCopy.subtitle}</div>
                                 </NavLink>
                               );
                             })}
@@ -662,7 +560,7 @@ export function Header({
                       key={tab.href}
                       to={tab.href}
                       onClick={closeModal}
-                      className="block rounded-xl px-4 py-3 transition-colors hover:bg-[#f4f7ea]"
+                      className="block px-4 py-3 text-[15px] font-medium uppercase tracking-[0.04em] text-white transition-colors hover:bg-[#d97706]/[0.07]"
                     >
                       {getTabLabel(tab.label)}
                     </NavLink>
@@ -670,12 +568,83 @@ export function Header({
                 })}
               </nav>
             </div>
+
+            {/* CTA cotización */}
+            <NavLink
+              to={quoteHref}
+              onClick={closeModal}
+              className="flex items-center justify-center gap-2 bg-[#d97706] px-5 py-3.5 text-[14px] font-semibold uppercase tracking-[0.06em] text-[#150d02] transition-colors hover:bg-[#ea8a0c]"
+            >
+              {copy.ctaQuote}
+              <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
+            </NavLink>
+
+            {/* Contacto */}
+            <div className="space-y-3 border-t border-white/10 pt-6">
+              {contactInfo.email && (
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  onClick={closeModal}
+                  className="flex items-start gap-4 border border-white/10 p-4 transition-colors hover:border-[#d97706]/50"
+                >
+                  <Mail className="h-5 w-5 text-[#d97706]" />
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
+                      {copy.email}
+                    </p>
+                    <p className="text-[14px] text-white">{contactInfo.email}</p>
+                  </div>
+                </a>
+              )}
+
+              {contactInfo.phone && (
+                <a
+                  href={`tel:${contactInfo.phone}`}
+                  onClick={closeModal}
+                  className="flex items-start gap-4 border border-white/10 p-4 transition-colors hover:border-[#d97706]/50"
+                >
+                  <Phone className="h-5 w-5 text-[#d97706]" />
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
+                      {copy.phone}
+                    </p>
+                    <p className="text-[14px] text-white">{contactInfo.phone}</p>
+                  </div>
+                </a>
+              )}
+
+              {contactInfo.address && (
+                <div className="flex items-start gap-4 border border-white/10 p-4">
+                  <MapPin className="h-5 w-5 text-[#d97706]" />
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
+                      {copy.address}
+                    </p>
+                    <p className="text-[14px] text-white">{contactInfo.address}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Idioma */}
+            <div className="border-t border-white/10 pt-6">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">
+                {copy.languageSectionTitle}
+              </p>
+              <button
+                type="button"
+                aria-label={copy.switchLanguageAriaLabel}
+                onClick={handleLanguageToggle}
+                className="inline-flex items-center gap-2 border border-white/15 px-4 py-2 text-[13px] font-medium text-white/80 transition-colors hover:border-[#d97706] hover:text-[#d97706]"
+              >
+                <Globe className="h-4 w-4" />
+                <span>{copy.switchLanguageLabel}</span>
+              </button>
+            </div>
           </div>
 
-          <div className="mt-auto">
-            <div className="h-[2px] bg-[#6d9219]" />
-            <div className="h-[10px] bg-[#92be1f]" />
-          </div>
+          {/* Línea de precisión */}
+          <div className="mt-auto h-[2px] bg-[linear-gradient(90deg,#b45309,#d97706,#f59e0b,#d97706,#b45309)]" />
         </div>
       </aside>
     </>

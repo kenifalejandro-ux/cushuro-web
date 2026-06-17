@@ -165,6 +165,7 @@ export default function CalViva() {
         { icon: Truck, text: "Logística propia y despacho directo a cliente" },
         { icon: CheckCircle, text: "Estándares del Ministerio de Energía y Minas" },
         { icon: Zap, text: "Reactividad química garantizada (≥81% Cal Útil)" },
+        { icon: Mountain, text: "Reservas mineras propias para abastecimiento sostenido" },
       ],
       team: {
         title: "Mano de Obra por Horno (35 TM)",
@@ -324,6 +325,7 @@ export default function CalViva() {
         { icon: Truck, text: "Own logistics and direct customer dispatch" },
         { icon: CheckCircle, text: "Ministry of Energy and Mines standards compliance" },
         { icon: Zap, text: "Guaranteed chemical reactivity (≥81% Available Lime)" },
+        { icon: Mountain, text: "Own mining reserves for sustained supply" },
       ],
       team: {
         title: "Workforce per Kiln (35 TM)",

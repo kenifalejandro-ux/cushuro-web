@@ -50,7 +50,7 @@ function AppRoutes() {
             <Inicio />
 
             
-            <HeroarrowNavigator />
+                {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />
@@ -64,7 +64,7 @@ function AppRoutes() {
             </div>
             <LaEmpresa />
             
-            <HeroarrowNavigator />
+                {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />
@@ -81,7 +81,7 @@ function AppRoutes() {
             </Suspense>
 
             
-            <HeroarrowNavigator />
+               {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />cal-agricola
@@ -117,7 +117,7 @@ function AppRoutes() {
             </Suspense>
 
             
-            <HeroarrowNavigator />
+             {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />
@@ -170,7 +170,7 @@ function AppRoutes() {
             </Suspense>
 
             
-            <HeroarrowNavigator />
+                {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />
@@ -187,7 +187,7 @@ function AppRoutes() {
             </Suspense>
 
             
-            <HeroarrowNavigator />
+               {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />
@@ -206,7 +206,7 @@ function AppRoutes() {
             </Suspense>
 
             
-            <HeroarrowNavigator />
+               {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />
@@ -223,7 +223,7 @@ function AppRoutes() {
             </Suspense>
 
             
-            <HeroarrowNavigator />
+               {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />
@@ -240,7 +240,7 @@ function AppRoutes() {
             </Suspense>
 
             
-            <HeroarrowNavigator />
+                {/*  <HeroarrowNavigator />*/}
           </Layout>
         }
       />

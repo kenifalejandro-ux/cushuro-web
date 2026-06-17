@@ -94,7 +94,7 @@ export function MiningStats() {
           backgroundSize: "24px 24px",
         }}
       />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-700/55 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-700/55 to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="mb-20 border-l-4 border-emerald-700 pl-6">
@@ -103,7 +103,7 @@ export function MiningStats() {
             <span className="text-stone-600">RUC: 20482610944</span>
           </div>
           <h2 className="text-4xl font-semibold tracking-[-0.05em] text-zinc-950 md:text-5xl">
-             <span className="text-emerald-600">S.A.C</span>
+             <span className="text-emerald-600">Santa Isabel de Cushuro S.A.C</span>
           </h2>
           <p className="text-base leading-7 text-stone-600 md:text-xl md:leading-8">
             {copy.description}

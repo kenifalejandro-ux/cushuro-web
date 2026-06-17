@@ -6,11 +6,13 @@ import {
   Factory,
   Flame,
   MapPin,
-  Leaf,
   ShieldCheck,
   Pickaxe,
   Mountain,
   Layers,
+  Zap,
+  Truck,
+  CheckCircle,
 } from "lucide-react";
 
 import CommercialCTA from "../global/CommercialCTA";
@@ -158,14 +160,11 @@ export default function CalViva() {
         "Procesos hidrometalúrgicos",
       ],
       advantages: [
-        { icon: Factory, text: "Denuncios propios de piedra caliza y carbón" },
-        { icon: Flame, text: "Producción continua 24 horas" },
-        { icon: Factory, text: "Logística propia" },
-        {
-          icon: ShieldCheck,
-          text: "Cumplimiento de estándares del Ministerio de Energía y Minas",
-        },
-        { icon: Leaf, text: "Operaciones" },
+        { icon: Pickaxe, text: "Denuncios propios de piedra caliza y carbón" },
+        { icon: Flame, text: "Producción continua 24 horas — 176 TM/día" },
+        { icon: Truck, text: "Logística propia y despacho directo a cliente" },
+        { icon: CheckCircle, text: "Estándares del Ministerio de Energía y Minas" },
+        { icon: Zap, text: "Reactividad química garantizada (≥81% Cal Útil)" },
       ],
       team: {
         title: "Mano de Obra por Horno (35 TM)",
@@ -320,14 +319,11 @@ export default function CalViva() {
         "Hydrometallurgical processes",
       ],
       advantages: [
-        { icon: Factory, text: "Owned limestone and coal concessions" },
-        { icon: Flame, text: "24-hour continuous production" },
-        { icon: Factory, text: "Own logistics" },
-        {
-          icon: ShieldCheck,
-          text: "Compliance with Ministry of Energy and Mines standards",
-        },
-        { icon: Leaf, text: "Operations" },
+        { icon: Pickaxe, text: "Owned limestone and coal mining concessions" },
+        { icon: Flame, text: "24-hour continuous production — 176 TM/day" },
+        { icon: Truck, text: "Own logistics and direct customer dispatch" },
+        { icon: CheckCircle, text: "Ministry of Energy and Mines standards compliance" },
+        { icon: Zap, text: "Guaranteed chemical reactivity (≥81% Available Lime)" },
       ],
       team: {
         title: "Workforce per Kiln (35 TM)",

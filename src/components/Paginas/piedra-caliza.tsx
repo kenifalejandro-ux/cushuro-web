@@ -5,11 +5,14 @@
 import {
   Factory,
   Flame,
-  Leaf,
   ShieldCheck,
   Pickaxe,
   Mountain,
   Layers,
+  Zap,
+  Truck,
+  CheckCircle,
+  Link as LinkIcon,
 } from "lucide-react";
 
 import CommercialCTA from "../global/CommercialCTA";
@@ -143,12 +146,12 @@ export default function PiedraCaliza() {
         "Optimización de tratamiento mineral",
       ],
       advantages: [
-        { icon: Factory, text: "Denuncios propios de piedra caliza" },
-        { icon: Flame, text: "Integración vertical con planta calera" },
-        { icon: Factory, text: "Producción continua 24 horas" },
-        { icon: ShieldCheck, text: "Logística propia y despacho directo" },
-        { icon: Leaf, text: "Cumplimiento de estándares del Ministerio de Energía y Minas" },
-        { icon: Leaf, text: "Abastecimiento estratégico para sector minero" },
+        { icon: Pickaxe, text: "Denuncios propios de piedra caliza de alto CaCO₃" },
+        { icon: LinkIcon, text: "Integración vertical con planta calera (CaO)" },
+        { icon: Flame, text: "Operación continua 24 horas — 176 TM/día" },
+        { icon: Truck, text: "Logística propia y despacho directo a cliente" },
+        { icon: CheckCircle, text: "Estándares del Ministerio de Energía y Minas" },
+        { icon: Zap, text: "Abastecimiento estratégico para plantas concentradoras" },
       ],
       team: {
         title: "Equipo Operativo en Cantera",
@@ -288,12 +291,12 @@ export default function PiedraCaliza() {
         "Optimization of mineral treatment",
       ],
       advantages: [
-        { icon: Factory, text: "Owned limestone mining claims" },
-        { icon: Flame, text: "Vertical integration with lime plant" },
-        { icon: Factory, text: "24-hour continuous production" },
-        { icon: ShieldCheck, text: "Own logistics and direct dispatch" },
-        { icon: Leaf, text: "Compliance with Ministry of Energy and Mines standards" },
-        { icon: Leaf, text: "Strategic supply for the mining sector" },
+        { icon: Pickaxe, text: "Owned high CaCO₃ limestone mining claims" },
+        { icon: LinkIcon, text: "Vertical integration with lime plant (CaO)" },
+        { icon: Flame, text: "Continuous 24-hour operation — 176 TM/day" },
+        { icon: Truck, text: "Own logistics and direct customer dispatch" },
+        { icon: CheckCircle, text: "Ministry of Energy and Mines standards compliance" },
+        { icon: Zap, text: "Strategic supply for concentrator plants" },
       ],
       team: {
         title: "Operational Quarry Team",

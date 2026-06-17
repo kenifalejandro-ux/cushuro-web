@@ -39,7 +39,7 @@ type PageConfig = {
 };
 
 const FALLBACK_SITE_URL = "https://cushuro.pe";
-const SITE_NAME = "";
+const SITE_NAME = "Cushuro";
 const LEGAL_NAME = "Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.";
 const COMPANY_DESCRIPTION =
   "Producción y comercialización de cal viva, cal molida, cal hidratada, cal agrícola, piedra caliza, carbón antracita y carbón tipo zisco para minería e industria.";
@@ -53,7 +53,7 @@ const LOGO_PATH = "/logo-caldera/logo-caldera-cushuro.png";
 
 const pageConfigs: Record<PageId, PageConfig> = {
   inicio: {
-    title: " | Cal Viva, Cal Agrícola y Piedra Caliza",
+    title: "Cushuro | Cal Viva, Cal Agrícola y Piedra Caliza – Huamachuco",
     description:
       "Producción y comercialización de óxido de calcio, cal viva, cal molida, cal hidratada, cal agrícola, piedra caliza y carbón para minería e industria desde Huamachuco. Solicite cotización comercial.",
     keywords: [
@@ -90,7 +90,7 @@ const pageConfigs: Record<PageId, PageConfig> = {
     ],
   },
   "la-empresa": {
-    title: "La Empresa | ",
+    title: "La Empresa | Cushuro – Minería y Logística",
     description:
       "Conozca a la Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C., especializada en suministro de óxido de calcio con enfoque en seguridad, medio ambiente, logística y responsabilidad social.",
     keywords: [

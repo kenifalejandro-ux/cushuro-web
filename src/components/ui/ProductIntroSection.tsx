@@ -83,7 +83,7 @@ export default function ProductIntroSection({
                 viewport={{ once: true, amount: 0.3 }}
                 className="relative"
               >
-                <div className="relative rounded-[1.75rem] border border-stone-200/80 bg-[#f7f4ee] p-3 shadow-[0_18px_36px_-28px_rgba(24,24,27,0.16)] sm:p-5">
+                <div className="relative rounded-lg border border-stone-200/80 bg-stone-100 p-3 shadow-lg sm:p-5">
                   <ReorderImageStack images={images} />
                 </div>
               </motion.div>
@@ -98,17 +98,17 @@ export default function ProductIntroSection({
             className="max-w-2xl"
           >
             <div className="mb-6 flex items-center gap-3">
-              <span className="h-px w-10 bg-emerald-700/55" />
-              <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">
+              <span className="h-px w-10 bg-brand-accent/60" />
+              <span className="text-tech-md text-neutral-600">
                 {eyebrow}
               </span>
             </div>
 
-            <h2 className="max-w-xl text-4xl font-semibold tracking-[-0.04em] text-zinc-950 sm:text-5xl">
+            <h2 className="max-w-xl text-display-md tracking-tight text-neutral-900 sm:text-display-lg">
               {title}
             </h2>
 
-            <p className="mt-6 max-w-xl text-base leading-8 text-zinc-600 sm:text-lg">
+            <p className="mt-6 max-w-xl text-body-md leading-relaxed text-neutral-700 sm:text-body-lg">
               {description}
             </p>
 
@@ -128,26 +128,26 @@ export default function ProductIntroSection({
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, ease: "easeOut" }}
                     viewport={{ once: true, amount: 0.25 }}
-                    className="group relative overflow-hidden rounded-[1.5rem] border border-stone-200/90 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(244,239,232,0.94))] p-6 shadow-[0_14px_28px_-24px_rgba(24,24,27,0.16)] transition-colors duration-300 hover:border-stone-300 sm:p-7"
+                    className="group relative overflow-hidden rounded-lg border border-stone-200/90 bg-gradient-to-b from-white to-stone-50 p-6 shadow-md transition-all duration-base hover:border-neutral-300 hover:shadow-lg sm:p-7"
                   >
-                    <span className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-emerald-700/55 via-stone-400/25 to-transparent" />
+                    <span className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-brand-accent/60 via-stone-400/25 to-transparent" />
                     <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[1rem] border border-stone-200 bg-stone-50">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-neutral-300 bg-stone-100">
                         <Icon
                           className={
                             iconClassName ??
-                            "h-[18px] w-[18px] text-zinc-700"
+                            "h-[18px] w-[18px] text-neutral-700"
                           }
                         />
                       </div>
 
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-lg font-medium tracking-[-0.02em] text-zinc-950">
+                        <h3 className="text-body-lg font-semibold text-neutral-900">
                           {cardTitle}
                         </h3>
 
                         {description ? (
-                          <p className="mt-2 text-sm leading-7 text-zinc-600 sm:text-[15px]">
+                          <p className="mt-2 text-body-sm leading-relaxed text-neutral-700 sm:text-body-md">
                             {description}
                           </p>
                         ) : null}
@@ -157,9 +157,9 @@ export default function ProductIntroSection({
                             {items.map((item) => (
                               <li
                                 key={item}
-                                className="flex items-start gap-3 text-sm leading-7 text-zinc-600 sm:text-[15px]"
+                                className="flex items-start gap-3 text-body-sm leading-relaxed text-neutral-700 sm:text-body-md"
                               >
-                                <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-700/70" />
+                                <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-accent/70" />
                                 <span>{item}</span>
                               </li>
                             ))}
@@ -167,7 +167,7 @@ export default function ProductIntroSection({
                         ) : null}
 
                         {note ? (
-                          <p className="mt-4 border-t border-stone-200 pt-4 text-sm leading-7 text-zinc-500 sm:text-[15px]">
+                          <p className="mt-4 border-t border-neutral-300 pt-4 text-body-sm leading-relaxed text-neutral-600 sm:text-body-md">
                             {note}
                           </p>
                         ) : null}

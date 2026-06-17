@@ -43,16 +43,16 @@ const defaultLocations: ProductCapacityLocation[] = [
 
 const toneStyles = {
   primary: {
-    valueClassName: "text-zinc-950",
-    accentClassName: "bg-zinc-900",
+    valueClassName: "text-neutral-900",
+    accentClassName: "bg-neutral-900",
   },
   soft: {
-    valueClassName: "text-zinc-950",
-    accentClassName: "bg-emerald-700",
+    valueClassName: "text-neutral-900",
+    accentClassName: "bg-brand-accent",
   },
   muted: {
-    valueClassName: "text-zinc-800",
-    accentClassName: "bg-stone-400",
+    valueClassName: "text-neutral-800",
+    accentClassName: "bg-ore",
   },
 } as const;
 
@@ -133,41 +133,41 @@ export default function ProductCapacitySection({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#f6f2ea_0%,#ede7dc_100%)] py-24"
+      className="relative overflow-hidden bg-gradient-to-b from-stone-100 to-stone-200 py-section-md md:py-section-lg"
     >
       <div
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-zinc-300/80 to-transparent"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-300/80 to-transparent"
         aria-hidden
       />
 
-      <div className="mx-auto  max-w-7xl px-6 lg:px-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-16">
         {/* Encabezado */}
-        <div className="mx-auto  mb-16 max-w-3xl text-center">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
           <div className="mb-5 flex items-center justify-center gap-3">
-            <span className="h-px w-12 bg-zinc-300" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-zinc-500">
+            <span className="h-px w-12 bg-neutral-300" />
+            <span className="text-tech-sm text-neutral-600">
               {copy.eyebrow}
             </span>
-            <span className="h-px w-12 bg-zinc-300" />
+            <span className="h-px w-12 bg-neutral-300" />
           </div>
 
-          <h2 className="text-3xl font-semibold tracking-tight text-zinc-950 md:text-4xl">
+          <h2 className="text-display-md tracking-tight text-neutral-900 md:text-display-lg">
             {title}
           </h2>
         </div>
 
         {/* Stats */}
-        <div className="grid  gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {stats.map(({ value, label, description, tone = "primary" }, index) => {
             const style = toneStyles[tone];
 
             return (
               <article
                 key={`${label}-${index}`}
-                className="capacity-stat-card group relative rounded-3xl border border-zinc-200 bg-white p-8 shadow-[0_14px_44px_-34px_rgba(24,24,27,0.20)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_-34px_rgba(24,24,27,0.26)]"
+                className="capacity-stat-card group relative rounded-lg border border-neutral-300 bg-white p-8 shadow-lg transition-all duration-base hover:-translate-y-1 hover:shadow-xl"
               >
                 <div
-                  className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-zinc-300/80 to-transparent"
+                  className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-neutral-300/80 to-transparent"
                   aria-hidden
                 />
 
@@ -176,16 +176,16 @@ export default function ProductCapacitySection({
                 />
 
                 <div
-                  className={`mb-3 text-4xl font-semibold tracking-tight md:text-5xl ${style.valueClassName}`}
+                  className={`mb-3 text-display-lg md:text-display-xl ${style.valueClassName}`}
                 >
                   {value}
                 </div>
 
-                <h3 className="mb-3 text-lg font-medium text-zinc-950 md:text-xl">
+                <h3 className="mb-3 text-body-lg font-semibold text-neutral-900">
                   {label}
                 </h3>
 
-                <p className="text-sm leading-7 text-zinc-600 md:text-[15px]">
+                <p className="text-body-sm leading-relaxed text-neutral-700">
                   {description}
                 </p>
               </article>
@@ -195,18 +195,18 @@ export default function ProductCapacitySection({
 
         {/* Ubicaciones */}
         {resolvedLocations.length ? (
-          <div className="capacity-location-card mt-12 rounded-3xl border border-zinc-200 bg-white p-7 shadow-[0_14px_40px_-32px_rgba(24,24,27,0.18)] md:p-9">
+          <div className="capacity-location-card mt-section-md rounded-lg border border-neutral-300 bg-white p-8 shadow-lg md:p-10">
             <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-zinc-200 bg-zinc-950 text-white shadow-sm">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-neutral-300 bg-neutral-900 text-white shadow-md">
                   <MapPin size={20} />
                 </div>
 
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">
+                  <p className="text-tech-sm text-neutral-600">
                     {copy.strategicLocations}
                   </p>
-                  <h3 className="mt-2 text-xl font-semibold text-zinc-950">
+                  <h3 className="mt-2 text-body-lg font-semibold text-neutral-900">
                     {copy.presence}
                   </h3>
                 </div>
@@ -216,12 +216,12 @@ export default function ProductCapacitySection({
                 {resolvedLocations.map(({ title: locationTitle, description }, index) => (
                   <div
                     key={`${locationTitle}-${index}`}
-                    className="rounded-2xl border border-stone-200 bg-stone-50 p-5"
+                    className="rounded-md border border-neutral-300 bg-neutral-100 p-5"
                   >
-                    <h4 className="mb-2 text-sm font-semibold uppercase tracking-[0.16em] text-zinc-700">
+                    <h4 className="mb-2 text-tech-md text-neutral-800">
                       {locationTitle}
                     </h4>
-                    <p className="text-sm leading-7 text-zinc-600">
+                    <p className="text-body-sm leading-relaxed text-neutral-700">
                       {description}
                     </p>
                   </div>

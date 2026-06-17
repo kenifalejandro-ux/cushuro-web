@@ -276,7 +276,7 @@ export function Header({
 
   const desktopNavTextClasses =
     "text-zinc-800 transition-colors hover:text-[#6d9219] focus-visible:outline-none focus-visible:text-[#6d9219]";
-  const desktopNavUnderlineClasses = "bg-[#6d9219]";
+  const desktopNavUnderlineClasses = "bg-[#000000]";
   const desktopLanguageButtonClasses =
     "inline-flex items-center gap-2 rounded-full border border-zinc-300/90 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:border-[#92be1f] hover:text-[#6d9219]";
   const mobileActionButtonClasses =
@@ -334,8 +334,8 @@ export function Header({
               </div>
             </div>
 
-            <div className="h-[2px] bg-[#6d9219]" />
-            <div className="h-[10px] bg-[#92be1f]" />
+            <div className="h-[2px] bg-[#b45309]" />
+            <div className="h-[10px] bg-[#d97706]" />
           </div>
 
           <div className="hidden lg:block">
@@ -440,7 +440,7 @@ export function Header({
                             </svg>
 
                             <span
-                              className={`absolute bottom-0 left-4 right-4 h-0.5 rounded-full transition-all duration-300 ${desktopNavUnderlineClasses} ${
+                              className={`absolute bottom-0 left-4 right-4 h-px rounded-full transition-all duration-300 ${desktopNavUnderlineClasses} ${
                                 isActive
                                   ? "opacity-100 scale-x-100"
                                   : "opacity-0 scale-x-0 group-hover:opacity-60 group-hover:scale-x-75"
@@ -487,7 +487,7 @@ export function Header({
                       >
                         {getTabLabel(tab.label)}
                         <span
-                          className={`absolute bottom-0 left-4 right-4 h-0.5 rounded-full transition-all duration-300 ${desktopNavUnderlineClasses} ${
+                          className={`absolute bottom-0 left-4 right-4 h-px rounded-full transition-all duration-300 ${desktopNavUnderlineClasses} ${
                             isActive
                               ? "opacity-100 scale-x-100"
                               : "opacity-0 scale-x-0 hover:opacity-60 hover:scale-x-75"
@@ -510,8 +510,8 @@ export function Header({
               </div>
             </div>
 
-            <div className="h-[2px] bg-[#6d9219]" />
-            <div className="h-[10px] bg-[#92be1f]" />
+            <div className="h-[3px] bg-[#d97706]" />
+            <div className="h-[10px] bg-[#d9770]" />
             
           </div>
         </div>

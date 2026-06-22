@@ -26,7 +26,7 @@ export default function EnvironmentalHealthSection({
   intro,
   supportingText,
   items,
-  sectionClassName = "bg-[linear-gradient(180deg,#eef1ea_0%,#f6f5ef_100%)] px-6 py-24 md:py-32",
+  sectionClassName = "light-image bg-[linear-gradient(180deg,#eef1ea_0%,#f6f5ef_100%)] px-6 py-24 md:py-32",
 }: EnvironmentalHealthSectionProps) {
   const copy = useLocalizedContent({
     es: {

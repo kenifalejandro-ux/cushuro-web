@@ -65,7 +65,7 @@ export default function PiedraCaliza() {
       capacityTitle: "Capacidad Operativa de Extracción",
       capacityStats: [
         {
-          value: "176",
+          value: "900",
           label: "Toneladas / Día",
           description: "Capacidad estimada de extracción diaria",
           tone: "primary" as const,
@@ -148,7 +148,7 @@ export default function PiedraCaliza() {
       advantages: [
         { icon: Pickaxe, text: "Denuncios propios de piedra caliza de alto CaCO₃" },
         { icon: LinkIcon, text: "Integración vertical con planta calera (CaO)" },
-        { icon: Flame, text: "Operación continua 24 horas — 176 TM/día" },
+        { icon: Flame, text: "Operación continua 24 horas — 900 TM/día" },
         { icon: Truck, text: "Logística propia y despacho directo a cliente" },
         { icon: CheckCircle, text: "Estándares del Ministerio de Energía y Minas" },
         { icon: Zap, text: "Abastecimiento estratégico para plantas concentradoras" },
@@ -210,7 +210,7 @@ export default function PiedraCaliza() {
       capacityTitle: "Extraction Operating Capacity",
       capacityStats: [
         {
-          value: "176",
+          value: "900",
           label: "Tons / Day",
           description: "Estimated daily extraction capacity",
           tone: "primary" as const,
@@ -293,7 +293,7 @@ export default function PiedraCaliza() {
       advantages: [
         { icon: Pickaxe, text: "Owned high CaCO₃ limestone mining claims" },
         { icon: LinkIcon, text: "Vertical integration with lime plant (CaO)" },
-        { icon: Flame, text: "Continuous 24-hour operation — 176 TM/day" },
+        { icon: Flame, text: "Continuous 24-hour operation — 900 TM/day" },
         { icon: Truck, text: "Own logistics and direct customer dispatch" },
         { icon: CheckCircle, text: "Ministry of Energy and Mines standards compliance" },
         { icon: Zap, text: "Strategic supply for concentrator plants" },
@@ -320,7 +320,7 @@ export default function PiedraCaliza() {
   });
 
   return (
-    <div className="dark-image bg-white">
+    <div className="light-image bg-white">
       <PageSEO pageId="piedra-caliza" />
 
       <ProductIntroSection

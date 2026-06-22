@@ -127,7 +127,7 @@ export function Mision() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative min-h-screen rounded-t-[80px] md:rounded-t-[220px] lg:rounded-t-[520px] overflow-hidden bg-zinc-800 px-4 py-20 md:px-8 lg:px-16"
+      className="dark-image relative min-h-screen rounded-t-[80px] md:rounded-t-[220px] lg:rounded-t-[520px] overflow-hidden bg-zinc-800 px-4 py-20 md:px-8 lg:px-16"
       
     >
       

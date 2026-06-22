@@ -71,7 +71,7 @@ export function LaEmpresaSection({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-stone-100 py-20 lg:py-32 text-stone-900"
+      className="light-image relative overflow-hidden bg-stone-100 py-20 lg:py-32 text-stone-900"
     >
       {/* Fondo editorial sutil */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]">

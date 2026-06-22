@@ -87,7 +87,7 @@ export default function CarbonCisco() {
       capacityTitle: "Capacidad Operativa Minera",
       capacityStats: [
         {
-          value: "176",
+          value: "900",
           label: "TM / Día",
           description: "Capacidad estimada de clasificación y suministro",
           tone: "primary" as const,
@@ -254,7 +254,7 @@ export default function CarbonCisco() {
       capacityTitle: "Mining operating capacity",
       capacityStats: [
         {
-          value: "176",
+          value: "900",
           label: "TM / Day",
           description: "Estimated classification and supply capacity",
           tone: "primary" as const,
@@ -366,7 +366,7 @@ export default function CarbonCisco() {
   });
 
   return (
-    <div className="dark-image bg-white">
+    <div className="light-image bg-white">
       <PageSEO pageId="carbon-cisco" />
 
       <ProductIntroSection

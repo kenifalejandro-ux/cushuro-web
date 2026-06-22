@@ -52,7 +52,7 @@ export function PortfolioText() {
   const duplicatedProjects = [...portfolioProjects, ...portfolioProjects];
 
   return (
-    <section className="dark-image relative w-screen left-1/2 -translate-x-1/2 overflow-hidden py-20  bg-white">
+    <section className="light-image relative w-screen left-1/2 -translate-x-1/2 overflow-hidden py-20  bg-white">
       {/* Indicador superior */}
       <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-black/30">
         <span className="w-8 h-px bg-black/20" />

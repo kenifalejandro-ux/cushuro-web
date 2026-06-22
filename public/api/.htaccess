@@ -6,3 +6,10 @@
     Order allow,deny
     Deny from all
 </FilesMatch>
+
+SetEnv RECAPTCHA_SITE_KEY 6LfP0L8rAAAAAPpEytSVRORbhLu_RHUYJaA8vCRe
+SetEnv RECAPTCHA_SECRET_KEY 6LfP0L8rAAAAAB0aapY5ZiuMiDGGvVdjwyHq6Fc9
+SetEnv EMAIL_HOST gtxm1332.siteground.biz
+SetEnv EMAIL_PORT 465
+SetEnv EMAIL_USER noreply@cushuro.pe
+SetEnv EMAIL_PASS 2#gAb9+TYtaB

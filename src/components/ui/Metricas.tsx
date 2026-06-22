@@ -241,7 +241,7 @@ export default function Metricas({
             key={i}
             data-metrica-item
             className={[
-              "relative px-6 py-6 lg:py-8 bg-blue-900  ",
+              "dark-image relative px-6 py-6 lg:py-8 bg-blue-900  ",
               preset.divider,
               i > 0 ? "border-t" : "",
               i === 1 ? "md:border-t-0" : "",

@@ -32,7 +32,17 @@ export default function Footer() {
         show: "Mostrar submenu de",
       },
       contactLines: {
-        plant: "Planta: Centro de Producción Cas. Rodeopampa – Marcabal",
+        plantsLabel: "Plantas:",
+        plants: [
+          {
+            name: "Centro de Producción Cas. Rodeopampa – Marcabal – Huamachuco",
+            mapUrl: "https://www.google.com/maps?q=-7.8154,-78.0489",
+          },
+          {
+            name: "Planta Bambamarca – Cajamarca",
+            mapUrl: "https://www.google.com/maps?q=-6.6828,-78.5213",
+          },
+        ],
         phones: "Celulares:",
         email: "E-mail:",
       },
@@ -57,7 +67,17 @@ export default function Footer() {
         show: "Show submenu for",
       },
       contactLines: {
-        plant: "Plant: Production Center Cas. Rodeopampa – Marcabal",
+        plantsLabel: "Plants:",
+        plants: [
+          {
+            name: "Production Center Cas. Rodeopampa – Marcabal – Huamachuco",
+            mapUrl: "https://www.google.com/maps?q=-7.8154,-78.0489",
+          },
+          {
+            name: "Bambamarca Plant – Cajamarca",
+            mapUrl: "https://www.google.com/maps?q=-6.6828,-78.5213",
+          },
+        ],
         phones: "Phones:",
         email: "E-mail:",
       },
@@ -98,7 +118,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="light-image relative text-white">
+    <footer className="dark-image relative text-white">
       {/* Fondo oscuro tipo imagen */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#141719] via-[#141719] to-[#141719]" />
 
@@ -190,7 +210,22 @@ export default function Footer() {
 
                 <div className="flex items-start gap-3">
                   <MapPin size={16} className="mt-0.5 shrink-0 text-emerald-600" />
-                  <p className="text-zinc-300">{copy.contactLines.plant}</p>
+                  <div className="text-zinc-300">
+                    <span className="block text-xs uppercase tracking-wide text-zinc-500">
+                      {copy.contactLines.plantsLabel}
+                    </span>
+                    {copy.contactLines.plants.map((plant) => (
+                      <a
+                        key={plant.name}
+                        href={plant.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 block transition-colors hover:text-emerald-600"
+                      >
+                        {plant.name}
+                      </a>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="flex items-start gap-3">

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+ob_start();
 
 require __DIR__ . '/bootstrap.php';
 
@@ -9,7 +10,6 @@ cushuro_handle_preflight($config);
 $origin = cushuro_ensure_allowed_origin($config);
 cushuro_require_method('POST', $origin, $config);
 cushuro_rate_limit('/api/formulario', $origin, $config);
-cushuro_log('recaptcha_failed', $formData);
 
 $payload = cushuro_get_request_payload();
 $validation = cushuro_validate_form_payload($payload);

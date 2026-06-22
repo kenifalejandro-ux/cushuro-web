@@ -39,7 +39,7 @@ export default function ProductApplicationsGrid({
   const imageAspectClassName = image?.aspectClassName ?? "aspect-[6/5] md:aspect-[8/4]";
 
   return (
-    <section className="bg-stone-100 py-28 md:py-36">
+    <section className="light-image bg-stone-100 py-28 md:py-36">
       <div className="mx-auto grid max-w-6xl gap-14 px-6 lg:grid-cols-[1.28fr_0.72fr] lg:gap-20">
         <div className="order-1 self-start lg:order-2 lg:sticky lg:top-24 lg:text-right">
           <div className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-zinc-300 bg-stone-50 text-zinc-700 lg:ml-auto">

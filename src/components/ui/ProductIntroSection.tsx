@@ -70,7 +70,7 @@ export default function ProductIntroSection({
   }, []);
 
   return (
-    <ParallaxSection speed={0.12} className="bg-stone-100 py-28 md:py-36">
+    <ParallaxSection speed={0.12} className="light-image bg-stone-100 py-28 md:py-36">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid items-start gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           {/* Imagen */}

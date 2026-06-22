@@ -44,7 +44,7 @@ export default function SplitProcessFlow({
   steps,
   image,
   imagePosition = "left",
-  sectionClassName = "bg-stone-100 py-28 md:py-36",
+  sectionClassName = "light-image bg-stone-100 py-28 md:py-36",
 }: SplitProcessFlowProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const copy = useLocalizedContent({

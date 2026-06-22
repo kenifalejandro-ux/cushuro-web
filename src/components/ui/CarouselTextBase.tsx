@@ -323,7 +323,7 @@ export function CarouselTextBase({
   return (
     <section
       ref={sectionRef}
-      className={`relative bg-zinc-100 rounded-b-[10px] rounded-t-[10px] left-1/2 w-screen -translate-x-1/2 overflow-hidden py-16 md:py-20 ${sectionViewportHeight} ${className}`.trim()}
+      className={`relative light-image bg-zinc-800 rounded-b-[10px] rounded-t-[10px] left-1/2 w-screen -translate-x-1/2 overflow-hidden py-16 md:py-20 ${sectionViewportHeight} ${className}`.trim()}
       data-variant={variantName}
     >
       <div

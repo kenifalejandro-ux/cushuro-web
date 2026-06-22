@@ -89,7 +89,7 @@ export function HeroCalAgricola() {
   return (
     <section
       ref={heroRef}
-      className="light-image  relative min-h-[85vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-black"
     >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">

@@ -164,7 +164,7 @@ export default function CompanyMapHybrid({
   if (!locations.length) return null;
 
   return (
-    <section className={className}>
+    <section className={`light-image ${className ?? ""}`}>
       {(title || subtitle) && (
         <header className="mb-6">
           {title && (
@@ -177,7 +177,7 @@ export default function CompanyMapHybrid({
       )}
 
       <div
-        className={`relative overflow-hidden rounded-3xl bg-slate-900 shadow-2xl ${
+        className={`dark-image relative overflow-hidden rounded-3xl bg-slate-900 shadow-2xl ${
           mapClassName ?? "h-[520px] md:h-[680px]"
         }`}
       >

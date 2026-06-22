@@ -133,7 +133,7 @@ export default function ProductCapacitySection({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-to-b from-stone-100 to-stone-200 py-section-md md:py-section-lg"
+      className="light-image relative overflow-hidden bg-gradient-to-b from-stone-100 to-stone-200 py-section-md md:py-section-lg"
     >
       <div
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-300/80 to-transparent"

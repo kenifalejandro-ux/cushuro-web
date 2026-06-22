@@ -82,8 +82,8 @@ export default function CalViva() {
       ],
       capacityTitle: "Capacidad de Producción",
       capacityStats: [
-        { value: "5", label: "Hornos Operativos", description: "Producción continua", tone: "primary" as const },
-        { value: "176", label: "Toneladas / Día", description: "Producción estimada", tone: "soft" as const },
+        { value: "10", label: "Hornos Operativos", description: "Producción continua", tone: "primary" as const },
+        { value: "900", label: "Toneladas / Día", description: "Producción estimada", tone: "soft" as const },
         { value: "75", label: "Trabajadores", description: "Operación industrial", tone: "muted" as const },
       ],
       process: {
@@ -117,7 +117,7 @@ export default function CalViva() {
             numero: "03",
             titulo: "Calcinación Controlada",
             descripcion:
-              "Proceso térmico continuo en hornos industriales (900°C – 1,100°C) para la obtención de Óxido de Calcio (CaO). Capacidad productiva: 176 TM/día.",
+              "Proceso térmico continuo en hornos industriales (900°C – 1,100°C) para la obtención de Óxido de Calcio (CaO). Capacidad productiva: 900 TM/día.",
             icon: Flame,
             image: {
               src: "img-productos/cal-viva/proceso/calcinacion-piedra-caliza",
@@ -161,14 +161,14 @@ export default function CalViva() {
       ],
       advantages: [
         { icon: Pickaxe, text: "Denuncios propios de piedra caliza y carbón" },
-        { icon: Flame, text: "Producción continua 24 horas — 176 TM/día" },
+        { icon: Flame, text: "Producción continua 24 horas — 900 TM/día" },
         { icon: Truck, text: "Logística propia y despacho directo a cliente" },
         { icon: CheckCircle, text: "Estándares del Ministerio de Energía y Minas" },
         { icon: Zap, text: "Reactividad química garantizada (≥81% Cal Útil)" },
         { icon: Mountain, text: "Reservas mineras propias para abastecimiento sostenido" },
       ],
       team: {
-        title: "Mano de Obra por Horno (35 TM)",
+        title: "Mano de Obra por Horno (90 TM)",
         members: [
           { role: "Preparación de piedra", workers: 8 },
           { role: "Transporte", workers: 22 },
@@ -183,7 +183,7 @@ export default function CalViva() {
         title: "Cotice cal viva para minería e industria",
         description:
           "Suministro de cal viva con produccion continua, control de calidad y atencion comercial para operaciones mineras e industriales.",
-        highlights: ["5 hornos operativos", "Atención comercial", "RUC 20482610944"],
+        highlights: ["10 hornos operativos", "Atención comercial", "RUC 20482610944"],
         whatsappMessage: "Hola, deseo cotizar cal viva para mi operación.",
       },
     },
@@ -242,8 +242,8 @@ export default function CalViva() {
       ],
       capacityTitle: "Production capacity",
       capacityStats: [
-        { value: "5", label: "Operating kilns", description: "Continuous production", tone: "primary" as const },
-        { value: "176", label: "Tons / Day", description: "Estimated production", tone: "soft" as const },
+        { value: "10", label: "Operating kilns", description: "Continuous production", tone: "primary" as const },
+        { value: "900", label: "Tons / Day", description: "Estimated production", tone: "soft" as const },
         { value: "75", label: "Workers", description: "Industrial operation", tone: "muted" as const },
       ],
       process: {
@@ -277,7 +277,7 @@ export default function CalViva() {
             numero: "03",
             titulo: "Controlled calcination",
             descripcion:
-              "Continuous thermal process in industrial kilns (900°C – 1,100°C) to obtain Calcium Oxide (CaO). Production capacity: 176 TM/day.",
+              "Continuous thermal process in industrial kilns (900°C – 1,100°C) to obtain Calcium Oxide (CaO). Production capacity: 900 TM/day.",
             icon: Flame,
             image: {
               src: "img-productos/cal-viva/proceso/calcinacion-piedra-caliza",
@@ -321,14 +321,14 @@ export default function CalViva() {
       ],
       advantages: [
         { icon: Pickaxe, text: "Owned limestone and coal mining concessions" },
-        { icon: Flame, text: "24-hour continuous production — 176 TM/day" },
+        { icon: Flame, text: "24-hour continuous production — 900 TM/day" },
         { icon: Truck, text: "Own logistics and direct customer dispatch" },
         { icon: CheckCircle, text: "Ministry of Energy and Mines standards compliance" },
         { icon: Zap, text: "Guaranteed chemical reactivity (≥81% Available Lime)" },
         { icon: Mountain, text: "Own mining reserves for sustained supply" },
       ],
       team: {
-        title: "Workforce per Kiln (35 TM)",
+        title: "Workforce per Kiln (90 TM)",
         members: [
           { role: "Stone preparation", workers: 8 },
           { role: "Transport", workers: 22 },
@@ -344,13 +344,13 @@ export default function CalViva() {
         title: "Request quicklime for mining and industry",
         description:
           "Quicklime supply with continuous production, quality control, and commercial support for mining and industrial operations.",
-        highlights: ["5 operating kilns", "Commercial support", "RUC 20482610944"],
+        highlights: ["10 operating kilns", "Commercial support", "RUC 20482610944"],
         whatsappMessage: "Hello, I would like to request a quicklime quote for my operation.",
       },
     },
   });
   return (
-    <div className="dark-image bg-white">
+    <div className="light-image bg-white">
       <PageSEO pageId="cal-viva" />
 
       <ProductIntroSection

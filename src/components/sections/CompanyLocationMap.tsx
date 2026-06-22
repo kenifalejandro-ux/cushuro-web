@@ -270,7 +270,7 @@ export default function CompanyLocationMap({
   }
 
   return (
-    <section className={`dark-image ${className ?? ""} `}>
+    <section className={`light-image ${className ?? ""} `}>
       {title || subtitle ? (
         <header className="mb-6 ">
           {title ? (
@@ -281,7 +281,7 @@ export default function CompanyLocationMap({
       ) : null}
 
       <div
-        className={`relative w-full overflow-hidden rounded-[2rem] bg-blue-900 
+        className={`dark-image relative w-full overflow-hidden rounded-[2rem] bg-blue-900
         shadow-2xl ${mapClassName ?? "h-[520px] md:h-[680px]"}`}
       >
         <div className="absolute left-6 top-6 z-20 flex flex-col gap-2 ">

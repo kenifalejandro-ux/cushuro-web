@@ -48,7 +48,7 @@ export default function HeroMedioAmbiente() {
   return (
     <section
       ref={heroRef}
-      className="light-image  relative min-h-[85vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-black"
     >
       {/* Imagen principal con zoom sutil */}
         <LCPImage

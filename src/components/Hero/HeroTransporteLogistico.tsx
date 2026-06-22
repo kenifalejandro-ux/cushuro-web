@@ -16,8 +16,8 @@ export function HeroTransporteLogistico() {
       slideAlt: "Vista operativa",
       title: "Transporte logístico para operaciones mineras",
       subtitle:
-        "Servicio especializado para traslado continuo de materiales con capacidad diaria de hasta 176 TM y control logistico permanente.",
-      badges: ["176 TM / día", "Especializado en mineria"],
+        "Servicio especializado para traslado continuo de materiales con capacidad diaria de hasta 900 TM y control logistico permanente.",
+      badges: ["900 TM / día", "Especializado en mineria"],
       thumbnailAlt: "Vista logística",
       thumbnailLabel: "Mostrar vista logística",
     },
@@ -26,8 +26,8 @@ export function HeroTransporteLogistico() {
       slideAlt: "Operational view",
       title: "Logistics transport for mining operations",
       subtitle:
-        "Specialized service for the continuous transport of materials with daily capacity of up to 176 TM and permanent logistics control.",
-      badges: ["176 TM / day", "Specialized in mining"],
+        "Specialized service for the continuous transport of materials with daily capacity of up to 900 TM and permanent logistics control.",
+      badges: ["900 TM / day", "Specialized in mining"],
       thumbnailAlt: "Logistics view",
       thumbnailLabel: "Show logistics view",
     },
@@ -143,7 +143,7 @@ export function HeroTransporteLogistico() {
   return (
     <section
       ref={heroRef}
-      className="light-image  relative min-h-[85vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-black"
     >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">

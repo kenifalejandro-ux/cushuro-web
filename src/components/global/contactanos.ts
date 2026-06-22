@@ -18,20 +18,26 @@ function getApiCandidates(pathname: string) {
     return [...new Set([normalizedPath, phpPath])];
   }
 
-  const { protocol, hostname, origin } = window.location;
-  const candidates = [
+  const { hostname, origin } = window.location;
+  const isLocal = hostname === "localhost" || hostname === "127.0.0.1";
+
+  if (isLocal) {
+    // En desarrollo: prueba el origin (Vite proxy) y luego el server en :3000
+    return [...new Set([
+      `${origin}${normalizedPath}`,
+      normalizedPath,
+      `http://localhost:3000${normalizedPath}`,
+    ])];
+  }
+
+  // En producción: solo el origen real del sitio + fallback PHP.
+  // NUNCA intentar localhost:3000 — ese fetch apuntaría al navegador del usuario.
+  return [...new Set([
     `${origin}${normalizedPath}`,
     normalizedPath,
     `${origin}${phpPath}`,
     phpPath,
-    `${protocol}//${hostname}:3000${normalizedPath}`,
-  ];
-
-  if (hostname !== "localhost" && hostname !== "127.0.0.1") {
-    candidates.push(`http://localhost:3000${normalizedPath}`);
-  }
-
-  return [...new Set(candidates)];
+  ])];
 }
 
 async function fetchFromApi(pathname: string, init?: RequestInit) {

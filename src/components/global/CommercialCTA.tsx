@@ -51,10 +51,13 @@ export default function CommercialCTA({
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="overflow-hidden rounded-[2rem] border border-stone-300 bg-blue-950)] shadow-[0_26px_56px_-38px_rgba(24,24,27,0.24)]">
           <div className="grid min-h-[72vh] items-stretch gap-0 lg:min-h-[62vh] lg:grid-cols-[1.45fr_0.95fr]">
+
             {/* Lado izquierdo */}
             <div className="relative flex h-full flex-col justify-center border-b border-stone-300 px-7 py-10 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r lg:px-12 lg:py-14">
               <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-emerald-700/55 to-transparent" />
 
+              { /** atenciion comercial  */}
+              
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-stone-300 bg-blue-950 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-stone-100">
                 <BadgeCheck className="h-4 w-4" />
                 {copy.badge}
@@ -83,8 +86,8 @@ export default function CommercialCTA({
             </div>
 
             {/* Lado derecho */}
-            <div className="relative bg-blue-950">
-              <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/45 to-transparent" />
+            <div className="dark-image relative bg-blue-950">
+              <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/45 to-transparent" />
 
               <div className="relative flex h-full flex-col justify-between px-7 py-10 sm:px-10 sm:py-12 lg:px-10 lg:py-14">
                 <div className="space-y-4">
@@ -104,7 +107,7 @@ export default function CommercialCTA({
                 <div className="mt-8 flex flex-col gap-3">
                   <Link
                     to="/contacto"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-700 px-5 py-3.5 text-sm font-semibold text-stone-50 transition duration-300 hover:bg-emerald-600"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-zinc-100 px-5 py-3.5 text-sm font-semibold text-stone-800 transition duration-300 hover:bg-zinc-300"
                   >
                     {copy.requestButton}
                     <ArrowRight className="h-4 w-4" />

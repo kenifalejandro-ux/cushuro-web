@@ -79,8 +79,8 @@ export function HeroMediaThumbnails({
     <span
       className={`absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 origin-left transition-all duration-500 ${
         isActive
-          ? "scale-x-100 opacity-100 bg-gradient-to-r from-amber-600 via-amber-400 to-amber-500"
-          : "scale-x-0 opacity-0 bg-gradient-to-r from-amber-600 via-amber-400 to-amber-500"
+          ? "scale-x-100 opacity-100 bg-gradient-to-r from-[#1d3461] via-[#4fa81e] to-[#6db820]"
+          : "scale-x-0 opacity-0 bg-gradient-to-r from-[#1d3461] via-[#4fa81e] to-[#6db820]"
       }`}
     />
   </div>

@@ -26,8 +26,8 @@ export default function Inicio() {
     es: {
       metrics: [
         { valor: "15+", etiqueta: "Años de experiencia" },
-        { valor: "5", etiqueta: "Hornos operativos 24/7" },
-        { valor: "176 TM", etiqueta: "Capacidad diaria" },
+        { valor: "10", etiqueta: "Hornos operativos 24/7" },
+        { valor: "900 TM", etiqueta: "Capacidad diaria" },
       ],
       map: {
         title: "Ubicación de nuestras plantas",
@@ -59,8 +59,8 @@ export default function Inicio() {
     en: {
       metrics: [
         { valor: "15+", etiqueta: "Years of experience" },
-        { valor: "5", etiqueta: "24/7 operating kilns" },
-        { valor: "176 TM", etiqueta: "Daily capacity" },
+        { valor: "10", etiqueta: "24/7 operating kilns" },
+        { valor: "900 TM", etiqueta: "Daily capacity" },
       ],
       map: {
         title: "Location of our plants",
@@ -142,11 +142,11 @@ export default function Inicio() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7]">
+    <div  className="light-image min-h-screen bg-[#fbfaf7]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <PageSEO pageId="inicio" />
         {/* ================= METRICAS ================= */}
-        <div className="relative z-30 -mt-4 md:-mt-6 lg:-mt-8">
+        <div className="light-image relative z-30 -mt-4 md:-mt-6 lg:-mt-8">
           <Metricas
             variant="grid"
             estilo="moderno"

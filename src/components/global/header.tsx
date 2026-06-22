@@ -15,6 +15,7 @@ import {
   type Tab,
 } from "./header.data";
 import { useSiteLanguage, type SiteLanguage } from "../../context/SiteLanguageContext";
+import { useImageOverlap } from "../../hooks/useImageOverlap";
 
 const IMG_BASE = import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
 
@@ -129,6 +130,14 @@ export function Header({
   const isProductsActive = location.pathname.startsWith("/Productos");
   const isServicesActive = location.pathname.startsWith("/Servicios-Industriales");
   const isResponsibilityActive = location.pathname.startsWith("/compromiso-ambiental-y-social");
+
+  const { isLightOverlapping } = useImageOverlap({ targetElementId: "banner" });
+
+  const navTextColor = isLightOverlapping ? "text-zinc-800" : "text-white";
+  const navHoverColor = isLightOverlapping ? "hover:text-[#1d3461]" : "hover:text-white/80";
+  const mainBarBg = isLightOverlapping
+    ? "bg-white/70 shadow-[0_8px_32px_-8px_rgba(0,0,0,0.15)]"
+    : "bg-white/[0.09] shadow-[0_8px_32px_-8px_rgba(0,0,0,0.6),0_2px_0_0_rgba(255,255,255,0.04)_inset]";
 
   const copy = HEADER_COPY[language];
   const displayBrandName = brandName.trim() || copy.brandName;
@@ -253,16 +262,16 @@ export function Header({
         <div className="border-b border-white/[0.07] bg-[#0c0d0e]">
           <div className="mx-auto flex h-11 max-w-7xl items-center justify-between gap-3 px-4 font-mono text-[9px] uppercase tracking-[0.12em] text-white/50 sm:h-12 sm:px-6 sm:text-[10px] sm:tracking-[0.14em] lg:h-14 lg:px-8 lg:text-[11px]">
             <span className="flex min-w-0 items-center gap-2 sm:gap-2.5">
-              <MapPin className="h-3 w-3 shrink-0 text-[#d97706] sm:h-3.5 sm:w-3.5" />
+              <MapPin className="h-3 w-3 shrink-0 text-emerald-700 sm:h-3.5 sm:w-3.5" />
               <span className="truncate">{contactInfo.address}</span>
             </span>
             <div className="flex items-center gap-3 sm:gap-6">
               {contactInfo.phone && (
                 <a
                   href={`tel:${contactInfo.phone}`}
-                  className="flex items-center gap-1.5 transition-colors hover:text-[#d97706] sm:gap-2"
+                  className="flex items-center gap-1.5 transition-colors hover:text-emerald-700 sm:gap-2"
                 >
-                  <Phone className="h-3 w-3 shrink-0 text-[#d97706]" />
+                  <Phone className="h-3 w-3 shrink-0 text-emerald-700" />
                   <span className="whitespace-nowrap">{contactInfo.phone}</span>
                 </a>
               )}
@@ -271,9 +280,9 @@ export function Header({
                   <span className="hidden text-white/15 sm:inline">|</span>
                   <a
                     href={`mailto:${contactInfo.email}`}
-                    className="hidden items-center gap-2 transition-colors hover:text-[#d97706] sm:flex"
+                    className="hidden items-center gap-2 transition-colors hover:text-emerald-700 sm:flex"
                   >
-                    <Mail className="h-3 w-3 shrink-0 text-[#d97706]" />
+                    <Mail className="h-3 w-3 shrink-0 text-emerald-700" />
                     <span className="whitespace-nowrap">{contactInfo.email}</span>
                   </a>
                 </>
@@ -283,7 +292,7 @@ export function Header({
                 type="button"
                 aria-label={copy.switchLanguageAriaLabel}
                 onClick={handleLanguageToggle}
-                className="flex items-center gap-1.5 text-white/70 transition-colors hover:text-[#d97706]"
+                className="flex items-center gap-1.5 text-white/70 transition-colors hover:text-emerald-700"
               >
                 <Globe className="h-3 w-3 shrink-0" />
                 {copy.switchLanguageLabel}
@@ -292,8 +301,8 @@ export function Header({
           </div>
         </div>
 
-        {/* ===================== BARRA PRINCIPAL ===================== */}
-        <div className="border-b border-white/[0.08] bg-[#141719]/95 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+ {/* ===================== BARRA PRINCIPAL ===================== */}
+        <div className=" relative border-b border-white/[0.06] bg-white/[0.09] shadow-[0_8px_32px_-8px_rgba(0,0,0,0.6),0_2px_0_0_rgba(255,255,255,0.04)_inset] backdrop-blur-2xl before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-gradient-to-b before:from-white/[0.07] before:to-transparent">
           <div className="mx-auto flex h-[92px] max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-[94px] lg:gap-9 lg:px-8">
             {/* Logo lockup */}
             <NavLink
@@ -309,8 +318,8 @@ export function Header({
                 />
               ) : (
                 <>
-                  <div className="flex h-[50px] w-[50px] items-center justify-center border border-[#d97706]/50 bg-[linear-gradient(150deg,#1c1f22,#0e1012)]">
-                    <span className="text-[26px] font-bold leading-none text-[#d97706]">
+                  <div className="flex h-[50px] w-[50px] items-center justify-center border border-emerald-600/50 bg-[linear-gradient(150deg,#1c1f22,#0e1012)]">
+                    <span className="text-[26px] font-bold leading-none text-emerald-700">
                       {displayBrandName.charAt(0) || "C"}
                     </span>
                   </div>
@@ -356,11 +365,11 @@ export function Header({
                         type="button"
                         aria-haspopup="menu"
                         aria-expanded={isDropdownOpen}
-                        className="relative flex items-center gap-1.5 px-3.5 py-2.5 uppercase text-white transition-colors"
+                        className={`relative flex items-center gap-1.5 px-3.5 py-2.5 uppercase transition-colors ${navTextColor} ${navHoverColor}`}
                       >
                         {getTabLabel(tab.label)}
                         <svg
-                          className="h-3 w-3 text-[#d97706] transition-transform duration-200 group-hover:rotate-180"
+                          className="h-3 w-3 text-emerald-700 transition-transform duration-200 group-hover:rotate-180"
                           fill="none"
                           stroke="currentColor"
                           strokeWidth={2.4}
@@ -369,7 +378,7 @@ export function Header({
                           <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
                         </svg>
                         <span
-                          className={`absolute inset-x-3.5 bottom-1 h-[2px] bg-[#d97706] transition-all duration-300 ${
+                          className={`absolute inset-x-3.5 bottom-1 h-[2px] bg-[#4fa81e] transition-all duration-300 ${
                             isActive ? "opacity-100" : "opacity-0 group-hover:opacity-60"
                           }`}
                         />
@@ -381,7 +390,7 @@ export function Header({
                           onMouseEnter={() => handleSubmenuEnter(tab.label)}
                           onMouseLeave={handleSubmenuLeave}
                         >
-                          <div className="h-[2px] bg-gradient-to-r from-[#d97706] to-transparent" />
+                          <div className="h-[2px] bg-gradient-to-r from-emerald-600 to-transparent" />
                           {submenuItems.map((service, index) => {
                             const itemCopy = getMenuItemCopy(service);
 
@@ -389,14 +398,14 @@ export function Header({
                               <NavLink
                                 key={service.id}
                                 to={service.href}
-                                className="block border-b border-white/[0.06] px-5 py-4 transition-colors last:border-b-0 hover:bg-[#d97706]/[0.07]"
+                                className="block border-b border-white/[0.06] px-5 py-4 transition-colors last:border-b-0 hover:bg-emerald-600/[0.07]"
                                 onClick={() => setOpenDesktopSubmenu(null)}
                               >
                                 <div className="flex items-center justify-between">
                                   <span className="text-[15px] font-semibold text-white">
                                     {itemCopy.name}
                                   </span>
-                                  <span className="font-mono text-[10px] tracking-[0.1em] text-[#d97706]">
+                                  <span className="font-mono text-[10px] tracking-[0.1em] text-emerald-700">
                                     {String(index + 1).padStart(2, "0")}
                                   </span>
                                 </div>
@@ -416,11 +425,11 @@ export function Header({
                   <NavLink
                     key={tab.href}
                     to={tab.href}
-                    className="relative px-3.5 py-2.5 uppercase text-white transition-colors"
+                    className={`relative px-3.5 py-2.5 uppercase transition-colors ${navTextColor} ${navHoverColor}`}
                   >
                     {getTabLabel(tab.label)}
                     <span
-                      className={`absolute inset-x-3.5 bottom-1 h-[2px] bg-[#d97706] transition-all duration-300 ${
+                      className={`absolute inset-x-3.5 bottom-1 h-[2px] bg-[#4fa81e] transition-all duration-300 ${
                         isActive ? "opacity-100" : "opacity-0 hover:opacity-60"
                       }`}
                     />
@@ -429,11 +438,11 @@ export function Header({
               })}
             </nav>
 
-            {/* CTA + acciones */}
+            {/* CTA + acciones + cotizacion*/}
             <div className="flex items-center gap-2.5">
               <NavLink
                 to={quoteHref}
-                className="hidden items-center gap-2 border border-[#d97706] bg-[#d97706] px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.06em] text-[#150d02] transition-all duration-200 hover:bg-[#ea8a0c] hover:shadow-[0_12px_30px_-12px_rgba(217,119,6,0.7)] lg:inline-flex"
+                className="hidden items-center gap-2 border border-[#1d3461] bg-[#1d3461] px-5 py-3 text-[13px] font-semibold uppercase tracking-[0.06em] text-white transition-all duration-200 hover:bg-[#162848] hover:shadow-[0_12px_30px_-12px_rgba(29,52,97,0.7)] lg:inline-flex"
               >
                 {copy.ctaQuote}
                 <ArrowRight className="h-[15px] w-[15px]" strokeWidth={2.2} />
@@ -446,7 +455,7 @@ export function Header({
                 aria-expanded={isModalOpen}
                 aria-controls="mobile-navigation-drawer"
                 aria-label={isModalOpen ? copy.closeMenuLabel : copy.openMenuLabel}
-                className={`inline-flex items-center justify-center border border-white/15 px-3 py-2.5 text-white transition-colors hover:border-[#d97706] hover:text-[#d97706] lg:hidden ${
+                className={`inline-flex items-center justify-center px-3 py-2.5 transition-colors hover:text-emerald-700 lg:hidden ${navTextColor} ${
                   isModalOpen ? "pointer-events-none opacity-0" : "opacity-100"
                 }`}
               >
@@ -456,7 +465,7 @@ export function Header({
           </div>
 
           {/* Línea de precisión */}
-          <div className="h-[2px] bg-[linear-gradient(90deg,#b45309_0%,#d97706_38%,#f59e0b_50%,#d97706_62%,#b45309_100%)]" />
+          <div className="h-[2px] bg-[linear-gradient(90deg,#1d3461_0%,#2d6e1a_40%,#6db820_50%,#2d6e1a_60%,#1d3461_100%)]" />
         </div>
       </header>
 
@@ -483,7 +492,7 @@ export function Header({
               type="button"
               onClick={closeModal}
               aria-label={copy.closeMenuLabel}
-              className="text-white/70 transition-colors hover:text-[#d97706]"
+              className="text-white/70 transition-colors hover:text-emerald-700"
             >
               <X className="h-7 w-7" />
             </button>
@@ -492,7 +501,7 @@ export function Header({
           <div className="flex-1 space-y-6 overflow-y-auto p-6">
             {/* Navegación */}
             <div>
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#d97706]">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-emerald-700">
                 {copy.navigation}
               </p>
               <nav className="space-y-1">
@@ -511,11 +520,11 @@ export function Header({
                               current === tab.label ? null : tab.label
                             )
                           }
-                          className="flex w-full items-center justify-between px-4 py-3 text-[15px] font-medium uppercase tracking-[0.04em] text-white transition-colors hover:bg-[#d97706]/[0.07]"
+                          className="flex w-full items-center justify-between px-4 py-3 text-[15px] font-medium uppercase tracking-[0.04em] text-white transition-colors hover:bg-emerald-600/[0.07]"
                         >
                           <span>{getTabLabel(tab.label)}</span>
                           <svg
-                            className={`h-5 w-5 text-[#d97706] transition-transform duration-200 ${
+                            className={`h-5 w-5 text-emerald-700 transition-transform duration-200 ${
                               isMobileSubmenuOpen ? "rotate-180" : ""
                             }`}
                             fill="none"
@@ -540,7 +549,7 @@ export function Header({
                                     closeModal();
                                     setOpenMobileSubmenu(null);
                                   }}
-                                  className="block px-4 py-2.5 transition-colors hover:bg-[#d97706]/[0.07]"
+                                  className="block px-4 py-2.5 transition-colors hover:bg-emerald-600/[0.07]"
                                 >
                                   <div className="text-[14px] font-medium text-white">
                                     {itemCopy.name}
@@ -560,7 +569,7 @@ export function Header({
                       key={tab.href}
                       to={tab.href}
                       onClick={closeModal}
-                      className="block px-4 py-3 text-[15px] font-medium uppercase tracking-[0.04em] text-white transition-colors hover:bg-[#d97706]/[0.07]"
+                      className="block px-4 py-3 text-[15px]  font-medium uppercase tracking-[0.04em] text-white transition-colors hover:bg-emerald-600/[0.07]"
                     >
                       {getTabLabel(tab.label)}
                     </NavLink>
@@ -573,7 +582,7 @@ export function Header({
             <NavLink
               to={quoteHref}
               onClick={closeModal}
-              className="flex items-center justify-center gap-2 bg-[#d97706] px-5 py-3.5 text-[14px] font-semibold uppercase tracking-[0.06em] text-[#150d02] transition-colors hover:bg-[#ea8a0c]"
+              className="flex items-center justify-center gap-2 bg-[#1d3461] px-5 py-3.5 text-[14px] font-semibold uppercase tracking-[0.06em] text-white transition-colors hover:bg-[#162848]"
             >
               {copy.ctaQuote}
               <ArrowRight className="h-4 w-4" strokeWidth={2.2} />
@@ -585,9 +594,9 @@ export function Header({
                 <a
                   href={`mailto:${contactInfo.email}`}
                   onClick={closeModal}
-                  className="flex items-start gap-4 border border-white/10 p-4 transition-colors hover:border-[#d97706]/50"
+                  className="flex items-start gap-4 border border-white/10 p-4 transition-colors hover:border-emerald-600/50"
                 >
-                  <Mail className="h-5 w-5 text-[#d97706]" />
+                  <Mail className="h-5 w-5 text-emerald-700" />
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
                       {copy.email}
@@ -601,9 +610,9 @@ export function Header({
                 <a
                   href={`tel:${contactInfo.phone}`}
                   onClick={closeModal}
-                  className="flex items-start gap-4 border border-white/10 p-4 transition-colors hover:border-[#d97706]/50"
+                  className="flex items-start gap-4 border border-white/10 p-4 transition-colors hover:border-emerald-600/50"
                 >
-                  <Phone className="h-5 w-5 text-[#d97706]" />
+                  <Phone className="h-5 w-5 text-emerald-700" />
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
                       {copy.phone}
@@ -615,7 +624,7 @@ export function Header({
 
               {contactInfo.address && (
                 <div className="flex items-start gap-4 border border-white/10 p-4">
-                  <MapPin className="h-5 w-5 text-[#d97706]" />
+                  <MapPin className="h-5 w-5 text-emerald-700" />
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
                       {copy.address}
@@ -635,7 +644,7 @@ export function Header({
                 type="button"
                 aria-label={copy.switchLanguageAriaLabel}
                 onClick={handleLanguageToggle}
-                className="inline-flex items-center gap-2 border border-white/15 px-4 py-2 text-[13px] font-medium text-white/80 transition-colors hover:border-[#d97706] hover:text-[#d97706]"
+                className="inline-flex items-center gap-2 border border-white/15 px-4 py-2 text-[13px] font-medium text-white/80 transition-colors hover:border-emerald-600 hover:text-emerald-700"
               >
                 <Globe className="h-4 w-4" />
                 <span>{copy.switchLanguageLabel}</span>
@@ -644,7 +653,7 @@ export function Header({
           </div>
 
           {/* Línea de precisión */}
-          <div className="mt-auto h-[2px] bg-[linear-gradient(90deg,#b45309,#d97706,#f59e0b,#d97706,#b45309)]" />
+          <div className="mt-auto h-[2px] bg-[linear-gradient(90deg,#1d3461_0%,#2d6e1a_40%,#6db820_50%,#2d6e1a_60%,#1d3461_100%)]" />
         </div>
       </aside>
     </>

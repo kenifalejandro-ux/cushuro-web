@@ -12,6 +12,7 @@ import {
   Moon,
   ShieldAlert,
   Ban,
+  Leaf,
 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
@@ -82,52 +83,58 @@ export default function Politicas() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const copy = useLocalizedContent({
     es: {
-      title: "Nuestras Políticas",
+      title: "Garantías de Homologación",
       description:
-        "Operamos con los más altos estándares de calidad, seguridad y responsabilidad, comprometidos con el desarrollo sostenible del sector minero y el bienestar de nuestras comunidades.",
+        "En minería, estas políticas no son simples declaraciones: son garantías de homologación que aseguran la continuidad del proveedor y evitan paralizaciones operativas por incumplimiento de estándares del Ministerio de Energía y Minas.",
       items: [
         {
           icon: <HardHat className="w-8 h-8" />,
           title: "Seguridad y Salud Ocupacional",
           description:
-            "Establecemos la identificación de peligros y el control de riesgos como pilares fundamentales para proteger la integridad del personal en todas nuestras operaciones mineras.",
+            "Identificación de peligros y control de riesgos como pilares fundamentales para proteger la integridad del personal en todas nuestras operaciones mineras.",
         },
         {
           icon: <Moon className="w-8 h-8" />,
-          title: "Política de Fatiga y Somnolencia",
+          title: "Fatiga y Somnolencia",
           description:
-            "Gestionamos estrictamente los turnos y periodos de descanso para asegurar que el personal opere maquinaria y equipos en condiciones óptimas de alerta y capacidad física.",
+            "Gestión estricta de turnos y periodos de descanso para asegurar que el personal opere maquinaria y equipos en condiciones óptimas de alerta y capacidad física.",
         },
         {
           icon: <ShieldAlert className="w-8 h-8" />,
           title: "Negativa al Trabajo Inseguro",
           description:
-            "Se reconoce el derecho y la obligación de detener cualquier labor que no cuente con los controles de seguridad necesarios o represente un riesgo no controlado para la vida.",
+            "Derecho y obligación reconocidos de detener cualquier labor que no cuente con los controles de seguridad necesarios o represente un riesgo no controlado para la vida.",
         },
         {
           icon: <Ban className="w-8 h-8" />,
-          title: "Política de Alcohol y Drogas",
+          title: "Alcohol y Drogas",
           description:
             "Prohibición absoluta del consumo, posesión o ingreso bajo el efecto de sustancias que alteren la capacidad psicomotriz, garantizando un entorno de trabajo 100% sobrio y seguro.",
+        },
+        {
+          icon: <Leaf className="w-8 h-8" />,
+          title: "Compromiso Ambiental",
+          description:
+            "Gestión ambiental integrada en todas las operaciones: control de impacto en extracción, preservación del entorno natural y coordinación activa con comunidades para desarrollo sostenible.",
         },
       ],
     },
     en: {
-      title: "Our Policies",
+      title: "Homologation Guarantees",
       description:
-        "We operate under the highest standards of quality, safety, and responsibility, committed to the sustainable development of the mining sector and the well-being of our communities.",
+        "In mining, these policies are not mere declarations — they are homologation guarantees that ensure provider continuity and prevent operational shutdowns due to non-compliance with Ministry of Energy and Mines standards.",
       items: [
         {
           icon: <HardHat className="w-8 h-8" />,
           title: "Occupational Safety and Health",
           description:
-            "We establish hazard identification and risk control as fundamental pillars to protect the integrity of personnel across all our mining operations.",
+            "Hazard identification and risk control as fundamental pillars to protect the integrity of personnel across all our mining operations.",
         },
         {
           icon: <Moon className="w-8 h-8" />,
-          title: "Fatigue and Drowsiness Policy",
+          title: "Fatigue and Drowsiness",
           description:
-            "We strictly manage shifts and rest periods to ensure personnel operate machinery and equipment under optimal alertness and physical capacity.",
+            "Strict management of shifts and rest periods to ensure personnel operate machinery and equipment under optimal alertness and physical capacity.",
         },
         {
           icon: <ShieldAlert className="w-8 h-8" />,
@@ -137,9 +144,15 @@ export default function Politicas() {
         },
         {
           icon: <Ban className="w-8 h-8" />,
-          title: "Alcohol and Drugs Policy",
+          title: "Alcohol and Drugs",
           description:
             "Absolute prohibition of consuming, possessing, or entering under the influence of substances that alter psychomotor capacity, guaranteeing a 100% sober and safe workplace.",
+        },
+        {
+          icon: <Leaf className="w-8 h-8" />,
+          title: "Environmental Commitment",
+          description:
+            "Environmental management integrated across all operations: impact control during extraction, natural environment preservation, and active community coordination for sustainable development.",
         },
       ],
     },
@@ -174,10 +187,10 @@ export default function Politicas() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative overflow-hidden bg-[linear-gradient(180deg,#151515_0%,#1d1d1d_55%,#24201d_100%)] py-24 md:py-32"
+      className="dark-image relative overflow-hidden bg-[linear-gradient(180deg,#151515_0%,#1d1d1d_55%,#24201d_100%)] py-24 md:py-32"
     >
       <div className="absolute top-20 left-20 h-40 w-40 rounded-full bg-emerald-700/8 blur-3xl" />
-      <div className="absolute bottom-20 right-20 h-56 w-56 rounded-full bg-amber-500/8 blur-3xl" />
+      <div className="absolute bottom-20 right-20 h-56 w-56 rounded-full bg-[#1d3461]/10 blur-3xl" />
 
 
       <div className="container mx-auto px-6 relative z-10">
@@ -200,7 +213,7 @@ export default function Politicas() {
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 [&>*:last-child:nth-child(3n+2)]:lg:col-start-2">
           {copy.items.map((item, index) => (
             <PoliticasBlock
               key={item.title}
@@ -225,16 +238,16 @@ export default function Politicas() {
     viewBox="0 0 1000 1000"
     fill="none"
   >
-    <circle cx="500" cy="500" r="480" stroke="rgba(245,158,11,0.35)" strokeWidth="2" />
-    <circle cx="500" cy="500" r="400" stroke="rgba(245,158,11,0.25)" strokeWidth="2" />
-    <circle cx="500" cy="500" r="320" stroke="rgba(245,158,11,0.20)" strokeWidth="2" />
+    <circle cx="500" cy="500" r="480" stroke="rgba(29,52,97,0.45)" strokeWidth="2" />
+    <circle cx="500" cy="500" r="400" stroke="rgba(29,52,97,0.30)" strokeWidth="2" />
+    <circle cx="500" cy="500" r="320" stroke="rgba(79,168,30,0.20)" strokeWidth="2" />
 
-    <line x1="0" y1="500" x2="1000" y2="500" stroke="rgba(245,158,11,0.2)" strokeWidth="1" />
-    <line x1="500" y1="0" x2="500" y2="1000" stroke="rgba(245,158,11,0.2)" strokeWidth="1" />
+    <line x1="0" y1="500" x2="1000" y2="500" stroke="rgba(29,52,97,0.20)" strokeWidth="1" />
+    <line x1="500" y1="0" x2="500" y2="1000" stroke="rgba(29,52,97,0.20)" strokeWidth="1" />
 
     <path
       d="M500 20 A480 480 0 0 1 980 500"
-      stroke="rgba(234,88,12,0.4)"
+      stroke="rgba(79,168,30,0.45)"
       strokeWidth="3"
       fill="none"
     />

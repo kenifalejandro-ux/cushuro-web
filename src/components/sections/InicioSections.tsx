@@ -167,7 +167,7 @@ export function ContentIntro({
   }, [reverse, descriptionParagraphs.length]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-28 lg:py-36">
+    <section ref={sectionRef} className="light-image relative overflow-hidden py-28 lg:py-36">
       <div
         className={`grid lg:grid-cols-2 gap-20 items-center ${
           reverse ? "lg:[&>*:first-child]:order-2" : ""
@@ -266,7 +266,7 @@ We work with a focus on safety, traceability, the environment, and local develop
   });
 
   return (
-    <section className="relative">
+    <section className="relative light-image">
       <ContentIntro
         title={copy.title}
         description={copy.description}

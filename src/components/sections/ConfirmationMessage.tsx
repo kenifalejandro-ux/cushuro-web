@@ -21,11 +21,9 @@ export default function ConfirmationMessage() {
 
   const goBack = () => {
     const prev = sessionStorage.getItem("prevPage");
-    if (prev) {
-      window.location.href = prev;
-    } else {
-      window.history.back();
-    }
+    sessionStorage.removeItem("prevPage");
+    const cleanPath = (prev || "/contacto").replace(/\/+$/, "") || "/";
+    window.location.href = cleanPath;
   };
 
   return (

@@ -12,7 +12,6 @@
   RewriteRule ^api/(.+)\.php$ - [L]
   RewriteRule ^api/(.+)$ /api/$1.php [L,QSA]
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
 </IfModule>
 

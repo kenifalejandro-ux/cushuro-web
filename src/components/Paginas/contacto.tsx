@@ -41,7 +41,7 @@ export default function App() {
       imageAlt: "Producción industrial de óxido de calcio",
       highlights: [
         "Producción continua para requerimientos industriales",
-        "176 TM diarias de capacidad estimada",
+        "900 TM diarias de capacidad estimada",
         "Registro vigente en Bienes Fiscalizados",
         "Facturación electrónica – RUC 20482610944",
       ],
@@ -91,7 +91,7 @@ export default function App() {
       imageAlt: "Industrial quicklime production",
       highlights: [
         "Continuous production for industrial requirements",
-        "Estimated capacity of 176 TM per day",
+        "Estimated capacity of 900 TM per day",
         "Current registration in controlled goods",
         "Electronic invoicing – RUC 20482610944",
       ],
@@ -134,11 +134,11 @@ export default function App() {
   });
 
   return (
-    <div className="bg-white max-w-7xl mx-auto  text-zinc-900 selection:bg-emerald-100 mt-30">
+    <div className="light-image bg-white max-w-7xl mx-auto  text-zinc-900 selection:bg-emerald-100 mt-30">
       <PageSEO pageId="contacto" />
 
       <main>
-        <section className="dark-image relative">
+        <section className="light-image relative">
           <div className="mx-auto max-w-7xl px-6 pt-20 pb-24 sm:pt-24 sm:pb-28 lg:px-10">
             {/* Encabezado */}
             <motion.div

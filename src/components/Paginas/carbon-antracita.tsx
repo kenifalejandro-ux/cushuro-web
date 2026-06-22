@@ -89,7 +89,7 @@ export default function CarbonAntracita() {
       capacityTitle: "Capacidad Operativa Minera",
       capacityStats: [
         {
-          value: "176",
+          value: "900",
           label: "TM / Día",
           description: "Capacidad estimada de extracción y clasificación",
           tone: "primary" as const,
@@ -263,7 +263,7 @@ export default function CarbonAntracita() {
       capacityTitle: "Mining operating capacity",
       capacityStats: [
         {
-          value: "176",
+          value: "900",
           label: "TM / Day",
           description: "Estimated extraction and classification capacity",
           tone: "primary" as const,
@@ -375,7 +375,7 @@ export default function CarbonAntracita() {
   });
 
   return (
-    <div className="dark-image bg-white">
+    <div className="light-image bg-white">
       <PageSEO pageId="carbon-antracita" />
 
       <ProductIntroSection

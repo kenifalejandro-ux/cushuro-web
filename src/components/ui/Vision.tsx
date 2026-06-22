@@ -133,7 +133,7 @@ export function Vision() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative min-h-screen rounded-b-[80px] md:rounded-b-[220px] lg:rounded-b-[520px] overflow-hidden bg-gradient-to-br from-zinc-800 via-zinc-800 to-zinc-800 px-4 py-20 md:px-8 lg:px-16"
+      className="dark-image relative min-h-screen rounded-b-[80px] md:rounded-b-[220px] lg:rounded-b-[520px] overflow-hidden bg-gradient-to-br from-zinc-800 via-zinc-800 to-zinc-800 px-4 py-20 md:px-8 lg:px-16"
     >
 
   {/* CONTENIDO (Asegúrate de que tenga z-10) */}
@@ -192,7 +192,7 @@ export function Vision() {
               <div className="flex items-center gap-4 mb-6">                  
                 <div>
                   <h2 className="text-4xl font-bold text-white">{copy.futureTitle}</h2>
-                  <p className="text-amber-500 text-sm uppercase tracking-wider mt-1">{copy.futureLabel}</p>
+                  <p className="text-[#4fa81e] text-sm uppercase tracking-wider mt-1">{copy.futureLabel}</p>
                 </div>
               </div>
 
@@ -202,12 +202,12 @@ export function Vision() {
           
               <div className="grid grid-cols-2 gap-4">
                 <div className=" text-white  p-6 text-center shadow-xl hover:scale-105 transition-transform duration-300">
-                  <TrendingUp className="w-10 text-amber-500 h-10 mx-auto mb-3" />
+                  <TrendingUp className="w-10 text-[#4fa81e] h-10 mx-auto mb-3" />
                   <p className="text-3xl  font-bold">100%</p>
                   <p className="text-sm uppercase tracking-wider mt-2">{copy.growthLabel}</p>
                 </div>
                 <div className=" text-white rounded-2xl p-6 text-center shadow-xl hover:scale-105 transition-transform duration-300">
-                  <Shield className="w-10 text-amber-500 h-10 mx-auto mb-3" />
+                  <Shield className="w-10 text-[#4fa81e] h-10 mx-auto mb-3" />
                   <p className="text-3xl font-bold">100%</p>
                   <p className="text-sm uppercase tracking-wider mt-2">{copy.safetyLabel}</p>
                 </div>

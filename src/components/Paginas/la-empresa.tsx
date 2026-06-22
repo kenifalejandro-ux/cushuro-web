@@ -7,39 +7,59 @@ import Nosotros from "../ui/Nosotros";
 import { Vision } from "../ui/Vision";
 import Politicas from "../ui/Politicas";
 import Objetivos from "../ui/Objetivos";
+import GarantiasSuministro from "../ui/GarantiasSuministro";
+import ProductosBeneficiosTable from "../ui/ProductosBeneficiosTable";
 
 export default function LaEmpresa() {
   return (
     <>
       <PageSEO pageId="la-empresa" />
 
-      <div className="relative bg-gradient-to-b from-white via-stone-100/50 to-[#f6f2ea]">
-             {/* Sección de Estadísticas */}
-        <div className="relative z-30 bg-gradient-to-b from-stone-100/30 via-emerald-50/10 to-stone-100/20">
+      <div className="light-image relative bg-gradient-to-b from-white via-stone-100/50 to-[#f6f2ea]">
 
+        {/* BLOQUE 1 — Identidad Corporativa y Propósito Técnico */}
+
+        {/* Estadísticas clave */}
+        <div className="relative z-30 bg-gradient-to-b from-stone-100/30 via-emerald-50/10 to-stone-100/20">
           <MiningStats />
         </div>
 
-        {/* Sección Nosotros */}
-        <div className="">
+        {/* Quiénes Somos — nuevo mensaje de posicionamiento */}
+        <div>
           <Nosotros />
         </div>
 
-        {/* Sección Misión */}
+        {/* Misión */}
         <div className="-mt-0">
           <Mision />
         </div>
 
-        {/* Sección Visión */}
+        {/* Visión */}
         <div className="-mt-60">
           <Vision />
         </div>
-          {/* Sección Objetivos */}
-        <div className="-mt-0">
+
+        {/* BLOQUE 2 — Capacidad Industrial e Infraestructura Operativa */}
+
+        {/* Garantía de Suministro: 100% propio, 24/7, resiliencia */}
+        <div>
+          <GarantiasSuministro />
+        </div>
+
+        {/* Objetivos Estratégicos */}
+        <div>
           <Objetivos />
         </div>
-        {/* Sección politicas */}
-        <div className="-mt-0">
+
+        {/* BLOQUE 4 — Compliance, Sostenibilidad y Cierre Corporativo */}
+
+        {/* Tabla: Productos → Beneficio directo en la mina */}
+        <div>
+          <ProductosBeneficiosTable />
+        </div>
+
+        {/* Garantías de Homologación (Políticas) */}
+        <div>
           <Politicas />
         </div>
 

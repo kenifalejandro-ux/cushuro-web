@@ -37,7 +37,7 @@ export default function SafetyComplianceSection({
   standardsTitle,
   standards = [],
   sectionRef,
-  sectionClassName = "bg-stone-50 py-24 md:py-28",
+  sectionClassName = "light-image bg-stone-50 py-24 md:py-28",
 }: SafetyComplianceSectionProps) {
   return (
     <section ref={sectionRef} className={sectionClassName}>

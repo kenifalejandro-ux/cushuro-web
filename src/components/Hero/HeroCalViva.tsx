@@ -16,14 +16,14 @@ export function HeroCalViva() {
       title: "Cal viva",
       subtitle:
         "Oxido de calcio de alta pureza para procesos mineros e industriales que exigen estabilidad, continuidad y control tecnico.",
-      badges: ["176 TM / día", "Especializado en mineria"],
+      badges: ["900 TM / día", "Especializado en mineria"],
     },
     en: {
       alt: "Panoramic view of mining operations and lime production",
       title: "Quicklime",
       subtitle:
         "High-purity calcium oxide for mining and industrial processes that demand stability, continuity, and technical control.",
-      badges: ["176 TM / day", "Specialized in mining"],
+      badges: ["900 TM / day", "Specialized in mining"],
     },
   });
   const heroRef = useRef<HTMLElement>(null);
@@ -89,7 +89,7 @@ export function HeroCalViva() {
   return (
     <section
       ref={heroRef}
-      className=" light-image  relative min-h-[85vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-black"
     >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">

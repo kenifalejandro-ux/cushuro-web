@@ -77,7 +77,7 @@ export default function CalAgricola() {
       capacityTitle: "Capacidad Operativa",
       capacityStats: [
         {
-          value: "176",
+          value: "900",
           label: "TM / Día",
           description: "Capacidad integrada de producción (base CaO)",
           tone: "primary" as const,
@@ -234,7 +234,7 @@ export default function CalAgricola() {
       capacityTitle: "Operating capacity",
       capacityStats: [
         {
-          value: "176",
+          value: "900",
           label: "TM / Day",
           description: "Integrated production capacity (CaO base)",
           tone: "primary" as const,
@@ -342,7 +342,7 @@ export default function CalAgricola() {
   });
 
   return (
-    <div className="dark-image bg-white">
+    <div className="light-image bg-white">
       <PageSEO pageId="cal-agricola" />
 
       <ProductIntroSection

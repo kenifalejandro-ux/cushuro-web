@@ -11,9 +11,9 @@ export default function Nosotros() {
     es: {
       title: "Nosotros",
       intro:
-        "Más de 15 años de experiencia en la producción y comercialización de óxido de calcio, con una operación orientada al abastecimiento confiable del sector minero e industrial.",
+        "Más de 15 años de experiencia técnica asegurando la continuidad química y metalúrgica de la minería en la región norte.",
       body:
-        "Nuestra empresa también tiene como objetivo generar empleo digno y sostenible para las personas del área de influencia del centro de operaciones, impulsando desarrollo local junto con continuidad operativa.",
+        "Integramos concesiones propias de piedra caliza y carbón, capacidad productiva instalada y logística operativa para garantizar abastecimiento ininterrumpido de óxido de calcio al sector minero e industrial. Generamos empleo local sostenible en nuestra área de influencia.",
       experienceTitle: "Experiencia operativa",
       experienceItems: [
         "Logística",
@@ -31,9 +31,9 @@ export default function Nosotros() {
     en: {
       title: "About Us",
       intro:
-        "More than 15 years of experience in the production and commercialization of calcium oxide, with an operation focused on reliable supply for the mining and industrial sectors.",
+        "More than 15 years of technical experience ensuring the chemical and metallurgical continuity of mining in the northern region.",
       body:
-        "Our company also aims to generate dignified and sustainable employment for people in the area of influence of the operations center, promoting local development together with operational continuity.",
+        "We integrate owned limestone and coal concessions, installed production capacity, and operational logistics to guarantee uninterrupted calcium oxide supply to the mining and industrial sector. We generate sustainable local employment in our area of influence.",
       experienceTitle: "Operational experience",
       experienceItems: [
         "Logistics",

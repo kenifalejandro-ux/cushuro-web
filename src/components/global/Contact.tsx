@@ -71,13 +71,13 @@ export default function Contact({ className = "" }: ContactProps) {
 
   return (
     <div className={`relative z-30 ${className}`}>
-      <section className="relative -mt-30 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,#1a1a1d_0%,#201f22_60%,#211d1b_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.7)] sm:p-10">
+      <section className="dark-image relative -mt-30 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,#1a1a1d_0%,#201f22_60%,#211d1b_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.7)] sm:p-10">
         {/* Hairline de acento superior */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/60 to-transparent" />
 
-        {/* Encabezado */}
+        {/* Encabezado - punto latente*/}
         <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.26em] text-stone-400">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#4fa81e] animate-pulse-glow" />
           {copy.badge}
         </div>
 

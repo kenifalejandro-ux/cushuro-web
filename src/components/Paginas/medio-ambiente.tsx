@@ -234,7 +234,7 @@ export const MedioAmbiente: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="dark-image bg-white text-zinc-800 font-light overflow-hidden">
+    <div ref={containerRef} className="light-image bg-white text-zinc-800 font-light overflow-hidden">
       <PageSEO pageId="medio-ambiente" />
 
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 bg-zinc-80/30">

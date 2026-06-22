@@ -3,12 +3,10 @@
 declare(strict_types=1);
 
 return [
-    'contact_destination' => 'contacto@zincelideas.com',
+    'contact_destination' => 'administracion@cushuro.pe',
 
-    // Si SiteGround rechaza este remitente por SPF/DMARC, cambia este valor
-    // por una casilla creada dentro del dominio final alojado en SiteGround.
-    'email_from' => 'contacto@zincelideas.com',
-    'email_from_name' => 'Formulario Web',
+    'email_from' => 'noreply@cushuro.pe',
+    'email_from_name' => 'Formulario Web Cushuro',
 
     'recaptcha_secret_key' => getenv('RECAPTCHA_SECRET_KEY'),
     'recaptcha_site_key' => getenv('RECAPTCHA_SITE_KEY'),
@@ -16,12 +14,14 @@ return [
     'recaptcha_min_score' => 0.5,
 
     'allowed_origins' => [
+        'https://cushuro.pe',
+        'https://www.cushuro.pe',
         'https://kenifa.sg-host.com',
         'https://www.zincelideas.com',
         'https://zincelideas.com',
     ],
 
-    'rate_limit_window_ms' => 60000,
-    'rate_limit_max_requests' => 5,
+    'rate_limit_window_ms' => 300000,
+    'rate_limit_max_requests' => 10,
     'redirect_to' => '/formulario',
 ];

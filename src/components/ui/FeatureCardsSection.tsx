@@ -32,7 +32,7 @@ export default function FeatureCardsSection({
   items,
   eyebrow,
   description,
-  sectionClassName = "bg-[#f3efe7] py-24",
+  sectionClassName = "light-image bg-[#f3efe7] py-24",
   headingClassName = "mb-16 text-center",
   titleClassName = "text-3xl font-semibold tracking-tight text-zinc-900 md:text-4xl",
   gridClassName = "grid gap-6 md:grid-cols-2 lg:grid-cols-4",

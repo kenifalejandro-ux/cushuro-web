@@ -50,7 +50,7 @@ export default function HeroResponsabilidadSocial() {
   return (
     <section
       ref={heroRef}
-      className="light-image  relative min-h-[78vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[78vh] w-full overflow-hidden bg-black"
     >
       {/* Imagen principal con zoom sutil */}
         <LCPImage

@@ -1,3 +1,5 @@
+/**client/src/components/Hero/hero.tsx */
+
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef, useEffect, useState } from "react";
@@ -17,7 +19,7 @@ export function Hero() {
       heroImageAlt: "Cantera de piedra caliza de Santa Isabel de Cushuro",
       title: "Produccion y suministro de oxido de calcio",
       subtitle:
-        "15 anos de experiencia, 5 hornos operativos y capacidad diaria de 176 TM para atender operaciones mineras e industriales con continuidad y control.",
+        "15 anos de experiencia, 10 hornos operativos y capacidad diaria de 900 TM para atender operaciones mineras e industriales con continuidad y control.",
       ctaPrimary: "Ver cal viva",
       ctaPrimaryAria: "Ver informacion comercial de cal viva",
       ctaSecondary: "Contacto",
@@ -31,7 +33,7 @@ export function Hero() {
       heroImageAlt: "Limestone quarry of Santa Isabel de Cushuro",
       title: "Production and supply of calcium oxide",
       subtitle:
-        "15 years of experience, 5 operating kilns, and daily capacity of 176 TM to serve mining and industrial operations with continuity and control.",
+        "15 years of experience, 10 operating kilns, and daily capacity of 900 TM to serve mining and industrial operations with continuity and control.",
       ctaPrimary: "View quicklime",
       ctaPrimaryAria: "View quicklime commercial information",
       ctaSecondary: "Contact",
@@ -58,7 +60,6 @@ export function Hero() {
   const [canStartHeroMedia, setCanStartHeroMedia] = useState(false);
   const [isCoarsePointer, setIsCoarsePointer] = useState(false);
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
-  const prevActiveIndexRef = useRef<number | null>(null);
 
   const heroVideos = [
     {
@@ -71,8 +72,8 @@ export function Hero() {
     },
   ];
 
-  // Controla cuántos videos se renderizan
-  const heroVideoCount = isCoarsePointer ? 1 : 2;
+  // Controla cuántos videos se renderizan (2 también en mobile/tablet)
+  const heroVideoCount = 2;
   const activeVideos = heroVideos.slice(
     0,
     Math.max(1, Math.min(heroVideoCount, heroVideos.length))
@@ -242,34 +243,37 @@ export function Hero() {
 
     setIsCoarsePointer(coarsePointer);
 
-    if (!coarsePointer) {
-      setCanStartHeroMedia(true);
-      return;
-    }
+    // Activamos el video también en mobile/tablet de inmediato.
+    setCanStartHeroMedia(true);
 
-    const enableHeroMedia = () => setCanStartHeroMedia(true);
-    const timeoutId = window.setTimeout(enableHeroMedia, 500);
+    if (!coarsePointer) return;
 
-    window.addEventListener("scroll", enableHeroMedia, {
-      passive: true,
-      once: true,
-    });
-    window.addEventListener("touchstart", enableHeroMedia, {
-      passive: true,
-      once: true,
-    });
-    window.addEventListener("pointerdown", enableHeroMedia, {
-      passive: true,
-      once: true,
-    });
+    // Fallback: en móvil cada <video> debe "desbloquearse" con un gesto del
+    // usuario; si no, solo el primero reproduce y los demás quedan congelados.
+    // En el primer gesto desbloqueamos TODOS (play+pausa los no activos) para
+    // que la rotación pueda reproducirlos luego de forma programática.
+    const unlockVideos = () => {
+      videoRefs.current.forEach((video, index) => {
+        if (!video) return;
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise
+            .then(() => {
+              if (index !== activeVideoIndex) video.pause();
+            })
+            .catch(() => {});
+        }
+      });
+    };
+
+    window.addEventListener("touchstart", unlockVideos, { passive: true, once: true });
+    window.addEventListener("pointerdown", unlockVideos, { passive: true, once: true });
 
     return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener("scroll", enableHeroMedia);
-      window.removeEventListener("touchstart", enableHeroMedia);
-      window.removeEventListener("pointerdown", enableHeroMedia);
+      window.removeEventListener("touchstart", unlockVideos);
+      window.removeEventListener("pointerdown", unlockVideos);
     };
-  }, []);
+  }, [activeVideoIndex]);
 
   const shouldRenderHeroVideos = !isCoarsePointer || isHeroInView || canStartHeroMedia;
 
@@ -290,27 +294,36 @@ export function Hero() {
     }
   }, [activeVideoIndex, activeVideos.length]);
 
+  // En móvil el sistema suele decodificar UN solo video a la vez, así que solo
+  // reproducimos el activo y pausamos el otro. Para evitar cortes al rotar NO
+  // reiniciamos currentTime (reanuda donde quedó) y mantenemos preload="auto",
+  // de modo que el clip entrante ya está buffereado y play() arranca al instante.
   useEffect(() => {
     const canPlay = isHeroInView && canStartHeroMedia;
-    const activeVideo = videoRefs.current[activeVideoIndex];
-
-    if (activeVideo && prevActiveIndexRef.current !== activeVideoIndex) {
-      try {
-        activeVideo.currentTime = 0;
-      } catch {
-        // noop
-      }
-      prevActiveIndexRef.current = activeVideoIndex;
-    }
+    const cleanups: Array<() => void> = [];
 
     videoRefs.current.forEach((video, index) => {
       if (!video) return;
       if (index === activeVideoIndex && canPlay) {
-        video.play().catch(() => {});
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.then === "function") {
+          playPromise.catch(() => {
+            // El video aún no tiene datos: reintentamos cuando esté listo.
+            const retry = () => {
+              video.play().catch(() => {});
+            };
+            video.addEventListener("canplay", retry, { once: true });
+            cleanups.push(() => video.removeEventListener("canplay", retry));
+          });
+        }
       } else {
         video.pause();
       }
     });
+
+    return () => {
+      cleanups.forEach((fn) => fn());
+    };
   }, [activeVideoIndex, activeVideos.length, canStartHeroMedia, isHeroInView]);
   // Animación GSAP simple y elegante (igual que tus otros heroes de producto)
   useGSAP(
@@ -332,7 +345,7 @@ export function Hero() {
   return (
     <section
       ref={heroRef}
-      className="light-image relative min-h-[85vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-black"
     >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">
@@ -367,7 +380,7 @@ export function Hero() {
                 muted
                 loop
                 playsInline
-                preload={isCoarsePointer ? (isActive ? "auto" : "none") : "metadata"}
+                preload="auto"
                 controls={false}
                 useInternalOpacity={false}
                 deferOnMobileScroll={false}

@@ -362,7 +362,7 @@ export default function OperacionMaquinaria() {
   }, []);
 
   return (
-    <div className="dark-image min-h-screen bg-white">
+    <div className="light-image min-h-screen bg-white">
       <PageSEO pageId="operacion-con-maquinaria-pesada" />
 
       <ProductIntroSection
@@ -375,7 +375,7 @@ export default function OperacionMaquinaria() {
 
       <FeatureCardsSection
         sectionRef={machineryRef}
-        sectionClassName="py-24 bg-white relative"
+        sectionClassName="light-image py-24 bg-white relative"
         eyebrow={copy.operations.eyebrow}
         title={copy.operations.title}
         items={copy.operations.items.map(({ title, description, icon: Icon }) => ({
@@ -389,7 +389,7 @@ export default function OperacionMaquinaria() {
         variant="detailed"
       />
 
-      <section className="light-image py-24 max-w-7x relative overflow-hidden b2b-dark-section">
+      <section className="dark-image py-24 max-w-7x relative overflow-hidden b2b-dark-section">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -480,7 +480,7 @@ export default function OperacionMaquinaria() {
         }))}
       />
 
-      <section className="light-image py-24 b2b-dark-section relative overflow-hidden">
+      <section className="dark-image py-24 b2b-dark-section relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
             <motion.div

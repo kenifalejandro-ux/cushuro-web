@@ -269,7 +269,7 @@ export default function ServicesGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="px-6 py-28 lg:px-12">
+    <section ref={sectionRef} className="light-image px-6 py-28 lg:px-12">
       <div className="max-w-7xl mx-auto">
         <div ref={headingRef} className="mb-14 text-center">
           <p className="b2b-eyebrow text-center">{copy.eyebrow}</p>

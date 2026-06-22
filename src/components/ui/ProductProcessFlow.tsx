@@ -148,7 +148,7 @@ export default function ProductProcessFlow({
     "aspect-[4/3]";
 
   return (
-    <ParallaxSection speed={0.40} className="bg-zinc-100 rounded-[0rem] py-28 md:py-36">
+    <ParallaxSection speed={0.40} className="light-image bg-zinc-100 rounded-[0rem] py-28 md:py-36">
       <div ref={flowRef} className="mx-auto max-w-6xl px-6">
         <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div className="self-start lg:sticky lg:top-24">

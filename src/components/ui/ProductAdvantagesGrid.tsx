@@ -47,7 +47,7 @@ export default function ProductAdvantagesGrid({
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
-    <section className="relative overflow-hidden rounded-lg sm:rounded-lg md:rounded-xl lg:rounded-[100px]  xl:rounded-[350px] bg-[#0c0d0e] py-28 text-stone-200 md:py-36">
+    <section className="dark-image relative overflow-hidden rounded-lg sm:rounded-lg md:rounded-xl lg:rounded-[100px]  xl:rounded-[350px] bg-[#0c0d0e] py-28 text-stone-200 md:py-36">
       {/* Retícula tipo blueprint */}
       <div
         aria-hidden

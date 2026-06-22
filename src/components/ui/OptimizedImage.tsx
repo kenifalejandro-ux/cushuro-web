@@ -1,13 +1,13 @@
 // client/src/components/OptimizedImage.tsx
 
+import { useNetworkQuality } from "../../hooks/useNetworkQuality";
+
 const SIZES = [768, 1280, 1920];
 const EXTENSION_REGEX = /\.(avif|webp|jpe?g|png)(?:\?.*)?$/i;
-
-// Traemos la URL de SiteGround desde el .env
 const IMG_BASE = import.meta.env.VITE_IMG_URL;
 
 interface OptimizedImageProps {
-  src: string; // Ej: "Hero/banner-principal"
+  src: string;
   alt: string;
   className?: string;
   priority?: boolean;
@@ -23,6 +23,9 @@ export function OptimizedImage({
   fill = false,
   sizes,
 }: OptimizedImageProps) {
+  const networkQuality = useNetworkQuality();
+  const isSlowNetwork = networkQuality === "low";
+
   const baseHost = (IMG_BASE ?? "").replace(/\/+$/, "");
   const normalizedSrc = src.trim();
   const isAbsoluteUrl = /^https?:\/\//i.test(normalizedSrc);
@@ -41,10 +44,19 @@ export function OptimizedImage({
       : `/${directPath}`;
   const hasExplicitExtension = EXTENSION_REGEX.test(normalizedSrc);
 
-  const buildSrcSet = (ext: string) =>
-    SIZES.map((size) => `${fullBase}-${size}.${ext} ${size}w`).join(", ");
+  const imgClassName = `
+    ${fill ? "absolute inset-0 w-full h-full" : "w-full h-auto"}
+    object-cover object-center ${className}
+  `;
 
-  if (isAbsoluteUrl) {
+  const activeSizes = isSlowNetwork ? [768] : SIZES;
+  const buildSrcSet = (ext: string) =>
+    activeSizes.map((size) => `${fullBase}-${size}.${ext} ${size}w`).join(", ");
+
+  // Red lenta: apuntamos directo al 768 sin srcset
+  const slowSrc = `${fullBase}-768.webp`;
+
+  if (isAbsoluteUrl || hasExplicitExtension) {
     return (
       <img
         src={directUrl}
@@ -52,57 +64,43 @@ export function OptimizedImage({
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className={`
-          ${fill ? "absolute inset-0 w-full h-full" : "w-full h-auto"}
-          object-cover
-          object-center
-          ${className}
-        `}
+        className={imgClassName}
         {...(sizes ? { sizes } : {})}
       />
     );
   }
 
-  if (hasExplicitExtension) {
+  if (isSlowNetwork) {
+    // Si ya es URL absoluta, añadir sufijo directamente; si no, usar fullBase
+    const resolvedSlowSrc = isAbsoluteUrl
+      ? hasExplicitExtension
+        ? directUrl
+        : `${directUrl}-768.webp`
+      : slowSrc;
+
     return (
       <img
-        src={directUrl}
+        src={resolvedSlowSrc}
         alt={alt}
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className={`
-          ${fill ? "absolute inset-0 w-full h-full" : "w-full h-auto"}
-          object-cover
-          object-center
-          ${className}
-        `}
-        {...(sizes ? { sizes } : {})}
+        className={imgClassName}
       />
     );
   }
 
   return (
     <picture className={fill ? "absolute inset-0 block" : "block"}>
-      {/* AVIF de SiteGround */}
       <source type="image/avif" srcSet={buildSrcSet("avif")} {...(sizes ? { sizes } : {})} />
-
-      {/* WEBP de SiteGround */}
       <source type="image/webp" srcSet={buildSrcSet("webp")} {...(sizes ? { sizes } : {})} />
-
-      {/* IMG Fallback de SiteGround */}
       <img
         src={`${fullBase}.jpg`}
         alt={alt}
         loading={priority ? "eager" : "lazy"}
         fetchPriority={priority ? "high" : "auto"}
         decoding="async"
-        className={`
-          ${fill ? "absolute inset-0 w-full h-full" : "w-full h-auto"}
-          object-cover
-          object-center
-          ${className}
-        `}
+        className={imgClassName}
         {...(sizes ? { sizes } : {})}
       />
     </picture>

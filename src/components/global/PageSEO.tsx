@@ -121,13 +121,13 @@ const pageConfigs: Record<PageId, PageConfig> = {
   "cal-viva": {
     title: "Cal Viva | Óxido de Calcio para Minería e Industria",
     description:
-      "Cal viva producida en cinco hornos operativos en Rodeopampa, Marcabal, con control de calidad y despacho programado para mercado minero e industrial. Cotice su suministro.",
+      "Cal viva producida en diez hornos operativos en Rodeopampa, Marcabal, con control de calidad y despacho programado para mercado minero e industrial. Cotice su suministro.",
     keywords: [
       "cal viva en huamachuco",
       "óxido de calcio para minería",
       "cal viva en la libertad",
       "proveedor de óxido de calcio",
-      "calera con cinco hornos",
+      "calera con diez hornos",
       "suministro de cal viva en perú",
     ],
     path: "/Productos/cal-viva",
@@ -140,7 +140,7 @@ const pageConfigs: Record<PageId, PageConfig> = {
       {
         question: "¿Dónde se produce la cal viva?",
         answer:
-          "La cal viva se produce en el centro de operaciones de Rodeopampa, Marcabal, con cinco hornos operativos en proceso continuo.",
+          "La cal viva se produce en el centro de operaciones de Rodeopampa, Marcabal, con diez hornos operativos en proceso continuo.",
       },
       {
         question: "¿Para qué sectores está orientada la cal viva?",
@@ -614,10 +614,10 @@ function createWebSiteSchema() {
       "@id": `${siteUrl}#organization`,
     },
     potentialAction: {
-      "@type": "ContactAction",
+      "@type": "QuoteAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${siteUrl}/contacto`,
+        urlTemplate: `${siteUrl}/contacto/`,
       },
       name: "Solicitar cotización comercial",
     },
@@ -746,8 +746,8 @@ function createConversionActionSchema(page: PageConfig) {
     return null;
   }
 
-  const contactUrl = toAbsoluteUrl("/contacto");
-  const actionType = page.kind === "product" || page.kind === "service" ? "QuoteAction" : "ContactAction";
+  const contactUrl = toAbsoluteUrl("/contacto/");
+  const actionType = "QuoteAction";
 
   return {
     "@context": "https://schema.org",

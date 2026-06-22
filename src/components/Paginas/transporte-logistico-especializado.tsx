@@ -57,7 +57,7 @@ export default function TransporteLogistico() {
           iconClassName: "text-amber-700",
           title: "Capacidad Operativa de Transporte",
           description:
-            "Servicio de transporte para operaciones mineras no metalicas con capacidad operativa de hasta 176 TM por dia.",
+            "Servicio de transporte para operaciones mineras no metalicas con capacidad operativa de hasta 900 TM por dia.",
         },
         {
           icon: Factory,
@@ -161,7 +161,7 @@ export default function TransporteLogistico() {
           iconClassName: "text-amber-700",
           title: "Transport Operating Capacity",
           description:
-            "Transport service for non-metallic mining operations with operating capacity of up to 176 TM per day.",
+            "Transport service for non-metallic mining operations with operating capacity of up to 900 TM per day.",
         },
         {
           icon: Factory,
@@ -281,7 +281,7 @@ export default function TransporteLogistico() {
   }, []);
 
   return (
-    <div className="dark-image min-h-screen bg-white">
+    <div className="light-image min-h-screen bg-white">
       <PageSEO pageId="transporte-logistico-especializado" />
 
       <ProductIntroSection
@@ -294,7 +294,7 @@ export default function TransporteLogistico() {
 
       <FeatureCardsSection
         sectionRef={servicesRef}
-        sectionClassName="py-20 bg-white"
+        sectionClassName="light-image py-20 bg-white"
         headingClassName="text-center mb-12"
         titleClassName="b2b-section-title text-center"
         title={copy.features.title}
@@ -315,7 +315,7 @@ export default function TransporteLogistico() {
         items={copy.safety.items}
       />
 
-      <section className="light-image py-20 b2b-dark-section">
+      <section className="dark-image py-20 b2b-dark-section">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -335,7 +335,7 @@ export default function TransporteLogistico() {
             </motion.h2>
 
             <div className="mb-3 text-5xl font-semibold tracking-[-0.05em] text-emerald-400 md:text-7xl">
-              176 TM
+              900 TM
             </div>
 
             <p className="mx-auto max-w-2xl text-sm leading-7 text-zinc-400 md:text-base">

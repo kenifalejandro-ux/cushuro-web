@@ -2,9 +2,8 @@
 
 import PageSEO from "../global/PageSEO";
 import { MiningStats } from "../ui/MiningStats";
-import { Mision } from "../ui/Mision";
+import { MisionVision } from "../ui/MisionVision";
 import Nosotros from "../ui/Nosotros";
-import { Vision } from "../ui/Vision";
 import Politicas from "../ui/Politicas";
 import Objetivos from "../ui/Objetivos";
 import GarantiasSuministro from "../ui/GarantiasSuministro";
@@ -29,14 +28,11 @@ export default function LaEmpresa() {
           <Nosotros />
         </div>
 
-        {/* Misión */}
-        <div className="-mt-0">
-          <Mision />
-        </div>
-
-        {/* Visión */}
-        <div className="-mt-60">
-          <Vision />
+        {/* Misión & Visión — bloque unificado premium.
+            El wrapper lleva el mismo fondo carbón para que las esquinas del rounded
+            no muestren el blanco de la página. */}
+        <div className="-mt-10 bg-stone-100">
+          <MisionVision />
         </div>
 
         {/* BLOQUE 2 — Capacidad Industrial e Infraestructura Operativa */}

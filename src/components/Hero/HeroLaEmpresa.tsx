@@ -243,7 +243,7 @@ export default function HeroLaEmpresa() {
         heroRef.current = node;
       }}
       aria-label={copy.heroAria}
-      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
     >
       <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
         <LCPImage

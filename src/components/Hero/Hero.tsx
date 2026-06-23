@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef, useEffect, useState } from "react";
-import { Flame, Beaker, Mountain } from "lucide-react";
+import { Flame, Flask, Mountains } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
@@ -345,7 +345,7 @@ export function Hero() {
   return (
     <section
       ref={heroRef}
-      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
     >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">
@@ -431,17 +431,17 @@ export function Hero() {
             {/* Badges / iconos
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
-                <Flame size={18} />
+                <Flame size={18} className="text-emerald-400" />
                 <span>Cal viva</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
-                <Beaker size={18} />
+                <Flask size={18} className="text-emerald-400" />
                 <span>Cal hidratada</span>
               </div>
 
               <div className="reveal-badge mining-hero-badge">
-                <Mountain size={18} />
+                <Mountains size={18} className="text-emerald-400" />
                 <span>Piedra caliza</span>
               </div>
             </div> */}

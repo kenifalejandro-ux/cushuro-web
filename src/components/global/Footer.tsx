@@ -1,6 +1,7 @@
 /*client/src/components/inicio/Footer.tsx*/
 
-import { Facebook, Instagram, Linkedin, ChevronDown, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, ChevronDown } from "lucide-react";
+import { MapPin, Phone, Envelope } from "@phosphor-icons/react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -245,7 +246,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <Mail size={16} className="mt-0.5 shrink-0 text-emerald-600" />
+                  <Envelope size={16} className="mt-0.5 shrink-0 text-emerald-600" />
                   <p className="text-zinc-300">
                     <span className="block text-xs uppercase tracking-wide text-zinc-500">
                       {copy.contactLines.email}

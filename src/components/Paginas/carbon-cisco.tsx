@@ -7,10 +7,10 @@ import {
   Flame,
   MapPin,
   ShieldCheck,
-  Pickaxe,
-  Mountain,
+  Hammer,
+  Mountains,
   Thermometer,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 
 import CommercialCTA from "../global/CommercialCTA";
 import PageSEO from "../global/PageSEO";
@@ -40,6 +40,7 @@ export default function CarbonCisco() {
         },
       ],
       intro: {
+        eyebrow: "CARBÓN CISCO",
         title: "Producción y Suministro de Carbón Tipo Cisco Industrial",
         description:
           "La empresa cuenta con unidades de extracción y clasificación de carbón mineral, garantizando abastecimiento continuo de carbón cisco para operaciones mineras e industriales que requieren combustible sólido eficiente y de rápida combustión. El carbón cisco es una fracción fina de carbón mineral utilizada como fuente energética en procesos térmicos, destacando por su facilidad de ignición y buen rendimiento en hornos industriales.",
@@ -47,13 +48,13 @@ export default function CarbonCisco() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Concesiones Propias",
           description:
             "Extracción y clasificación directa de carbón mineral, asegurando trazabilidad, control de calidad y suministro estable.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Control de Calidad del Mineral",
           items: [
@@ -120,7 +121,7 @@ export default function CarbonCisco() {
             title: "Clasificación de Finos",
             description:
               "Separación y recuperación de fracción fina (carbón tipo cisco) proveniente del proceso de chancado y zarandeo de antracita.",
-            icon: Pickaxe,
+            icon: Hammer,
           },
           {
             step: "02",
@@ -219,13 +220,13 @@ export default function CarbonCisco() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Owned concessions",
           description:
             "Direct extraction and classification of mineral coal, ensuring traceability, quality control, and stable supply.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Mineral quality control",
           items: ["Fixed carbon content", "Ash level", "Moisture", "Calorific value"],
@@ -287,7 +288,7 @@ export default function CarbonCisco() {
             title: "Fine Fraction Classification",
             description:
               "Separation and recovery of the fine fraction (cisco coal) coming from anthracite crushing and screening.",
-            icon: Pickaxe,
+            icon: Hammer,
           },
           {
             step: "02",

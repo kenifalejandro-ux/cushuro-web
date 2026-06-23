@@ -9,14 +9,14 @@ import { lazy, Suspense } from "react";
 import { LazyOnView, } from "../ui/LazyOnView";
 import { type CompanyLocationItem } from "../sections/CompanyLocationMap";
 import {
-  Mail,
+  Envelope,
   MapPin,
-  Building2,
+  Buildings,
   ArrowUpRight,
-  CheckCircle2,
-  MessageCircle,
+  CheckCircle,
+  ChatCircle,
   Factory,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 import PageSEO from "../global/PageSEO";
 import { ImageStack } from "../ui/ImageStack";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
@@ -134,12 +134,12 @@ export default function App() {
   });
 
   return (
-    <div className="light-image bg-white max-w-7xl mx-auto  text-zinc-900 selection:bg-emerald-100 mt-30">
+    <div className="light-image bg-white text-zinc-900 selection:bg-[#6db820]/20">
       <PageSEO pageId="contacto" />
 
       <main>
-        <section className="light-image relative">
-          <div className="mx-auto max-w-7xl px-6 pt-20 pb-24 sm:pt-24 sm:pb-28 lg:px-10">
+        <section className=" relative">
+          <div className="mx-auto max-w-7xl px-6 pt-36 pb-24 sm:pt-40 sm:pb-28 lg:px-10">
             {/* Encabezado */}
             <motion.div
               initial={{ opacity: 0, y: 18 }}
@@ -148,12 +148,12 @@ export default function App() {
               className="mx-auto mb-14 max-w-3xl text-center"
             >
               <div className="mb-6 inline-flex items-center gap-3">
-                <div className="h-px w-10 bg-emerald-600" />
+                <div className="h-px w-10 bg-[#2d6e1a]" />
                 <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
-                  <Factory size={14} className="text-emerald-600" />
+                  <Factory size={14} className="text-[#2d6e1a]" />
                   {copy.hero.eyebrow}
                 </span>
-                <div className="h-px w-10 bg-emerald-600" />
+                <div className="h-px w-10 bg-[#2d6e1a]" />
               </div>
 
               <h1 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 sm:text-5xl lg:text-6xl">
@@ -190,9 +190,9 @@ export default function App() {
                 <div className="space-y-4 border-t border-zinc-200 pt-8">
                   {copy.highlights.map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <CheckCircle2
+                      <CheckCircle
                         size={18}
-                        className="mt-1 shrink-0 text-emerald-600"
+                        className="mt-1 shrink-0 text-[#2d6e1a]"
                       />
                       <p className="text-sm leading-7 text-zinc-700 sm:text-[15px]">
                         {item}
@@ -218,12 +218,12 @@ export default function App() {
                 <div className="mt-8 space-y-7">
                   <a
                     href={`mailto:${CONTACT_EMAIL}`}
-                    className="group flex items-center justify-between gap-4 border-b border-zinc-200 pb-5 text-zinc-900 transition-colors hover:text-emerald-600"
+                    className="group flex items-center justify-between gap-4 border-b border-zinc-200 pb-5 text-zinc-900 transition-colors hover:text-[#2d6e1a]"
                   >
                     <div className="flex items-start gap-4">
-                      <Mail
+                      <Envelope
                         size={18}
-                        className="mt-1 shrink-0 text-zinc-400 transition-colors group-hover:text-emerald-600"
+                        className="mt-1 shrink-0 text-zinc-400 transition-colors group-hover:text-[#2d6e1a]"
                       />
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
@@ -236,7 +236,7 @@ export default function App() {
                     </div>
                     <ArrowUpRight
                       size={16}
-                      className="shrink-0 text-zinc-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-emerald-600"
+                      className="shrink-0 text-zinc-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#2d6e1a]"
                     />
                   </a>
 
@@ -244,12 +244,12 @@ export default function App() {
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex items-center justify-between gap-4 border-b border-zinc-200 pb-5 text-zinc-900 transition-colors hover:text-emerald-600"
+                    className="group flex items-center justify-between gap-4 border-b border-zinc-200 pb-5 text-zinc-900 transition-colors hover:text-[#2d6e1a]"
                   >
                     <div className="flex items-start gap-4">
-                      <MessageCircle
+                      <ChatCircle
                         size={18}
-                        className="mt-1 shrink-0 text-zinc-400 transition-colors group-hover:text-emerald-600"
+                        className="mt-1 shrink-0 text-zinc-400 transition-colors group-hover:text-[#2d6e1a]"
                       />
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
@@ -262,14 +262,14 @@ export default function App() {
                     </div>
                     <ArrowUpRight
                       size={16}
-                      className="shrink-0 text-zinc-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-emerald-600"
+                      className="shrink-0 text-zinc-400 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#2d6e1a]"
                     />
                   </a>
                 </div>
 
                 <div className="mt-10 space-y-8">
                   <div className="flex items-start gap-4">
-                    <Building2
+                    <Buildings
                       size={18}
                       className="mt-1 shrink-0 text-zinc-400"
                     />
@@ -319,14 +319,14 @@ export default function App() {
         <LazyOnView minHeight={560}>
           <Suspense fallback={<div className="mt-12 h-[520px] md:h-[640px]" />}>
             <LazyCompanyMapHybrid
-              className="mt-12 pb-20"
+              className="mt-12"
               title={copy.map.title}
               subtitle={copy.map.subtitle}
               locations={copy.locations}
               center={[-78.3, -7.2]}
               projectionScale={1300}
               primaryColor="#0e5814"
-              mapClassName="h-[520px] md:h-[640px]"
+              mapClassName="h-[70vh] md:h-[80vh]"
             />
           </Suspense>
         </LazyOnView>

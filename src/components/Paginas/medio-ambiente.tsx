@@ -5,7 +5,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mountain, ArrowDown, Waves, Wind, Sun } from "lucide-react";
+import { Mountains, ArrowDown, Waves, Wind, Sun } from "@phosphor-icons/react";
 import PageSEO from "../global/PageSEO";
 import EnvironmentalHealthSection from "../ui/EnvironmentalHealthSection";
 import ReorderImageStack from "../ui/ReorderImageStack";
@@ -88,7 +88,7 @@ export const MedioAmbiente: React.FC = () => {
           { icon: Waves, title: "Agua", description: "Control y protección hídrica." },
           { icon: Wind, title: "Aire", description: "Monitoreo de emisiones." },
           { icon: Sun, title: "Residuos", description: "Gestión responsable." },
-          { icon: Mountain, title: "Suelos", description: "Restauración progresiva." },
+          { icon: Mountains, title: "Suelos", description: "Restauración progresiva." },
         ],
       },
     },
@@ -160,7 +160,7 @@ export const MedioAmbiente: React.FC = () => {
           { icon: Waves, title: "Water", description: "Water control and protection." },
           { icon: Wind, title: "Air", description: "Emission monitoring." },
           { icon: Sun, title: "Waste", description: "Responsible management." },
-          { icon: Mountain, title: "Soils", description: "Progressive restoration." },
+          { icon: Mountains, title: "Soils", description: "Progressive restoration." },
         ],
       },
     },
@@ -234,7 +234,7 @@ export const MedioAmbiente: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="light-image bg-white text-zinc-800 font-light overflow-hidden">
+    <div ref={containerRef} className="light-image bg-stone-100 text-zinc-800 font-light overflow-hidden">
       <PageSEO pageId="medio-ambiente" />
 
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 bg-zinc-80/30">
@@ -324,7 +324,7 @@ export const MedioAmbiente: React.FC = () => {
               <ul className="space-y-4 text-sm text-zinc-600 leading-relaxed">
                 {copy.impact.items.map((item, index) => (
                   <li key={item} className="flex items-start gap-4">
-                    <span className="font-semibold text-amber-600">
+                    <span className="font-semibold text-[#4fa81e]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <p>{item}</p>

@@ -7,13 +7,13 @@ import {
   Flame,
   MapPin,
   ShieldCheck,
-  Pickaxe,
-  Mountain,
-  Layers,
-  Zap,
+  Hammer,
+  Mountains,
+  Stack,
+  Lightning,
   Truck,
   CheckCircle,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 
 import CommercialCTA from "../global/CommercialCTA";
 import PageSEO from "../global/PageSEO";
@@ -43,6 +43,7 @@ export default function CalViva() {
         },
       ],
       intro: {
+        eyebrow: "ÓXIDO DE CALCIO",
         title: "Producción de Óxido de Calcio Industrial - Cal Viva",
         description:
           "La producción de óxido de calcio (CaO) se realiza mediante la calcinación controlada de piedra caliza en hornos industriales. Nuestro proceso garantiza continuidad operativa, calidad mineralógica y abastecimiento confiable para la industria minera, metalúrgica y cementera.",
@@ -50,12 +51,12 @@ export default function CalViva() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Concesiones Propias",
           description: "Abastecimiento directo de piedra caliza desde cantera.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Control de Materia Prima",
           description: "Clasificación mineral para optimizar el rendimiento térmico.",
@@ -96,7 +97,7 @@ export default function CalViva() {
             titulo: "Selección de Materia Prima",
             descripcion:
               "Extracción y selección de piedra caliza con pureza superior al 90% de CaCO₃, garantizando eficiencia en la transformación industrial.",
-            icon: Pickaxe,
+            icon: Hammer,
             image: {
               src: "img-productos/cal-viva/proceso/extraccion-de-piedra-caliza",
               alt: "extracción de piedra caliza para producción de cal viva",
@@ -107,7 +108,7 @@ export default function CalViva() {
             titulo: "Triturado y Clasificación",
             descripcion:
               "Reducción y control granulométrico del mineral para asegurar una calcinación homogénea y eficiente.",
-            icon: Layers,
+            icon: Stack,
             image: {
               src: "img-productos/cal-viva/proceso/triturado-piedra-caliza",
               alt: "triturado y clasificación de piedra caliza para producción de cal viva",
@@ -160,12 +161,12 @@ export default function CalViva() {
         "Procesos hidrometalúrgicos",
       ],
       advantages: [
-        { icon: Pickaxe, text: "Denuncios propios de piedra caliza y carbón" },
+        { icon: Hammer, text: "Denuncios propios de piedra caliza y carbón" },
         { icon: Flame, text: "Producción continua 24 horas — 900 TM/día" },
         { icon: Truck, text: "Logística propia y despacho directo a cliente" },
         { icon: CheckCircle, text: "Estándares del Ministerio de Energía y Minas" },
-        { icon: Zap, text: "Reactividad química garantizada (≥81% Cal Útil)" },
-        { icon: Mountain, text: "Reservas mineras propias para abastecimiento sostenido" },
+        { icon: Lightning, text: "Reactividad química garantizada (≥81% Cal Útil)" },
+        { icon: Mountains, text: "Reservas mineras propias para abastecimiento sostenido" },
       ],
       team: {
         title: "Mano de Obra por Horno (90 TM)",
@@ -203,6 +204,7 @@ export default function CalViva() {
         },
       ],
       intro: {
+        eyebrow: "CALCIUM OXIDE",
         title: "Industrial Calcium Oxide Production - Quicklime",
         description:
           "Calcium oxide (CaO) is produced through the controlled calcination of limestone in industrial kilns. Our process ensures operational continuity, mineralogical quality, and reliable supply for the mining, metallurgical, and cement industries.",
@@ -210,12 +212,12 @@ export default function CalViva() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Owned concessions",
           description: "Direct limestone supply from our own quarry.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Raw material control",
           description: "Mineral classification to optimize thermal performance.",
@@ -256,7 +258,7 @@ export default function CalViva() {
             titulo: "Raw material selection",
             descripcion:
               "Extraction and selection of limestone with purity above 90% CaCO₃, ensuring efficiency in industrial transformation.",
-            icon: Pickaxe,
+            icon: Hammer,
             image: {
               src: "img-productos/cal-viva/proceso/extraccion-de-piedra-caliza",
               alt: "limestone extraction for quicklime production",
@@ -267,7 +269,7 @@ export default function CalViva() {
             titulo: "Crushing and classification",
             descripcion:
               "Particle size reduction and control to ensure homogeneous and efficient calcination.",
-            icon: Layers,
+            icon: Stack,
             image: {
               src: "img-productos/cal-viva/proceso/triturado-piedra-caliza",
               alt: "crushing and classification of limestone for quicklime production",
@@ -320,12 +322,12 @@ export default function CalViva() {
         "Hydrometallurgical processes",
       ],
       advantages: [
-        { icon: Pickaxe, text: "Owned limestone and coal mining concessions" },
+        { icon: Hammer, text: "Owned limestone and coal mining concessions" },
         { icon: Flame, text: "24-hour continuous production — 900 TM/day" },
         { icon: Truck, text: "Own logistics and direct customer dispatch" },
         { icon: CheckCircle, text: "Ministry of Energy and Mines standards compliance" },
-        { icon: Zap, text: "Guaranteed chemical reactivity (≥81% Available Lime)" },
-        { icon: Mountain, text: "Own mining reserves for sustained supply" },
+        { icon: Lightning, text: "Guaranteed chemical reactivity (≥81% Available Lime)" },
+        { icon: Mountains, text: "Own mining reserves for sustained supply" },
       ],
       team: {
         title: "Workforce per Kiln (90 TM)",
@@ -350,11 +352,12 @@ export default function CalViva() {
     },
   });
   return (
-    <div className="light-image bg-white">
+    <div className="light-image bg-stone-100">
       <PageSEO pageId="cal-viva" />
 
       <ProductIntroSection
         images={copy.images}
+        eyebrow={copy.intro.eyebrow}
         title={copy.intro.title}
         description={copy.intro.description}
         cards={copy.introCards}

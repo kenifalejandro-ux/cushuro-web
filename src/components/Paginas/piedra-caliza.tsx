@@ -6,14 +6,14 @@ import {
   Factory,
   Flame,
   ShieldCheck,
-  Pickaxe,
-  Mountain,
-  Layers,
-  Zap,
+  Hammer,
+  Mountains,
+  Stack,
+  Lightning,
   Truck,
   CheckCircle,
   Link as LinkIcon,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 
 import CommercialCTA from "../global/CommercialCTA";
 import PageSEO from "../global/PageSEO";
@@ -43,6 +43,7 @@ export default function PiedraCaliza() {
         },
       ],
       intro: {
+        eyebrow: "MATERIA PRIMA MINERA",
         title: "Materia Prima Minera Estratégica para Procesos Industriales y Metalúrgicos",
         description:
           "La piedra caliza es un recurso mineral esencial para la producción de cal, procesos metalúrgicos y aplicaciones industriales en el sector minero. Nuestra operación cuenta con cantera propia y abastecimiento continuo, garantizando trazabilidad del mineral, estabilidad química y suministro confiable para plantas industriales.",
@@ -50,13 +51,13 @@ export default function PiedraCaliza() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Cantera con Abastecimiento Continuo",
           description:
             "Explotación directa con control en extracción, selección y clasificación del material.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Integración Directa a Planta Calera",
           description: "Clasificación mineral para optimizar el rendimiento térmico.",
@@ -93,7 +94,7 @@ export default function PiedraCaliza() {
             titulo: "Extracción de Piedra Caliza",
             descripcion:
               "Arranque de roca caliza en cantera mediante perforación y selección de material con control de calidad mineralógica.",
-            icon: Pickaxe,
+            icon: Hammer,
             image: {
               src: "img-productos/cal-viva/proceso/extraccion-de-piedra-caliza",
               alt: "Extracción de piedra caliza en cantera",
@@ -104,7 +105,7 @@ export default function PiedraCaliza() {
             titulo: "Preparación y Clasificación",
             descripcion:
               "Fragmentación y clasificación granulométrica para garantizar tamaño adecuado de alimentación en hornos.",
-            icon: Layers,
+            icon: Stack,
             image: {
               src: "img-productos/piedra-caliza/proceso/cantera-piedra-caliza002",
               alt: "Preparación y clasificación de piedra caliza",
@@ -146,12 +147,12 @@ export default function PiedraCaliza() {
         "Optimización de tratamiento mineral",
       ],
       advantages: [
-        { icon: Pickaxe, text: "Denuncios propios de piedra caliza de alto CaCO₃" },
+        { icon: Hammer, text: "Denuncios propios de piedra caliza de alto CaCO₃" },
         { icon: LinkIcon, text: "Integración vertical con planta calera (CaO)" },
         { icon: Flame, text: "Operación continua 24 horas — 900 TM/día" },
         { icon: Truck, text: "Logística propia y despacho directo a cliente" },
         { icon: CheckCircle, text: "Estándares del Ministerio de Energía y Minas" },
-        { icon: Zap, text: "Abastecimiento estratégico para plantas concentradoras" },
+        { icon: Lightning, text: "Abastecimiento estratégico para plantas concentradoras" },
       ],
       team: {
         title: "Equipo Operativo en Cantera",
@@ -188,6 +189,7 @@ export default function PiedraCaliza() {
         },
       ],
       intro: {
+        eyebrow: "MINING RAW MATERIAL",
         title: "Strategic Mining Raw Material for Industrial and Metallurgical Processes",
         description:
           "Limestone is an essential mineral resource for lime production, metallurgical processes, and industrial applications in the mining sector. Our operation has its own quarry and continuous supply, ensuring mineral traceability, chemical stability, and reliable supply for industrial plants.",
@@ -195,13 +197,13 @@ export default function PiedraCaliza() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Quarry with Continuous Supply",
           description:
             "Direct extraction with control over material extraction, selection, and classification.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Direct Integration to the Lime Plant",
           description: "Mineral classification to optimize thermal performance.",
@@ -238,7 +240,7 @@ export default function PiedraCaliza() {
             titulo: "Limestone extraction",
             descripcion:
               "Limestone rock removal in the quarry through drilling and material selection with mineralogical quality control.",
-            icon: Pickaxe,
+            icon: Hammer,
             image: {
               src: "img-productos/cal-viva/proceso/extraccion-de-piedra-caliza",
               alt: "Limestone extraction in quarry",
@@ -249,7 +251,7 @@ export default function PiedraCaliza() {
             titulo: "Preparation and classification",
             descripcion:
               "Fragmentation and particle-size classification to ensure suitable feed size for kilns.",
-            icon: Layers,
+            icon: Stack,
             image: {
               src: "img-productos/piedra-caliza/proceso/cantera-piedra-caliza002",
               alt: "Preparation and classification of limestone",
@@ -291,12 +293,12 @@ export default function PiedraCaliza() {
         "Optimization of mineral treatment",
       ],
       advantages: [
-        { icon: Pickaxe, text: "Owned high CaCO₃ limestone mining claims" },
+        { icon: Hammer, text: "Owned high CaCO₃ limestone mining claims" },
         { icon: LinkIcon, text: "Vertical integration with lime plant (CaO)" },
         { icon: Flame, text: "Continuous 24-hour operation — 900 TM/day" },
         { icon: Truck, text: "Own logistics and direct customer dispatch" },
         { icon: CheckCircle, text: "Ministry of Energy and Mines standards compliance" },
-        { icon: Zap, text: "Strategic supply for concentrator plants" },
+        { icon: Lightning, text: "Strategic supply for concentrator plants" },
       ],
       team: {
         title: "Operational Quarry Team",
@@ -320,11 +322,12 @@ export default function PiedraCaliza() {
   });
 
   return (
-    <div className="light-image bg-white">
+    <div className="light-image bg-stone-100">
       <PageSEO pageId="piedra-caliza" />
 
       <ProductIntroSection
         images={copy.images}
+        eyebrow={copy.intro.eyebrow}
         title={copy.intro.title}
         description={copy.intro.description}
         cards={copy.introCards}
@@ -352,9 +355,11 @@ export default function PiedraCaliza() {
         }}
         items={copy.applications}
       />
-
+<div className="-mt-10 bg-stone-100">
       <ProductAdvantagesGrid items={copy.advantages} />
+         </div>
 
+         
       <ProductTeamSection
         title={copy.team.title}
         members={copy.team.members}

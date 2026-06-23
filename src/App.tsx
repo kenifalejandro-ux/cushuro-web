@@ -1,5 +1,6 @@
 // client/src/App.tsx
 
+import { IconContext } from "@phosphor-icons/react";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
@@ -272,10 +273,14 @@ function App() {
 
   return (
     <div className="app">
-      <Router>
-        <PageTransition />
-        <AppRoutes />
-      </Router>
+      {/* Estilo global de íconos Phosphor: duotone (sobrio, industrial). El color lo da
+          cada uso vía className (emerald / blue de marca) sobre currentColor. */}
+      <IconContext.Provider value={{ weight: "duotone" }}>
+        <Router>
+          <PageTransition />
+          <AppRoutes />
+        </Router>
+      </IconContext.Provider>
     </div>
   );
 }

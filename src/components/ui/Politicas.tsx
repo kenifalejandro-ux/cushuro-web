@@ -8,12 +8,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   HardHat,
-  Layers,
+  Stack,
   Moon,
-  ShieldAlert,
-  Ban,
+  ShieldWarning,
+  Prohibit,
   Leaf,
-} from "lucide-react";
+} from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
@@ -100,13 +100,13 @@ export default function Politicas() {
             "Gestión estricta de turnos y periodos de descanso para asegurar que el personal opere maquinaria y equipos en condiciones óptimas de alerta y capacidad física.",
         },
         {
-          icon: <ShieldAlert className="w-8 h-8" />,
+          icon: <ShieldWarning className="w-8 h-8" />,
           title: "Negativa al Trabajo Inseguro",
           description:
             "Derecho y obligación reconocidos de detener cualquier labor que no cuente con los controles de seguridad necesarios o represente un riesgo no controlado para la vida.",
         },
         {
-          icon: <Ban className="w-8 h-8" />,
+          icon: <Prohibit className="w-8 h-8" />,
           title: "Alcohol y Drogas",
           description:
             "Prohibición absoluta del consumo, posesión o ingreso bajo el efecto de sustancias que alteren la capacidad psicomotriz, garantizando un entorno de trabajo 100% sobrio y seguro.",
@@ -137,13 +137,13 @@ export default function Politicas() {
             "Strict management of shifts and rest periods to ensure personnel operate machinery and equipment under optimal alertness and physical capacity.",
         },
         {
-          icon: <ShieldAlert className="w-8 h-8" />,
+          icon: <ShieldWarning className="w-8 h-8" />,
           title: "Right to Refuse Unsafe Work",
           description:
             "The right and obligation to stop any task lacking the necessary safety controls or representing an uncontrolled risk to life is recognized.",
         },
         {
-          icon: <Ban className="w-8 h-8" />,
+          icon: <Prohibit className="w-8 h-8" />,
           title: "Alcohol and Drugs",
           description:
             "Absolute prohibition of consuming, possessing, or entering under the influence of substances that alter psychomotor capacity, guaranteeing a 100% sober and safe workplace.",
@@ -187,7 +187,7 @@ export default function Politicas() {
   return (
     <section
       ref={sectionRef}
-      className="dark-image relative overflow-hidden bg-[linear-gradient(180deg,#151515_0%,#1d1d1d_55%,#24201d_100%)] py-24 md:py-32"
+      className="dark-image relative overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] py-24 md:py-32"
     >
       <div className="absolute top-20 left-20 h-40 w-40 rounded-full bg-emerald-700/8 blur-3xl" />
       <div className="absolute bottom-20 right-20 h-56 w-56 rounded-full bg-[#1d3461]/10 blur-3xl" />
@@ -197,7 +197,7 @@ export default function Politicas() {
         {/* Título */}
         <div className="text-center max-w-4xl mx-auto mb-20">
           <div className="flex justify-center mb-6">
-            <Layers className="w-10 h-10 text-emerald-500" />
+            <Stack className="w-10 h-10 text-emerald-500" />
           </div>
 
           <h2

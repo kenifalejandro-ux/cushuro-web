@@ -224,7 +224,7 @@ export default function ProductProcessFlow({
                     {!isLastStep ? (
                       <>
                         <span className="absolute left-[18px] top-10 bottom-[-2.5rem] w-px bg-gradient-to-b from-zinc-300 via-zinc-200 to-transparent md:left-[24px] md:top-12 md:bottom-[-2.75rem]" />
-                        <span className="process-step-line-fill absolute left-[18px] top-10 bottom-[-2.5rem] w-px bg-[linear-gradient(180deg,#10b981_0%,#34d399_58%,#f59e0b_100%)] md:left-[24px] md:top-12 md:bottom-[-2.75rem]" />
+                        <span className="process-step-line-fill absolute left-[18px] top-10 bottom-[-2.5rem] w-px bg-[linear-gradient(180deg,#2d6e1a_0%,#4fa81e_58%,#6db820_100%)] md:left-[24px] md:top-12 md:bottom-[-2.75rem]" />
                       </>
                     ) : (
                       <span className="process-step-line-fill absolute left-[18px] top-10 h-10 w-px bg-[linear-gradient(180deg,#10b981_0%,rgba(16,185,129,0)_100%)] md:left-[24px] md:top-12" />

@@ -4,11 +4,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 export type ProductAdvantagesItem = {
-  icon: LucideIcon;
+  icon: PhosphorIcon;
   text: string;
 };
 
@@ -47,7 +47,7 @@ export default function ProductAdvantagesGrid({
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
-    <section className="dark-image relative overflow-hidden rounded-lg sm:rounded-lg md:rounded-xl lg:rounded-[100px]  xl:rounded-[350px] bg-[#0c0d0e] py-28 text-stone-200 md:py-36">
+    <section className="dark-image relative overflow-hidden rounded-lg sm:rounded-lg md:rounded-xl lg:rounded-[100px]  xl:rounded-[350px] bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] py-28 text-stone-200 md:py-36">
       {/* Retícula tipo blueprint */}
       <div
         aria-hidden
@@ -62,7 +62,7 @@ export default function ProductAdvantagesGrid({
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         {/* Barra superior: ficha técnica */}
         <div className="flex items-center justify-between gap-6 font-mono text-[11px] font-medium uppercase tracking-[0.22em]">
-          <span className="text-amber-600">{copy.sheet}</span>
+          <span className="text-[#4fa81e]">{copy.sheet}</span>
           {spec ? <span className="text-white/40">{spec}</span> : null}
         </div>
 
@@ -70,7 +70,7 @@ export default function ProductAdvantagesGrid({
         <div className="mt-4 border-t border-white/12 pt-8">
           <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <p className="font-mono text-[12px] font-medium uppercase tracking-[0.24em] text-amber-600">
+              <p className="font-mono text-[12px] font-medium uppercase tracking-[0.24em] text-[#4fa81e]">
                 {eyebrow ?? copy.eyebrow}
               </p>
               <h2 className="mt-4 text-5xl font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-6xl">
@@ -80,8 +80,8 @@ export default function ProductAdvantagesGrid({
 
             <div className="flex items-end gap-4 border-l border-white/12 pl-5">
               <div className="flex flex-col gap-1.5 pb-4">
-                <span className="h-[2px] w-5 bg-amber-600" />
-                <span className="h-[2px] w-3 bg-amber/30" />
+                <span className="h-[2px] w-5 bg-[#4fa81e]" />
+                <span className="h-[2px] w-3 bg-[#4fa81e]/30" />
                 <span className="h-[2px] w-4 bg-white/30" />
               </div>
               <span className="text-6xl font-bold leading-none tracking-[-0.04em] text-white md:text-7xl">
@@ -109,7 +109,7 @@ export default function ProductAdvantagesGrid({
               {/* Línea de acento superior */}
               <motion.div
                 aria-hidden
-                className="absolute inset-x-7 top-0 h-[2px] origin-left bg-gradient-to-r from-amber-600 to-transparent md:inset-x-8"
+                className="absolute inset-x-7 top-0 h-[2px] origin-left bg-gradient-to-r from-[#4fa81e] to-transparent md:inset-x-8"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 + index * 0.05 }}
@@ -118,10 +118,10 @@ export default function ProductAdvantagesGrid({
 
               {/* Cabecera de tarjeta */}
               <div className="flex items-start justify-between gap-4">
-                <span className="font-mono text-[13px] font-semibold tracking-[0.18em] text-amber-600">
+                <span className="font-mono text-[13px] font-semibold tracking-[0.18em] text-[#4fa81e]">
                   {pad(index + 1)}
                 </span>
-                <span className="inline-flex h-12 w-12 items-center justify-center border border-white/12 bg-white/[0.02] text-amber-600">
+                <span className="inline-flex h-12 w-12 items-center justify-center border border-white/12 bg-white/[0.02] text-[#4fa81e]">
                   <Icon className="h-6 w-6" strokeWidth={1.6} />
                 </span>
               </div>

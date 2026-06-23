@@ -7,10 +7,10 @@ import {
   Flame,
   MapPin,
   ShieldCheck,
-  Pickaxe,
-  Mountain,
-  Zap,
-} from "lucide-react";
+  Hammer,
+  Mountains,
+  Lightning,
+} from "@phosphor-icons/react";
 
 import CommercialCTA from "../global/CommercialCTA";
 import PageSEO from "../global/PageSEO";
@@ -40,6 +40,7 @@ export default function CarbonAntracita() {
         },
       ],
       intro: {
+        eyebrow: "CARBÓN ANTRACITA",
         title: "Producción y Suministro de Carbón Antracita Industrial",
         description:
           "La empresa cuenta con concesiones propias de carbón antracita, garantizando control directo de reservas, trazabilidad del mineral y abastecimiento continuo para operaciones industriales y mineras.",
@@ -47,13 +48,13 @@ export default function CarbonAntracita() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Concesiones Propias",
           description:
             "Explotación directa de canteras de carbón antracita con control en extracción, clasificación y despacho.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Control de Calidad del Mineral",
           items: [
@@ -122,7 +123,7 @@ export default function CarbonAntracita() {
             title: "Selección de Veta",
             description:
               "Evaluación geológica y selección de frentes con carbón antracita de alto rango, elevado contenido de carbono fijo y bajo nivel de volátiles.",
-            icon: Pickaxe,
+            icon: Hammer,
           },
           {
             step: "02",
@@ -136,7 +137,7 @@ export default function CarbonAntracita() {
             title: "Chancado y Clasificación Granulométrica",
             description:
               "Reducción y zarandeo del mineral para obtener tamaños específicos según requerimiento industrial, asegurando combustión eficiente y estable.",
-            icon: Zap,
+            icon: Lightning,
           },
           {
             step: "04",
@@ -214,6 +215,7 @@ export default function CarbonAntracita() {
         },
       ],
       intro: {
+        eyebrow: "ANTHRACITE COAL",
         title: "Industrial Anthracite Coal Production and Supply",
         description:
           "The company operates its own anthracite coal concessions, ensuring direct reserve control, mineral traceability, and continuous supply for industrial and mining operations.",
@@ -221,13 +223,13 @@ export default function CarbonAntracita() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Owned concessions",
           description:
             "Direct exploitation of anthracite coal quarries with control over extraction, classification, and dispatch.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Mineral quality control",
           items: [
@@ -296,7 +298,7 @@ export default function CarbonAntracita() {
             title: "Seam Selection",
             description:
               "Geological evaluation and selection of fronts with high-rank anthracite coal, high fixed carbon content, and low volatile levels.",
-            icon: Pickaxe,
+            icon: Hammer,
           },
           {
             step: "02",
@@ -310,7 +312,7 @@ export default function CarbonAntracita() {
             title: "Crushing and Size Classification",
             description:
               "Mineral reduction and screening to obtain specific sizes according to industrial requirements, ensuring efficient and stable combustion.",
-            icon: Zap,
+            icon: Lightning,
           },
           {
             step: "04",
@@ -380,6 +382,7 @@ export default function CarbonAntracita() {
 
       <ProductIntroSection
         images={copy.images}
+        eyebrow={copy.intro.eyebrow}
         title={copy.intro.title}
         description={copy.intro.description}
         cards={copy.introCards}

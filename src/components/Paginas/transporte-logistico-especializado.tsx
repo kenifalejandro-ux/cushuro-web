@@ -6,15 +6,15 @@ import { motion } from "motion/react";
 import {
   Truck,
   Radio,
-  Mountain,
-  Pickaxe,
+  Mountains,
+  Hammer,
   ShieldCheck,
-  Users,
+  UsersThree,
   Factory,
   Flame,
-  ClipboardCheck,
-  AlertTriangle,
-} from "lucide-react";
+  ClipboardText,
+  Warning,
+} from "@phosphor-icons/react";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -54,7 +54,7 @@ export default function TransporteLogistico() {
       introCards: [
         {
           icon: Truck,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Capacidad Operativa de Transporte",
           description:
             "Servicio de transporte para operaciones mineras no metalicas con capacidad operativa de hasta 900 TM por dia.",
@@ -78,7 +78,7 @@ export default function TransporteLogistico() {
           note: "Aseguramos continuidad operativa y reduccion de riesgos logisticos en cada operacion.",
         },
         {
-          icon: Users,
+          icon: UsersThree,
           iconClassName: "text-emerald-500",
           title: "Supervision Permanente",
           description:
@@ -88,9 +88,9 @@ export default function TransporteLogistico() {
       features: {
         title: "Materiales Estrategicos Transportados",
         items: [
-          { title: "Piedra caliza preparada", icon: Mountain },
+          { title: "Piedra caliza preparada", icon: Mountains },
           { title: "Oxido de calcio (Cal Viva)", icon: Flame },
-          { title: "Carbon de piedra", icon: Pickaxe },
+          { title: "Carbon de piedra", icon: Hammer },
           { title: "Insumos industriales", icon: Truck },
         ],
       },
@@ -107,17 +107,17 @@ export default function TransporteLogistico() {
           },
           {
             title: "Protocolos de Seguridad",
-            icon: ClipboardCheck,
+            icon: ClipboardText,
             description: "Procedimientos establecidos para carga, traslado y descarga en campo.",
           },
           {
             title: "Supervision en Operaciones",
-            icon: Users,
+            icon: UsersThree,
             description: "Control operativo presencial en puntos criticos de cada traslado.",
           },
           {
             title: "Prevencion de Riesgos",
-            icon: AlertTriangle,
+            icon: Warning,
             description: "Identificacion y mitigacion de riesgos en cada operacion logistica.",
           },
         ],
@@ -158,7 +158,7 @@ export default function TransporteLogistico() {
       introCards: [
         {
           icon: Truck,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Transport Operating Capacity",
           description:
             "Transport service for non-metallic mining operations with operating capacity of up to 900 TM per day.",
@@ -182,7 +182,7 @@ export default function TransporteLogistico() {
           note: "We ensure operational continuity and reduce logistics risks in every operation.",
         },
         {
-          icon: Users,
+          icon: UsersThree,
           iconClassName: "text-emerald-500",
           title: "Permanent Supervision",
           description:
@@ -192,9 +192,9 @@ export default function TransporteLogistico() {
       features: {
         title: "Strategic Materials Transported",
         items: [
-          { title: "Prepared limestone", icon: Mountain },
+          { title: "Prepared limestone", icon: Mountains },
           { title: "Calcium oxide (Quicklime)", icon: Flame },
-          { title: "Coal", icon: Pickaxe },
+          { title: "Coal", icon: Hammer },
           { title: "Industrial supplies", icon: Truck },
         ],
       },
@@ -211,18 +211,18 @@ export default function TransporteLogistico() {
           },
           {
             title: "Safety Protocols",
-            icon: ClipboardCheck,
+            icon: ClipboardText,
             description:
               "Established procedures for loading, transport, and unloading in the field.",
           },
           {
             title: "Operational Supervision",
-            icon: Users,
+            icon: UsersThree,
             description: "On-site operational control at critical points of each haul.",
           },
           {
             title: "Risk Prevention",
-            icon: AlertTriangle,
+            icon: Warning,
             description: "Identification and mitigation of risks in every logistics operation.",
           },
         ],
@@ -281,7 +281,7 @@ export default function TransporteLogistico() {
   }, []);
 
   return (
-    <div className="light-image min-h-screen bg-white">
+    <div className="light-image min-h-screen bg-stone-100">
       <PageSEO pageId="transporte-logistico-especializado" />
 
       <ProductIntroSection
@@ -294,7 +294,7 @@ export default function TransporteLogistico() {
 
       <FeatureCardsSection
         sectionRef={servicesRef}
-        sectionClassName="light-image py-20 bg-white"
+        sectionClassName="light-image py-20 bg-stone-100"
         headingClassName="text-center mb-12"
         titleClassName="b2b-section-title text-center"
         title={copy.features.title}
@@ -315,7 +315,7 @@ export default function TransporteLogistico() {
         items={copy.safety.items}
       />
 
-      <section className="dark-image py-20 b2b-dark-section">
+      <section className="dark-image py-20 b2b-dark-section bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

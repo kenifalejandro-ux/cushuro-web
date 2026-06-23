@@ -224,24 +224,24 @@ export default function Metricas({
 
   const valueClass =
     estilo === "minimalista"
-      ? `${vista === "mobile" ? "text-2xl" : "text-3xl lg:text-[2.6rem]"} font-semibold tracking-[-0.05em]`
-      : `${vista === "mobile" ? "text-3xl" : "text-4xl lg:text-[2.8rem]"} font-semibold tracking-tight`;
+      ? `${vista === "mobile" ? "text-2xl" : "text-xl sm:text-3xl lg:text-[2.6rem]"} font-semibold tracking-[-0.05em]`
+      : `${vista === "mobile" ? "text-3xl" : "text-2xl sm:text-4xl lg:text-[2.8rem]"} font-semibold tracking-tight`;
 
-  const labelClass = `${vista === "mobile" ? "text-[11px]" : "text-xs"} uppercase ${preset.label}`;
+  const labelClass = `${vista === "mobile" ? "text-[11px]" : "text-[9px] sm:text-xs"} uppercase ${preset.label}`;
 
   /* ---------- INLINE ---------- */
   if (variant === "inline") {
     return (
       <div
         ref={sectionRef}
-        className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3  rounded-2xl border  ${preset.container} ${preset.containerShadow}`}
+        className={`grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3  rounded-2xl border  ${preset.container} ${preset.containerShadow}`}
       >
         {data.map((m, i) => (
           <div
             key={i}
             data-metrica-item
             className={[
-              "dark-image relative px-6 py-6 lg:py-8 bg-blue-900  ",
+              "dark-image relative px-6 py-6 lg:py-8 bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]  ",
               preset.divider,
               i > 0 ? "border-t" : "",
               i === 1 ? "md:border-t-0" : "",
@@ -285,7 +285,7 @@ export default function Metricas({
     return (
       <div
         ref={sectionRef}
-        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-4 lg:gap-8"
+        className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-4 lg:gap-8"
       >
         {data.map((m, i) => (
           <div
@@ -333,7 +333,7 @@ export default function Metricas({
     <div ref={sectionRef} className="relative">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div
-          className={`grid grid-cols-1 gap-6 rounded-[1.85rem] border  px-6 py-8 md:grid-cols-3 md:gap-4 md:px-8 md:py-10 lg:grid-cols-3 lg:gap-8 ${preset.container} ${preset.containerShadow}`}
+          className={`grid grid-cols-3 gap-6 rounded-[1.85rem] border  px-6 py-8 md:grid-cols-3 md:gap-4 md:px-8 md:py-10 lg:grid-cols-3 lg:gap-8 ${preset.container} ${preset.containerShadow}`}
         >
           {data.map((m, i) => (
             <div

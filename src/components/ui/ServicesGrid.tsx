@@ -273,9 +273,19 @@ export default function ServicesGrid() {
       <div className="max-w-7xl mx-auto">
         <div ref={headingRef} className="mb-14 text-center">
           <p className="b2b-eyebrow text-center">{copy.eyebrow}</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-zinc-900 lg:text-5xl">
-            {copy.title}
-          </h2>
+          <div className="mt-4 flex items-center justify-center gap-6">
+            <span
+              aria-hidden="true"
+              className="hidden h-px flex-1 bg-gradient-to-r from-transparent via-zinc-300 to-zinc-400 sm:block"
+            />
+            <h2 className="max-w-2xl text-center text-3xl font-semibold tracking-[-0.04em] text-zinc-900 lg:text-5xl">
+              {copy.title}
+            </h2>
+            <span
+              aria-hidden="true"
+              className="hidden h-px flex-1 bg-gradient-to-l from-transparent via-zinc-300 to-zinc-400 sm:block"
+            />
+          </div>
           <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-zinc-600 sm:text-base">
             {copy.description}
           </p>

@@ -6,10 +6,14 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
+import { Flame, Drop, Funnel, Mountains, Cube, Lightning } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Ícono temático por producto (mismo orden en es/en)
+const ROW_ICONS = [Flame, Drop, Funnel, Mountains, Cube, Lightning];
 
 export default function ProductosBeneficiosTable() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -123,7 +127,7 @@ export default function ProductosBeneficiosTable() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative overflow-hidden bg-white py-24 md:py-32"
+      className="light-image relative overflow-hidden bg-stone-100 py-24 md:py-32"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-zinc-200 to-transparent" />
 
@@ -131,11 +135,11 @@ export default function ProductosBeneficiosTable() {
         {/* Header */}
         <div className="max-w-4xl mx-auto mb-14 text-center">
           <div className="inline-flex items-center gap-3 mb-5">
-            <span className="h-px w-10 bg-amber-500" />
-            <span className="font-mono text-[11px] tracking-[0.3em] text-amber-600 uppercase">
+            <span className="h-px w-10 bg-[#4fa81e]" />
+            <span className="font-mono text-[11px] tracking-[0.3em] text-[#4fa81e] uppercase">
               {copy.eyebrow}
             </span>
-            <span className="h-px w-10 bg-amber-500" />
+            <span className="h-px w-10 bg-[#4fa81e]" />
           </div>
           <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 md:text-5xl mb-4">
             {copy.title}
@@ -146,7 +150,7 @@ export default function ProductosBeneficiosTable() {
         {/* Table */}
         <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-zinc-200 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.1)]">
           {/* Header row */}
-          <div className="dark-image grid grid-cols-[1fr_1.6fr] bg-zinc-950 px-8 py-4">
+          <div className="dark-image grid grid-cols-[1fr_1.6fr] bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] px-8 py-4">
             {copy.tableHeaders.map((h) => (
               <span key={h} className="font-mono text-[11px] tracking-[0.28em] uppercase text-zinc-400">
                 {h}
@@ -155,20 +159,25 @@ export default function ProductosBeneficiosTable() {
           </div>
 
           {/* Data rows */}
-          {copy.rows.map((row, i) => (
+          {copy.rows.map((row, i) => {
+            const Icon = ROW_ICONS[i] ?? Cube;
+            return (
             <div
               key={row.product}
               className={`beneficio-row grid grid-cols-[1fr_1.6fr] border-b border-zinc-100 px-8 py-6 transition-colors duration-200 last:border-0 hover:bg-zinc-50 ${
                 row.highlight ? "bg-emerald-50" : "bg-white"
               }`}
             >
-              <div className="flex items-center gap-3 pr-6">
-                {row.highlight && (
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
-                )}
-                {!row.highlight && (
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-zinc-300" />
-                )}
+              <div className="flex items-center gap-3.5 pr-6">
+                <span
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${
+                    row.highlight
+                      ? "border-emerald-200 bg-emerald-100 text-emerald-700"
+                      : "border-zinc-200 bg-zinc-50 text-[#1d3461]"
+                  }`}
+                >
+                  <Icon size={20} weight="duotone" />
+                </span>
                 <span
                   className={`text-sm font-semibold tracking-[-0.01em] ${
                     row.highlight ? "text-emerald-800" : "text-zinc-900"
@@ -188,7 +197,8 @@ export default function ProductosBeneficiosTable() {
                 </p>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Source note */}

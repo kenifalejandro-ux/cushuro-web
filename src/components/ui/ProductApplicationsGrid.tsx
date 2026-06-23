@@ -3,8 +3,8 @@
 
 "use client";
 
-import type { LucideIcon } from "lucide-react";
-import { Factory } from "lucide-react";
+import type { Icon } from "@phosphor-icons/react";
+import { Factory } from "@phosphor-icons/react";
 
 import { OptimizedImage } from "./OptimizedImage";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
@@ -12,7 +12,7 @@ import { useLocalizedContent } from "../../context/SiteLanguageContext";
 type ProductApplicationsGridProps = {
   items: string[];
   title?: string;
-  icon?: LucideIcon;
+  icon?: Icon;
   image?: {
     src: string;
     alt: string;

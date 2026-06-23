@@ -2,22 +2,22 @@
 
 "use client";
 
-import type { LucideIcon } from "lucide-react";
+import type { Icon } from "@phosphor-icons/react";
 import { 
   Factory,        // Horno/Planta
-  Users,          // Empleados
+  UsersThree,          // Empleados
   MapPin,         // Ubicación/Operaciones
   Truck,          // Transporte
   ShieldCheck,    // Seguridad
   Package        // Producto
-} from "lucide-react";
+} from "@phosphor-icons/react";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 interface Stat {
   id: string;
-  icon: LucideIcon;
+  icon: Icon;
   value: number;
   label: string;
   suffix?: string;
@@ -65,7 +65,7 @@ export function MiningStats() {
       stats: [
         { id: "produccion_diaria", icon: Factory, value: 900, suffix: " TM", label: "PRODUCCIÓN DIARIA", subtext: "Capacidad de óxido de calcio" },
         { id: "hornos", icon: Package, value: 10, label: "HORNOS OPERATIVOS", subtext: "Capacidad instalada total" },
-        { id: "empleados_max", icon: Users, value: 90, suffix: "+", label: "PERSONAL EN OPERACIÓN", subtext: "Máximo de trabajadores rotativos" },
+        { id: "empleados_max", icon: UsersThree, value: 90, suffix: "+", label: "PERSONAL EN OPERACIÓN", subtext: "Máximo de trabajadores rotativos" },
         { id: "ubicacion", icon: MapPin, value: 2, suffix: "", label: "CENTRO DE PRODUCCIÓN", subtext: "Caserío Rodeopampa - Marcabal y Bambamarca - Cajamarca" },
         { id: "seguridad_foco", icon: ShieldCheck, value: 100, suffix: "%", label: "COMPROMISO SEGURIDAD", subtext: "Deber ético y moral" },
         { id: "clientes_mercado", icon: Truck, value: 2, suffix: "+", label: "SECTORES DE MERCADO", subtext: "Minero y Azucarero abastecidos" },
@@ -77,7 +77,7 @@ export function MiningStats() {
       stats: [
         { id: "produccion_diaria", icon: Factory, value: 900, suffix: " TM", label: "DAILY OUTPUT", subtext: "Calcium oxide capacity" },
         { id: "hornos", icon: Package, value: 10, label: "OPERATING KILNS", subtext: "Total installed capacity" },
-        { id: "empleados_max", icon: Users, value: 90, suffix: "+", label: "ACTIVE WORKFORCE", subtext: "Maximum rotating workers" },
+        { id: "empleados_max", icon: UsersThree, value: 90, suffix: "+", label: "ACTIVE WORKFORCE", subtext: "Maximum rotating workers" },
         { id: "ubicacion", icon: MapPin, value: 2, suffix: "", label: "PRODUCTION HUBS", subtext: "Rodeopampa - Marcabal hamlet and Bambamarca - Cajamarca" },
         { id: "seguridad_foco", icon: ShieldCheck, value: 100, suffix: "%", label: "SAFETY COMMITMENT", subtext: "Ethical and moral duty" },
         { id: "clientes_mercado", icon: Truck, value: 2, suffix: "+", label: "MARKET SECTORS", subtext: "Mining and sugar sectors supplied" },
@@ -86,15 +86,15 @@ export function MiningStats() {
   });
 
   return (
-    <section className="light-image relative  overflow-hidden bg-[linear-gradient(180deg,#f4efe6_0%,#ede4d7_100%)] py-24 text-zinc-800">
+    <section className="light-image relative  overflow-hidden bg-stone-100 py-24 text-zinc-800">
       <div
-        className="absolute inset-0 opacity-[0.12]"
+        className="absolute  inset-0 opacity-[0.12]"
         style={{
           backgroundImage: "radial-gradient(rgba(39,39,42,0.45) 0.6px, transparent 0.6px)",
           backgroundSize: "24px 24px",
         }}
       />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/55 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-black" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="mb-20 border-l-4 border-emerald-700 pl-6">
@@ -110,7 +110,7 @@ export function MiningStats() {
           </p>
         </div>
 
-        <div className="dark-image overflow-hidden rounded-[1.85rem] border border-stone-300 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.08),transparent_30%),linear-gradient(180deg,#171717_0%,#242424_58%,#2b2725_100%)] shadow-[0_28px_60px_-34px_rgba(24,24,27,0.34)]">
+        <div className="dark-image overflow-hidden rounded-[1.85rem] border border-stone-300 bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
           <div className="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-3">
           {copy.stats.map((stat, idx) => (
             <motion.div 

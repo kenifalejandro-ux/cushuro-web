@@ -4,7 +4,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import type { LucideIcon } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { ParallaxSection } from "./ParallaxSection";
@@ -20,7 +20,7 @@ type ProductIntroImage = {
 };
 
 export type ProductIntroCard = {
-  icon: LucideIcon;
+  icon: PhosphorIcon;
   iconClassName?: string;
   title: string;
   description?: string;

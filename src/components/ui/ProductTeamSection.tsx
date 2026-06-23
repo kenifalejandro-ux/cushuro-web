@@ -3,7 +3,7 @@
 
 "use client";
 
-import { Users } from "lucide-react";
+import { UsersThree } from "@phosphor-icons/react";
 import { motion } from "motion/react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
@@ -39,7 +39,7 @@ export default function ProductTeamSection({
   });
 
   return (
-    <section className="light-image relative overflow-hidden bg-white py-24">
+    <section className="light-image relative overflow-hidden bg-stone-100 py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-16">
         {/* Encabezado */}
         <motion.div
@@ -83,7 +83,7 @@ export default function ProductTeamSection({
                 </div>
 
                 <div className="flex items-center gap-3 rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-2.5">
-                  <Users className={`h-4 w-4 ${accentClassName}`} />
+                  <UsersThree className={`h-4 w-4 ${accentClassName}`} />
                   <span className={`text-2xl font-semibold tracking-tight ${accentClassName}`}>
                     {workers}
                   </span>
@@ -100,7 +100,7 @@ export default function ProductTeamSection({
             viewport={{ once: true }}
             className="md:col-span-2"
           >
-            <div className="dark-image rounded-[2rem] border border-zinc-200 bg-zinc-950 px-8 py-10 text-center shadow-[0_18px_60px_rgba(0,0,0,0.10)]">
+            <div className="dark-image rounded-[2rem] border border-zinc-200 bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] px-8 py-10 text-center shadow-[0_18px_60px_rgba(0,0,0,0.10)]">
               <div className="mx-auto mb-4 h-[3px] w-16 rounded-full bg-emerald-500" />
               <div className="mb-3 text-4xl font-semibold tracking-tight text-white md:text-5xl">
                 {totalValue}

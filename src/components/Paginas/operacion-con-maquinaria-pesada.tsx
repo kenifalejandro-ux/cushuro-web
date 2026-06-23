@@ -4,19 +4,18 @@
 
 import { motion } from "motion/react";
 import {
-  Construction,
-  TrendingUp,
+  Shovel,
+  Crane,
+  Toolbox,
   ShieldCheck,
   Wrench,
   Truck,
-  ShoppingCart,
   MapPin,
-  CheckCircle2,
-  Mountain,
-  AlertTriangle,
-  ClipboardCheck,
-  Users,
-} from "lucide-react";
+  CheckCircle,
+  Warning,
+  ClipboardText,
+  UsersThree,
+} from "@phosphor-icons/react";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -61,14 +60,14 @@ export default function OperacionMaquinaria() {
       },
       introCards: [
         {
-          icon: Construction,
-          iconClassName: "text-amber-700",
+          icon: Shovel,
+          iconClassName: "text-[#2d6e1a]",
           title: "Movimiento de Tierras",
           description:
             "Ejecutamos nivelacion, corte, relleno y conformacion de plataformas para operaciones mineras no metalicas.",
         },
         {
-          icon: ShoppingCart,
+          icon: Crane,
           iconClassName: "text-emerald-600",
           title: "Extraccion y Carguio",
           description:
@@ -82,7 +81,7 @@ export default function OperacionMaquinaria() {
             "Preparamos accesos, mantenemos vias internas y damos soporte logistico a la operacion diaria.",
         },
         {
-          icon: ShieldCheck,
+          icon: ClipboardText,
           iconClassName: "text-emerald-500",
           title: "Planificacion y Control",
           items: [
@@ -101,13 +100,13 @@ export default function OperacionMaquinaria() {
             title: "Movimiento de Tierras",
             description:
               "Nivelación, corte, relleno y conformación de plataformas para operación minera.",
-            icon: Mountain,
+            icon: Shovel,
           },
           {
             title: "Extracción y Carguío",
             description:
               "Operación controlada para extracción eficiente de material en cantera.",
-            icon: ShoppingCart,
+            icon: Crane,
           },
           {
             title: "Soporte Operativo",
@@ -125,12 +124,12 @@ export default function OperacionMaquinaria() {
           {
             name: "Cargadores frontales",
             description: "Equipos de alto rendimiento para operación continua en cantera.",
-            icon: Construction,
+            icon: Shovel,
           },
           {
             name: "Excavadoras hidráulicas",
             description: "Equipos de alto rendimiento para operación continua en cantera.",
-            icon: TrendingUp,
+            icon: Crane,
           },
           {
             name: "Volquetes de alto tonelaje",
@@ -140,7 +139,7 @@ export default function OperacionMaquinaria() {
           {
             name: "Equipos auxiliares de apoyo",
             description: "Equipos de alto rendimiento para operación continua en cantera.",
-            icon: ShieldCheck,
+            icon: Toolbox,
           },
         ],
       },
@@ -163,17 +162,17 @@ export default function OperacionMaquinaria() {
           {
             step: "02",
             description: "Selección estratégica del pool de maquinaria según tipo de material.",
-            icon: CheckCircle2,
+            icon: CheckCircle,
           },
           {
             step: "03",
             description: "Planificación de ciclos de operación y tiempos de ejecución.",
-            icon: ClipboardCheck,
+            icon: ClipboardText,
           },
           {
             step: "04",
             description: "Supervisión permanente por personal técnico especializado.",
-            icon: Users,
+            icon: UsersThree,
           },
         ],
       },
@@ -212,14 +211,14 @@ export default function OperacionMaquinaria() {
       },
       introCards: [
         {
-          icon: Construction,
-          iconClassName: "text-amber-700",
+          icon: Shovel,
+          iconClassName: "text-[#2d6e1a]",
           title: "Earthmoving",
           description:
             "We carry out leveling, cutting, filling, and platform shaping for non-metallic mining operations.",
         },
         {
-          icon: ShoppingCart,
+          icon: Crane,
           iconClassName: "text-emerald-600",
           title: "Extraction and Loading",
           description:
@@ -233,7 +232,7 @@ export default function OperacionMaquinaria() {
             "We prepare access routes, maintain internal roads, and provide logistics support for daily operations.",
         },
         {
-          icon: ShieldCheck,
+          icon: ClipboardText,
           iconClassName: "text-emerald-500",
           title: "Planning and Control",
           items: [
@@ -252,12 +251,12 @@ export default function OperacionMaquinaria() {
             title: "Earthmoving",
             description:
               "Leveling, cutting, filling, and platform shaping for mining operations.",
-            icon: Mountain,
+            icon: Shovel,
           },
           {
             title: "Extraction and Loading",
             description: "Controlled operation for efficient material extraction in the quarry.",
-            icon: ShoppingCart,
+            icon: Crane,
           },
           {
             title: "Operational Support",
@@ -275,12 +274,12 @@ export default function OperacionMaquinaria() {
           {
             name: "Front-end loaders",
             description: "High-performance equipment for continuous quarry operation.",
-            icon: Construction,
+            icon: Shovel,
           },
           {
             name: "Hydraulic excavators",
             description: "High-performance equipment for continuous quarry operation.",
-            icon: TrendingUp,
+            icon: Crane,
           },
           {
             name: "High-tonnage dump trucks",
@@ -290,7 +289,7 @@ export default function OperacionMaquinaria() {
           {
             name: "Auxiliary support equipment",
             description: "High-performance equipment for continuous quarry operation.",
-            icon: ShieldCheck,
+            icon: Toolbox,
           },
         ],
       },
@@ -313,17 +312,17 @@ export default function OperacionMaquinaria() {
           {
             step: "02",
             description: "Strategic selection of the equipment fleet according to material type.",
-            icon: CheckCircle2,
+            icon: CheckCircle,
           },
           {
             step: "03",
             description: "Planning of operation cycles and execution times.",
-            icon: ClipboardCheck,
+            icon: ClipboardText,
           },
           {
             step: "04",
             description: "Permanent supervision by specialized technical personnel.",
-            icon: Users,
+            icon: UsersThree,
           },
         ],
       },
@@ -362,7 +361,7 @@ export default function OperacionMaquinaria() {
   }, []);
 
   return (
-    <div className="light-image min-h-screen bg-white">
+    <div className="light-image min-h-screen bg-stone-100">
       <PageSEO pageId="operacion-con-maquinaria-pesada" />
 
       <ProductIntroSection
@@ -375,7 +374,7 @@ export default function OperacionMaquinaria() {
 
       <FeatureCardsSection
         sectionRef={machineryRef}
-        sectionClassName="light-image py-24 bg-white relative"
+        sectionClassName="light-image py-24 bg-stone-100 relative"
         eyebrow={copy.operations.eyebrow}
         title={copy.operations.title}
         items={copy.operations.items.map(({ title, description, icon: Icon }) => ({
@@ -389,7 +388,7 @@ export default function OperacionMaquinaria() {
         variant="detailed"
       />
 
-      <section className="dark-image py-24 max-w-7x relative overflow-hidden b2b-dark-section">
+      <section className="dark-image py-24 max-w-7x relative overflow-hidden b2b-dark-section bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -480,7 +479,7 @@ export default function OperacionMaquinaria() {
         }))}
       />
 
-      <section className="dark-image py-24 b2b-dark-section relative overflow-hidden">
+      <section className="dark-image py-24 b2b-dark-section relative overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -491,11 +490,11 @@ export default function OperacionMaquinaria() {
               className="text-center mb-12"
             >
               <div className="inline-flex items-center gap-3 mb-4">
-                <AlertTriangle className="w-6 h-6 text-yellow-400" />
+                <Warning className="w-6 h-6 text-yellow-400" />
                 <span className="text-yellow-400 font-medium uppercase tracking-wider text-sm">
                   {copy.safety.badge}
                 </span>
-                <AlertTriangle className="w-6 h-6 text-yellow-400" />
+                <Warning className="w-6 h-6 text-yellow-400" />
               </div>
               <h2 className="b2b-section-title-dark mb-6">{copy.safety.title}</h2>
             </motion.div>

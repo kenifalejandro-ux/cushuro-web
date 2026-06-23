@@ -8,10 +8,10 @@ import {
   MapPin,
   Leaf,
   ShieldCheck,
-  Pickaxe,
-  Mountain,
-  Layers,
-} from "lucide-react";
+  Hammer,
+  Mountains,
+  Stack,
+} from "@phosphor-icons/react";
 
 import CommercialCTA from "../global/CommercialCTA";
 import PageSEO from "../global/PageSEO";
@@ -38,6 +38,7 @@ export default function CalAgricola() {
         },
       ],
       intro: {
+        eyebrow: "HIDRÓXIDO DE CALCIO",
         title: "Producción de Cal Agrícola – Hidróxido de Calcio (Ca(OH)₂)",
         description:
           "La cal agrícola de alta pureza se obtiene mediante la hidratación controlada del Óxido de Calcio (CaO), producido en nuestros hornos industriales a partir de piedra caliza seleccionada de concesión propia. El proceso garantiza alta reactividad química, estabilidad granulométrica y desempeño técnico para aplicaciones ambientales y mineras.",
@@ -45,12 +46,12 @@ export default function CalAgricola() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Concesiones Propias",
           description: "Abastecimiento directo de piedra caliza desde cantera.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Control de Materia Prima",
           description: "Clasificación mineral para optimizar el rendimiento térmico.",
@@ -110,7 +111,7 @@ export default function CalAgricola() {
             titulo: "Extracción y Selección de Caliza",
             descripcion:
               "Materia prima proveniente de cantera propia, seleccionada por su alto contenido de carbonato de calcio para garantizar eficiencia en el proceso de transformación.",
-            icon: Pickaxe,
+            icon: Hammer,
           },
           {
             etapa: "02",
@@ -124,7 +125,7 @@ export default function CalAgricola() {
             titulo: "Hidratación Controlada",
             descripcion:
               "Proceso técnico de adición controlada de agua para convertir el CaO en Hidróxido de Calcio (Ca(OH)₂), asegurando alta reactividad y estabilidad química.",
-            icon: Layers,
+            icon: Stack,
           },
           {
             etapa: "04",
@@ -195,6 +196,7 @@ export default function CalAgricola() {
         },
       ],
       intro: {
+        eyebrow: "CALCIUM HYDROXIDE",
         title: "Agricultural Lime Production – Calcium Hydroxide (Ca(OH)₂)",
         description:
           "High-purity agricultural lime is obtained through the controlled hydration of Calcium Oxide (CaO), produced in our industrial kilns from selected limestone from our own concession. The process ensures high chemical reactivity, granulometric stability, and technical performance for environmental and mining applications.",
@@ -202,12 +204,12 @@ export default function CalAgricola() {
       introCards: [
         {
           icon: Factory,
-          iconClassName: "text-amber-700",
+          iconClassName: "text-[#2d6e1a]",
           title: "Owned concessions",
           description: "Direct limestone supply from our quarry.",
         },
         {
-          icon: Mountain,
+          icon: Mountains,
           iconClassName: "text-emerald-600",
           title: "Raw material control",
           description: "Mineral classification to optimize thermal performance.",
@@ -267,7 +269,7 @@ export default function CalAgricola() {
             titulo: "Limestone extraction and selection",
             descripcion:
               "Raw material from our own quarry, selected for its high calcium carbonate content to ensure efficiency in the transformation process.",
-            icon: Pickaxe,
+            icon: Hammer,
           },
           {
             etapa: "02",
@@ -281,7 +283,7 @@ export default function CalAgricola() {
             titulo: "Controlled hydration",
             descripcion:
               "Technical process of controlled water addition to convert CaO into Calcium Hydroxide (Ca(OH)₂), ensuring high reactivity and chemical stability.",
-            icon: Layers,
+            icon: Stack,
           },
           {
             etapa: "04",
@@ -347,6 +349,7 @@ export default function CalAgricola() {
 
       <ProductIntroSection
         images={copy.images}
+        eyebrow={copy.intro.eyebrow}
         title={copy.intro.title}
         description={copy.intro.description}
         cards={copy.introCards}

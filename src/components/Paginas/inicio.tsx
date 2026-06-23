@@ -163,28 +163,62 @@ export default function Inicio() {
         {/* ================= Productos GRID ================= */}
         <ServicesGrid />
 
-        {/* ================= CARRUSEL TEXT ================= */}
+        {/* ================= CARRUSEL TEXT (full width) ================= */}
         <LazyOnView minHeight={240}>
           <Suspense fallback={<div className="h-[240px]" />}>
-            <CarouselText />
+            <div className="relative w-screen ml-[calc(50%-50vw)]">
+              <CarouselText />
+            </div>
           </Suspense>
         </LazyOnView>
-        {/* ================= UBICACIÓN MAPS================= */}
+          {/* ================= UBICACIÓN MAPS================= */}
+        
+                <LazyOnView minHeight={560}>
+                  <Suspense fallback={<div className="mt-12 h-[520px] md:h-[640px]" />}>
+                    <div className="relative mt-12 w-screen ml-[calc(50%-50vw)]">
+                      {/* Header estilo Portfolio: alineado a la izquierda con líneas decorativas */}
+                      <div className="mx-auto mb-10 max-w-7xl px-6 lg:px-12">
+                        <div className="mb-5 flex items-center gap-4">
+                          <span className="h-px w-10 bg-[#1ec009]" />
+                          <span className="font-mono text-[10px] uppercase tracking-[0.34em] text-[#1ec009]">
+                            Sedes &amp; cobertura
+                          </span>
+                          <span className="h-px w-6 bg-[#1ec009]/30" />
+                        </div>
 
-        <LazyOnView minHeight={560}>
-          <Suspense fallback={<div className="mt-12 h-[520px] md:h-[640px]" />}>
-            <LazyCompanyMapHybrid
-              className="mt-12 pb-20 "
-              title={copy.map.title}
-              subtitle={copy.map.subtitle}
-              locations={copy.locations}
-              center={[-78.3, -7.2]}
-              projectionScale={1300}
-              primaryColor="#0e5814"
-              mapClassName="h-[520px] md:h-[640px]"
-            />
-          </Suspense>
-        </LazyOnView>
+                        <div className="flex flex-wrap items-end justify-between gap-4">
+                          <h2 className="text-4xl font-semibold tracking-[-0.02em] text-zinc-900 lg:text-6xl">
+                            {copy.map.title}
+                          </h2>
+                          <div className="flex flex-col items-end gap-1">
+                            <span className="font-mono text-3xl font-light leading-none text-[#1ec009]">
+                              {String(copy.locations.length).padStart(2, "0")}
+                            </span>
+                            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-zinc-400">
+                              sedes
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="mt-4 flex items-center gap-5">
+                          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-zinc-500">
+                            {copy.map.subtitle}
+                          </p>
+                          <span className="h-px flex-1 bg-zinc-300" />
+                        </div>
+                      </div>
+
+                      <LazyCompanyMapHybrid
+                        locations={copy.locations}
+                        center={[-78.3, -7.2]}
+                        projectionScale={1300}
+                        primaryColor="#0e5814"
+                        mapClassName="h-[70vh] md:h-[80vh]"
+                      />
+                    </div>
+                  </Suspense>
+                </LazyOnView>
+       
       </div>
     </div>
   );

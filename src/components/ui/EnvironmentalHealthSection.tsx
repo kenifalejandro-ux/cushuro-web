@@ -3,12 +3,12 @@
 
 "use client";
 
-import type { LucideIcon } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
 import { motion } from "motion/react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
 export type EnvironmentalHealthItem = {
-  icon: LucideIcon;
+  icon: PhosphorIcon;
   title: string;
   description: string;
 };

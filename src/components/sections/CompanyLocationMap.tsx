@@ -158,7 +158,7 @@ function CompanyTooltipMarker({
 
               {/* Badge estado */}
               {location.status && (
-                <span className="mt-2 inline-block rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
+                <span className="mt-2 inline-block rounded-full bg-[#4fa81e]/10 px-2 py-0.5 text-[10px] font-semibold text-[#2d6e1a]">
                   {location.status}
                 </span>
               )}
@@ -281,7 +281,7 @@ export default function CompanyLocationMap({
       ) : null}
 
       <div
-        className={`dark-image relative w-full overflow-hidden rounded-[2rem] bg-blue-900
+        className={`dark-image relative w-full overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]
         shadow-2xl ${mapClassName ?? "h-[520px] md:h-[680px]"}`}
       >
         <div className="absolute left-6 top-6 z-20 flex flex-col gap-2 ">

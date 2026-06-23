@@ -65,15 +65,14 @@ export default function Contact({ className = "" }: ContactProps) {
     return () => cleanup();
   }, []);
 
-  // Input minimal: línea inferior, sin caja. Foco esmeralda.
   const fieldClasses =
-    "peer h-12 w-full border-0 border-b border-white/12 bg-transparent px-0 text-sm text-stone-100 placeholder:text-stone-500 transition-colors focus:border-emerald-500/80 focus:outline-none focus:ring-0";
+    "peer h-12 w-full border-0 border-b border-white/12 bg-transparent px-0 text-sm text-stone-100 placeholder:text-stone-500 transition-colors focus:border-[#4fa81e]/80 focus:outline-none focus:ring-0";
 
   return (
     <div className={`relative z-30 ${className}`}>
-      <section className="dark-image relative -mt-30 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,#1a1a1d_0%,#201f22_60%,#211d1b_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.7)] sm:p-10">
+      <section className="dark-image relative -mt-10 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,#1a1a1d_0%,#201f22_60%,#211d1b_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.7)] sm:p-10">
         {/* Hairline de acento superior */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/60 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/55 to-transparent" />
 
         {/* Encabezado - punto latente*/}
         <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.26em] text-stone-400">
@@ -83,7 +82,7 @@ export default function Contact({ className = "" }: ContactProps) {
 
         <h3 className="mt-5 max-w-md text-[22px] font-semibold leading-snug tracking-[-0.01em] text-stone-100">
           {copy.titleStart}{" "}
-          <span className="text-emerald-400">{copy.titleHighlight}</span>{" "}
+          <span className="text-[#6db820]">{copy.titleHighlight}</span>{" "}
           {copy.titleEnd}
         </h3>
 
@@ -183,7 +182,7 @@ export default function Contact({ className = "" }: ContactProps) {
               placeholder={copy.fields.message}
               rows={3}
               required
-              className="w-full resize-none border-0 border-b border-white/12 bg-transparent px-0 py-3 text-sm text-stone-100 placeholder:text-stone-500 transition-colors focus:border-emerald-500/80 focus:outline-none focus:ring-0"
+              className="w-full resize-none border-0 border-b border-white/12 bg-transparent px-0 py-3 text-sm text-stone-100 placeholder:text-stone-500 transition-colors focus:border-[#4fa81e]/80 focus:outline-none focus:ring-0"
             />
           </div>
 
@@ -217,7 +216,7 @@ export default function Contact({ className = "" }: ContactProps) {
 
             <button
               type="submit"
-              className="group order-1 inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-emerald-600 px-8 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-all hover:bg-emerald-500 hover:shadow-[0_14px_34px_-14px_rgba(16,185,129,0.7)] sm:order-2"
+              className="group order-1 inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-[#1d3461] px-8 text-[13px] font-semibold uppercase tracking-[0.08em] text-white transition-all hover:bg-[#1d3461]/80 hover:shadow-[0_14px_34px_-14px_rgba(29,52,97,0.55)] sm:order-2"
             >
               {copy.actions.submit}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2.2} />

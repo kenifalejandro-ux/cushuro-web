@@ -3,7 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef } from "react";
-import { Users, BookOpen, Heart, Trophy } from "lucide-react";
+import { UsersThree, BookOpen, Heart, Trophy } from "@phosphor-icons/react";
 
 import { LCPImage } from "../ui/LCPImage";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
@@ -50,7 +50,7 @@ export default function HeroResponsabilidadSocial() {
   return (
     <section
       ref={heroRef}
-      className="dark-image relative min-h-[78vh] w-full overflow-hidden bg-black"
+      className="dark-image relative min-h-[78vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
     >
       {/* Imagen principal con zoom sutil */}
         <LCPImage
@@ -86,19 +86,19 @@ export default function HeroResponsabilidadSocial() {
             {/* Badges / iconos */}
             <div className="mining-hero-badge-list">
               <div className="reveal-badge mining-hero-badge">
-                <BookOpen size={18} />
+                <BookOpen size={18} className="text-emerald-400" />
                 <span>{copy.badges[0]}</span>
               </div>
               <div className="reveal-badge mining-hero-badge">
-                <Heart size={18} />
+                <Heart size={18} className="text-emerald-400" />
                 <span>{copy.badges[1]}</span>
               </div>
               <div className="reveal-badge mining-hero-badge">
-                <Users size={18} />
+                <UsersThree size={18} className="text-emerald-400" />
                 <span>{copy.badges[2]}</span>
               </div>
               <div className="reveal-badge mining-hero-badge">
-                <Trophy size={18} />
+                <Trophy size={18} className="text-emerald-400" />
                 <span>{copy.badges[3]}</span>
               </div>
             </div>

@@ -7,11 +7,11 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   GraduationCap,
-  Sprout,
-  Users,
+  Plant,
+  UsersThree,
   Trophy,
-  Quote,
-} from "lucide-react";
+  Quotes,
+} from "@phosphor-icons/react";
 import PageSEO from "../global/PageSEO";
 import PilaresGrid from "../ui/PilaresGrid";
 import ReorderImageStack from "../ui/ReorderImageStack";
@@ -75,7 +75,7 @@ export const ResponsabilidadSocial: React.FC = () => {
             ],
           },
           {
-            icon: Users,
+            icon: UsersThree,
             title: "Cultura e Interculturalidad",
             desc: "Fortalecemos las raíces locales y la convivencia intercultural regional.",
             commitments: [
@@ -84,7 +84,7 @@ export const ResponsabilidadSocial: React.FC = () => {
             ],
           },
           {
-            icon: Sprout,
+            icon: Plant,
             title: "Medio Ambiente",
             desc: "Defender el entorno natural es parte esencial de nuestra responsabilidad social.",
             commitments: ["Preservar y defender el medio ambiente."],
@@ -162,7 +162,7 @@ export const ResponsabilidadSocial: React.FC = () => {
             ],
           },
           {
-            icon: Users,
+            icon: UsersThree,
             title: "Culture and Interculturality",
             desc: "We strengthen local roots and regional intercultural coexistence.",
             commitments: [
@@ -171,7 +171,7 @@ export const ResponsabilidadSocial: React.FC = () => {
             ],
           },
           {
-            icon: Sprout,
+            icon: Plant,
             title: "Environment",
             desc: "Protecting the natural environment is an essential part of our social responsibility.",
             commitments: ["Preserve and protect the environment."],
@@ -302,7 +302,7 @@ export const ResponsabilidadSocial: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="light-image bg-white text-zinc-900 font-light overflow-hidden">
+    <div ref={containerRef} className="light-image bg-stone-100 text-zinc-900 font-light overflow-hidden">
       <PageSEO pageId="responsabilidad-social" />
 
       <section className="relative min-h-[80vh] flex flex-col items-center justify-center px-6 py-24 text-center">
@@ -319,7 +319,7 @@ export const ResponsabilidadSocial: React.FC = () => {
         </div>
       </section>
 
-      <section className="light-image reveal-social bg-white px-6 py-24 md:py-32">
+      <section className="light-image reveal-social bg-stone-100 px-6 py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2 md:gap-20">
           <div className="order-1 space-y-8">
             <div className="inline-flex items-center gap-3 rounded-full border border-zinc-200/80 bg-white px-4 py-2 shadow-[0_10px_24px_rgba(24,24,27,0.06)]">
@@ -360,7 +360,7 @@ export const ResponsabilidadSocial: React.FC = () => {
 
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                 <div className="rounded-full border border-white/20 bg-white/10 p-6 backdrop-blur-[2px]">
-                  <Users className="h-12 w-12 text-white/70 md:h-16 md:w-16" />
+                  <UsersThree className="h-12 w-12 text-white/70 md:h-16 md:w-16" />
                 </div>
               </div>
             </div>
@@ -368,7 +368,7 @@ export const ResponsabilidadSocial: React.FC = () => {
         </div>
       </section>
 
-      <section className="dark-image relative min-h-screen rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-zinc-800">
+      <section className="dark-image relative min-h-screen rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
         <h2 className="text-center text-4xl font-light text-emerald-600 mb-20 uppercase tracking-widest reveal-social">
           {copy.pillars.title}
         </h2>
@@ -410,9 +410,9 @@ export const ResponsabilidadSocial: React.FC = () => {
         <PilaresGrid />
       </section>
 
-      <section className="dark-image py-24 px-6 bg-zinc-800 text-white overflow-hidden relative reveal-social">
+      <section className="dark-image py-24 px-6 bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] text-white overflow-hidden relative reveal-social">
         <div className="max-w-5xl mx-auto text-center relative z-10 space-y-10">
-          <Quote className="w-12 h-12 text-emerald-500/40 mx-auto" />
+          <Quotes className="w-12 h-12 text-emerald-500/40 mx-auto" />
           <h2 className="text-3xl md:text-5xl font-light leading-tight">{copy.quote}</h2>
         </div>
       </section>

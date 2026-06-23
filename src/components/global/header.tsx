@@ -2,7 +2,8 @@
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Globe, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { Globe, Envelope, MapPin, Phone } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -282,7 +283,7 @@ export function Header({
                     href={`mailto:${contactInfo.email}`}
                     className="hidden items-center gap-2 transition-colors hover:text-emerald-700 sm:flex"
                   >
-                    <Mail className="h-3 w-3 shrink-0 text-emerald-700" />
+                    <Envelope className="h-3 w-3 shrink-0 text-emerald-700" />
                     <span className="whitespace-nowrap">{contactInfo.email}</span>
                   </a>
                 </>
@@ -596,7 +597,7 @@ export function Header({
                   onClick={closeModal}
                   className="flex items-start gap-4 border border-white/10 p-4 transition-colors hover:border-emerald-600/50"
                 >
-                  <Mail className="h-5 w-5 text-emerald-700" />
+                  <Envelope className="h-5 w-5 text-emerald-700" />
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
                       {copy.email}

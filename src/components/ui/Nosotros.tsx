@@ -2,9 +2,15 @@
 
 "use client";
 
+import { Truck, UsersThree, Mountains, Leaf, HardHat, Handshake } from "@phosphor-icons/react";
+
 import { LaEmpresaSection } from "../sections/LaEmpresaSection";
 import { ImageStack } from "../ui/ImageStack";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
+
+// Íconos temáticos por posición (mismo orden en es/en)
+const EXPERIENCE_ICONS = [Truck, UsersThree, Mountains];
+const STANDARDS_ICONS = [Leaf, HardHat, Handshake];
 
 export default function Nosotros() {
   const copy = useLocalizedContent({
@@ -71,33 +77,43 @@ export default function Nosotros() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-[1.75rem] border border-zinc-200 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.18)]">
-              <h3 className="text-base font-medium tracking-[-0.02em] text-zinc-950">
+            <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-900 p-6 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.18)]">
+              <h3 className="text-base font-medium tracking-[-0.02em] text-zinc-50">
                 {copy.experienceTitle}
               </h3>
 
-              <ul className="mt-4 space-y-3 text-zinc-600">
-                {copy.experienceItems.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-3 h-1.5 w-1.5 rounded-full bg-zinc-400" />
-                    <span>{item}</span>
-                  </li>
-                ))}
+              <ul className="mt-4 space-y-3 text-zinc-300">
+                {copy.experienceItems.map((item, i) => {
+                  const Icon = EXPERIENCE_ICONS[i] ?? Truck;
+                  return (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#4fa81e]/10 text-[#2d6e1a]">
+                        <Icon size={17} weight="duotone" />
+                      </span>
+                      <span className="pt-1">{item}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
-            <div className="rounded-[1.75rem] border border-zinc-200 bg-white p-6 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.18)]">
-              <h3 className="text-base font-medium tracking-[-0.02em] text-zinc-950">
+            <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-900 p-6 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.18)]">
+              <h3 className="text-base font-medium tracking-[-0.02em] text-zinc-50">
                 {copy.standardsTitle}
               </h3>
 
-              <ul className="mt-4 space-y-3 text-zinc-600">
-                {copy.standardsItems.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-3 h-1.5 w-1.5 rounded-full bg-zinc-400" />
-                    <span>{item}</span>
-                  </li>
-                ))}
+              <ul className="mt-4 space-y-3 text-zinc-300">
+                {copy.standardsItems.map((item, i) => {
+                  const Icon = STANDARDS_ICONS[i] ?? Leaf;
+                  return (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#4fa81e]/10 text-[#2d6e1a]">
+                        <Icon size={17} weight="duotone" />
+                      </span>
+                      <span className="pt-1">{item}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>

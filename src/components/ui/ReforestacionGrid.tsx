@@ -3,7 +3,7 @@
 "use client";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Leaf, ShieldCheck, Users } from "lucide-react";
+import { Leaf, ShieldCheck, UsersThree } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
@@ -41,7 +41,7 @@ export default function ReforestacionGrid() {
           description:
             "Participación activa en el cuidado del medio ambiente a través de programas de limpieza y conservación del medio ambiente.",
           image: "/img-medio-ambiente/reforestacion-activa/limpieza",
-          icon: Users,
+          icon: UsersThree,
         },
       ],
     },
@@ -70,7 +70,7 @@ export default function ReforestacionGrid() {
           description:
             "Active environmental care through cleanup and conservation programs developed with the community.",
           image: "/img-medio-ambiente/reforestacion-activa/limpieza",
-          icon: Users,
+          icon: UsersThree,
         },
       ],
     },
@@ -173,7 +173,7 @@ export default function ReforestacionGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="dark-image py-32 px-6 bg-zinc-800 text-white">
+    <section ref={sectionRef} className="dark-image py-32 px-6 bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] text-white">
       <div className="max-w-7xl mx-auto">
         <div ref={headingRef} className="mb-24 text-center space-y-4">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight">{copy.title}</h2>

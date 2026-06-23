@@ -1,6 +1,6 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 
 import { LCPImage } from "./LCPImage";
@@ -17,7 +17,7 @@ type Props = {
   imageWidth?: number;
   imageHeight?: number;
   sizes?: string;
-  icon?: LucideIcon;
+  icon?: PhosphorIcon;
   showColorAlways?: boolean;
 };
 

@@ -105,7 +105,7 @@ export function LaEmpresaSection({
               {imageElement}
             </div>
 
-            <div className="absolute -bottom-5 left-6  bg-stone-800 px-4 py-2 text-[10px] font-mono tracking-[0.25em] text-stone-100 uppercase shadow-sm">
+            <div className="absolute -bottom-5 left-6  bg-stone-800 px-4 py-2 text-[10px] font-mono tracking-[0.25em] text-[#6db820] uppercase shadow-sm">
               Operación minera / Perú
             </div>
           </div>
@@ -114,8 +114,8 @@ export function LaEmpresaSection({
           <div className="flex flex-col space-y-8">
             <div className="space-y-5">
               <div className="flex items-center gap-4">
-                <div className="reveal-item h-px flex-1 bg-stone-300" />
-                <span className="reveal-item font-mono text-[11px] tracking-[0.35em] uppercase text-stone-500">
+                <div className="reveal-item h-px flex-1 bg-[#6db820]" />
+                <span className="reveal-item font-mono text-[11px] tracking-[0.35em] uppercase text-[#6db820]">
                   {label}
                 </span>
               </div>

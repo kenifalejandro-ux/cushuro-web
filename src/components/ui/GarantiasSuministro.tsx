@@ -5,7 +5,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CheckCircle2, Flame, ShieldCheck, Truck } from "lucide-react";
+import { CheckCircle, Flame, ShieldCheck, Truck } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
@@ -31,7 +31,7 @@ export default function GarantiasSuministro() {
         },
         {
           icon: Flame,
-          accent: "bg-amber-500",
+          accent: "bg-[#4fa81e]",
           tag: "OPERACIÓN 24/7",
           title: "Continuidad Operativa Ininterrumpida",
           description:
@@ -69,7 +69,7 @@ export default function GarantiasSuministro() {
         },
         {
           icon: Flame,
-          accent: "bg-amber-500",
+          accent: "bg-[#4fa81e]",
           tag: "24/7 OPERATION",
           title: "Uninterrupted Operational Continuity",
           description:
@@ -135,9 +135,9 @@ export default function GarantiasSuministro() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative overflow-hidden bg-[linear-gradient(180deg,#f4efe6_0%,#ede4d7_100%)] py-24 md:py-32"
+      className="light-image relative overflow-hidden bg-stone-100 py-24 md:py-32"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-700/40 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/40 to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
@@ -151,7 +151,7 @@ export default function GarantiasSuministro() {
           <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 md:text-5xl mb-4">
             {copy.title}
           </h2>
-          <p className="text-lg text-zinc-600 leading-relaxed max-w-3xl">
+          <p className="text-lg text-zinc-900 leading-relaxed max-w-3xl">
             {copy.subtitle}
           </p>
         </div>
@@ -169,7 +169,7 @@ export default function GarantiasSuministro() {
                   <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${card.accent} text-white shadow-md`}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <span className="mt-1 font-mono text-[10px] tracking-[0.28em] text-zinc-400 uppercase">
+                  <span className="mt-1 font-mono text-[10px] tracking-[0.28em] text-zinc-900 uppercase">
                     {card.tag}
                   </span>
                 </div>
@@ -185,7 +185,7 @@ export default function GarantiasSuministro() {
         </div>
 
         {/* Stats bar */}
-        <div className="dark-image garantia-stats-grid grid grid-cols-3 divide-x divide-zinc-300 rounded-2xl border border-zinc-300 bg-zinc-950 overflow-hidden">
+        <div className="dark-image garantia-stats-grid grid grid-cols-3 divide-x divide-zinc-300 rounded-2xl border border-zinc-300 bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] overflow-hidden">
           {copy.stats.map((stat) => (
             <div key={stat.label} className="garantia-stat px-8 py-8 text-center">
               <div className="text-4xl font-black font-mono text-emerald-400 tracking-tight mb-1">
@@ -201,7 +201,7 @@ export default function GarantiasSuministro() {
 
         {/* Guarantee note */}
         <div className="mt-8 flex items-start gap-3 rounded-xl border border-emerald-700/30 bg-emerald-50 px-6 py-4">
-          <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-600 mt-0.5" />
+          <CheckCircle className="w-5 h-5 shrink-0 text-emerald-600 mt-0.5" />
           <p className="text-sm text-emerald-800 leading-relaxed">{copy.guarantee}</p>
         </div>
       </div>

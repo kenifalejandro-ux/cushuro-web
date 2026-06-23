@@ -3,20 +3,20 @@
 
 "use client";
 
-import type { LucideIcon } from "lucide-react";
+import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
 import { motion } from "motion/react";
 import type { Ref } from "react";
 
 export type SafetyComplianceItem = {
   title: string;
   description: string;
-  icon: LucideIcon;
+  icon: PhosphorIcon;
   iconClassName?: string;
 };
 
 export type SafetyComplianceStandard = {
   label: string;
-  icon?: LucideIcon;
+  icon?: PhosphorIcon;
   iconClassName?: string;
 };
 

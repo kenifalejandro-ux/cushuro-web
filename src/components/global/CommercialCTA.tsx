@@ -1,6 +1,7 @@
 /**client/src/components/global/ComercialCTA.tsx */
 
-import { ArrowRight, BadgeCheck, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { SealCheck, ChatCircle } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
@@ -44,7 +45,7 @@ export default function CommercialCTA({
 
   return (
    <section
-      className="light-image relative overflow-hidden bg-[#ece5d9] py-24 md:py-32"
+      className="light-image relative overflow-hidden bg-stone-100 py-24 md:py-32"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-700/45 to-transparent" />
 
@@ -59,7 +60,7 @@ export default function CommercialCTA({
               { /** atenciion comercial  */}
               
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-stone-300 bg-blue-950 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-stone-100">
-                <BadgeCheck className="h-4 w-4" />
+                <SealCheck className="h-4 w-4" />
                 {copy.badge}
               </div>
 
@@ -86,7 +87,7 @@ export default function CommercialCTA({
             </div>
 
             {/* Lado derecho */}
-            <div className="dark-image relative bg-blue-950">
+            <div className="dark-image relative bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
               <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/45 to-transparent" />
 
               <div className="relative flex h-full flex-col justify-between px-7 py-10 sm:px-10 sm:py-12 lg:px-10 lg:py-14">
@@ -119,7 +120,7 @@ export default function CommercialCTA({
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-500/70 bg-stone-900 px-5 py-3.5 text-sm font-semibold text-stone-100 transition duration-300 hover:bg-stone-800"
                   >
-                    <MessageCircle className="h-4 w-4" />
+                    <ChatCircle className="h-4 w-4" />
                     {copy.whatsappButton}
                   </a>
                 </div>

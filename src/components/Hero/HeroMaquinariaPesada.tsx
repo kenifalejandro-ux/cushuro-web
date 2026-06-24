@@ -50,8 +50,8 @@ export function HeroMaquinariaPesada() {
       thumbnailAlt={copy.thumbnailAlt}
       thumbnailLabel={copy.thumbnailLabel}
       badges={[
-        { icon: <Factory size={22} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[0] },
-        { icon: <Hammer size={22} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[1] },
+        { icon: <Factory size={18} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[0] },
+        { icon: <Hammer size={18} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[1] },
       ]}
     />
   );

@@ -80,9 +80,9 @@ export function HeroImpact({
     : [];
 
   const titleFontSize = compactTitle
-    ? "clamp(2.5rem, 5.5vw, 4.5rem)"
-    : "clamp(3rem, 7vw, 5.5rem)";
-  const titleLineHeight = compactTitle ? 1.05 : 1;
+    ? "clamp(1.6rem, 3.5vw, 2.5rem)"
+    : "clamp(1.875rem, 4.5vw, 3rem)";
+  const titleLineHeight = compactTitle ? 1.1 : 1.05;
   const titleLetterSpacing = compactTitle ? "-0.04em" : "-0.05em";
   const titleMaxWidth = compactTitle ? "20ch" : "18ch";
 
@@ -116,11 +116,13 @@ export function HeroImpact({
         1.8
       );
 
-      timeline.to(
-        ".badge-item",
-        { opacity: 1, transform: "scale(1)", duration: 0.6, stagger: 0.15, ease: "back.out" },
-        2.2
-      );
+      if (badges.length > 0) {
+        timeline.to(
+          ".badge-item",
+          { opacity: 1, transform: "scale(1)", duration: 0.6, stagger: 0.15, ease: "back.out" },
+          2.2
+        );
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -169,7 +171,7 @@ export function HeroImpact({
         heroRef.current = node;
         sectionRef?.(node);
       }}
-      className="dark-image relative min-h-[90vh] w-full overflow-hidden bg-[#0a0a09]"
+      className="dark-image relative min-h-[90vh] xl:min-h-screen 2xl:min-h-[90vh] w-full overflow-hidden bg-[#0a0a09]"
       style={{ background: "#ebebd9" }}
     >
       {/* ATMÓSFERA (partículas + Ken Burns + luz) */}
@@ -235,8 +237,8 @@ export function HeroImpact({
       />
 
       {/* CONTENIDO */}
-      <div className="hero-content relative z-30 flex min-h-[85vh] items-center">
-        <div className="mx-auto max-w-7xl px-6 w-full py-20">
+      <div className="hero-content relative z-30 flex min-h-[85vh] xl:min-h-screen 2xl:min-h-[85vh] items-center">
+        <div className="mx-auto max-w-7xl px-6 w-full py-20 mt-8 xl:mt-10 2xl:mt-14">
           <div style={{ maxWidth: "50rem", display: "flex", flexDirection: "column", gap: "2rem" }}>
             {/* EYEBROW */}
             <div style={{ display: "inline-flex", alignItems: "center", gap: "0.75rem", width: "fit-content" }}>
@@ -330,7 +332,7 @@ export function HeroImpact({
 
             {/* BADGES */}
             {badges.length > 0 && (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "1.25rem", marginTop: "1rem" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", marginTop: "0.75rem" }}>
                 {badges.map((badge, idx) => (
                   <div
                     key={idx}
@@ -338,14 +340,14 @@ export function HeroImpact({
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
-                      gap: "0.75rem",
-                      borderRadius: "12px",
-                      border: "1.5px solid rgba(16, 185, 129, 0.55)",
+                      gap: "0.5rem",
+                      borderRadius: "9px",
+                      border: "1px solid rgba(16, 185, 129, 0.5)",
                       background: "linear-gradient(135deg, rgba(12, 20, 17, 0.92) 0%, rgba(9, 15, 13, 0.92) 100%)",
-                      boxShadow: "0 4px 16px rgba(0, 0, 0, 0.35)",
-                      padding: "0.75rem 1.25rem",
+                      boxShadow: "0 2px 10px rgba(0, 0, 0, 0.3)",
+                      padding: "0.4rem 0.8rem",
                       backdropFilter: "blur(6px)",
-                      fontSize: "0.95rem",
+                      fontSize: "0.8rem",
                       color: "#ffffff",
                       fontWeight: 600,
                       opacity: 0,

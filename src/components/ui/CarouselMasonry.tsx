@@ -187,20 +187,20 @@ export default function CarouselMasonry({
         </div>
 
         {/* Cuerpo: destacado + roster */}
-        <div className="grid items-stretch gap-6 lg:grid-cols-[1.45fr_minmax(0,1fr)]">
+        <div className="grid min-w-0 items-stretch gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
           {/* Panel destacado */}
           <div
             ref={featuredRef}
-            className="relative order-2 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-sm lg:order-1 lg:p-12"
+            className="relative order-2 min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm sm:p-8 lg:order-1 lg:p-12"
           >
             {/* Hexágono esmeralda con símbolo de mineral */}
-            <div className="flex items-start gap-6">
+            <div className="flex items-start gap-4 sm:gap-6">
               <div
                 data-fade
-                className="relative flex h-24 w-24 flex-shrink-0 items-center justify-center bg-gradient-to-br from-[#10b981] to-[#059669] shadow-2xl shadow-emerald-900/40"
+                className="relative flex h-16 w-16 flex-shrink-0 items-center justify-center bg-gradient-to-br from-[#10b981] to-[#059669] shadow-2xl shadow-emerald-900/40 sm:h-24 sm:w-24"
                 style={{ clipPath: HEX_CLIP }}
               >
-                <span className="font-['Rajdhani',sans-serif] text-4xl font-bold leading-none text-white">
+                <span className="font-['Rajdhani',sans-serif] text-2xl font-bold leading-none text-white sm:text-4xl">
                   {symbol}
                 </span>
               </div>
@@ -223,7 +223,7 @@ export default function CarouselMasonry({
                 </div>
                 <h3
                   data-fade
-                  className="font-['Rajdhani',sans-serif] text-2xl font-bold uppercase leading-tight tracking-[0.01em] text-white lg:text-3xl"
+                  className="font-['Rajdhani',sans-serif] text-xl font-bold uppercase leading-tight tracking-[0.01em] text-white [overflow-wrap:anywhere] sm:text-2xl lg:text-3xl"
                 >
                   {current.name}
                 </h3>
@@ -236,7 +236,7 @@ export default function CarouselMasonry({
             {/* Ficha de datos */}
             <div
               data-fade
-              className="mt-9 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-white/10 pt-8 sm:grid-cols-3"
+              className="mt-9 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-white/10 pt-8 sm:grid-cols-3 sm:gap-x-8"
             >
               {stats.map((s) => (
                 <div key={s.label}>
@@ -250,7 +250,7 @@ export default function CarouselMasonry({
           </div>
 
           {/* Roster de clientes */}
-          <div className="order-1 flex flex-col lg:order-2">
+          <div className="order-1 flex min-w-0 flex-col lg:order-2">
             <div className="mb-3 hidden font-mono text-[10px] uppercase tracking-[0.24em] text-blue-100/40 lg:block">
               Roster de operaciones
             </div>

@@ -99,7 +99,7 @@ export function HeroCarbonAntracita() {
   return (
     <section
       ref={heroRef}
-      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
+      className="dark-image relative min-h-[85vh] xl:min-h-screen 2xl:min-h-[85vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
     >
       {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
       <div className="absolute inset-0 z-0">
@@ -119,7 +119,7 @@ export function HeroCarbonAntracita() {
       <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(7,7,7,0.55)_0%,rgba(7,7,7,0.32)_50%,rgba(7,7,7,0.10)_100%)]" />
 
       {/* ================= CONTENIDO ln-91-70================= */}
-<div className="hero-content relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
+<div className="hero-content relative z-30 flex min-h-[85vh] xl:min-h-screen 2xl:min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
           {/* Texto */}
           <div className="max-w-3xl space-y-7 md:space-y-8">
             <div className="mining-hero-eyebrow">

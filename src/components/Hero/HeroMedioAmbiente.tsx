@@ -35,9 +35,9 @@ export default function HeroMedioAmbiente() {
       title={copy.title}
       subtitle={copy.subtitle}
       badges={[
-        { icon: <Plant size={22} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[0] },
-        { icon: <Heart size={22} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[1] },
-        { icon: <UsersThree size={22} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[2] },
+        { icon: <Plant size={18} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[0] },
+        { icon: <Heart size={18} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[1] },
+        { icon: <UsersThree size={18} color="#10b981" style={{ flexShrink: 0 }} />, label: copy.badges[2] },
       ]}
     />
   );

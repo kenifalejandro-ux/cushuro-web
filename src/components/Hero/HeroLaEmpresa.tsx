@@ -254,7 +254,7 @@ export default function HeroLaEmpresa() {
         heroRef.current = node;
       }}
       aria-label={copy.heroAria}
-      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
+      className="dark-image relative min-h-[85vh] xl:min-h-screen 2xl:min-h-[85vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
     >
       {/* ATMÓSFERA (partículas + Ken Burns + luz emergente) */}
       <HeroAtmosphere scopeRef={heroRef} showParticles={false} />
@@ -318,7 +318,7 @@ export default function HeroLaEmpresa() {
       />
 
       {/* ===== CONTENIDO HERO ===== */}
-<div className="hero-content relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-6xl px-6">
+<div className="hero-content relative z-30 flex min-h-[85vh] xl:min-h-screen 2xl:min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-6xl px-6">
           <div className="service-text max-w-3xl text-white">
             <div className="mining-hero-eyebrow">
               <div className="reveal-line mining-hero-line origin-left" />

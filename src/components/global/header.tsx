@@ -261,7 +261,7 @@ export function Header({
       >
         {/* ===================== BARRA UTILITARIA ===================== */}
         <div className="border-b border-white/[0.07] bg-[#0c0d0e]">
-          <div className="mx-auto flex h-11 max-w-7xl items-center justify-between gap-3 px-4 font-mono text-[9px] uppercase tracking-[0.12em] text-white/50 sm:h-12 sm:px-6 sm:text-[10px] sm:tracking-[0.14em] lg:h-14 lg:px-8 lg:text-[11px]">
+          <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-3 px-4 font-mono text-[9px] uppercase tracking-[0.12em] text-white/50 sm:h-11 sm:px-6 sm:text-[10px] sm:tracking-[0.14em] lg:h-11 lg:px-8 lg:text-[11px] 2xl:h-14">
             <span className="flex min-w-0 items-center gap-2 sm:gap-2.5">
               <MapPin className="h-3 w-3 shrink-0 text-emerald-700 sm:h-3.5 sm:w-3.5" />
               <span className="truncate">{contactInfo.address}</span>
@@ -304,7 +304,7 @@ export function Header({
 
  {/* ===================== BARRA PRINCIPAL ===================== */}
         <div className=" relative border-b border-white/[0.06] bg-white/[0.09] shadow-[0_8px_32px_-8px_rgba(0,0,0,0.6),0_2px_0_0_rgba(255,255,255,0.04)_inset] backdrop-blur-2xl before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-gradient-to-b before:from-white/[0.07] before:to-transparent">
-          <div className="mx-auto flex h-[92px] max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-[94px] lg:gap-9 lg:px-8">
+          <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:h-[78px] lg:gap-9 lg:px-8 2xl:h-[94px]">
             {/* Logo lockup */}
             <NavLink
               to="/"
@@ -315,7 +315,7 @@ export function Header({
                 <img
                   src={logoSrc}
                   alt={displayBrandName}
-                  className="h-11 w-auto max-w-[13rem] object-contain brightness-125 contrast-110 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] lg:h-[3.4rem]"
+                  className="h-10 w-auto max-w-[13rem] object-contain brightness-125 contrast-110 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] lg:h-12 2xl:h-[3.4rem]"
                 />
               ) : (
                 <>

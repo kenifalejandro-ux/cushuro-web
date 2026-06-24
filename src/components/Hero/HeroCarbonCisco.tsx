@@ -1,9 +1,10 @@
 /* client/src/components/global/HeroCarbonCisco.tsx */
 
+import { Factory, Hammer, Flame } from "@phosphor-icons/react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
-import { Factory, Hammer, Flame } from "@phosphor-icons/react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
@@ -66,6 +67,15 @@ export function HeroCarbonCisco() {
 
         // Stats / iconos
         .from(".reveal-badge", { y: 20, opacity: 0, stagger: 0.2, duration: 0.6 }, "-=0.6");
+
+      // Ocultar el contenido al hacer scroll (reaparece al volver arriba).
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to(".hero-content", {
+        opacity: 0,
+        y: -80,
+        ease: "none",
+        scrollTrigger: { trigger: heroRef.current, start: "top top", end: "55% top", scrub: true },
+      });
     }, heroRef);
 
     return () => ctx.revert();
@@ -114,10 +124,10 @@ export function HeroCarbonCisco() {
       </div>
 
       {/* Overlay oscuro */}
-      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(7,7,7,0.8)_0%,rgba(7,7,7,0.56)_50%,rgba(7,7,7,0.26)_100%)]" />
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(7,7,7,0.52)_0%,rgba(7,7,7,0.30)_50%,rgba(7,7,7,0.08)_100%)]" />
 
       {/* ================= CONTENIDO ln-91-70================= */}
-<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
+<div className="hero-content relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
           {/* Texto */}
           <div className="max-w-3xl space-y-7 md:space-y-8">
             <div className="mining-hero-eyebrow">

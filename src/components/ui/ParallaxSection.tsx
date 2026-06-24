@@ -1,3 +1,5 @@
+/**client/src/components/ui/ParallaxSection.tsx */
+
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 

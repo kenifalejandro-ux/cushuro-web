@@ -2,12 +2,7 @@
 
 type GTMData = Record<string, any>;
 
-// Extiende la ventana para TS
-declare global {
-  interface Window {
-    dataLayer?: Array<Record<string, any>>;
-  }
-}
+// El tipo global de `window.dataLayer` está declarado en src/gtm.d.ts
 
 export const gtmPush = (eventName: string, data: GTMData = {}): void => {
   window.dataLayer = window.dataLayer || [];

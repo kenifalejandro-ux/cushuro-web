@@ -183,8 +183,7 @@ function initForm() {
             .catch(reject);
         });
       });
-     console.log("TOKEN:", token); // 👈 AQUÍ
-     
+
       if (recaptchaInput) {
         recaptchaInput.value = token;
       }

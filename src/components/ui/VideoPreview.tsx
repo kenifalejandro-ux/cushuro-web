@@ -19,7 +19,7 @@ export const VideoPreview = forwardRef<HTMLVideoElement, Props>(function VideoPr
     poster,
     className,
     deferOnMobileScroll = true,
-    placeholderClassName = "bg-black/20",
+    placeholderClassName = "bg-white",
     useInternalOpacity = true,
     ...props
   },

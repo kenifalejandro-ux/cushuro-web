@@ -5,13 +5,9 @@ export const runWhenIdle = (cb: () => void, delay = 600): (() => void) => {
     return () => {};
   }
 
-  if ("requestIdleCallback" in window) {
-    const id = (window as any).requestIdleCallback(cb);
-    return () => {
-      if ("cancelIdleCallback" in window) {
-        (window as any).cancelIdleCallback(id);
-      }
-    };
+  if (typeof window.requestIdleCallback === "function") {
+    const id = window.requestIdleCallback(cb);
+    return () => window.cancelIdleCallback?.(id);
   }
 
   const id = window.setTimeout(cb, delay);

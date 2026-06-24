@@ -97,10 +97,10 @@ const MAP_CSS = `
   color: #a8a29e; padding: 8px 9px 0 0;
 }
 .cushuro-map-wrap .leaflet-control-attribution {
-  background: rgba(11,13,14,.6); color: rgba(255,255,255,.45);
+  background: rgba(255,255,255,.7); color: rgba(24,24,27,.5);
   font-size: 10px; border-radius: 6px 0 0 0;
 }
-.cushuro-map-wrap .leaflet-control-attribution a { color: rgba(255,255,255,.6); }
+.cushuro-map-wrap .leaflet-control-attribution a { color: rgba(24,24,27,.65); }
 `;
 
 let stylesInjected = false;
@@ -179,7 +179,7 @@ export default function CompanyMapHybrid({
   const markerRefs = useRef<Record<number, L.Marker | null>>({});
   const activeIndexRef = useRef<number | null>(null);
   const markerIcon = useMemo(() => getPulsingMarkerIcon(), []);
-  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const mapRef = useRef<L.Map | null>(null);
   const [mapMode, setMapMode] = useState<"satellite" | "map">("map");
 
@@ -216,7 +216,7 @@ export default function CompanyMapHybrid({
   if (!locations.length) return null;
 
   return (
-    <section className={`dark-image ${className ?? ""}`}>
+    <section className={`light-image  ${className ?? ""}`}>
       {(title || subtitle) && (
         <header className="mb-8 text-center px-6 lg:px-12">
           <p className="b2b-eyebrow text-center">Sedes &amp; cobertura</p>
@@ -234,7 +234,7 @@ export default function CompanyMapHybrid({
       )}
 
       <div
-        className={`cushuro-map-wrap relative overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] shadow-2xl ${
+        className={`cushuro-map-wrap relative overflow-hidden bg-[#fafafa] shadow-2xl ${
           mapClassName ?? "h-[520px] md:h-[680px]"
         }`}
         style={{ ["--cushuro-accent" as string]: accent }}
@@ -247,7 +247,7 @@ export default function CompanyMapHybrid({
           maxZoom={maxZoom}
           scrollWheelZoom={false}
           className="h-full w-full"
-          style={{ background: "#0b0d0e" }}
+          style={{ background: "#fafafa" }}
         >
           {mapMode === "satellite" ? (
             <TileLayer
@@ -257,7 +257,7 @@ export default function CompanyMapHybrid({
           ) : (
             <TileLayer
               attribution='&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-              url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
               subdomains="abcd"
               detectRetina
             />

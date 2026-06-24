@@ -1,9 +1,10 @@
 /* client/src/components/global/HeroCalAgricola.tsx */
 
+import { Factory, Hammer } from "@phosphor-icons/react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
-import { Factory, Hammer } from "@phosphor-icons/react";
 
 import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
@@ -58,6 +59,15 @@ export function HeroCalAgricola() {
 
         // Stats / iconos
         .from(".reveal-badge", { y: 20, opacity: 0, stagger: 0.2, duration: 0.6 }, "-=0.6");
+
+      // Ocultar el contenido al hacer scroll (reaparece al volver arriba).
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to(".hero-content", {
+        opacity: 0,
+        y: -80,
+        ease: "none",
+        scrollTrigger: { trigger: heroRef.current, start: "top top", end: "55% top", scrub: true },
+      });
     }, heroRef);
 
     return () => ctx.revert();
@@ -101,15 +111,15 @@ export function HeroCalAgricola() {
           sizes="100vw"
           priority
           pictureClassName="block w-full h-full overflow-hidden"
-          className="hero-bg scale-[1.01] opacity-85"
+          className="hero-bg scale-[1.01] opacity-100"
         />
       </div>
 
       {/* Overlay oscuro */}
-      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(10,10,9,0.82)_0%,rgba(10,10,9,0.58)_52%,rgba(10,10,9,0.28)_100%)]" />
+      <div className="absolute inset-0 z-10 bg-[linear-gradient(115deg,rgba(10,10,9,0.55)_0%,rgba(10,10,9,0.32)_52%,rgba(10,10,9,0.08)_100%)]" />
 
       {/* ================= CONTENIDO ln-91-70================= */}
-<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
+<div className="hero-content relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
           {/* Texto */}
           <div className="max-w-3xl space-y-7 md:space-y-8">
             <div className="mining-hero-eyebrow">

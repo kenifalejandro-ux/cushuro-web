@@ -15,6 +15,7 @@ const STANDARDS_ICONS = [Leaf, HardHat, Handshake];
 export default function Nosotros() {
   const copy = useLocalizedContent({
     es: {
+      label: "QUIÉNES SOMOS",
       title: "Nosotros",
       intro:
         "Más de 15 años de experiencia técnica asegurando la continuidad química y metalúrgica de la minería en la región norte.",
@@ -35,6 +36,7 @@ export default function Nosotros() {
       imageAlt: "Trabajo operativo en planta",
     },
     en: {
+      label: "WHO WE ARE",
       title: "About Us",
       intro:
         "More than 15 years of technical experience ensuring the chemical and metallurgical continuity of mining in the northern region.",
@@ -59,16 +61,10 @@ export default function Nosotros() {
   return (
     <LaEmpresaSection
       title={copy.title}
+      label={copy.label}
       description={
         <div className="max-w-3xl space-y-8 text-[15px] leading-8 text-zinc-600 md:text-base">
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-zinc-300" />
-              <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">
-                
-              </span>
-            </div>
-
             <p className="max-w-2xl text-lg leading-8 text-zinc-700 md:text-xl">
               {copy.intro}
             </p>

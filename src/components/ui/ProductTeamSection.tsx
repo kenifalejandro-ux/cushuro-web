@@ -50,11 +50,11 @@ export default function ProductTeamSection({
           className="mx-auto mb-16 max-w-3xl text-center"
         >
           <div className="mb-5 flex items-center justify-center gap-3">
-            <span className="h-px w-12 bg-zinc-300" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-zinc-500">
+            <span className="h-px w-12 bg-[#6db820]" />
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.35em] text-[#6db820]">
               {copy.eyebrow}
             </span>
-            <span className="h-px w-12 bg-zinc-300" />
+            <span className="h-px w-12 bg-[#6db820]" />
           </div>
 
           <h2 className="text-3xl font-semibold tracking-tight text-zinc-950 md:text-4xl">

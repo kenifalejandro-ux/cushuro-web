@@ -197,11 +197,6 @@ export default function ProductCapacitySection({
         }}
         aria-hidden
       />
-      <div
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-600/55 to-transparent"
-        aria-hidden
-      />
-
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-16">
         {/* Encabezado — bloque técnico con borde de acento */}
         <div className="mb-12 border-l-4 border-emerald-700 pl-6">

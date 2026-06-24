@@ -2,10 +2,9 @@
 
 import PageSEO from "../global/PageSEO";
 import { MiningStats } from "../ui/MiningStats";
-import { MisionVision } from "../ui/MisionVision";
+import { UnifiedMissionSection } from "../ui/UnifiedMissionSection";
 import Nosotros from "../ui/Nosotros";
 import Politicas from "../ui/Politicas";
-import Objetivos from "../ui/Objetivos";
 import GarantiasSuministro from "../ui/GarantiasSuministro";
 import ProductosBeneficiosTable from "../ui/ProductosBeneficiosTable";
 
@@ -28,11 +27,9 @@ export default function LaEmpresa() {
           <Nosotros />
         </div>
 
-        {/* Misión & Visión — bloque unificado premium.
-            El wrapper lleva el mismo fondo carbón para que las esquinas del rounded
-            no muestren el blanco de la página. */}
-        <div className="-mt-10 bg-stone-100">
-          <MisionVision />
+        {/* Misión, Visión & Objetivos — bloque unificado con diseño Minera Boroo */}
+        <div>
+          <UnifiedMissionSection />
         </div>
 
         {/* BLOQUE 2 — Capacidad Industrial e Infraestructura Operativa */}
@@ -40,11 +37,6 @@ export default function LaEmpresa() {
         {/* Garantía de Suministro: 100% propio, 24/7, resiliencia */}
         <div>
           <GarantiasSuministro />
-        </div>
-
-        {/* Objetivos Estratégicos */}
-        <div>
-          <Objetivos />
         </div>
 
         {/* BLOQUE 4 — Compliance, Sostenibilidad y Cierre Corporativo */}

@@ -322,9 +322,9 @@ export const ResponsabilidadSocial: React.FC = () => {
       <section className="light-image reveal-social bg-stone-100 px-6 py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2 md:gap-20">
           <div className="order-1 space-y-8">
-            <div className="inline-flex items-center gap-3 rounded-full border border-zinc-200/80 bg-white px-4 py-2 shadow-[0_10px_24px_rgba(24,24,27,0.06)]">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-600">
+            <div className="flex items-center gap-4">
+              <div className="h-px flex-1 bg-[#6db820]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#6db820]">
                 {copy.philosophy.eyebrow}
               </span>
             </div>
@@ -359,7 +359,7 @@ export const ResponsabilidadSocial: React.FC = () => {
               <ReorderImageStack images={copy.philosophy.images} />
 
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                <div className="rounded-full border border-white/20 bg-white/10 p-6 backdrop-blur-[2px]">
+                <div className="lg:rounded-full border border-white/20 bg-white/10 p-6 backdrop-blur-[2px]">
                   <UsersThree className="h-12 w-12 text-white/70 md:h-16 md:w-16" />
                 </div>
               </div>
@@ -437,9 +437,9 @@ export const ResponsabilidadSocial: React.FC = () => {
           </div>
 
           <div className="reveal-social order-1 space-y-8 md:order-2">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/80 bg-white/75 px-4 py-2 shadow-[0_10px_24px_rgba(24,24,27,0.06)] backdrop-blur-sm">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-600">
+            <div className="flex items-center gap-4">
+              <div className="h-px flex-1 bg-[#6db820]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#6db820]">
                 {copy.workEducation.eyebrow}
               </span>
             </div>

@@ -1,29 +1,27 @@
-/**client/src/components/Hero/hero.tsx */
+/* client/src/components/Hero/Hero.tsx */
 
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
 import { useRef, useEffect, useState } from "react";
-import { Flame, Flask, Mountains } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 
-import { LCPImage } from "../ui/LCPImage"; // Para la imagen principal (LCP)
+import { LCPImage } from "../ui/LCPImage";
 import { HeroMediaThumbnails } from "../ui/HeroMediaThumbnails";
 import { VideoPreview } from "../ui/VideoPreview";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
-
-const IMG_BASE = import.meta.env.VITE_IMG_URL || import.meta.env.VITE_ASSETS_URL;
+import { HeroImpact } from "./HeroImpact";
 
 export function Hero() {
   const copy = useLocalizedContent({
     es: {
       heroImageAlt: "Cantera de piedra caliza de Santa Isabel de Cushuro",
-      title: "Produccion y suministro de oxido de calcio",
-      subtitle:
-        "15 anos de experiencia, 10 hornos operativos y capacidad diaria de 900 TM para atender operaciones mineras e industriales con continuidad y control.",
+      eyebrow: "Producción de cal",
+      title: "Produccion y suministro de óxido de calcio",
+
       ctaPrimary: "Ver cal viva",
       ctaPrimaryAria: "Ver informacion comercial de cal viva",
       ctaSecondary: "Contacto",
       ctaSecondaryAria: "Contactar por WhatsApp a Santa Isabel de Cushuro",
+      whatsappMessage:
+        "Hola, deseo información comercial sobre la cal viva y los productos de Calera Santa Isabel.",
       thumbnails: {
         alt: "Vista operativa",
         label: "Mostrar vista operativa",
@@ -31,13 +29,14 @@ export function Hero() {
     },
     en: {
       heroImageAlt: "Limestone quarry of Santa Isabel de Cushuro",
+      eyebrow: "Lime production",
       title: "Production and supply of calcium oxide",
-      subtitle:
-        "15 years of experience, 10 operating kilns, and daily capacity of 900 TM to serve mining and industrial operations with continuity and control.",
       ctaPrimary: "View quicklime",
       ctaPrimaryAria: "View quicklime commercial information",
       ctaSecondary: "Contact",
       ctaSecondaryAria: "Contact Santa Isabel de Cushuro on WhatsApp",
+      whatsappMessage:
+        "Hello, I would like commercial information about quicklime and Calera Santa Isabel products.",
       thumbnails: {
         alt: "Operational view",
         label: "Show operational view",
@@ -45,16 +44,8 @@ export function Hero() {
     },
   });
 
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const threeContainerRef = useRef<HTMLDivElement>(null);
-  const modelContainerRef = useRef<HTMLDivElement>(null);
-  const lineWrapRef = useRef<HTMLDivElement>(null);
-  const lineRef = useRef<SVGPathElement>(null);
+  const heroRef = useRef<HTMLElement | null>(null);
 
-  const [showModel, setShowModel] = useState(false);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [isHeroInView, setIsHeroInView] = useState(false);
   const [canStartHeroMedia, setCanStartHeroMedia] = useState(false);
@@ -62,14 +53,8 @@ export function Hero() {
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
 
   const heroVideos = [
-    {
-      src: "video/hero/cantera002",
-      poster: "img-inicio/hero/cantera002",
-    },
-    {
-      src: "video/hero/cantera003",
-      poster: "img-inicio/hero/cantera003",
-    },
+    { src: "video/hero/cantera002", poster: "img-inicio/hero/cantera002" },
+    { src: "video/hero/cantera003", poster: "img-inicio/hero/cantera003" },
   ];
 
   // Controla cuántos videos se renderizan (2 también en mobile/tablet)
@@ -79,142 +64,6 @@ export function Hero() {
     Math.max(1, Math.min(heroVideoCount, heroVideos.length))
   );
   const videoRotationMs = 4000;
-
-  // Cargar el modelo 3D cuando sea visible para cuidar LCP/TBT
-  useEffect(() => {
-    const target = modelContainerRef.current;
-    if (!target || showModel) return;
-
-    let timeoutId: number | null = null;
-    const scheduleShow = () => {
-      timeoutId = window.setTimeout(() => setShowModel(true), 800);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          scheduleShow();
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-
-    observer.observe(target);
-
-    return () => {
-      observer.disconnect();
-      if (timeoutId !== null) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [showModel]);
-
-  // Animaciones GSAP después del LCP
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      tl.fromTo(
-        titleRef.current,
-        { y: 40, opacity: 0, rotateX: -5 },
-        { y: 0, opacity: 1, rotateX: 0, duration: 1.2 }
-      )
-        .fromTo(
-          subtitleRef.current,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8 },
-          "-=0.6"
-        )
-        .fromTo(
-          ctaRef.current?.children || [],
-          { opacity: 0, y: 20, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, stagger: 0.15, duration: 0.5 },
-          "-=0.4"
-        )
-        .fromTo(
-          threeContainerRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 1 },
-          "-=0.8"
-        );
-
-      gsap.to(threeContainerRef.current, {
-        y: -110,
-        duration: 6,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: 1.5,
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Parallax y float
-  useGSAP(
-    () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(
-          [
-            titleRef.current,
-            subtitleRef.current,
-            ctaRef.current?.children,
-            threeContainerRef.current,
-            lineWrapRef.current,
-          ],
-          { opacity: 1, y: 0, clearProps: "all" }
-        );
-        if (lineRef.current) {
-          gsap.set(lineRef.current, {
-            strokeDasharray: 0,
-            strokeDashoffset: 0,
-            opacity: 1,
-          });
-        }
-        return;
-      }
-
-      gsap.to(threeContainerRef.current, {
-        y: -120,
-        duration: 7,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      if (lineRef.current) {
-        const length = lineRef.current.getTotalLength();
-        gsap.set(lineRef.current, {
-          strokeDasharray: length,
-          strokeDashoffset: length,
-          opacity: 1,
-        });
-
-        const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-        tl.to(lineRef.current, { strokeDashoffset: 0, duration: 1.8, delay: 0.3 })
-          .set(lineRef.current, { strokeDasharray: "10 16", strokeDashoffset: 0 })
-          .to(lineRef.current, {
-            strokeDashoffset: -2000,
-            duration: 14,
-            ease: "none",
-            repeat: -1,
-          });
-      }
-
-      if (lineWrapRef.current) {
-        gsap.to(lineWrapRef.current, {
-          y: -6,
-          duration: 4,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-      }
-    },
-    { scope: heroRef }
-  );
 
   // ============================
   // Visibilidad del hero para controlar reproducción
@@ -325,143 +174,94 @@ export function Hero() {
       cleanups.forEach((fn) => fn());
     };
   }, [activeVideoIndex, activeVideos.length, canStartHeroMedia, isHeroInView]);
-  // Animación GSAP simple y elegante (igual que tus otros heroes de producto)
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.fromTo(
-        ".hero-bg",
-        { scale: 1.08, filter: "brightness(0.65)" },
-        { scale: 1, filter: "brightness(1)", duration: 2.2 }
-      )
-        .from(".reveal-line", { scaleX: 0, duration: 1.1, transformOrigin: "left" }, "-=1.4")
-        .from(".reveal-title", { y: 50, opacity: 0, duration: 1 }, "-=0.7")
-        .from(".reveal-subtitle", { y: 35, opacity: 0, duration: 0.9 }, "-=0.6")
-        .from(".reveal-badge", { y: 25, opacity: 0, stagger: 0.15, duration: 0.7 }, "-=0.5");
-    },
-    { scope: heroRef }
-  );
   return (
-    <section
-      ref={heroRef}
-      className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
-    >
-      {/* --- 1. FONDO PRINCIPAL (LCP) --- */}
-      <div className="absolute inset-0 z-0">
-        <LCPImage
-          src="img-inicio/hero/cantera001"
-          alt={copy.heroImageAlt}
-          width={1920}
-          height={1080}
-          sizes="100vw"
-          priority
-          className="opacity-40"
-        />
-      </div>
+    <HeroImpact
+      alt={copy.heroImageAlt}
+      eyebrow={copy.eyebrow}
+      title={copy.title}
+      compactTitle
+      showParticles={false}
+      sectionRef={(node) => {
+        heroRef.current = node;
+      }}
+      backgroundSlot={
+        <>
+          {/* FONDO PRINCIPAL (LCP) */}
+          <LCPImage
+            src="img-inicio/hero/cantera001"
+            alt={copy.heroImageAlt}
+            width={1920}
+            height={1080}
+            sizes="100vw"
+            priority
+            pictureClassName="absolute inset-0 block w-full h-full overflow-hidden"
+            className="w-full h-full object-cover opacity-40"
+          />
 
-      {/* --- 2. VIDEOS OPTIMIZADOS --- */}
-      {shouldRenderHeroVideos && (
-        <div className="absolute inset-0 z-10">
-          {activeVideos.map((video, index) => {
-            const isActive = index === activeVideoIndex;
-            return (
-              <VideoPreview
-                key={video.src}
-                ref={(node) => {
-                  videoRefs.current[index] = node;
-                }}
-                src={video.src}
-                poster={video.poster}
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
-                  isActive ? "opacity-100" : "opacity-0"
-                }`}
-                autoPlay={false}
-                muted
-                loop
-                playsInline
-                preload="auto"
-                controls={false}
-                useInternalOpacity={false}
-                deferOnMobileScroll={false}
-                aria-hidden={!isActive}
-              />
-            );
-          })}
+          {/* VIDEOS OPTIMIZADOS */}
+          {shouldRenderHeroVideos &&
+            activeVideos.map((video, index) => {
+              const isActive = index === activeVideoIndex;
+              return (
+                <VideoPreview
+                  key={video.src}
+                  ref={(node) => {
+                    videoRefs.current[index] = node;
+                  }}
+                  src={video.src}
+                  poster={video.poster}
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+                    isActive ? "opacity-100" : "opacity-0"
+                  }`}
+                  autoPlay={false}
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  controls={false}
+                  useInternalOpacity={false}
+                  deferOnMobileScroll={false}
+                  aria-hidden={!isActive}
+                />
+              );
+            })}
+        </>
+      }
+      actionsSlot={
+        <div className="mining-hero-actions">
+          <Link
+            to="/Productos/cal-viva"
+            aria-label={copy.ctaPrimaryAria}
+            className="mining-hero-cta-primary"
+          >
+            {copy.ctaPrimary}
+          </Link>
+          <a
+            href={`https://wa.me/51959173472?text=${encodeURIComponent(copy.whatsappMessage)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={copy.ctaSecondaryAria}
+            className="mining-hero-cta-secondary"
+          >
+            {copy.ctaSecondary}
+          </a>
         </div>
-      )}
-
-      {/* Overlay oscuro */}
-      <div className="absolute inset-0 z-20 bg-[linear-gradient(115deg,rgba(8,8,7,0.92)_0%,rgba(8,8,7,0.56)_48%,rgba(8,8,7,0.1)_100%)]" />
-
-      {/* ================= CONTENIDO ================= */}
-<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-7xl px-6 w-full">
-          <div className="max-w-3xl space-y-7 md:space-y-8">
-            {/* Línea + etiqueta */}
-            <div className="mining-hero-eyebrow ">
-              <div className="reveal-line mining-hero-line origin-left" />
-              <span></span>
-            </div>
-
-<h1 className="reveal-title text-2xl md:text-3xl lg:text-4xl xl:text-4xl mining-hero-title max-w-[20ch]">               {copy.title}
-            </h1>
-
-            <p className="reveal-subtitle mining-hero-subtitle max-w-[40rem]">
-              {copy.subtitle}
-            </p>
-
-            <div className="mining-hero-actions">
-              <Link
-                to="/Productos/cal-viva"
-                aria-label={copy.ctaPrimaryAria}
-                className="mining-hero-cta-primary"
-              >
-                {copy.ctaPrimary}
-              </Link>
-              <a
-                href="https://wa.me/51959173472?text=Escr%C3%ADbenos%20para%20m%C3%A1s%20informaci%C3%B3n"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={copy.ctaSecondaryAria}
-                className="mining-hero-cta-secondary"
-              >
-                {copy.ctaSecondary}
-              </a>
-            </div>
-            {/* Badges / iconos
-            <div className="mining-hero-badge-list">
-              <div className="reveal-badge mining-hero-badge">
-                <Flame size={18} className="text-emerald-400" />
-                <span>Cal viva</span>
-              </div>
-
-              <div className="reveal-badge mining-hero-badge">
-                <Flask size={18} className="text-emerald-400" />
-                <span>Cal hidratada</span>
-              </div>
-
-              <div className="reveal-badge mining-hero-badge">
-                <Mountains size={18} className="text-emerald-400" />
-                <span>Piedra caliza</span>
-              </div>
-            </div> */}
-          </div>
-
+      }
+      bottomSlot={
+        <div className="absolute inset-x-0 bottom-4 z-40 flex justify-center px-6 sm:bottom-6 lg:bottom-8">
+          <HeroMediaThumbnails
+            items={activeVideos.map((video, index) => ({
+              src: video.poster,
+              alt: `${copy.thumbnails.alt} ${index + 1}`,
+              label: `${copy.thumbnails.label} ${index + 1}`,
+            }))}
+            activeIndex={activeVideoIndex}
+            onSelect={setActiveVideoIndex}
+          />
         </div>
-      </div>
-
-      <div className="absolute inset-x-0 bottom-4 z-40 flex justify-center px-6 sm:bottom-6 lg:bottom-8">
-        <HeroMediaThumbnails
-          items={activeVideos.map((video, index) => ({
-            src: video.poster,
-            alt: `${copy.thumbnails.alt} ${index + 1}`,
-            label: `${copy.thumbnails.label} ${index + 1}`,
-          }))}
-          activeIndex={activeVideoIndex}
-          onSelect={setActiveVideoIndex}
-        />
-      </div>
-    </section>
+      }
+    />
   );
 }
 

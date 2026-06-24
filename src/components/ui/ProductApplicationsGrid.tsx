@@ -46,9 +46,12 @@ export default function ProductApplicationsGrid({
             <Icon className="h-4 w-4" strokeWidth={1.8} />
           </div>
 
-          <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-500">
-            {copy.eyebrow}
-          </p>
+          <div className="mt-6 flex items-center gap-4">
+            <div className="h-px flex-1 bg-[#6db820]" />
+            <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#6db820]">
+              {copy.eyebrow}
+            </span>
+          </div>
 
           <h2 className="mt-4 text-4xl font-medium leading-[0.96] tracking-[-0.05em] text-zinc-950 md:text-5xl">
             {title ?? copy.title}

@@ -35,7 +35,7 @@ export default function CalViva() {
         },
         {
           src: "img-productos/cal-viva/imagen-inicio/oxido-de-calcio001",
-          alt: "Hornos industriales para oxido de calcio",
+          alt: "Hornos industriales para óxido de calcio",
         },
         {
           src: "img-productos/cal-viva/imagen-inicio/piedra-caliza",
@@ -195,7 +195,7 @@ export default function CalViva() {
           alt: "Quicklime production in an industrial plant",
         },
         {
-          src: "img-productos/cal-viva/imagen-inicio/oxido-de-calcio001",
+          src: "img-productos/cal-viva/imagen-inicio/óxido-de-calcio001",
           alt: "Industrial kilns for calcium oxide production",
         },
         {

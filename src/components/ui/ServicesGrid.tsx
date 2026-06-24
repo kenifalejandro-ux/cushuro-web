@@ -5,17 +5,34 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
-import ServiceCard from "./ServiceCard";
-import { useLocalizedContent } from "../../context/SiteLanguageContext";
+import HexFeatureRow from "./HexFeatureRow";
+import { useLocalizedContent, type SiteLanguage } from "../../context/SiteLanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SERVICES_COPY = {
+type ServiceItem = {
+  title: string;
+  category: string;
+  image: string;
+  href: string;
+  description: string;
+};
+
+type ServicesCopy = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  cta: string;
+  services: ServiceItem[];
+};
+
+const SERVICES_COPY: Record<SiteLanguage, ServicesCopy> = {
   es: {
     eyebrow: "Materiales y capacidades",
     title: "Soluciones para abastecimiento y soporte industrial",
     description:
       "Una presentación más clara de productos y servicios con foco en continuidad operativa, pureza de materiales y capacidad técnica.",
+    cta: "Ver más",
     services: [
       {
         title: "Piedra Caliza",
@@ -74,6 +91,7 @@ const SERVICES_COPY = {
     title: "Solutions for supply and industrial support",
     description:
       "A clearer presentation of products and services focused on operational continuity, material purity, and technical capacity.",
+    cta: "See more",
     services: [
       {
         title: "Limestone",
@@ -86,7 +104,7 @@ const SERVICES_COPY = {
       {
         title: "Quicklime",
         category: "Industrial product",
-        image: "img-productos/cal-viva/oxido-de-calcio001",
+        image: "img-productos/cal-viva/óxido-de-calcio001",
         href: "/Productos/cal-viva",
         description:
           "High-purity calcium oxide used in industrial, metallurgical, and chemical treatment processes.",
@@ -135,7 +153,7 @@ const SERVICES_COPY = {
       },
     ],
   },
-} as const;
+};
 
 export default function ServicesGrid() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -170,68 +188,60 @@ export default function ServicesGrid() {
         );
       }
 
-      // Animaciones de cada card
+      // Animaciones de cada fila: las dos columnas se "encuentran" en el centro.
+      // La columna izquierda entra desde la izquierda y la derecha desde la derecha.
       cardRefs.current.forEach((card, index) => {
         if (!card) return;
 
-        const direction = index % 2 === 0 ? 90 : -90;
+        // La imagen va a la izquierda en filas pares (reverse=false) y a la
+        // derecha en impares; el contenido ocupa el lado contrario.
+        const imageIsLeft = index % 2 === 0;
+        const offset = 120;
+        const imageFromX = imageIsLeft ? -offset : offset;
+        const contentFromX = imageIsLeft ? offset : -offset;
 
-        // Entrada general de la card
+        const trigger = {
+          trigger: card,
+          start: "top 85%",
+          once: true,
+        };
+
+        // Aparición general de la fila (incluye el hexágono)
         gsap.fromTo(
           card,
-          { autoAlpha: 0, x: direction, y: 20, filter: "blur(6px)" },
-          {
-            autoAlpha: 1,
-            x: 0,
-            y: 0,
-            filter: "blur(0px)",
-            duration: 1.05,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 88%",
-              once: true,
-            },
-          }
+          { autoAlpha: 0 },
+          { autoAlpha: 1, duration: 1, ease: "power2.out", scrollTrigger: trigger }
         );
 
-        // Escala de la imagen
+        // Columna de la imagen: entra desde su lado
         const imageContainer = card.querySelector<HTMLElement>("[data-service-image]");
         if (imageContainer) {
           gsap.fromTo(
             imageContainer,
-            { scale: 1.14, x: direction * 0.25 },
+            { x: imageFromX, autoAlpha: 0, scale: 1.08 },
             {
-              scale: 1,
               x: 0,
-              duration: 1.2,
+              autoAlpha: 1,
+              scale: 1,
+              duration: 1.9,
               ease: "power3.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 88%",
-                once: true,
-              },
+              scrollTrigger: trigger,
             }
           );
         }
 
-        // Contenido
+        // Columna de contenido: entra desde el lado opuesto
         const content = card.querySelector<HTMLElement>("[data-service-content]");
         if (content) {
           gsap.fromTo(
             content,
-            { autoAlpha: 0, y: 18 },
+            { x: contentFromX, autoAlpha: 0 },
             {
+              x: 0,
               autoAlpha: 1,
-              y: 0,
-              duration: 0.85,
-              delay: 0.08,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                start: "top 88%",
-                once: true,
-              },
+              duration: 1.9,
+              ease: "power3.out",
+              scrollTrigger: trigger,
             }
           );
         }
@@ -269,9 +279,12 @@ export default function ServicesGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="light-image px-6 py-28 lg:px-12">
-      <div className="max-w-7xl mx-auto">
-        <div ref={headingRef} className="mb-14 text-center">
+    <section
+      ref={sectionRef}
+      className=" relative w-screen ml-[calc(50%-50vw)] pt-28 pb-0"
+    >
+      <div>
+        <div ref={headingRef} className="mx-auto mb-14 max-w-5xl px-6 text-center">
           <p className="b2b-eyebrow text-center">{copy.eyebrow}</p>
           <div className="mt-4 flex items-center justify-center gap-6">
             <span
@@ -291,7 +304,7 @@ export default function ServicesGrid() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-10">
+        <div className="flex flex-col">
           {copy.services.map((service, i) => (
             <div
               key={i}
@@ -299,7 +312,16 @@ export default function ServicesGrid() {
                 cardRefs.current[i] = el;
               }}
             >
-              <ServiceCard {...service} priority={i === 0} />
+              <HexFeatureRow
+                badge={service.category}
+                title={service.title}
+                description={service.description}
+                image={service.image}
+                href={service.href}
+                ctaLabel={copy.cta}
+                reverse={i % 2 === 1}
+                priority={i === 0}
+              />
             </div>
           ))}
         </div>

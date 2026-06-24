@@ -40,7 +40,7 @@ export default function Inicio() {
           city: "Huamachuco, La Libertad",
           address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
           productionCenter: "CASERIO RODEOPAMPA - MARCABAL - HUAMACHUCO.",
-          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+          imageSrc: "/img-servicios/hero/hero-óxido-de-calcio/óxido-de-calcio001",
           imageAlt: "Planta y Compromiso Ambiental Y Social de Calera Cushuro",
           coordinates: [-78.0489, -7.8154] as [number, number],
         },
@@ -50,7 +50,7 @@ export default function Inicio() {
           city: "Bambamarca, Cajamarca",
           address: "Bambamarca - Cajamarca, Perú.",
           productionCenter: "Zona Industrial Bambamarca.",
-          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002",
+          imageSrc: "/img-servicios/hero/hero-óxido-de-calcio/óxido-de-calcio002",
           imageAlt: "Planta de producción en Bambamarca - Cajamarca",
           coordinates: [-78.5213, -6.6828] as [number, number],
         },
@@ -73,7 +73,7 @@ export default function Inicio() {
           city: "Huamachuco, La Libertad",
           address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
           productionCenter: "RODEOPAMPA - MARCABAL - HUAMACHUCO PRODUCTION CENTER.",
-          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+          imageSrc: "/img-servicios/hero/hero-óxido-de-calcio/óxido-de-calcio001",
           imageAlt: "Cushuro lime plant and environmental-social commitment",
           coordinates: [-78.0489, -7.8154] as [number, number],
         },
@@ -83,7 +83,7 @@ export default function Inicio() {
           city: "Bambamarca, Cajamarca",
           address: "Bambamarca - Cajamarca, Peru.",
           productionCenter: "Bambamarca Industrial Zone.",
-          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002",
+          imageSrc: "/img-servicios/hero/hero-óxido-de-calcio/óxido-de-calcio002",
           imageAlt: "Production plant in Bambamarca - Cajamarca",
           coordinates: [-78.5213, -6.6828] as [number, number],
         },
@@ -142,7 +142,7 @@ export default function Inicio() {
   }, []);
 
   return (
-    <div  className="light-image min-h-screen bg-[#fbfaf7]">
+    <div  className="light-image min-h-screen bg-[linear-gradient(180deg,#f5f5f4_0%,#e7e5e4_100%)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <PageSEO pageId="inicio" />
         {/* ================= METRICAS ================= */}
@@ -163,21 +163,13 @@ export default function Inicio() {
         {/* ================= Productos GRID ================= */}
         <ServicesGrid />
 
-        {/* ================= CARRUSEL TEXT (full width) ================= */}
-        <LazyOnView minHeight={240}>
-          <Suspense fallback={<div className="h-[240px]" />}>
-            <div className="relative w-screen ml-[calc(50%-50vw)]">
-              <CarouselText />
-            </div>
-          </Suspense>
-        </LazyOnView>
           {/* ================= UBICACIÓN MAPS================= */}
         
                 <LazyOnView minHeight={560}>
                   <Suspense fallback={<div className="mt-12 h-[520px] md:h-[640px]" />}>
-                    <div className="relative mt-12 w-screen ml-[calc(50%-50vw)]">
+                    <div className="relative w-screen ml-[calc(50%-50vw)] bg-[#fafafa]">
                       {/* Header estilo Portfolio: alineado a la izquierda con líneas decorativas */}
-                      <div className="mx-auto mb-10 max-w-7xl px-6 lg:px-12">
+                      <div className="mx-auto mb-10 max-w-7xl px-6 pt-16 lg:px-12">
                         <div className="mb-5 flex items-center gap-4">
                           <span className="h-px w-10 bg-[#1ec009]" />
                           <span className="font-mono text-[10px] uppercase tracking-[0.34em] text-[#1ec009]">
@@ -212,11 +204,20 @@ export default function Inicio() {
                         locations={copy.locations}
                         center={[-78.3, -7.2]}
                         projectionScale={1300}
-                        primaryColor="#0e5814"
+                        primaryColor="#0fda20"
                         mapClassName="h-[70vh] md:h-[80vh]"
                       />
                     </div>
                   </Suspense>
+
+        {/* ================= CARRUSEL TEXT (full width) ================= */}
+        <LazyOnView minHeight={240}>
+          <Suspense fallback={<div className="h-[240px]" />}>
+            <div className="relative w-screen ml-[calc(50%-50vw)]">
+              <CarouselText />
+            </div>
+          </Suspense>
+        </LazyOnView>
                 </LazyOnView>
        
       </div>

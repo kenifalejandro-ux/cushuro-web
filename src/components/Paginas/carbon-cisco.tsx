@@ -213,6 +213,7 @@ export default function CarbonCisco() {
         },
       ],
       intro: {
+        eyebrow: "CISCO COAL",
         title: "Industrial Cisco Coal Production and Supply",
         description:
           "The company operates mineral coal extraction and classification units, guaranteeing continuous supply of cisco coal for mining and industrial operations requiring efficient and fast-burning solid fuel. Cisco coal is a fine mineral coal fraction used as an energy source in thermal processes, standing out for its easy ignition and good performance in industrial kilns.",
@@ -372,6 +373,7 @@ export default function CarbonCisco() {
 
       <ProductIntroSection
         images={copy.images}
+        eyebrow={copy.intro.eyebrow}
         title={copy.intro.title}
         description={copy.intro.description}
         cards={copy.introCards}

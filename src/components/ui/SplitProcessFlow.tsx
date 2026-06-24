@@ -89,9 +89,12 @@ export default function SplitProcessFlow({
       <div ref={sectionRef} className="mx-auto max-w-6xl px-6">
         <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           <div className={`self-start lg:sticky lg:top-24 ${panelOrderClass}`}>
-            <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-zinc-500">
-              {eyebrow === "Proceso operativo" ? copy.eyebrow : eyebrow}
-            </p>
+            <div className="flex items-center gap-4">
+              <div className="h-px flex-1 bg-[#6db820]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#6db820]">
+                {eyebrow === "Proceso operativo" ? copy.eyebrow : eyebrow}
+              </span>
+            </div>
 
             <h2 className="mt-5 text-4xl font-medium leading-[0.95] tracking-[-0.05em] text-zinc-950 md:text-5xl">
               {title}

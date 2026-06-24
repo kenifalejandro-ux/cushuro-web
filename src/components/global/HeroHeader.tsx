@@ -22,7 +22,7 @@ export type HeroPage =
   | "cal-viva"
   | "piedra-caliza"
   | "la-empresa"
-  | "suministro-de-oxido-de-calcio"
+  | "suministro-de-óxido-de-calcio"
   | "transporte-logistico-especializado"
   | "operacion-con-maquinaria-pesada"
   | "medio-ambiente"

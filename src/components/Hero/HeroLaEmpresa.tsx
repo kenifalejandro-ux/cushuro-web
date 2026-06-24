@@ -5,10 +5,12 @@
 import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useInView } from "react-intersection-observer";
 
 import HeroMediaThumbnails from "@/components/ui/HeroMediaThumbnails";
 import { LCPImage } from "@/components/ui/LCPImage";
+import { HeroAtmosphere } from "./HeroAtmosphere";
 import {
   goToSlice,
   initSlice,
@@ -223,6 +225,15 @@ export default function HeroLaEmpresa() {
         yoyo: true,
         ease: "sine.inOut",
       });
+
+      // Ocultar el contenido al hacer scroll (reaparece al volver arriba).
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.to(".hero-content", {
+        opacity: 0,
+        y: -80,
+        ease: "none",
+        scrollTrigger: { trigger: heroRef.current, start: "top top", end: "55% top", scrub: true },
+      });
     },
     { scope: heroRef, dependencies: [isLoaded] }
   );
@@ -245,7 +256,10 @@ export default function HeroLaEmpresa() {
       aria-label={copy.heroAria}
       className="dark-image relative min-h-[85vh] w-full overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]"
     >
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+      {/* ATMÓSFERA (partículas + Ken Burns + luz emergente) */}
+      <HeroAtmosphere scopeRef={heroRef} showParticles={false} />
+
+      <div className="hero-bg absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
         <LCPImage
           src={medioAmbienteServices[0].image}
           alt={copy.heroImageAlt}
@@ -291,10 +305,20 @@ export default function HeroLaEmpresa() {
 
       {/* ================= OVERLAYS ================= */}
       {/* Dark cinematic overlay */}
-      <div className="absolute inset-0 z-20 bg-[linear-gradient(115deg,rgba(8,8,7,0.82)_0%,rgba(8,8,7,0.56)_46%,rgba(8,8,7,0.28)_100%)]" />
+      <div className="absolute inset-0 z-20 bg-[linear-gradient(115deg,rgba(8,8,7,0.55)_0%,rgba(8,8,7,0.30)_46%,rgba(8,8,7,0.08)_100%)]" />
+
+      {/* Luz emergente (animada por HeroAtmosphere) */}
+      <div
+        className="light-emerge absolute inset-0 z-20 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 800px 600px at 50% 30%, rgba(16, 185, 129, 0.15) 0%, transparent 70%)",
+          opacity: 0.3,
+        }}
+      />
 
       {/* ===== CONTENIDO HERO ===== */}
-<div className="relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-6xl px-6">
+<div className="hero-content relative z-30 flex min-h-[85vh] items-center mt-8 xl:mt-10 2xl:mt-14">        <div className="mx-auto max-w-6xl px-6">
           <div className="service-text max-w-3xl text-white">
             <div className="mining-hero-eyebrow">
               <div className="reveal-line mining-hero-line origin-left" />

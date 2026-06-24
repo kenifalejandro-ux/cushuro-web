@@ -48,6 +48,8 @@ export default function App() {
       channelsTitle: "Canales de atención",
       emailLabel: "Correo corporativo",
       whatsappLabelTitle: "WhatsApp comercial",
+      whatsappMessage:
+        "Hola, deseo información comercial sobre sus productos (óxido de calcio, cal hidratada, cal agrícola y piedra caliza).",
       companyLabel: "Razón social",
       companyName: "Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.",
       officeLabel: "Oficina",
@@ -65,7 +67,7 @@ export default function App() {
           city: "Huamachuco, La Libertad",
           address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
           productionCenter: "CASERIO RODEOPAMPA - MARCABAL - HUAMACHUCO.",
-          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+          imageSrc: "/img-servicios/hero/hero-óxido-de-calcio/óxido-de-calcio001",
           imageAlt: "Planta y Compromiso Ambiental Y Social de Calera Cushuro",
           coordinates: [-78.0489, -7.8154] as [number, number],
         },
@@ -75,7 +77,7 @@ export default function App() {
           city: "Bambamarca, Cajamarca",
           address: "Bambamarca - Cajamarca, Perú.",
           productionCenter: "Zona Industrial Bambamarca.",
-          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002",
+          imageSrc: "/img-servicios/hero/hero-óxido-de-calcio/óxido-de-calcio002",
           imageAlt: "Planta de producción en Bambamarca - Cajamarca",
           coordinates: [-78.5213, -6.6828] as [number, number],
         },
@@ -98,6 +100,8 @@ export default function App() {
       channelsTitle: "Contact channels",
       emailLabel: "Corporate email",
       whatsappLabelTitle: "Commercial WhatsApp",
+      whatsappMessage:
+        "Hello, I would like commercial information about your products (calcium oxide, hydrated lime, agricultural lime, and limestone).",
       companyLabel: "Corporate name",
       companyName: "Empresa de Transportes y Servicios Santa Isabel de Cushuro S.A.C.",
       officeLabel: "Office",
@@ -115,7 +119,7 @@ export default function App() {
           city: "Huamachuco, La Libertad",
           address: "AV. VIA DE EVITAMIENTO N°105 - HUAMACHUCO.",
           productionCenter: "RODEOPAMPA - MARCABAL - HUAMACHUCO PRODUCTION CENTER.",
-          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio001",
+          imageSrc: "/img-servicios/hero/hero-óxido-de-calcio/óxido-de-calcio001",
           imageAlt: "Cushuro lime plant and environmental-social commitment",
           coordinates: [-78.0489, -7.8154] as [number, number],
         },
@@ -125,7 +129,7 @@ export default function App() {
           city: "Bambamarca, Cajamarca",
           address: "Bambamarca - Cajamarca, Peru.",
           productionCenter: "Bambamarca Industrial Zone.",
-          imageSrc: "/img-servicios/hero/hero-oxido-de-calcio/oxido-de-calcio002",
+          imageSrc: "/img-servicios/hero/hero-óxido-de-calcio/óxido-de-calcio002",
           imageAlt: "Production plant in Bambamarca - Cajamarca",
           coordinates: [-78.5213, -6.6828] as [number, number],
         },
@@ -150,7 +154,7 @@ export default function App() {
               <div className="mb-6 inline-flex items-center gap-3">
                 <div className="h-px w-10 bg-[#2d6e1a]" />
                 <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
-                  <Factory size={14} className="text-[#2d6e1a]" />
+                  <Factory size={16} weight="duotone" className="text-[#2d6e1a]" />
                   {copy.hero.eyebrow}
                 </span>
                 <div className="h-px w-10 bg-[#2d6e1a]" />
@@ -209,10 +213,11 @@ export default function App() {
                 transition={{ duration: 0.55, delay: 0.14 }}
                 className="flex flex-col justify-start"
               >
-                <div className="border-t border-zinc-900 pt-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+                <div className="flex items-center gap-4">
+                  <div className="h-px flex-1 bg-[#6db820]" />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#6db820]">
                     {copy.channelsTitle}
-                  </p>
+                  </span>
                 </div>
 
                 <div className="mt-8 space-y-7">
@@ -222,8 +227,9 @@ export default function App() {
                   >
                     <div className="flex items-start gap-4">
                       <Envelope
-                        size={18}
-                        className="mt-1 shrink-0 text-zinc-400 transition-colors group-hover:text-[#2d6e1a]"
+                        size={22}
+                        weight="duotone"
+                        className="mt-1 shrink-0 text-[#2d6e1a]"
                       />
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
@@ -241,15 +247,16 @@ export default function App() {
                   </a>
 
                   <a
-                    href={WHATSAPP_URL}
+                    href={`${WHATSAPP_URL}?text=${encodeURIComponent(copy.whatsappMessage)}`}
                     target="_blank"
                     rel="noreferrer"
                     className="group flex items-center justify-between gap-4 border-b border-zinc-200 pb-5 text-zinc-900 transition-colors hover:text-[#2d6e1a]"
                   >
                     <div className="flex items-start gap-4">
                       <ChatCircle
-                        size={18}
-                        className="mt-1 shrink-0 text-zinc-400 transition-colors group-hover:text-[#2d6e1a]"
+                        size={22}
+                        weight="duotone"
+                        className="mt-1 shrink-0 text-[#2d6e1a]"
                       />
                       <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
@@ -270,8 +277,9 @@ export default function App() {
                 <div className="mt-10 space-y-8">
                   <div className="flex items-start gap-4">
                     <Buildings
-                      size={18}
-                      className="mt-1 shrink-0 text-zinc-400"
+                      size={22}
+                      weight="duotone"
+                      className="mt-1 shrink-0 text-[#2d6e1a]"
                     />
                     <div>
                       <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
@@ -285,8 +293,9 @@ export default function App() {
 
                   <div className="flex items-start gap-4">
                     <MapPin
-                      size={18}
-                      className="mt-1 shrink-0 text-zinc-400"
+                      size={22}
+                      weight="duotone"
+                      className="mt-1 shrink-0 text-[#2d6e1a]"
                     />
                     <div className="space-y-5">
                       <div>

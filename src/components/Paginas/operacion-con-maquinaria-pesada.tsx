@@ -23,6 +23,7 @@ import PageSEO from "../global/PageSEO";
 import FeatureCardsSection from "../ui/FeatureCardsSection";
 import ProductIntroSection from "../ui/ProductIntroSection";
 import SplitProcessFlow from "../ui/SplitProcessFlow";
+import { OptimizedImage } from "../ui/OptimizedImage";
 import {
   Carousel,
   CarouselContent,
@@ -101,18 +102,21 @@ export default function OperacionMaquinaria() {
             description:
               "Nivelación, corte, relleno y conformación de plataformas para operación minera.",
             icon: Shovel,
+            image: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria003",
           },
           {
             title: "Extracción y Carguío",
             description:
               "Operación controlada para extracción eficiente de material en cantera.",
             icon: Crane,
+            image: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria001",
           },
           {
             title: "Soporte Operativo",
             description:
               "Preparación de accesos, mantenimiento de vías internas y apoyo logístico en campo.",
             icon: Wrench,
+            image: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria002",
           },
         ],
       },
@@ -120,6 +124,20 @@ export default function OperacionMaquinaria() {
         eyebrow: "Equipamiento",
         title: "Flota de Maquinaria",
         brandsTitle: "Operamos con maquinaria de marcas reconocidas",
+        brands: [
+          {
+            name: "Caterpillar",
+            logo: "logo-marca/Caterpillar-Logo.png",
+          },
+          {
+            name: "Volvo",
+            logo: "logo-marca/Volvo-Logo.png",
+          },
+          {
+            name: "Scania",
+            logo: "logo-marca/logo-Scania.png",
+          },
+        ],
         equipment: [
           {
             name: "Cargadores frontales",
@@ -252,17 +270,20 @@ export default function OperacionMaquinaria() {
             description:
               "Leveling, cutting, filling, and platform shaping for mining operations.",
             icon: Shovel,
+            image: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria003",
           },
           {
             title: "Extraction and Loading",
             description: "Controlled operation for efficient material extraction in the quarry.",
             icon: Crane,
+            image: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria001",
           },
           {
             title: "Operational Support",
             description:
               "Preparation of access routes, internal road maintenance, and field logistics support.",
             icon: Wrench,
+            image: "img-servicios/hero/operacion-con-maquinaria/operacion-con-maquinaria002",
           },
         ],
       },
@@ -270,6 +291,20 @@ export default function OperacionMaquinaria() {
         eyebrow: "Equipment",
         title: "Machinery Fleet",
         brandsTitle: "We operate with equipment from recognized brands",
+        brands: [
+          {
+            name: "Caterpillar",
+            logo: "logo-marca/Caterpillar-Logo.png",
+          },
+          {
+            name: "Volvo",
+            logo: "logo-marca/Volvo-Logo.png",
+          },
+          {
+            name: "Scania",
+            logo: "logo-marca/logo-Scania.png",
+          },
+        ],
         equipment: [
           {
             name: "Front-end loaders",
@@ -361,7 +396,7 @@ export default function OperacionMaquinaria() {
   }, []);
 
   return (
-    <div className="light-image min-h-screen bg-stone-100">
+    <div className="light-image min-h-screen bg-[#1d3461]">
       <PageSEO pageId="operacion-con-maquinaria-pesada" />
 
       <ProductIntroSection
@@ -374,13 +409,14 @@ export default function OperacionMaquinaria() {
 
       <FeatureCardsSection
         sectionRef={machineryRef}
-        sectionClassName="light-image py-24 bg-stone-100 relative"
+        sectionClassName="dark-image py-24 bg-slate-50 relative"
         eyebrow={copy.operations.eyebrow}
         title={copy.operations.title}
-        items={copy.operations.items.map(({ title, description, icon: Icon }) => ({
+        items={copy.operations.items.map(({ title, description, icon: Icon, image }) => ({
           title,
           description,
           icon: <Icon className="w-8 h-8" />,
+          image,
         }))}
         gridClassName="grid gap-8 md:grid-cols-3"
         itemClassName="machinery-card"
@@ -388,7 +424,7 @@ export default function OperacionMaquinaria() {
         variant="detailed"
       />
 
-      <section className="dark-image py-24 max-w-7x relative overflow-hidden b2b-dark-section bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
+      <section className="dark-image py-24 max-w-7x relative overflow-hidden b2b-dark-section lg:rounded-full bg-[#1d3461]">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -422,7 +458,7 @@ export default function OperacionMaquinaria() {
                   return (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                       <div className="p-2">
-                        <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-8 transition-all duration-300 group">
+                        <div className="h-full rounded-2xl border border-white/10 bg-stone-950 p-8 transition-all duration-300 group">
                           <div className="mb-6 text-zinc-100 group-hover:scale-110 transition-transform duration-300">
                             <Icon className="w-12 h-12" />
                           </div>
@@ -450,16 +486,28 @@ export default function OperacionMaquinaria() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-16 text-center"
           >
-            <div className="inline-block rounded-full border border-white/10 bg-white/5 px-8 py-4">
-              <p className="text-zinc-400 text-sm mb-3 uppercase tracking-widest">
+            <div className="inline-block  border border-white bg-white px-12 py-3">
+              <p className="text-zinc-600 text-sm mb-4 uppercase tracking-widest">
                 {copy.fleet.brandsTitle}
               </p>
-              <div className="flex items-center gap-8 text-emerald-400 font-black text-xl">
-                <span>CATERPILLAR</span>
-                <span className="text-zinc-600">•</span>
-                <span>VOLVO</span>
-                <span className="text-zinc-600">•</span>
-                <span>SCANIA</span>
+              <div className="flex items-center justify-center gap-10">
+                {copy.fleet.brands.map((brand, index) => (
+                  <motion.div
+                    key={brand.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    className="flex items-center justify-center hover:scale-110 transition-transform duration-300"
+                    style={{ height: "104px", width: "auto" }}
+                  >
+                    <img
+                      src={`https://cushuro.pe/${brand.logo}`}
+                      alt={brand.name}
+                      className="h-full w-auto filter drop-shadow-lg"
+                    />
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>

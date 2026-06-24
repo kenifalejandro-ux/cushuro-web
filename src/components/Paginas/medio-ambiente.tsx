@@ -260,9 +260,12 @@ export const MedioAmbiente: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-24 items-center">
           <div className="space-y-10">
             <div className="space-y-4">
-              <span className="text-sm uppercase tracking-[0.4em] text-emerald-600 font-medium italic">
-                {copy.preservation.eyebrow}
-              </span>
+              <div className="flex items-center gap-4">
+                <div className="h-px flex-1 bg-[#6db820]" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#6db820]">
+                  {copy.preservation.eyebrow}
+                </span>
+              </div>
               <h2 className="text-5xl font-light text-zinc-800 tracking-tight leading-tight">
                 {copy.preservation.title.split(" ").map((word, index) => (
                   <React.Fragment key={`${word}-${index}`}>
@@ -306,9 +309,12 @@ export const MedioAmbiente: React.FC = () => {
 
           <div className="space-y-14 order-1 md:order-2">
             <div className="space-y-5">
-              <span className="text-sm font-medium uppercase tracking-[0.4em] text-emerald-700">
-                {copy.impact.eyebrow}
-              </span>
+              <div className="flex items-center gap-4">
+                <div className="h-px flex-1 bg-[#6db820]" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#6db820]">
+                  {copy.impact.eyebrow}
+                </span>
+              </div>
 
               <h2 className="text-5xl md:text-6xl font-light text-zinc-900 tracking-tight leading-tight">
                 {copy.impact.title} <br />

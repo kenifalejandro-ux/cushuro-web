@@ -24,7 +24,7 @@ export const PRODUCTS_SUBMENU: MenuItem[] = [
   {
     id: "CalViva",
     name: "Cal Viva",
-    subtitle: "Oxido de calcio para operaciones productivas",
+    subtitle: "óxido de calcio para operaciones productivas",
     href: "/Productos/cal-viva",
     nameEn: "Quicklime",
     subtitleEn: "Calcium oxide for productive operations",

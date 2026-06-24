@@ -97,12 +97,14 @@ export default function ProductIntroSection({
             viewport={{ once: true, amount: 0.3 }}
             className="max-w-2xl"
           >
-            <div className="mb-6 flex items-center gap-3">
-              <span className="h-px w-10 bg-brand-accent/60" />
-              <span className="text-tech-md text-neutral-600">
-                {eyebrow}
-              </span>
-            </div>
+            {eyebrow ? (
+              <div className="mb-6 flex items-center gap-4">
+                <div className="h-px flex-1 bg-[#6db820]" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-[#6db820]">
+                  {eyebrow}
+                </span>
+              </div>
+            ) : null}
 
             <h2 className="max-w-xl text-display-md tracking-tight text-neutral-900 sm:text-display-lg">
               {title}
@@ -134,10 +136,8 @@ export default function ProductIntroSection({
                     <div className="flex items-start gap-4">
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-neutral-300 bg-stone-100">
                         <Icon
-                          className={
-                            iconClassName ??
-                            "h-[18px] w-[18px] text-neutral-700"
-                          }
+                          size={18}
+                          className={iconClassName ?? "text-neutral-700"}
                         />
                       </div>
 

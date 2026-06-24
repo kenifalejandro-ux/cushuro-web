@@ -88,10 +88,26 @@ export default function TransporteLogistico() {
       features: {
         title: "Materiales Estrategicos Transportados",
         items: [
-          { title: "Piedra caliza preparada", icon: Mountains },
-          { title: "Oxido de calcio (Cal Viva)", icon: Flame },
-          { title: "Carbon de piedra", icon: Hammer },
-          { title: "Insumos industriales", icon: Truck },
+          {
+            title: "Piedra caliza preparada",
+            icon: Mountains,
+            image: "img-productos/hero/piedra-caliza/piedra-caliza",
+          },
+          {
+            title: "Oxido de calcio (Cal Viva)",
+            icon: Flame,
+            image: "img-productos/hero/cal-viva/cal_viva",
+          },
+          {
+            title: "Carbon de piedra",
+            icon: Hammer,
+            image: "img-productos/hero/carbon-antracita/carbon-antracita",
+          },
+          {
+            title: "Insumos industriales",
+            icon: Truck,
+            image: "img-servicios/hero/transporte-logistico/transporte-logistico004",
+          },
         ],
       },
       safety: {
@@ -192,10 +208,26 @@ export default function TransporteLogistico() {
       features: {
         title: "Strategic Materials Transported",
         items: [
-          { title: "Prepared limestone", icon: Mountains },
-          { title: "Calcium oxide (Quicklime)", icon: Flame },
-          { title: "Coal", icon: Hammer },
-          { title: "Industrial supplies", icon: Truck },
+          {
+            title: "Prepared limestone",
+            icon: Mountains,
+            image: "img-productos/hero/piedra-caliza/piedra-caliza",
+          },
+          {
+            title: "Calcium oxide (Quicklime)",
+            icon: Flame,
+            image: "img-productos/hero/cal-viva/cal_viva",
+          },
+          {
+            title: "Coal",
+            icon: Hammer,
+            image: "img-productos/hero/carbon-antracita/carbon-antracita",
+          },
+          {
+            title: "Industrial supplies",
+            icon: Truck,
+            image: "img-servicios/hero/transporte-logistico/transporte-logistico004",
+          },
         ],
       },
       safety: {
@@ -281,7 +313,7 @@ export default function TransporteLogistico() {
   }, []);
 
   return (
-    <div className="light-image min-h-screen bg-stone-100">
+    <div className="light-image min-h-screen bg-[#1d3461]">
       <PageSEO pageId="transporte-logistico-especializado" />
 
       <ProductIntroSection
@@ -294,15 +326,16 @@ export default function TransporteLogistico() {
 
       <FeatureCardsSection
         sectionRef={servicesRef}
-        sectionClassName="light-image py-20 bg-stone-100"
+        sectionClassName="light-image  lg:rounded-full py-20 "
         headingClassName="text-center mb-12"
-        titleClassName="b2b-section-title text-center"
+        titleClassName="text-3xl font-semibold tracking-tight text-white md:text-4xl text-center"
         title={copy.features.title}
-        items={copy.features.items.map(({ title, icon: Icon }) => ({
+        items={copy.features.items.map(({ title, icon: Icon, image }) => ({
           title,
           icon: <Icon className="h-6 w-6" />,
+          image,
         }))}
-        gridClassName="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+        gridClassName="grid gap-8  md:grid-cols-2 lg:grid-cols-4"
         itemClassName="service-card"
         hoverY={-6}
         variant="centered"

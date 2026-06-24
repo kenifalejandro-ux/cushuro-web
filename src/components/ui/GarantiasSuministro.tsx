@@ -12,7 +12,7 @@ import { useLocalizedContent } from "../../context/SiteLanguageContext";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GarantiasSuministro() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const copy = useLocalizedContent({
     es: {
@@ -135,30 +135,32 @@ export default function GarantiasSuministro() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative overflow-hidden bg-stone-100 py-24 md:py-32"
+      className="light-image relative bg-zinc-100 py-28 md:py-36"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/40 to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="h-px w-12 bg-emerald-700" />
-            <span className="font-mono text-[11px] tracking-[0.3em] text-emerald-700 uppercase">
-              {copy.eyebrow}
-            </span>
+        {/* Header + Cards Layout - Two Column */}
+        <div className="grid lg:grid-cols-2 gap-12 mb-14 items-start">
+          {/* Left: Header Content (sticky en desktop) */}
+          <div className="max-w-lg lg:sticky lg:top-28 lg:self-start">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="h-px w-12 bg-emerald-700" />
+              <span className="font-mono text-[11px] tracking-[0.3em] text-emerald-700 uppercase">
+                {copy.eyebrow}
+              </span>
+            </div>
+            <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 md:text-5xl mb-4">
+              {copy.title}
+            </h2>
+            <p className="text-lg text-zinc-900 leading-relaxed">
+              {copy.subtitle}
+            </p>
           </div>
-          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 md:text-5xl mb-4">
-            {copy.title}
-          </h2>
-          <p className="text-lg text-zinc-900 leading-relaxed max-w-3xl">
-            {copy.subtitle}
-          </p>
-        </div>
 
-        {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-14">
-          {copy.cards.map((card) => {
+          {/* Right: Cards (scrollean mientras la izquierda queda fija) */}
+          <div className="grid grid-cols-1 gap-6">
+            {copy.cards.map((card) => {
             const Icon = card.icon;
             return (
               <div
@@ -182,6 +184,7 @@ export default function GarantiasSuministro() {
               </div>
             );
           })}
+          </div>
         </div>
 
         {/* Stats bar */}

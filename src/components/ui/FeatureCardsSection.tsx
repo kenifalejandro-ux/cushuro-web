@@ -6,6 +6,7 @@
 import { motion } from "motion/react";
 import type { ReactNode, Ref } from "react";
 import { OptimizedImage } from "./OptimizedImage";
+import SnapCarousel, { SnapCarouselItem } from "./SnapCarousel";
 
 export type FeatureCardsSectionItem = {
   title: string;
@@ -80,13 +81,13 @@ export default function FeatureCardsSection({
           ) : null}
         </motion.div>
 
-        <div className={gridClassName}>
+        <SnapCarousel until="lg" bleed={false} className={gridClassName}>
           {items.map((item, index) => {
             const num = String(index + 1).padStart(2, "0");
             return (
+              <SnapCarouselItem key={`${item.title}-${index}`}>
               <motion.div
-                key={`${item.title}-${index}`}
-                className={itemClassName}
+                className={`${itemClassName} h-full`}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: hoverY, scale: 1.008 }}
@@ -149,9 +150,10 @@ export default function FeatureCardsSection({
                   </div>
                 </article>
               </motion.div>
+              </SnapCarouselItem>
             );
           })}
-        </div>
+        </SnapCarousel>
       </div>
     </section>
   );

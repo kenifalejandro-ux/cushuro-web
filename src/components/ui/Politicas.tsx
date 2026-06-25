@@ -16,6 +16,7 @@ import {
 } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
+import SnapCarousel, { SnapCarouselItem } from "./SnapCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,7 +59,7 @@ const PoliticasBlock = ({
   return (
     <div
       ref={blockRef}
-      className="group relative rounded-[1.5rem] border border-white/8 bg-zinc-950/88 p-8 transition-colors duration-300 hover:border-emerald-700/30"
+      className="group relative h-full rounded-[1.5rem] border border-white/8 bg-zinc-950/88 p-8 transition-colors duration-300 hover:border-emerald-700/30"
     >
       <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-emerald-700/55 via-stone-500/30 to-transparent" />
       <div className="flex items-center gap-4 mb-6">
@@ -213,17 +214,23 @@ export default function Politicas() {
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 [&>*:last-child:nth-child(3n+2)]:lg:col-start-2">
+        <SnapCarousel
+          until="lg"
+          bleed={false}
+          hintTone="dark"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 [&>*:last-child:nth-child(3n+2)]:lg:col-start-2"
+        >
           {copy.items.map((item, index) => (
-            <PoliticasBlock
-              key={item.title}
-              icon={item.icon}
-              title={item.title}
-              description={item.description}
-              delay={index * 0.15}
-            />
+            <SnapCarouselItem key={item.title}>
+              <PoliticasBlock
+                icon={item.icon}
+                title={item.title}
+                description={item.description}
+                delay={index * 0.15}
+              />
+            </SnapCarouselItem>
           ))}
-        </div>
+        </SnapCarousel>
         
       </div>
       {/* Dual Background - Radar Right + Waves Left */}

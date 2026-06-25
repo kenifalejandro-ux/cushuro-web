@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { initContactanosPage } from "./contactanos";
 import { useLocalizedContent, useSiteLanguage } from "../../context/SiteLanguageContext";
 
@@ -17,6 +18,9 @@ const PRODUCT_OPTIONS = [
 
 export default function Contact({ className = "" }: ContactProps) {
   const { language } = useSiteLanguage();
+  const { pathname } = useLocation();
+  // En /contacto el mapa va justo encima: no subimos el formulario (evita que lo corte).
+  const isContactPage = pathname.toLowerCase().startsWith("/contacto");
   const copy = useLocalizedContent({
     es: {
       badge: "Atención Comercial",
@@ -70,7 +74,7 @@ export default function Contact({ className = "" }: ContactProps) {
 
   return (
     <div className={`relative z-30 ${className}`}>
-      <section className="dark-image relative -mt-10 overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,#1a1a1d_0%,#201f22_60%,#211d1b_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.7)] sm:p-10">
+      <section className={`dark-image relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(160deg,#1a1a1d_0%,#201f22_60%,#211d1b_100%)] p-8 shadow-[0_32px_70px_-40px_rgba(0,0,0,0.7)] sm:p-10 ${isContactPage ? "mt-8 lg:mt-12" : "-mt-30"}`}>
         {/* Hairline de acento superior */}
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/55 to-transparent" />
 

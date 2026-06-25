@@ -17,6 +17,7 @@ import {
 
 import CommercialCTA from "../global/CommercialCTA";
 import PageSEO from "../global/PageSEO";
+import PinnedVideoBackdrop from "../ui/PinnedVideoBackdrop";
 import ProductApplicationsGrid from "../ui/ProductApplicationsGrid";
 import ProductAdvantagesGrid from "../ui/ProductAdvantagesGrid";
 import ProductCapacitySection from "../ui/ProductCapacitySection";
@@ -346,26 +347,32 @@ export default function PiedraCaliza() {
           image,
         }))}
       />
-
-      <ProductApplicationsGrid
-        image={{
-          src: "img-productos/piedra-caliza/aplicaciones-mineras/Obrero-compactando-piedra-caliza-en-carretera",
-          alt: copy.applicationsImageAlt,
-          aspectClassName: "aspect-[6/5] md:aspect-[8/4]",
-        }}
-        items={copy.applications}
-      />
-<div className="-mt-10 bg-stone-100">
+      {/* Equipo + Aplicaciones comparten un video de fondo "pineado": el video
+          se queda quieto mientras ambos contenidos pasan por encima (prompter). */}
+      <PinnedVideoBackdrop>
+        <ProductTeamSection
+          title={copy.team.title}
+          members={copy.team.members}
+          totalValue={38}
+          totalLabel={copy.team.totalLabel}
+          embedded
+        />
+        <ProductApplicationsGrid
+          image={{
+            src: "img-productos/piedra-caliza/aplicaciones-mineras/Obrero-compactando-piedra-caliza-en-carretera",
+            alt: copy.applicationsImageAlt,
+            aspectClassName: "aspect-[6/5] md:aspect-[8/4]",
+          }}
+          items={copy.applications}
+          embedded
+        />
+      </PinnedVideoBackdrop>
+     <div className="-mt-10 bg-stone-100">
       <ProductAdvantagesGrid items={copy.advantages} />
          </div>
 
          
-      <ProductTeamSection
-        title={copy.team.title}
-        members={copy.team.members}
-        totalValue={38}
-        totalLabel={copy.team.totalLabel}
-      />
+
 
       <CommercialCTA
         title={copy.cta.title}

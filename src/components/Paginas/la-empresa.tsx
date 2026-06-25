@@ -27,11 +27,6 @@ export default function LaEmpresa() {
           <Nosotros />
         </div>
 
-        {/* Misión, Visión & Objetivos — bloque unificado con diseño Minera Boroo */}
-        <div>
-          <UnifiedMissionSection />
-        </div>
-
         {/* BLOQUE 2 — Capacidad Industrial e Infraestructura Operativa */}
 
         {/* Garantía de Suministro: 100% propio, 24/7, resiliencia */}
@@ -44,6 +39,11 @@ export default function LaEmpresa() {
         {/* Tabla: Productos → Beneficio directo en la mina */}
         <div>
           <ProductosBeneficiosTable />
+        </div>
+        
+        {/* Misión, Visión & Objetivos — bloque unificado con diseño Minera Boroo */}
+        <div>
+          <UnifiedMissionSection />
         </div>
 
         {/* Garantías de Homologación (Políticas) */}

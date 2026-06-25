@@ -70,7 +70,7 @@ export default function EnvironmentalHealthSection({
           ) : null}
         </motion.div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {items.map(({ icon: Icon, title: itemTitle, description }, index) => (
             <motion.article
               key={`${itemTitle}-${index}`}
@@ -78,18 +78,18 @@ export default function EnvironmentalHealthSection({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-stone-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(241,244,238,0.96))] p-6 shadow-[0_18px_42px_-30px_rgba(24,24,27,0.18)] transition-all duration-300 hover:-translate-y-1"
+              className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-stone-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(241,244,238,0.96))] p-4 shadow-[0_18px_42px_-30px_rgba(24,24,27,0.18)] transition-all duration-300 hover:-translate-y-1 sm:rounded-[1.75rem] sm:p-6"
             >
               <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-emerald-700/55 via-stone-400/25 to-transparent" />
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-[1.1rem] border border-emerald-900/10 bg-emerald-50 text-emerald-800 shadow-[0_14px_26px_-18px_rgba(5,150,105,0.28)] transition-all duration-300 group-hover:scale-105 group-hover:bg-emerald-100">
-                <Icon className="h-5 w-5" />
+              <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-emerald-900/10 bg-emerald-50 text-emerald-800 shadow-[0_14px_26px_-18px_rgba(5,150,105,0.28)] transition-all duration-300 group-hover:scale-105 group-hover:bg-emerald-100 sm:mb-5 sm:h-14 sm:w-14 sm:rounded-[1.1rem]">
+                <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
               </div>
 
-              <h4 className="text-base font-semibold tracking-tight text-zinc-900">
+              <h4 className="text-sm font-semibold tracking-tight text-zinc-900 sm:text-base">
                 {itemTitle}
               </h4>
 
-              <p className="mt-3 text-sm leading-7 text-zinc-600">
+              <p className="mt-2 text-[13px] leading-6 text-zinc-600 sm:mt-3 sm:text-sm sm:leading-7">
                 {description}
               </p>
             </motion.article>

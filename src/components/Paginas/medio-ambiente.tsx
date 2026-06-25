@@ -21,12 +21,7 @@ export const MedioAmbiente: React.FC = () => {
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const copy = useLocalizedContent({
     es: {
-      hero: {
-        title: "Santa Isabel",
-        brand: "De Curshuro SAC",
-        description:
-          "Tiene como objetivo lograr los más altos niveles de administración, en su gestión de preservación ambiental de los proyectos que emprenda la empresa.",
-      },
+
       preservation: {
         eyebrow: "Actividad Forestal",
         title: "Preservación Ambiental",
@@ -93,12 +88,7 @@ export const MedioAmbiente: React.FC = () => {
       },
     },
     en: {
-      hero: {
-        title: "Santa Isabel",
-        brand: "De Curshuro SAC",
-        description:
-          "Our goal is to achieve the highest management standards in the environmental preservation of every project undertaken by the company.",
-      },
+
       preservation: {
         eyebrow: "Forestry Activity",
         title: "Environmental Preservation",
@@ -237,24 +227,7 @@ export const MedioAmbiente: React.FC = () => {
     <div ref={containerRef} className="light-image bg-stone-100 text-zinc-800 font-light overflow-hidden">
       <PageSEO pageId="medio-ambiente" />
 
-      <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-24 bg-zinc-80/30">
-        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8">
-          <h1 className="hero-title-env text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-light tracking-tighter text-zinc-800 inline-block px-4 py-2 rounded-lg">
-            {copy.hero.title} <br />
-            <span className="text-emerald-500 italic">{copy.hero.brand}</span>
-          </h1>
 
-          <div className="hero-line-env w-[1px] h-32 bg-emerald-400 mx-auto" />
-
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-800 max-w-3xl mx-auto font-light leading-relaxed">
-            {copy.hero.description}
-          </p>
-
-          <div className="pt-8">
-            <ArrowDown className="w-8 h-8 text-zinc-800 mx-auto animate-bounce" />
-          </div>
-        </div>
-      </section>
 
       <section className="reveal-section py-32 px-6 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-24 items-center">

@@ -42,7 +42,7 @@ const missionCards: MissionCard[] = [
 
 export function UnifiedMissionSection() {
   return (
-    <section className="relative bg-zinc-100 py-28 lg:py-32">
+    <section className="relative bg-stone-100 py-28 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <motion.div

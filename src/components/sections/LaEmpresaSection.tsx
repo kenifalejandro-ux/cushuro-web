@@ -26,7 +26,7 @@ if (typeof window !== "undefined") {
 export function LaEmpresaSection({
   title,
   description,
-  reverse = false,
+  reverse = true,
   imageElement,
   imageContainerClassName,
   label = "UNIDAD INDUSTRIAL",

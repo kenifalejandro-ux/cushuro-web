@@ -14,6 +14,7 @@ import {
 } from "@phosphor-icons/react";
 import PageSEO from "../global/PageSEO";
 import PilaresGrid from "../ui/PilaresGrid";
+import SnapCarousel, { SnapCarouselItem } from "../ui/SnapCarousel";
 import ReorderImageStack from "../ui/ReorderImageStack";
 import { ImageStack } from "../ui/ImageStack";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
@@ -27,12 +28,6 @@ export const ResponsabilidadSocial: React.FC = () => {
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const copy = useLocalizedContent({
     es: {
-      hero: {
-        title: "Compromiso",
-        accent: "Social",
-        description:
-          "En Santa Isabel de Cushuro no alteramos vidas; las transformamos. No cambiamos entornos; los mejoramos. No alteramos sus costumbres, lo ayudamos a preservarlas. Nuestro compromiso es con las personas y su futuro.",
-      },
       philosophy: {
         eyebrow: "Filosofía social",
         title: "Más que minería,",
@@ -114,12 +109,6 @@ export const ResponsabilidadSocial: React.FC = () => {
       },
     },
     en: {
-      hero: {
-        title: "Social",
-        accent: "Commitment",
-        description:
-          "At Santa Isabel de Cushuro we do not disrupt lives; we transform them. We do not change environments; we improve them. We do not alter traditions; we help preserve them. Our commitment is to people and their future.",
-      },
       philosophy: {
         eyebrow: "Social philosophy",
         title: "More than mining,",
@@ -305,20 +294,6 @@ export const ResponsabilidadSocial: React.FC = () => {
     <div ref={containerRef} className="light-image bg-stone-100 text-zinc-900 font-light overflow-hidden">
       <PageSEO pageId="responsabilidad-social" />
 
-      <section className="relative min-h-[80vh] flex flex-col items-center justify-center px-6 py-24 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <h1 className="hero-title-social text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-light tracking-tighter text-zinc-800">
-            {copy.hero.title}
-            <br />
-            <span className="text-emerald-600">{copy.hero.accent}</span>
-          </h1>
-          <div className="hero-line-social h-[1px] w-48 bg-emerald-500 mx-auto" />
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed">
-            {copy.hero.description}
-          </p>
-        </div>
-      </section>
-
       <section className="light-image reveal-social bg-stone-100 px-6 py-24 md:py-32">
         <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2 md:gap-20">
           <div className="order-1 space-y-8">
@@ -342,7 +317,7 @@ export const ResponsabilidadSocial: React.FC = () => {
               ))}
             </div>
 
-            <div className="max-w-xl rounded-[1.75rem] border border-zinc-200/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(245,247,244,0.9))] px-6 py-5 shadow-[0_18px_40px_-28px_rgba(24,24,27,0.14)]">
+            <div className="max-w-xl border border-zinc-200/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.96),rgba(245,247,244,0.9))] px-6 py-5 shadow-[0_18px_40px_-28px_rgba(24,24,27,0.14)]">
               <p className="text-sm leading-7 italic text-zinc-700 md:text-base">
                 "{copy.philosophy.quote}"
               </p>
@@ -359,7 +334,7 @@ export const ResponsabilidadSocial: React.FC = () => {
               <ReorderImageStack images={copy.philosophy.images} />
 
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                <div className="lg:rounded-full border border-white/20 bg-white/10 p-6 backdrop-blur-[2px]">
+                <div className=" border border-white/20 bg-white/10 p-6 backdrop-blur-[2px]">
                   <UsersThree className="h-12 w-12 text-white/70 md:h-16 md:w-16" />
                 </div>
               </div>
@@ -368,23 +343,23 @@ export const ResponsabilidadSocial: React.FC = () => {
         </div>
       </section>
 
-      <section className="dark-image relative min-h-screen rounded-t-[520px] py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
+      <section className="dark-image relative min-h-screen  py-20 px-4 md:px-8 lg:px-16 overflow-hidden bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
         <h2 className="text-center text-4xl font-light text-emerald-600 mb-20 uppercase tracking-widest reveal-social">
           {copy.pillars.title}
         </h2>
         <p className="reveal-social max-w-4xl mx-auto text-center text-zinc-100 leading-relaxed mb-14">
           {copy.pillars.description}
         </p>
-        <div className="pillars-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <SnapCarousel until="lg" hintTone="dark" className="pillars-grid grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
           {copy.pillars.items.map((pillar, i) => {
             const Icon = pillar.icon;
 
             return (
-              <div
+              <SnapCarouselItem
                 key={i}
-                className="pillar-social p-15 w-[350px] transition-all duration-100 group hover:shadow-lg"
+                className="pillar-social group p-8 transition-all duration-100 hover:shadow-lg max-lg:rounded-2xl max-lg:bg-white/[0.03] max-lg:p-6"
               >
-                <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-zinc-50 transition-colors group-hover:bg-stone-100">
+                <div className="mb-8 flex h-14 w-14 items-center justify-center bg-zinc-50 transition-colors group-hover:bg-stone-100">
                   <Icon className="w-7 h-7 text-emerald-600 group-hover:text-zinc-600 transition-colors" />
                 </div>
                 <h3 className="text-xl font-medium text-zinc-100 mb-4">{pillar.title}</h3>
@@ -396,16 +371,16 @@ export const ResponsabilidadSocial: React.FC = () => {
                         key={j}
                         className="flex items-start gap-2 text-zinc-100 text-sm leading-relaxed"
                       >
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/80" />
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0  bg-emerald-500/80" />
                         {commitment}
                       </li>
                     ))}
                   </ul>
                 ) : null}
-              </div>
+              </SnapCarouselItem>
             );
           })}
-        </div>
+        </SnapCarousel>
 
         <PilaresGrid />
       </section>
@@ -457,7 +432,7 @@ export const ResponsabilidadSocial: React.FC = () => {
               ))}
             </div>
 
-            <div className="max-w-xl rounded-[2rem] border border-white/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.92),rgba(245,247,250,0.88))] p-8 shadow-[0_18px_45px_-28px_rgba(24,24,27,0.14)]">
+            <div className="max-w-xl  border border-white/80 bg-[linear-gradient(145deg,rgba(255,255,255,0.92),rgba(245,247,250,0.88))] p-8 shadow-[0_18px_45px_-28px_rgba(24,24,27,0.14)]">
               <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-zinc-500">
                 {copy.workEducation.commitmentTitle}
               </p>

@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, Flame, Gauge, Users, type LucideIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
+import SwipeHint from "./SwipeHint";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,7 +118,6 @@ export default function ProductCapacitySection({
   const copy = useLocalizedContent({
     es: {
       eyebrow: "CAPACIDAD OPERATIVA",
-      ruc: "RUC 20482610944",
       manifest: "REGISTRO DE PLANTA · 2026",
       strategicLocations: "UBICACIONES ESTRATÉGICAS",
       presence: "Presencia operativa",
@@ -126,7 +126,6 @@ export default function ProductCapacitySection({
     },
     en: {
       eyebrow: "OPERATIONAL CAPACITY",
-      ruc: "RUC 20482610944",
       manifest: "PLANT REGISTRY · 2026",
       strategicLocations: "STRATEGIC LOCATIONS",
       presence: "Operational presence",
@@ -145,6 +144,7 @@ export default function ProductCapacitySection({
   });
 
   const sectionRef = useRef<HTMLElement>(null);
+  const capacityScrollRef = useRef<HTMLDivElement>(null);
   const resolvedLocations =
     locations === defaultLocations ? copy.defaultLocations : locations;
 
@@ -185,7 +185,7 @@ export default function ProductCapacitySection({
   return (
     <section
       ref={sectionRef}
-      className="dark-image relative overflow-hidden bg-stone-100 py-section-md text-zinc-800 md:py-section-lg"
+      className="relative overflow-hidden bg-stone-100 py-section-md text-zinc-800 md:py-section-lg"
     >
       {/* Textura de planta — retícula de puntos */}
       <div
@@ -197,7 +197,7 @@ export default function ProductCapacitySection({
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-16">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-12">
         {/* Encabezado — bloque técnico con borde de acento */}
         <div className="mb-12 border-l-4 border-emerald-700 pl-6">
           <div className="mb-3 flex flex-wrap items-center gap-x-5 gap-y-1 font-mono text-[11px] tracking-[0.22em] text-emerald-700">
@@ -206,7 +206,6 @@ export default function ProductCapacitySection({
               {copy.eyebrow}
             </span>
             <span className="text-stone-500">{copy.manifest}</span>
-            <span className="ml-auto text-stone-500">{copy.ruc}</span>
           </div>
           <h2 className="text-display-md tracking-tight text-zinc-950 md:text-display-lg">
             {title}
@@ -214,8 +213,8 @@ export default function ProductCapacitySection({
         </div>
 
         {/* Panel industrial oscuro — celdas de lectura */}
-        <div className="overflow-hidden rounded-2xl border border-stone-300 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.08),transparent_32%),linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] shadow-[0_28px_60px_-34px_rgba(24,24,27,0.55)]">
-          <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="dark-image  overflow-hidden rounded-2xl border  border-stone-300 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.08),transparent_32%),linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] shadow-[0_28px_60px_-34px_rgba(24,24,27,0.55)]">
+          <div ref={capacityScrollRef} className="grid grid-cols-1 lg:grid-cols-3 max-lg:flex max-lg:snap-x max-lg:snap-mandatory max-lg:gap-4 max-lg:overflow-x-auto max-lg:p-3">
             {stats.map(({ value, label, description, tone = "primary" }, index) => {
               const style = toneStyles[tone];
               const Icon = defaultIcons[index % defaultIcons.length];
@@ -225,7 +224,7 @@ export default function ProductCapacitySection({
               return (
                 <article
                   key={`${label}-${index}`}
-                  className="capacity-stat-card group relative overflow-hidden border-b border-white/[0.06] p-8 transition-colors duration-base last:border-b-0 md:border-b-0 md:border-r md:border-white/[0.06] md:p-10 md:last:border-r-0"
+                  className="capacity-stat-card group relative overflow-hidden p-8 transition-colors duration-base md:p-10 lg:border-r lg:border-white/[0.06] lg:last:border-r-0 max-lg:w-[80vw] max-lg:max-w-[330px] md:max-lg:w-[46%] md:max-lg:max-w-none max-lg:shrink-0 max-lg:snap-center max-lg:rounded-2xl max-lg:border max-lg:border-white/10"
                 >
                   {/* Hairline de acento + brackets de registro */}
                   <span
@@ -298,6 +297,8 @@ export default function ProductCapacitySection({
               );
             })}
           </div>
+
+          <SwipeHint targetRef={capacityScrollRef} until="lg" tone="dark" className="mt-0 pb-5" />
 
           {/* Tira de ubicaciones — manifiesto inferior */}
           {resolvedLocations.length ? (

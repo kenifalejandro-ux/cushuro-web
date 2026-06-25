@@ -14,6 +14,8 @@ import {
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+import SwipeHint from "./SwipeHint";
 
 interface Stat {
   id: string;
@@ -58,6 +60,10 @@ function CountUp({ end, suffix = "" }: { end: number; suffix?: string }) {
 }
 
 export function MiningStats() {
+  const statsScrollRef = useRef<HTMLDivElement>(null);
+  // En mobile el fondo es oscuro (max-md:bg-stone-900), así que el marcador
+  // debe ser `dark-image` para que el header use el menú en tema claro.
+  const isMobile = useMediaQuery("(max-width: 767px)");
   const copy = useLocalizedContent({
     es: {
       eyebrow: "OPERACION Y CAPACIDAD",
@@ -86,7 +92,7 @@ export function MiningStats() {
   });
 
   return (
-    <section className="light-image relative  overflow-hidden bg-stone-100 py-24 text-zinc-800">
+    <section className={`${isMobile ? "dark-image" : "light-image"} relative  overflow-hidden bg-stone-100 py-24 text-zinc-800 max-md:bg-stone-900`}>
       <div
         className="absolute  inset-0 opacity-[0.12]"
         style={{
@@ -110,36 +116,36 @@ export function MiningStats() {
           </p>
         </div>
 
-        <div className="dark-image overflow-hidden rounded-[1.85rem] border border-stone-300 bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)]">
-          <div className="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-3">
+        <div className="dark-image overflow-hidden max-w-none   bg-stone-900">
+          <div ref={statsScrollRef} className="grid grid-cols-1 gap-0 md:grid-cols-2 lg:grid-cols-3 max-md:flex max-md:snap-x max-md:snap-mandatory max-md:gap-3 max-md:overflow-x-auto max-md:p-3">
           {copy.stats.map((stat, idx) => (
             <motion.div 
               key={stat.id}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative overflow-hidden border border-white/5 bg-white/[0.015] p-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-colors duration-300 hover:bg-white/[0.03]"
+              className="group relative overflow-hidden border border-white/5 bg-white/[0.015] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-colors duration-300 hover:bg-white/[0.03] sm:p-7 lg:p-10 max-md:flex max-md:min-h-[300px] max-md:w-[78vw] max-md:max-w-[320px] max-md:shrink-0 max-md:snap-center max-md:flex-col max-md:rounded-2xl max-md:p-6"
             >
-              <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-emerald-500/60 via-stone-400/35 to-transparent" />
+              <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-emerald-500/60 via-stone-400/35 to-transparent sm:inset-x-7 lg:inset-x-10" />
               <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-emerald-600/30 group-hover:border-emerald-600" />
               <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-emerald-600/30 group-hover:border-emerald-600" />
 
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <stat.icon className="h-8 w-8 text-emerald-400 opacity-90 transition-opacity group-hover:opacity-100" />
-                  <span className="text-[10px] font-mono text-stone-400 group-hover:text-emerald-400">ID_STAT_{stat.id}</span>
+              <div className="flex flex-col gap-3 sm:gap-4 max-md:flex-1 max-md:justify-between">
+                <div className="flex min-w-0 items-center justify-between gap-2">
+                  <stat.icon className="h-6 w-6 shrink-0 text-emerald-400 opacity-90 transition-opacity group-hover:opacity-100 sm:h-8 sm:w-8" />
+                  <span className="min-w-0 truncate text-[9px] font-mono text-stone-400 group-hover:text-emerald-400 sm:text-[10px]">ID_STAT_{stat.id}</span>
                 </div>
-                
+
                 <div>
-                  <div className="text-5xl font-black font-mono tracking-tighter text-stone-50">
+                  <div className="text-3xl font-black font-mono tracking-tighter text-stone-50 sm:text-4xl lg:text-5xl">
                     <CountUp end={stat.value} suffix={stat.suffix} />
                   </div>
-                  <h3 className="mt-1 text-sm font-bold uppercase tracking-widest text-stone-300">
+                  <h3 className="mt-1 text-xs font-bold uppercase leading-tight tracking-wider text-stone-300 sm:text-sm sm:tracking-widest">
                     {stat.label}
                   </h3>
                 </div>
 
-                <p className="text-xs font-medium leading-relaxed text-stone-400">
+                <p className="text-[11px] font-medium leading-snug text-stone-400 sm:text-xs sm:leading-relaxed">
                   {stat.subtext}
                 </p>
               </div>
@@ -147,6 +153,8 @@ export function MiningStats() {
           ))}
           </div>
         </div>
+
+        <SwipeHint targetRef={statsScrollRef} until="md" tone="dark" />
       </div>
     </section>
   );

@@ -17,6 +17,7 @@ import {
 
 import CommercialCTA from "../global/CommercialCTA";
 import PageSEO from "../global/PageSEO";
+import PinnedVideoBackdrop from "../ui/PinnedVideoBackdrop";
 import ProductApplicationsGrid from "../ui/ProductApplicationsGrid";
 import ProductAdvantagesGrid from "../ui/ProductAdvantagesGrid";
 import ProductCapacitySection from "../ui/ProductCapacitySection";
@@ -380,28 +381,35 @@ export default function CalViva() {
           image,
         }))}
       />
+      {/* Equipo + Aplicaciones comparten un video de fondo "pineado": el video
+          se queda quieto mientras ambos contenidos pasan por encima (prompter). */}
+      <PinnedVideoBackdrop>
+        <ProductTeamSection
+          title={copy.team.title}
+          members={copy.team.members}
+          totalValue={40}
+          totalLabel={copy.team.totalLabel}
+          accentClassName="text-emerald-700"
+          gridWidthClassName="max-w-3xl"
+          embedded
+        />
 
-      {/* APLICACIONES MINERAS */}
-      <ProductApplicationsGrid
-        image={{
-          src: "img-productos/piedra-caliza/proceso/cantera-piedra-caliza",
-          alt: copy.applicationsImageAlt,
-          aspectClassName: "aspect-[6/5] md:aspect-[8/4]",
-        }}
-        items={copy.applications}
-      />
+        {/* APLICACIONES MINERAS */}
+        <ProductApplicationsGrid
+          image={{
+            src: "img-productos/piedra-caliza/proceso/cantera-piedra-caliza",
+            alt: copy.applicationsImageAlt,
+            aspectClassName: "aspect-[6/5] md:aspect-[8/4]",
+          }}
+          items={copy.applications}
+          embedded
+        />
+      </PinnedVideoBackdrop>
       <ProductAdvantagesGrid
         items={copy.advantages}
       />
 
-      <ProductTeamSection
-        title={copy.team.title}
-        members={copy.team.members}
-        totalValue={40}
-        totalLabel={copy.team.totalLabel}
-        accentClassName="text-emerald-700"
-        gridWidthClassName="max-w-3xl"
-      />
+
       <CommercialCTA
         title={copy.cta.title}
         description={copy.cta.description}

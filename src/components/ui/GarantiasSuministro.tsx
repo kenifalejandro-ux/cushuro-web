@@ -8,12 +8,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CheckCircle, Flame, ShieldCheck, Truck } from "@phosphor-icons/react";
 import { useEffect, useRef } from "react";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
+import SnapCarousel, { SnapCarouselItem } from "./SnapCarousel";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GarantiasSuministro() {
   const sectionRef = useRef<HTMLDivElement>(null);
-
+  // En mobile y tablet (<lg, 1024px) el layout va apilado: panel azul (oscuro)
+  // arriba y tarjetas (blanco) abajo. Por eso marcamos cada región por separado.
+  const isStacked = useMediaQuery("(max-width: 1023px)");
   const copy = useLocalizedContent({
     es: {
       eyebrow: "BLOQUE 2 — GARANTÍA DE SUMINISTRO",
@@ -46,12 +51,7 @@ export default function GarantiasSuministro() {
             "Si un horno entra en mantenimiento preventivo, la planta mantiene alta capacidad operativa sin interrumpir el suministro al cliente.",
         },
       ],
-      stats: [
-        { value: "10", label: "Hornos Operativos", sub: "Régimen continuo 24/7" },
-        { value: "900", label: "TM / Día", sub: "Capacidad de producción" },
-        { value: "100%", label: "Abastecimiento Propio", sub: "Piedra caliza y carbón" },
-      ],
-      guarantee: "Garantía de continuidad: si un horno entra en mantenimiento preventivo, los demás mantienen el suministro sin interrupciones.",
+
     },
     en: {
       eyebrow: "BLOCK 2 — SUPPLY GUARANTEE",
@@ -135,35 +135,43 @@ export default function GarantiasSuministro() {
   return (
     <section
       ref={sectionRef}
-      className="light-image relative bg-zinc-100 py-28 md:py-36"
+      className={`${isStacked ? "" : "light-image"} relative `}
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/40 to-transparent" />
+      <div className="absolute inset-x-0 top-0 z-10 h-px bg-gradient-to-r from-transparent via-[#4fa81e]/40 to-transparent" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header + Cards Layout - Two Column */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-14 items-start">
-          {/* Left: Header Content (sticky en desktop) */}
-          <div className="max-w-lg lg:sticky lg:top-28 lg:self-start">
-            <div className="flex items-center gap-4 mb-4">
-              <span className="h-px w-12 bg-emerald-700" />
-              <span className="font-mono text-[11px] tracking-[0.3em] text-emerald-700 uppercase">
+      {/* Fondo a sangre: mitad azul (izq) / blanco (der) — solo desktop */}
+      <div aria-hidden="true" className="absolute inset-0 hidden lg:grid lg:grid-cols-2">
+        <div className="bg-gradient-to-br from-[#0b2a4a] to-[#11375c]" />
+        <div className="bg-white" />
+      </div>
+
+      {/* Contenido en max-w-7xl (el fondo sigue a sangre completa) */}
+      <div className="relative mx-auto grid grid-cols-1 max-w-7xl lg:grid-cols-2">
+        {/* Izquierda: encabezado sticky (azul en mobile, fondo a sangre en desktop) */}
+        <div className={`${isStacked ? "dark-image " : ""}bg-gradient-to-br from-[#0b2a4a] to-[#11375c] px-6 py-20 sm:px-10 lg:bg-none lg:py-28 lg:pl-0 lg:pr-12`}>
+          <div className="max-w-md lg:sticky lg:top-28">
+            <div className="mb-4 flex items-center gap-4">
+              <span className="h-px w-12 bg-emerald-400" />
+              <span className="font-mono text-[11px] tracking-[0.3em] text-emerald-300 uppercase">
                 {copy.eyebrow}
               </span>
             </div>
-            <h2 className="text-4xl font-semibold tracking-[-0.04em] text-zinc-950 md:text-5xl mb-4">
+            <h2 className="mb-4 text-4xl font-semibold tracking-[-0.04em] text-white md:text-5xl">
               {copy.title}
             </h2>
-            <p className="text-lg text-zinc-900 leading-relaxed">
+            <p className="text-lg leading-relaxed text-blue-100/90">
               {copy.subtitle}
             </p>
           </div>
+        </div>
 
-          {/* Right: Cards (scrollean mientras la izquierda queda fija) */}
-          <div className="grid grid-cols-1 gap-6">
+        {/* Derecha: tarjetas (scrollean mientras el panel queda fijo) */}
+        <div className={`${isStacked ? "light-image " : ""}min-w-0 px-6 py-20 sm:px-10 lg:py-28 lg:pl-12 lg:pr-0`}>
+          <SnapCarousel until="lg" className="grid grid-cols-1 gap-6" bleed={false}>
             {copy.cards.map((card) => {
             const Icon = card.icon;
             return (
-              <div
+              <SnapCarouselItem
                 key={card.tag}
                 className="garantia-card group relative rounded-2xl border border-zinc-200 bg-white p-8 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_-26px_rgba(0,0,0,0.18)]"
               >
@@ -181,31 +189,10 @@ export default function GarantiasSuministro() {
                 <p className="text-sm leading-7 text-zinc-600">
                   {card.description}
                 </p>
-              </div>
+              </SnapCarouselItem>
             );
           })}
-          </div>
-        </div>
-
-        {/* Stats bar */}
-        <div className="dark-image garantia-stats-grid grid grid-cols-3 divide-x divide-zinc-300 rounded-2xl border border-zinc-300 bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] overflow-hidden">
-          {copy.stats.map((stat) => (
-            <div key={stat.label} className="garantia-stat px-8 py-8 text-center">
-              <div className="text-4xl font-black font-mono text-emerald-400 tracking-tight mb-1">
-                {stat.value}
-              </div>
-              <div className="text-sm font-semibold uppercase tracking-widest text-zinc-200 mb-1">
-                {stat.label}
-              </div>
-              <div className="text-xs text-zinc-400">{stat.sub}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Guarantee note */}
-        <div className="mt-8 flex items-start gap-3 rounded-xl border border-emerald-700/30 bg-emerald-50 px-6 py-4">
-          <CheckCircle className="w-5 h-5 shrink-0 text-emerald-600 mt-0.5" />
-          <p className="text-sm text-emerald-800 leading-relaxed">{copy.guarantee}</p>
+          </SnapCarousel>
         </div>
       </div>
     </section>

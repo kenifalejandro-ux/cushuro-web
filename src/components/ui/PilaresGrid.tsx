@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 import ServiceCard from "./ServiceCard";
+import SnapCarousel, { SnapCarouselItem } from "./SnapCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -289,22 +290,23 @@ export default function PilaresGrid() {
   return (
     <section ref={sectionRef} className="dark-image bg-[linear-gradient(180deg,#171717_0%,#222020_58%,#2b2725_100%)] py-20 px-6 lg:px-12">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <SnapCarousel until="lg" hintTone="dark" className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10" bleed="max-lg:-mx-6 max-lg:px-6">
           {services.map((service, i) => (
-            <div
-              key={i}
-              ref={(el) => {
-                cardRefs.current[i] = el;
-              }}
-            >
-              <ServiceCard
-                {...service}
-                priority={i === 0}
-                showColorAlways={service.showColorAlways ?? true}
-              />
-            </div>
+            <SnapCarouselItem key={i} width="max-md:w-[82vw] max-md:max-w-[340px] md:max-lg:w-[46%] md:max-lg:max-w-none">
+              <div
+                ref={(el) => {
+                  cardRefs.current[i] = el;
+                }}
+              >
+                <ServiceCard
+                  {...service}
+                  priority={i === 0}
+                  showColorAlways={service.showColorAlways ?? true}
+                />
+              </div>
+            </SnapCarouselItem>
           ))}
-        </div>
+        </SnapCarousel>
       </div>
     </section>
   );

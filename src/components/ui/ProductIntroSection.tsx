@@ -8,6 +8,7 @@ import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { ParallaxSection } from "./ParallaxSection";
+import SnapCarousel, { SnapCarouselItem } from "./SnapCarousel";
 
 import ReorderImageStack from "./ReorderImageStack";
 
@@ -72,7 +73,7 @@ export default function ProductIntroSection({
   return (
     <ParallaxSection speed={0.12} className="light-image bg-stone-100 py-28 md:py-36">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
-          <div className="grid items-start gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           {/* Imagen */}
             <div className="relative self-start lg:sticky lg:top-24">
               <motion.div
@@ -95,7 +96,7 @@ export default function ProductIntroSection({
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: "easeOut", delay: 0.08 }}
             viewport={{ once: true, amount: 0.3 }}
-            className="max-w-2xl"
+            className="min-w-0 max-w-2xl"
           >
             {eyebrow ? (
               <div className="mb-6 flex items-center gap-4">
@@ -114,7 +115,7 @@ export default function ProductIntroSection({
               {description}
             </p>
 
-            <div className="mt-12 space-y-5">
+            <SnapCarousel until="lg" bleed={false} className="mt-12 grid grid-cols-1 gap-5">
               {cards.map(
                 ({
                   icon: Icon,
@@ -124,13 +125,13 @@ export default function ProductIntroSection({
                   items,
                   note,
                 }) => (
+                  <SnapCarouselItem key={cardTitle}>
                   <motion.article
-                    key={cardTitle}
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, ease: "easeOut" }}
                     viewport={{ once: true, amount: 0.25 }}
-                    className="group relative overflow-hidden rounded-lg border border-stone-200/90 bg-gradient-to-b from-white to-stone-50 p-6 shadow-md transition-all duration-base hover:border-neutral-300 hover:shadow-lg sm:p-7"
+                    className="group relative h-full overflow-hidden rounded-lg border border-stone-200/90 bg-gradient-to-b from-white to-stone-50 p-6 shadow-md transition-all duration-base hover:border-neutral-300 hover:shadow-lg sm:p-7"
                   >
                     <span className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-brand-accent/60 via-stone-400/25 to-transparent" />
                     <div className="flex items-start gap-4">
@@ -174,9 +175,10 @@ export default function ProductIntroSection({
                       </div>
                     </div>
                   </motion.article>
+                  </SnapCarouselItem>
                 )
               )}
-            </div>
+            </SnapCarousel>
           </motion.div>
           </div>
         </div>

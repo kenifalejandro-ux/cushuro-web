@@ -8,11 +8,14 @@ import { LaEmpresaSection } from "../sections/LaEmpresaSection";
 import { ImageStack } from "../ui/ImageStack";
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 
+
 // Íconos temáticos por posición (mismo orden en es/en)
 const EXPERIENCE_ICONS = [Truck, UsersThree, Mountains];
 const STANDARDS_ICONS = [Leaf, HardHat, Handshake];
 
+
 export default function Nosotros() {
+
   const copy = useLocalizedContent({
     es: {
       label: "QUIÉNES SOMOS",
@@ -63,7 +66,7 @@ export default function Nosotros() {
       title={copy.title}
       label={copy.label}
       description={
-        <div className="max-w-3xl space-y-8 text-[15px] leading-8 text-zinc-600 md:text-base">
+        <div className="max-w-3xl space-y-8  text-[15px] leading-8 text-zinc-600 md:text-base">
           <div className="space-y-4">
             <p className="max-w-2xl text-lg leading-8 text-zinc-700 md:text-xl">
               {copy.intro}
@@ -72,41 +75,43 @@ export default function Nosotros() {
             <p>{copy.body}</p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-900 p-6 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.18)]">
-              <h3 className="text-base font-medium tracking-[-0.02em] text-zinc-50">
+          <div className="grid grid-cols-2 gap-0 md:grid-cols-2 lg:grid-cols-2 max-md:-mx-8 max-md:divide-x-1 max-md:divide-[#4fa81e]">
+            <div className=" dark-image bg-zinc-900 p-4 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.18)] sm:rounded-[1.75rem] sm:border sm:border-zinc-200 sm:p-6">
+              <h3 className="text-sm font-medium tracking-[-0.02em] text-zinc-50 sm:text-base">
                 {copy.experienceTitle}
               </h3>
 
-              <ul className="mt-4 space-y-3 text-zinc-300">
+              <ul className="mt-3 space-y-2 text-[13px] leading-snug text-zinc-300 sm:mt-4 sm:space-y-3 sm:text-[15px] sm:leading-normal">
                 {copy.experienceItems.map((item, i) => {
                   const Icon = EXPERIENCE_ICONS[i] ?? Truck;
                   return (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#4fa81e]/10 text-[#2d6e1a]">
-                        <Icon size={17} weight="duotone" />
+                    <li key={item} className="flex items-start gap-2 sm:gap-3">
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[#4fa81e]/10 text-[#2d6e1a] sm:h-7 sm:w-7">
+                        <Icon size={15} weight="duotone" className="sm:hidden" />
+                        <Icon size={17} weight="duotone" className="hidden sm:block" />
                       </span>
-                      <span className="pt-1">{item}</span>
+                      <span className="pt-0.5 sm:pt-1">{item}</span>
                     </li>
                   );
                 })}
               </ul>
             </div>
 
-            <div className="rounded-[1.75rem] border border-zinc-200 bg-zinc-900 p-6 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.18)]">
-              <h3 className="text-base font-medium tracking-[-0.02em] text-zinc-50">
+            <div className=" dark-image bg-zinc-900 p-4 shadow-[0_20px_50px_-40px_rgba(0,0,0,0.18)] sm:rounded-[1.75rem] sm:border sm:border-zinc-200 sm:p-6">
+              <h3 className="text-sm font-medium tracking-[-0.02em] text-zinc-50 sm:text-base">
                 {copy.standardsTitle}
               </h3>
 
-              <ul className="mt-4 space-y-3 text-zinc-300">
+              <ul className="mt-3 space-y-2 text-[13px] leading-snug text-zinc-300 sm:mt-4 sm:space-y-3 sm:text-[15px] sm:leading-normal">
                 {copy.standardsItems.map((item, i) => {
                   const Icon = STANDARDS_ICONS[i] ?? Leaf;
                   return (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#4fa81e]/10 text-[#2d6e1a]">
-                        <Icon size={17} weight="duotone" />
+                    <li key={item} className="flex items-start gap-2 sm:gap-3">
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[#4fa81e]/10 text-[#2d6e1a] sm:h-7 sm:w-7">
+                        <Icon size={15} weight="duotone" className="sm:hidden" />
+                        <Icon size={17} weight="duotone" className="hidden sm:block" />
                       </span>
-                      <span className="pt-1">{item}</span>
+                      <span className="pt-0.5 sm:pt-1">{item}</span>
                     </li>
                   );
                 })}

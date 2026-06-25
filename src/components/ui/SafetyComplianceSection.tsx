@@ -6,6 +6,7 @@
 import type { Icon as PhosphorIcon } from "@phosphor-icons/react";
 import { motion } from "motion/react";
 import type { Ref } from "react";
+import SnapCarousel, { SnapCarouselItem } from "./SnapCarousel";
 
 export type SafetyComplianceItem = {
   title: string;
@@ -75,16 +76,16 @@ export default function SafetyComplianceSection({
         </motion.div>
 
         {/* GRID DE PILARES — tarjetas numeradas con relieve */}
-        <div className="grid gap-5 sm:grid-cols-2">
+        <SnapCarousel until="lg" bleed={false} className="grid grid-cols-1 gap-5 lg:grid-cols-2">
           {items.map(
             ({ title: itemTitle, description: itemDescription, icon: Icon, iconClassName }, index) => (
+              <SnapCarouselItem key={itemTitle}>
               <motion.article
-                key={itemTitle}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className="group relative overflow-hidden rounded-[22px] border border-zinc-200 bg-white p-8 shadow-[0_18px_40px_-34px_rgba(9,9,11,0.28)] transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-700 hover:shadow-[0_30px_56px_-34px_rgba(9,9,11,0.4)]"
+                className="group relative h-full overflow-hidden rounded-[22px] border border-zinc-200 bg-white p-8 shadow-[0_18px_40px_-34px_rgba(9,9,11,0.28)] transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-700 hover:shadow-[0_30px_56px_-34px_rgba(9,9,11,0.4)]"
               >
                 {/* línea de acento que crece en hover */}
                 <span className="absolute inset-x-8 top-0 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-emerald-600 to-blue-700 transition-transform duration-300 group-hover:scale-x-100" />
@@ -103,9 +104,10 @@ export default function SafetyComplianceSection({
                   {itemDescription}
                 </p>
               </motion.article>
+              </SnapCarouselItem>
             ),
           )}
-        </div>
+        </SnapCarousel>
 
         {/* BLOQUE NORMATIVO OSCURO — contraste para romper lo plano */}
         {standardsTitle || standards.length ? (

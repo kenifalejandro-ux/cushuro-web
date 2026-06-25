@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react";
 
 import { useLocalizedContent } from "../../context/SiteLanguageContext";
 import ServiceCard from "./ServiceCard";
+import SnapCarousel, { SnapCarouselItem } from "./SnapCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -180,25 +181,26 @@ export default function ReforestacionGrid() {
           <div className="h-[1px] w-24 bg-emerald-500 mx-auto" />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <SnapCarousel until="lg" hintTone="dark" className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10" bleed="max-lg:-mx-6 max-lg:px-6">
           {copy.cards.map((card, i) => (
-            <div
-              key={i}
-              ref={(el) => {
-                cardRefs.current[i] = el;
-              }}
-            >
-              <ServiceCard
-                title={card.title}
-                category={card.category}
-                description={card.description}
-                image={card.image}
-                icon={card.icon}
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              />
-            </div>
+            <SnapCarouselItem key={i} width="max-md:w-[82vw] max-md:max-w-[340px] md:max-lg:w-[46%] md:max-lg:max-w-none">
+              <div
+                ref={(el) => {
+                  cardRefs.current[i] = el;
+                }}
+              >
+                <ServiceCard
+                  title={card.title}
+                  category={card.category}
+                  description={card.description}
+                  image={card.image}
+                  icon={card.icon}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+            </SnapCarouselItem>
           ))}
-        </div>
+        </SnapCarousel>
       </div>
     </section>
   );

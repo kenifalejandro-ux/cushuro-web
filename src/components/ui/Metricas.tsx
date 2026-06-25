@@ -225,9 +225,9 @@ export default function Metricas({
   const valueClass =
     estilo === "minimalista"
       ? `${vista === "mobile" ? "text-2xl" : "text-xl sm:text-3xl lg:text-[2.6rem]"} font-semibold tracking-[-0.05em]`
-      : `${vista === "mobile" ? "text-3xl" : "text-2xl sm:text-4xl lg:text-[2.8rem]"} font-semibold tracking-tight`;
+      : `${vista === "mobile" ? "text-3xl" : "text-xl sm:text-4xl lg:text-[2.8rem]"} font-semibold tracking-tight`;
 
-  const labelClass = `${vista === "mobile" ? "text-[11px]" : "text-[9px] sm:text-xs"} uppercase ${preset.label}`;
+  const labelClass = `${vista === "mobile" ? "text-[11px]" : "text-[10px] sm:text-xs"} uppercase ${preset.label}`;
 
   /* ---------- INLINE ---------- */
   if (variant === "inline") {
@@ -285,7 +285,7 @@ export default function Metricas({
     return (
       <div
         ref={sectionRef}
-        className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-4 lg:gap-8"
+        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-4 lg:gap-8"
       >
         {data.map((m, i) => (
           <div
@@ -333,7 +333,7 @@ export default function Metricas({
     <div ref={sectionRef} className="relative">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div
-          className={`grid grid-cols-3 gap-6 rounded-[1.85rem] border  px-6 py-8 md:grid-cols-3 md:gap-4 md:px-8 md:py-10 lg:grid-cols-3 lg:gap-8 ${preset.container} ${preset.containerShadow}`}
+          className={`grid grid-cols-3 gap-3 rounded-[1.85rem] border px-4 py-7 md:grid-cols-3 md:gap-4 md:px-8 md:py-10 lg:grid-cols-3 lg:gap-8 ${preset.container} ${preset.containerShadow}`}
         >
           {data.map((m, i) => (
             <div
@@ -341,18 +341,20 @@ export default function Metricas({
               data-metrica-item
               className={`relative mt-2 pl-0 text-center md:mt-0 md:pl-8 md:text-left ${i > 0 ? `md:border-l ${preset.divider}` : ""}`}
             >
-              <div className="mx-auto mb-5 h-px w-10 bg-zinc-300 md:mx-0" aria-hidden />
+              <div className="mx-auto mb-3 h-px w-8 bg-zinc-300 md:mb-5 md:w-10 md:mx-0" aria-hidden />
               <div
                 ref={(el) => {
                   metricRefs.current[i] = el;
                 }}
-                className={`${valueClass} mb-3 transition-transform hover:-translate-y-0.5`}
+                className={`${valueClass} mb-2 whitespace-nowrap md:mb-3 transition-transform hover:-translate-y-0.5`}
                 style={{ color }}
               >
                 <Counter value={m.valor} active={visible[i]} reducedMotionEnabled={reducedMotion} />
               </div>
 
-              <div className={`${labelClass} ${estilo === "industrial" ? "text-zinc-300" : ""}`}>
+              <div
+                className={`${labelClass} leading-tight max-sm:tracking-[0.08em] ${estilo === "industrial" ? "text-zinc-300" : ""}`}
+              >
                 {m.etiqueta}
               </div>
             </div>

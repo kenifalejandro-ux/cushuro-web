@@ -13,6 +13,42 @@ body {
   overflow-x: clip;
 }
 
+/* ===== Scrollbar nativa oculta (sin carril reservado: la web va a todo el ancho) =====
+   El indicador visible lo dibuja <ScrollIndicator /> flotando encima del contenido. */
+/* Chrome, Edge, Safari */
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* ===== Indicador de scroll propio: navy, delgado, visible solo al hacer scroll ===== */
+.scroll-indicator {
+  position: fixed;
+  top: 0;
+  right: 2px;
+  width: 5px;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+}
+.scroll-indicator__thumb {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  border-radius: 999px;
+  background-color: #1d3461;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  will-change: transform, height;
+}
+.scroll-indicator.is-scrolling .scroll-indicator__thumb {
+  opacity: 1;
+}
+
 /*animación scroll indicator*/
 @keyframes scrollWheel {
   0% {

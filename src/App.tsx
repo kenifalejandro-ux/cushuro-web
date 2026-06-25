@@ -9,6 +9,7 @@ import PageTransition from "./components/global/PageTransition";
 import Layout from "./components/layout/layout";
 import { useGTMPageView } from "./hooks/useGTMPageView";
 import useParallaxEffect from "./hooks/useParallaxEffect";
+import ScrollIndicator from "./components/global/ScrollIndicator";
 import LogoCalera from "@/assets/logo-caldera-cushuro.png";
 
 const siteLogo = import.meta.env.VITE_IMG_URL
@@ -273,6 +274,7 @@ function App() {
 
   return (
     <div className="app">
+      <ScrollIndicator />
       {/* Estilo global de íconos Phosphor: duotone (sobrio, industrial). El color lo da
           cada uso vía className (emerald / blue de marca) sobre currentColor. */}
       <IconContext.Provider value={{ weight: "duotone" }}>
